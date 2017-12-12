@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native'
-import PrePrayer from 'PrePrayer.js'
-import CurrentPrayer from 'CurrentPrayer.js'
+import PrePrayer from './PrePrayer.js'
+import CurrentPrayer from './CurrentPrayer.js'
 import axios from 'axios'
 
 const IP_ADDRESS = '172.16.22.196'
