@@ -4,6 +4,8 @@ import { StyleSheet, Image } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { Settings, Home, Accept, Submit, Manage } from './components'
 
+
+/** ASYN FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
 function cacheImages(images) {
   return images.map(image => {
     if (typeof image === 'string') {
@@ -25,7 +27,7 @@ export default class App extends React.Component {
       isReady: false,
     }
   }
-
+  // WAIT FOR ASSETS TO BE LOADED
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
       'https://static.pexels.com/photos/414727/pexels-photo-414727.jpeg',
@@ -36,7 +38,7 @@ export default class App extends React.Component {
     )}])
     await Promise.all([...imageAssets, ...fontAssets])
   }
-
+  // ONCE ASSETS ARE LOADED, RENDER THE APP
   render() {
     if (!this.state.isReady) {
       return (
