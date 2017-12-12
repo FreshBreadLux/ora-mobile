@@ -1,17 +1,16 @@
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Swiper from 'react-native-swiper'
+import Home from './components/Home'
 
 export default class App extends React.Component {
   render() {
     return (
-      <Swiper style={styles.wrapper} index={1}>
+      <Swiper style={styles.wrapper} index={1} showsPagination={false}>
         <View style={styles.settings}>
           <Text>Settings</Text>
         </View>
-        <View style={styles.home}>
-          <Text>Home</Text>
-        </View>
+        <Home />
         <View style={styles.accept}>
           <Text>Accept</Text>
         </View>
@@ -32,12 +31,6 @@ const styles = StyleSheet.create({
   settings: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  home: {
-    flex: 1,
-    backgroundColor: 'aliceblue',
     alignItems: 'center',
     justifyContent: 'center',
   },
