@@ -5,7 +5,7 @@ import Swiper from 'react-native-swiper'
 import { SettingsNav, Home, Accept, Submit, Manage } from './components'
 
 
-/** ASYN FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
+/** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
 function cacheImages(images) {
   return images.map(image => {
     if (typeof image === 'string') {
