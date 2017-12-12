@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Animated, TouchableOpacity } from 'react-native'
+import { Animated } from 'react-native'
 import PrePrayer from './PrePrayer.js'
 import CurrentPrayer from './CurrentPrayer.js'
 import axios from 'axios'
@@ -25,7 +25,7 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    axios.get(`http://${IP_ADDRESS}/api/prayers/next`)
+    axios.get(`http://${IP_ADDRESS}:8080/api/prayers/next`)
     .then(response => response.data)
     .then(prayer => {
       this.setState({currentPrayer: prayer})
@@ -40,20 +40,17 @@ export default class Accept extends React.Component {
   render() {
     if (!this.state.currentPrayer) {
       return (
-        <PrePrayer loadNextPrayer={this.loadNextPrayer} />
+        <PrePrayer
+          loadNextPrayer={this.loadNextPrayer}
+        />
       )
     }
     return (
-      <CurrentPrayer />
+      <CurrentPrayer
+        loadNextPrayer={this.loadNextPrayer}
+        statePrayer={this.state.currentPrayer}
+        fadeOut={this.fadeOut}
+      />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  accept: {
-    flex: 1,
-    backgroundColor: 'aquamarine',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
