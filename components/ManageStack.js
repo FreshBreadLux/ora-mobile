@@ -24,8 +24,8 @@ export default class ManageStack extends React.Component {
       selectedPrayer: null,
       selectedFollow: null,
     }
-    this.setMyPrayer = this.setMyPrayer.bind(this)
-    this.setFollowPrayer = this.setFollowPrayer.bind(this)
+    this.setPrayer = this.setPrayer.bind(this)
+    this.setFollow = this.setFollow.bind(this)
   }
   setPrayer(prayer) {
     this.setState({selectedPrayer: prayer})
