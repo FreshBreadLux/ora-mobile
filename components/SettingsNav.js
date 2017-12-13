@@ -1,5 +1,4 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { TabNavigator } from 'react-navigation'
 import Settings from './Settings.js'
 import About from './About.js'
