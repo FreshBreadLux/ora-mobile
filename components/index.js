@@ -1,5 +1,5 @@
 export { default as SettingsNav } from './SettingsNav.js'
 export { default as Home } from './Home.js'
 export { default as Accept } from './Accept.js'
-export { default as Submit } from './Submit.js'
+export { default as SubmitVerify } from './SubmitVerify.js'
 export { default as Manage } from './Manage.js'
