@@ -1,7 +1,7 @@
 import React from 'react'
 import tcomb from 'tcomb-form-native'
 import axios from 'axios'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
 import IP_ADDRESS from '../config'
 
 const Form = tcomb.form.Form
@@ -19,7 +19,9 @@ export default class LoginForm extends React.Component {
   }
 
   async setAsyncStorage(item, selectedValue) {
+    console.log('Made it to setAsyncStorage!!!!!: ', this.props)
     try {
+      console.log(this.props.verifyStorageKey)
       await AsyncStorage.setItem(item, selectedValue)
       this.props.verifyStorageKey()
     } catch (error) {
@@ -34,9 +36,8 @@ export default class LoginForm extends React.Component {
         email: value.email,
         password: value.password,
       })
-      .then(response => response.json())
-      .then(responseData => {
-        return this.setAsyncStorage('payload', responseData)
+      .then(response => {
+        return this.setAsyncStorage('payload', response.data)
       })
       .done()
     }
@@ -49,9 +50,8 @@ export default class LoginForm extends React.Component {
         email: value.email,
         password: value.password,
       })
-      .then(response => response.json())
-      .then(responseData => {
-        return this.setAsyncStorage('payload', responseData)
+      .then(response => {
+        return this.setAsyncStorage('payload', response.data)
       })
       .done()
     }
