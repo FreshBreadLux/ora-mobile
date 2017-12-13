@@ -1,10 +1,9 @@
 import React from 'react'
 import { Animated } from 'react-native'
-import PrePrayer from './PrePrayer.js'
-import CurrentPrayer from './CurrentPrayer.js'
+import PrePrayer from './PrePrayer'
+import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
-
-const IP_ADDRESS = '172.16.22.196'
+import IP_ADDRESS from '../config'
 
 export default class Accept extends React.Component {
   constructor(props) {
