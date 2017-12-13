@@ -8,6 +8,7 @@ export default class SubmitVerify extends React.Component {
     this.state = {
       isLoggedin: false,
       userId: null,
+      jwTtoken: null,
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
   }
@@ -17,8 +18,12 @@ export default class SubmitVerify extends React.Component {
   }
 
   async verifyStorageKey() {
-    const userId = await AsyncStorage.getItem('userId')
-    if (userId) this.setState({isLoggedin: true, userId: userId})
+    const payload = await AsyncStorage.getItem('payload')
+    if (payload) this.setState({
+      isLoggedin: true,
+      userId: payload.userId,
+      jwToken: payload.jwToken,
+    })
   }
 
   render() {

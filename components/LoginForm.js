@@ -36,7 +36,7 @@ export default class LoginForm extends React.Component {
       })
       .then(response => response.json())
       .then(responseData => {
-        return this.setAsyncStorage('userId', responseData.userId + '')
+        return this.setAsyncStorage('payload', responseData)
       })
       .done()
     }
@@ -51,7 +51,7 @@ export default class LoginForm extends React.Component {
       })
       .then(response => response.json())
       .then(responseData => {
-        return this.setAsyncStorage('userId', responseData.userId + '')
+        return this.setAsyncStorage('payload', responseData)
       })
       .done()
     }
