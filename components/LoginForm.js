@@ -1,7 +1,7 @@
 import React from 'react'
 import tcomb from 'tcomb-form-native'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, AsyncStorage } from 'react-native'
+import { View, Text, TouchableOpacity, AsyncStorage, StyleSheet } from 'react-native'
 import IP_ADDRESS from '../config'
 
 const Form = tcomb.form.Form
@@ -19,9 +19,7 @@ export default class LoginForm extends React.Component {
   }
 
   async setAsyncStorage(item, selectedValue) {
-    console.log('Made it to setAsyncStorage!!!!!: ', this.props)
     try {
-      console.log(this.props.verifyStorageKey)
       await AsyncStorage.setItem(item, selectedValue)
       this.props.verifyStorageKey()
     } catch (error) {
@@ -36,8 +34,9 @@ export default class LoginForm extends React.Component {
         email: value.email,
         password: value.password,
       })
-      .then(response => {
-        return this.setAsyncStorage('payload', response.data)
+      .then(response => JSON.stringify(response.data))
+      .then(payload => {
+        return this.setAsyncStorage('payload', payload)
       })
       .done()
     }
@@ -50,8 +49,9 @@ export default class LoginForm extends React.Component {
         email: value.email,
         password: value.password,
       })
-      .then(response => {
-        return this.setAsyncStorage('payload', response.data)
+      .then(response => JSON.stringify(response.data))
+      .then(payload => {
+        return this.setAsyncStorage('payload', payload)
       })
       .done()
     }
@@ -59,8 +59,9 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.login}>
         <Form
+          style={styles.form}
           ref="form"
           type={Person}
           options={{
@@ -92,3 +93,10 @@ export default class LoginForm extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  login: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+})
