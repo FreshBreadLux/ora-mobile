@@ -2,7 +2,7 @@ import React from 'react'
 import tcomb from 'tcomb-form-native'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, AsyncStorage, StyleSheet } from 'react-native'
-import IP_ADDRESS from '../config'
+import IP_ADDRESS from '../../config'
 
 const Form = tcomb.form.Form
 const Person = tcomb.struct({

@@ -2,7 +2,7 @@ import React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { StyleSheet, Image } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { SettingsNav, Home, Accept, SubmitVerify, ManageStack } from './components'
+import { Settings, Home, Accept, Submit, Manage } from './components'
 
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
@@ -55,11 +55,11 @@ export default class App extends React.Component {
         showsPagination={false}
         loop={false}
       >
-        <SettingsNav />
+        <Settings />
         <Home />
         <Accept />
-        <SubmitVerify />
-        <ManageStack />
+        <Submit />
+        <Manage />
       </Swiper>
     )
   }
