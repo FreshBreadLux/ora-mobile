@@ -1,7 +1,8 @@
 import React from 'react'
 import { TabNavigator } from 'react-navigation'
-import Settings from './Settings.js'
-import About from './About.js'
+import Settings from './Settings'
+import About from './About'
+import LogoutForm from './LogoutForm'
 
 const SettingsTab = TabNavigator({
   Settings: {
@@ -9,7 +10,10 @@ const SettingsTab = TabNavigator({
   },
   About: {
     screen: About
-  }
+  },
+  LogoutForm: {
+    screen: LogoutForm
+  },
 }, {
   tabBarPosition: 'bottom',
 })
