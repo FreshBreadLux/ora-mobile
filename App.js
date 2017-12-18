@@ -51,7 +51,6 @@ export default class App extends React.Component {
     }
     return (
       <Swiper
-        style={styles.wrapper}
         index={1}
         showsPagination={false}
         loop={false}
@@ -65,8 +64,3 @@ export default class App extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-  },
-})
