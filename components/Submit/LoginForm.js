@@ -61,7 +61,6 @@ export default class LoginForm extends React.Component {
     return (
       <View style={styles.login}>
         <Form
-          style={styles.form}
           ref="form"
           type={Person}
           options={{
