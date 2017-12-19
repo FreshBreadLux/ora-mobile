@@ -14,8 +14,7 @@ export default class SubmitForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      subject: '',
-      body: '',
+      formValue: null,
       prayerSent: false,
     }
     this.submitPrayer = this.submitPrayer.bind(this)
@@ -25,17 +24,20 @@ export default class SubmitForm extends React.Component {
     Keyboard.dismiss()
     axios.post(`http://${IP_ADDRESS}:8080/api/prayers`, {
       userId: this.props.userId,
-      subject: this.state.subject,
-      body: this.state.body,
+      subject: this.state.formValue.subject,
+      body: this.state.formValue.body,
     })
     .then(() => {
       this.setState({
-        subject: '',
-        body: '',
+        formValue: null,
         prayerSent: true,
       })
     })
     .catch(console.error)
+  }
+
+  onChange(value) {
+    this.setState({ formValue: value })
   }
 
   render() {
@@ -47,6 +49,8 @@ export default class SubmitForm extends React.Component {
         <Form
           ref="form"
           type={Prayer}
+          value={this.state.formValue}
+          onChange={this.onChange.bind(this)}
           options={{
             auto: 'placehodlers',
             fields: {
