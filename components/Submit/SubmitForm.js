@@ -36,7 +36,7 @@ export default class SubmitForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.login}>
+      <View style={styles.submit}>
         <Form
           ref="form"
           type={Prayer}
@@ -64,3 +64,10 @@ export default class SubmitForm extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  submit: {
+    flex: 1,
+    justifyContent: 'center',
+  }
+})

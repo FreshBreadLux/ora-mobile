@@ -75,8 +75,8 @@ export default class LoginForm extends React.Component {
               },
               password: {
                 label: 'Password',
-                placeholderTextColor: '#777'
-              }
+                placeholderTextColor: '#777',
+              },
             }
           }}
         />
