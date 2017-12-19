@@ -20,14 +20,17 @@ export default class SwiperClass extends React.Component {
 
   async verifyStorageKey() {
     const payload = await AsyncStorage.getItem('payload')
-    if (payload) this.setState({
+    const payloadJson = JSON.parse(payload)
+    if (payloadJson) this.setState({
       isLoggedIn: true,
-      userId: payload.userId,
-      jwToken: payload.jwToken,
+      userId: payloadJson.userId,
+      jwToken: payloadJson.jwToken,
     })
+    console.log('payloadJson: ', payloadJson)
   }
 
   render() {
+    console.log('this.state.userId: ', this.state.userId)
     return (
       <Swiper
         showsPagination={false}

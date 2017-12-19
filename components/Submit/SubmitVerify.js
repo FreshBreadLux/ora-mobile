@@ -5,6 +5,7 @@ import SubmitForm from './SubmitForm'
 
 export default class SubmitVerify extends React.Component {
   render() {
+    console.log('submitverify userId: ',this.props.userId)
     if (!this.props.isLoggedIn) {
       return (
         <LoginForm verifyStorageKey={this.props.verifyStorageKey} />

@@ -14,8 +14,11 @@ export default class SubmitForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      prayer: '',
+      subject: '',
+      body: '',
+      prayerSent: false,
     }
+    this.submitPrayer = this.submitPrayer.bind(this)
   }
 
   submitPrayer() {
@@ -29,6 +32,7 @@ export default class SubmitForm extends React.Component {
       this.setState({
         subject: '',
         body: '',
+        prayerSent: true,
       })
     })
     .catch(console.error)
@@ -37,6 +41,9 @@ export default class SubmitForm extends React.Component {
   render() {
     return (
       <View style={styles.submit}>
+        { this.state.prayerSent
+          ? <Text>Your prayer has been submitted</Text>
+          : null }
         <Form
           ref="form"
           type={Prayer}
