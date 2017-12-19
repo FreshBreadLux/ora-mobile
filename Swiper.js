@@ -26,11 +26,9 @@ export default class SwiperClass extends React.Component {
       userId: payloadJson.userId,
       jwToken: payloadJson.jwToken,
     })
-    console.log('payloadJson: ', payloadJson)
   }
 
   render() {
-    console.log('this.state.userId: ', this.state.userId)
     return (
       <Swiper
         showsPagination={false}
