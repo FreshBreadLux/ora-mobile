@@ -11,7 +11,7 @@ export default class SubmitVerify extends React.Component {
       )
     }
     return (
-      <SubmitForm />
+      <SubmitForm userId={this.props.userId} />
     )
   }
 }

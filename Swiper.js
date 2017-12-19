@@ -40,6 +40,7 @@ export default class SwiperClass extends React.Component {
         <Submit
           isLoggedIn={this.state.isLoggedIn}
           verifyStorageKey={this.verifyStorageKey}
+          userId={this.state.userId}
         />
         <Manage />
       </Swiper>
