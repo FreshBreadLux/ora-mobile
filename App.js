@@ -1,8 +1,7 @@
 import React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { StyleSheet, Image } from 'react-native'
-import Swiper from 'react-native-swiper'
-import { Settings, Home, Accept, Submit, Manage } from './components'
+import SwiperClass from './Swiper'
 
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
@@ -50,17 +49,7 @@ export default class App extends React.Component {
       )
     }
     return (
-      <Swiper
-        index={1}
-        showsPagination={false}
-        loop={false}
-      >
-        <Settings />
-        <Home />
-        <Accept />
-        <Submit />
-        <Manage />
-      </Swiper>
+      <SwiperClass />
     )
   }
 }

@@ -68,12 +68,14 @@ export default class LoginForm extends React.Component {
             auto: 'placeholders',
             fields: {
               email: {
+                label: 'Email',
                 keyboardType: 'email-address',
                 autoCapitalize: 'none',
                 onSubmitEditing: () => this.refs.form.getComponent('password').refs.input.focus(),
                 placeholderTextColor: '#777',
               },
               password: {
+                label: 'Password',
                 placeholderTextColor: '#777'
               }
             }
