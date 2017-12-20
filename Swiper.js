@@ -12,6 +12,7 @@ export default class SwiperClass extends React.Component {
       jwToken: null,
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
+    this.userLogout = this.userLogout.bind(this)
   }
 
   componentDidMount() {
@@ -28,6 +29,20 @@ export default class SwiperClass extends React.Component {
     })
   }
 
+  async userLogout() {
+    try {
+      await AsyncStorage.removeItem('payload')
+      this.setState({
+        isLoggedIn: false,
+        userId: null,
+        jwToken: null,
+      })
+      AlertIOS.alert('Logout Successful')
+    } catch (error) {
+      console.log('AsyncStorage error: ' + error.message)
+    }
+  }
+
   render() {
     return (
       <Swiper
@@ -35,7 +50,7 @@ export default class SwiperClass extends React.Component {
         loop={false}
         index={1}
       >
-        <Settings />
+        <Settings userLogout={this.userLogout}/>
         <Home />
         <Accept />
         <Submit
