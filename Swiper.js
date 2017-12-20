@@ -30,9 +30,7 @@ export default class SwiperClass extends React.Component {
   }
 
   async userLogout() {
-    console.log('Made it to userLogout')
     try {
-      console.log('Made it into the try statement')
       await AsyncStorage.removeItem('payload')
       this.setState({
         isLoggedIn: false,
@@ -41,7 +39,6 @@ export default class SwiperClass extends React.Component {
       })
       AlertIOS.alert('Logout Successful')
     } catch (error) {
-      console.log('Made it into the catch statement')
       console.error('AsyncStorage error: ' + error.message)
     }
   }
