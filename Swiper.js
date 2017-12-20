@@ -1,5 +1,5 @@
 import React from 'react'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, AlertIOS } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { Settings, Home, Accept, Submit, Manage } from './components'
 
@@ -30,7 +30,9 @@ export default class SwiperClass extends React.Component {
   }
 
   async userLogout() {
+    console.log('Made it to userLogout')
     try {
+      console.log('Made it into the try statement')
       await AsyncStorage.removeItem('payload')
       this.setState({
         isLoggedIn: false,
@@ -39,7 +41,8 @@ export default class SwiperClass extends React.Component {
       })
       AlertIOS.alert('Logout Successful')
     } catch (error) {
-      console.log('AsyncStorage error: ' + error.message)
+      console.log('Made it into the catch statement')
+      console.error('AsyncStorage error: ' + error.message)
     }
   }
 

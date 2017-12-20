@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 export default class LogoutForm extends React.Component {
   render() {
+    console.log('LogoutForm props', this.props.screenProps.userLogout)
     return (
       <View style={styles.login}>
         <TouchableOpacity
-          onPress={this.userLogout}
+          onPress={this.props.screenProps.userLogout}
         >
           <Text>Logout</Text>
         </TouchableOpacity>

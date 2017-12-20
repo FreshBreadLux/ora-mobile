@@ -21,7 +21,9 @@ const SettingsTab = TabNavigator({
 export default class SettingsNav extends React.Component {
   render() {
     return (
-      <SettingsTab />
+      <SettingsTab screenProps={{
+        userLogout: this.props.userLogout
+      }}/>
     )
   }
 }
