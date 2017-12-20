@@ -1,21 +1,15 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import styles from '../StyleSheet'
 
 export default class Settings extends React.Component {
   render() {
     return (
-      <View style={styles.settings}>
-        <Text>New Settings</Text>
+      <View style={styles.container}>
+        <View style={styles.coverCenter}>
+          <Text>New Settings</Text>
+        </View>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  settings: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
