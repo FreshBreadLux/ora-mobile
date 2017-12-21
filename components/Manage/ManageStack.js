@@ -33,8 +33,12 @@ export default class ManageStack extends React.Component {
     this.setState({selectedFollow: prayer})
   }
   render() {
+    console.log(this.state)
     return (
-      <ManageStackNav />
+      <ManageStackNav screenProps={{
+        prayers: this.props.prayers,
+        setPrayer: this.setPrayer,
+      }} />
     )
   }
 }

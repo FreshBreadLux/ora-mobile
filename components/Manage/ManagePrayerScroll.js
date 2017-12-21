@@ -1,27 +1,29 @@
 import React from 'react'
-import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import { FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import styles from '../StyleSheet'
 
 export default class ManageMyPrayer extends React.Component {
   render() {
+    const { prayers, setPrayer, navigateToMyPrayer } = this.props.screenProps
+    if (!prayers) {
+      return (
+        <View style={styles.container}>
+          <View style={[styles.cover, styles.center]}>
+            <Text>Please login to manage your prayers</Text>
+          </View>
+        </View>
+      )
+    }
     return (
       <ScrollView>
+      { prayers.map(prayer =>
         <TouchableOpacity
-          onPress={this.props.screenProps.navigateToMyPrayer}>
-          <Text>First Prayer</Text>
+          key={prayer.id}
+          onPress={() => navigateToMyPrayer(prayer)}>
+          <Text>{prayer.subject}</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Second Prayer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Third Prayer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Fourth Prayer</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text>Fifth Prayer</Text>
-        </TouchableOpacity>
-      </ScrollView>
+      )}
+    </ScrollView>
     )
   }
 }

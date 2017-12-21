@@ -19,12 +19,16 @@ export default class ManageTab extends React.Component {
     super(props)
     this.navigateToMyPrayer = this.navigateToMyPrayer.bind(this)
   }
-  navigateToMyPrayer() {
-    this.props.navigation.navigate('MyPrayer')
+  navigateToMyPrayer(prayer) {
+    this.props.navigation.navigate('MyPrayer', { prayer })
   }
   render() {
     return (
-      <ManageTabNav screenProps={{ navigateToMyPrayer: this.navigateToMyPrayer }} />
+      <ManageTabNav screenProps={{
+        setPrayer: this.props.screenProps.setPrayer,
+        navigateToMyPrayer: this.navigateToMyPrayer,
+        prayers: this.props.screenProps.prayers
+      }} />
     )
   }
 }

@@ -54,7 +54,6 @@ export default class SwiperClass extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <Swiper
         showsPagination={false}
@@ -69,7 +68,7 @@ export default class SwiperClass extends React.Component {
           verifyStorageKey={this.verifyStorageKey}
           userId={this.state.userId}
         />
-        <Manage />
+        <Manage prayers={this.state.prayers}/>
       </Swiper>
     )
   }
