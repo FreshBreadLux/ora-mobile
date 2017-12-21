@@ -46,6 +46,7 @@ export default class SwiperClass extends React.Component {
         isLoggedIn: false,
         userId: null,
         jwToken: null,
+        prayers: null,
       })
       AlertIOS.alert('Logout Successful')
     } catch (error) {
