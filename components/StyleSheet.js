@@ -14,12 +14,14 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
    },
-   coverCenter: {
+   cover: {
     flex: 1,
+    backgroundColor: 'transparent',
+   },
+   center: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
-   }
+   },
 })
 
 export default styles

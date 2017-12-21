@@ -15,9 +15,16 @@ const ManageTabNav = TabNavigator({
 })
 
 export default class ManageTab extends React.Component {
+  constructor(props) {
+    super(props)
+    this.navigateToMyPrayer = this.navigateToMyPrayer.bind(this)
+  }
+  navigateToMyPrayer() {
+    this.props.navigation.navigate('MyPrayer')
+  }
   render() {
     return (
-      <ManageTabNav />
+      <ManageTabNav screenProps={{ navigateToMyPrayer: this.navigateToMyPrayer }} />
     )
   }
 }

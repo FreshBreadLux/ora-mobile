@@ -2,6 +2,8 @@ import React from 'react'
 import { AsyncStorage, AlertIOS } from 'react-native'
 import Swiper from 'react-native-swiper'
 import { Settings, Home, Accept, Submit, Manage } from './components'
+import axios from 'axios'
+import IP_ADDRESS from './config'
 
 export default class SwiperClass extends React.Component {
   constructor(props) {
@@ -10,6 +12,7 @@ export default class SwiperClass extends React.Component {
       isLoggedIn: false,
       userId: null,
       jwToken: null,
+      prayers: null,
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.userLogout = this.userLogout.bind(this)
@@ -22,11 +25,18 @@ export default class SwiperClass extends React.Component {
   async verifyStorageKey() {
     const payload = await AsyncStorage.getItem('payload')
     const payloadJson = JSON.parse(payload)
-    if (payloadJson) this.setState({
-      isLoggedIn: true,
-      userId: payloadJson.userId,
-      jwToken: payloadJson.jwToken,
-    })
+    if (payloadJson) {
+      this.setState({
+        isLoggedIn: true,
+        userId: payloadJson.userId,
+        jwToken: payloadJson.jwToken,
+      })
+      axios.get(`http://${IP_ADDRESS}:8080/api/users/${payloadJson.userId}/prayers`)
+      .then(prayers => this.setState({
+        prayers: prayers.data
+      }))
+      .catch(console.error)
+    }
   }
 
   async userLogout() {
@@ -44,6 +54,7 @@ export default class SwiperClass extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <Swiper
         showsPagination={false}

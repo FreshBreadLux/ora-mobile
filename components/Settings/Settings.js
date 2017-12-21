@@ -6,7 +6,7 @@ export default class Settings extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.coverCenter}>
+        <View style={[styles.cover, styles.center]}>
           <Text>New Settings</Text>
         </View>
       </View>

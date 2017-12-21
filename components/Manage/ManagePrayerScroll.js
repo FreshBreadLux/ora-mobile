@@ -1,15 +1,26 @@
 import React from 'react'
-import { ScrollView, View, Text } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 
 export default class ManageMyPrayer extends React.Component {
   render() {
     return (
       <ScrollView>
-        <Text>First Prayer</Text>
-        <Text>Second Prayer</Text>
-        <Text>Third Prayer</Text>
-        <Text>Fourth Prayer</Text>
-        <Text>Fifth Prayer</Text>
+        <TouchableOpacity
+          onPress={this.props.screenProps.navigateToMyPrayer}>
+          <Text>First Prayer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Second Prayer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Third Prayer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Fourth Prayer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Text>Fifth Prayer</Text>
+        </TouchableOpacity>
       </ScrollView>
     )
   }

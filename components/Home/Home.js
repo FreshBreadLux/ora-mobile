@@ -12,7 +12,7 @@ export default class Home extends React.Component {
           source={{uri: 'https://static.pexels.com/photos/414727/pexels-photo-414727.jpeg'}}
         />
         </View>
-        <View style={styles.cover}>
+        <View style={[styles.cover, styles.center]}>
           <Text>Ora</Text>
         </View>
       </View>
