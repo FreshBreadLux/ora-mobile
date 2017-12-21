@@ -13,6 +13,7 @@ export default class SwiperClass extends React.Component {
       userId: null,
       jwToken: null,
       prayers: null,
+      follows: null,
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
@@ -50,7 +51,7 @@ export default class SwiperClass extends React.Component {
     const follows = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/follows`)
     if (follows) {
       this.setState({
-        follows: follows.data
+        follows: follows.data // TODO: CLEAN BACKEND
       })
     }
   }

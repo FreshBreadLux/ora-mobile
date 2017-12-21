@@ -14,7 +14,7 @@ const ManageStackNav = StackNavigator({
       title: `${navigation.state.params.prayer.subject}`
     })
   },
-  FollowPrayer: {
+  MyFollow: {
     screen: ManageMyFollow,
     inavigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.follow.subject}`

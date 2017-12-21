@@ -31,7 +31,8 @@ export default class ManageTab extends React.Component {
       <ManageTabNav screenProps={{
         navigateToMyPrayer: this.navigateToMyPrayer,
         navigateToMyFollow: this.navigateToMyFollow,
-        prayers: this.props.screenProps.prayers
+        prayers: this.props.screenProps.prayers,
+        follows: this.props.screenProps.follows,
       }} />
     )
   }
