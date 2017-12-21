@@ -16,6 +16,9 @@ const ManageStackNav = StackNavigator({
   },
   FollowPrayer: {
     screen: ManageMyFollow,
+    inavigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.follow.subject}`
+    })
   },
 })
 
@@ -24,6 +27,7 @@ export default class ManageStack extends React.Component {
     return (
       <ManageStackNav screenProps={{
         prayers: this.props.prayers,
+        follows: this.props.follows,
       }} />
     )
   }

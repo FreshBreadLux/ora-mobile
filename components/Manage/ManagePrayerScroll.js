@@ -4,7 +4,7 @@ import styles from '../StyleSheet'
 
 export default class ManageMyPrayer extends React.Component {
   render() {
-    const { prayers, setPrayer, navigateToMyPrayer } = this.props.screenProps
+    const { prayers, navigateToMyPrayer } = this.props.screenProps
     if (!prayers) {
       return (
         <View style={styles.container}>

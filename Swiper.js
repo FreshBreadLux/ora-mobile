@@ -15,6 +15,7 @@ export default class SwiperClass extends React.Component {
       prayers: null,
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
+    this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.userLogout = this.userLogout.bind(this)
   }
 
@@ -31,11 +32,26 @@ export default class SwiperClass extends React.Component {
         userId: payloadJson.userId,
         jwToken: payloadJson.jwToken,
       })
-      axios.get(`http://${IP_ADDRESS}:8080/api/users/${payloadJson.userId}/prayers`)
-      .then(prayers => this.setState({
+      this.fetchUserPrayers(payloadJson.userId)
+      this.fetchUserFollows(payloadJson.userId)
+    }
+  }
+
+  async fetchUserPrayers(userId) {
+    const prayers = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/prayers`)
+    if (prayers) {
+      this.setState({
         prayers: prayers.data
-      }))
-      .catch(console.error)
+      })
+    }
+  }
+
+  fetchUserFollows(userId) {
+    const follows = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/follows`)
+    if (follows) {
+      this.setState({
+        follows: follows.data
+      })
     }
   }
 
@@ -69,7 +85,11 @@ export default class SwiperClass extends React.Component {
           verifyStorageKey={this.verifyStorageKey}
           userId={this.state.userId}
         />
-        <Manage prayers={this.state.prayers}/>
+        <Manage
+          prayers={this.state.prayers}
+          follows={this.state.follows}
+          isLoggedIn={this.state.isLoggedIn}
+        />
       </Swiper>
     )
   }

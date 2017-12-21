@@ -4,7 +4,7 @@ import ManagePrayerScroll from './ManagePrayerScroll'
 import ManageFollowScroll from './ManageFollowScroll'
 
 const ManageTabNav = TabNavigator({
-  ManageMyScroll: {
+  ManagePrayerScroll: {
     screen: ManagePrayerScroll,
   },
   ManageFollowScroll: {
@@ -18,15 +18,19 @@ export default class ManageTab extends React.Component {
   constructor(props) {
     super(props)
     this.navigateToMyPrayer = this.navigateToMyPrayer.bind(this)
+    this.navigateToMyFollow = this.navigateToMyFollow.bind(this)
   }
   navigateToMyPrayer(prayer) {
     this.props.navigation.navigate('MyPrayer', { prayer })
   }
+  navigateToMyFollow(follow) {
+    this.props.navigation.navigate('MyFollow', { follow })
+  }
   render() {
     return (
       <ManageTabNav screenProps={{
-        setPrayer: this.props.screenProps.setPrayer,
         navigateToMyPrayer: this.navigateToMyPrayer,
+        navigateToMyFollow: this.navigateToMyFollow,
         prayers: this.props.screenProps.prayers
       }} />
     )
