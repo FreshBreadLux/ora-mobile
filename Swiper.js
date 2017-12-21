@@ -46,7 +46,7 @@ export default class SwiperClass extends React.Component {
     }
   }
 
-  fetchUserFollows(userId) {
+  async fetchUserFollows(userId) {
     const follows = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/follows`)
     if (follows) {
       this.setState({

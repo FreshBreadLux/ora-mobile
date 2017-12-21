@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, ScrollView, View, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 export default class ManageMyPrayer extends React.Component {
