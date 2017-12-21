@@ -24,6 +24,7 @@ export default class ManageTab extends React.Component {
     this.props.navigation.navigate('MyPrayer', { prayer })
   }
   navigateToMyFollow(follow) {
+    console.log(follow)
     this.props.navigation.navigate('MyFollow', { follow })
   }
   render() {
