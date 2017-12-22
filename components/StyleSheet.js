@@ -22,10 +22,38 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
    },
+   spaceAround: {
+     justifyContent: 'space-around',
+     alignItems: 'center',
+   },
+   row: {
+     flexDirection: 'row'
+   },
+   column: {
+     flexDirection: 'column'
+   },
    title: {
      fontFamily: 'open-sans',
      fontSize: 80,
      color: '#fff'
+   },
+   button: {
+     backgroundColor: '#fff',
+     padding: 15,
+     borderRadius: 7,
+    },
+    buttonText: {
+     fontFamily: 'open-sans',
+     fontSize: 18,
+   },
+   flex1: {
+     flex: 1
+   },
+   flex2: {
+     flex: 2,
+   },
+   flex3: {
+     flex: 3
    }
 })
 

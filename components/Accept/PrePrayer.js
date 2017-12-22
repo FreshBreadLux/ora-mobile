@@ -12,9 +12,10 @@ const PrePrayer = ({ loadNextPrayer }) => (
     </View>
     <View style={[styles.cover, styles.center]}>
       <TouchableOpacity
+        style={styles.button}
         onPress={loadNextPrayer}
       >
-        <Text>Start Praying</Text>
+        <Text style={styles.buttonText}>Start Praying</Text>
       </TouchableOpacity>
     </View>
   </View>
