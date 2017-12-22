@@ -13,7 +13,7 @@ export default class Home extends React.Component {
         />
         </View>
         <View style={[styles.cover, styles.center]}>
-          <Text>Ora</Text>
+          <Text style={styles.title}>Ora</Text>
         </View>
       </View>
     )

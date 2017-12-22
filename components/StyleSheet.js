@@ -22,6 +22,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
    },
+   title: {
+     fontFamily: 'open-sans',
+     fontSize: 80,
+     color: '#fff'
+   }
 })
 
 export default styles

@@ -3,18 +3,12 @@ import { View, Text, StyleSheet } from 'react-native'
 
 export default class ManageMyPrayer extends React.Component {
   render() {
+    const follow = this.props.navigation.state.params.follow
     return (
       <View>
-        <Text>My Follow</Text>
+        <Text>{`${follow.subject}`}</Text>
+        <Text>{`${follow.body}`}</Text>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  singleprayer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-})
