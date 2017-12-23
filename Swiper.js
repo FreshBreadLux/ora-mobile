@@ -17,6 +17,7 @@ export default class SwiperClass extends React.Component {
     }
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
+    this.fetchUserFollows = this.fetchUserFollows.bind(this)
     this.userLogout = this.userLogout.bind(this)
   }
 
@@ -81,7 +82,10 @@ export default class SwiperClass extends React.Component {
       >
         <Settings userLogout={this.userLogout}/>
         <Home />
-        <Accept />
+        <Accept
+          userId={this.state.userId}
+          fetchUserFollows={this.fetchUserFollows}
+        />
         <Submit
           isLoggedIn={this.state.isLoggedIn}
           verifyStorageKey={this.verifyStorageKey}
