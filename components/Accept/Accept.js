@@ -25,7 +25,7 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    axios.get(`http://${IP_ADDRESS}:8080/api/prayers/next`)
+    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/next`, {userId: this.props.userId})
     .then(response => response.data)
     .then(prayer => {
       this.setState({currentPrayer: prayer})
