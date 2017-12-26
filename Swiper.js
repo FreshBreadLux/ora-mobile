@@ -14,7 +14,9 @@ export default class SwiperClass extends React.Component {
       jwToken: null,
       prayers: null,
       follows: null,
+      notification: null,
     }
+    this.handleNotification = this.handleNotification.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
@@ -23,6 +25,10 @@ export default class SwiperClass extends React.Component {
 
   componentDidMount() {
     this.verifyStorageKey()
+  }
+
+  handleNotification(notification) {
+    this.setState({ notification })
   }
 
   async verifyStorageKey() {
@@ -83,10 +89,10 @@ export default class SwiperClass extends React.Component {
         <Settings userLogout={this.userLogout}/>
         <Home />
         <Accept
-          userId={this.state.userId}
           fetchUserFollows={this.fetchUserFollows}
         />
         <Submit
+          handleNotification={this.handleNotification}
           isLoggedIn={this.state.isLoggedIn}
           verifyStorageKey={this.verifyStorageKey}
           userId={this.state.userId}
