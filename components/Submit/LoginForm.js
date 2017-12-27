@@ -33,25 +33,18 @@ export default class LoginForm extends React.Component {
     let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS)
     if (status !== 'granted') return
     let token = await Notifications.getExpoPushTokenAsync()
-    return JSON.stringify(token)
+    return token
   }
 
   async userSignup() {
     let token = await this.registerForPushNotificationsAsync()
-    Notifications.addListener(this.props.handleNotification)
+    console.log('token: ', token)
     const value = this.refs.form.getValue()
     if (value) {
-      fetch(`http://${IP_ADDRESS}:8080/api/users`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: value.email,
-          password: value.password,
-          pushToken: token,
-        })
+      axios.post(`http://${IP_ADDRESS}:8080/api/users`, {
+        email: value.email,
+        password: value.password,
+        pushToken: token,
       })
       .then(response => JSON.stringify(response.data))
       .then(payload => {
