@@ -2,7 +2,6 @@ import React from 'react'
 import tcomb from 'tcomb-form-native'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, AsyncStorage, StyleSheet } from 'react-native'
-import { Permissions, Notifications } from 'expo'
 import IP_ADDRESS from '../../config'
 
 const Form = tcomb.form.Form
@@ -17,7 +16,6 @@ export default class LoginForm extends React.Component {
     this.setAsyncStorage = this.setAsyncStorage.bind(this)
     this.userSignup = this.userSignup.bind(this)
     this.userLogin = this.userLogin.bind(this)
-  this.registerForPushNotificationsAsync = this.registerForPushNotificationsAsync.bind(this)
   }
 
   async setAsyncStorage(item, selectedValue) {
@@ -29,16 +27,7 @@ export default class LoginForm extends React.Component {
     }
   }
 
-  async registerForPushNotificationsAsync() {
-    let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS)
-    if (status !== 'granted') return
-    let token = await Notifications.getExpoPushTokenAsync()
-    return JSON.stringify(token)
-  }
-
   async userSignup() {
-    let token = await this.registerForPushNotificationsAsync()
-    Notifications.addListener(this.props.handleNotification)
     const value = this.refs.form.getValue()
     if (value) {
       axios.post(`http://${IP_ADDRESS}:8080/api/users`, {
