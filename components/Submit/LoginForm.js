@@ -38,7 +38,6 @@ export default class LoginForm extends React.Component {
 
   async userSignup() {
     let token = await this.registerForPushNotificationsAsync()
-    console.log('token: ', token)
     const value = this.refs.form.getValue()
     if (value) {
       axios.post(`http://${IP_ADDRESS}:8080/api/users`, {
