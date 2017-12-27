@@ -3,6 +3,7 @@ import { AppLoading, Asset, Font, Permissions, Notifications } from 'expo'
 import { StyleSheet, Image } from 'react-native'
 import SwiperClass from './Swiper'
 
+const PUSH_ENDPOINT = 'https://exponent-push-server.herokuapp.com/tokens'
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
 function cacheImages(images) {
@@ -24,8 +25,39 @@ export default class App extends React.Component {
     super(props)
     this.state = {
       isReady: false,
+      receivedNotification: null,
+      lastNotificationId: null,
     }
+    this.registerForPushNotificationsAsync = this.registerForPushNotificationsAsync.bind(this)
   }
+
+  componentWillMount() {
+    this.registerForPushNotificationsAsync();
+    Notifications.addListener((receivedNotification) => {
+      this.setState({
+        receivedNotification,
+        lastNotificationId: receivedNotification.notificationId,
+      })
+    })
+  }
+
+  async registerForPushNotificationsAsync() {
+    let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS);
+    if (status !== 'granted') return
+    let token = await Notifications.getExponentPushTokenAsync();
+    return fetch(PUSH_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        token: {
+          value: token,
+        },
+      }),
+    });
+  };
   // WAIT FOR ASSETS TO BE LOADED
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
