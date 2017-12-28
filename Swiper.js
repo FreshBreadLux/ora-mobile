@@ -93,6 +93,7 @@ export default class SwiperClass extends React.Component {
         <Settings userLogout={this.userLogout}/>
         <Home />
         <Accept
+          userId={this.state.userId}
           fetchUserFollows={this.fetchUserFollows}
         />
         <Submit
