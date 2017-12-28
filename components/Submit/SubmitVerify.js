@@ -8,13 +8,15 @@ export default class SubmitVerify extends React.Component {
     if (!this.props.isLoggedIn) {
       return (
         <LoginForm
-          handleNotification={this.props.handleNotification}
           verifyStorageKey={this.props.verifyStorageKey}
         />
       )
     }
     return (
-      <SubmitForm userId={this.props.userId} />
+      <SubmitForm
+        fetchUserPrayers={this.props.fetchUserPrayers}
+        userId={this.props.userId}
+      />
     )
   }
 }

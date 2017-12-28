@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppLoading, Asset, Font, Permissions, Notifications } from 'expo'
+import { AppLoading, Asset, Font } from 'expo'
 import { StyleSheet, Image } from 'react-native'
 import SwiperClass from './Swiper'
 

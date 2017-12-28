@@ -1,5 +1,6 @@
 import React from 'react'
 import { AsyncStorage, AlertIOS } from 'react-native'
+import { Notifications } from 'expo'
 import Swiper from 'react-native-swiper'
 import { Settings, Home, Accept, Submit, Manage } from './components'
 import axios from 'axios'
@@ -25,10 +26,13 @@ export default class SwiperClass extends React.Component {
 
   componentDidMount() {
     this.verifyStorageKey()
+    Notifications.addListener(this.handleNotification)
   }
 
   handleNotification(notification) {
+    console.log('notification: ', notification)
     this.setState({ notification })
+    console.log('state: ', this.state)
   }
 
   async verifyStorageKey() {
@@ -92,10 +96,10 @@ export default class SwiperClass extends React.Component {
           fetchUserFollows={this.fetchUserFollows}
         />
         <Submit
-          handleNotification={this.handleNotification}
           isLoggedIn={this.state.isLoggedIn}
           verifyStorageKey={this.verifyStorageKey}
           userId={this.state.userId}
+          fetchUserPrayers={this.fetchUserPrayers}
         />
         <Manage
           prayers={this.state.prayers}

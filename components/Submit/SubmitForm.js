@@ -32,6 +32,7 @@ export default class SubmitForm extends React.Component {
         formValue: null,
         prayerSent: true,
       })
+      this.props.fetchUserPrayers(this.props.userId)
     })
     .catch(console.error)
   }
