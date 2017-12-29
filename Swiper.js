@@ -84,6 +84,7 @@ export default class SwiperClass extends React.Component {
   }
 
   render() {
+    console.log('state: ', this.state)
     return (
       <Swiper
         showsPagination={false}

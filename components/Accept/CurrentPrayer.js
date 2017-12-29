@@ -3,16 +3,16 @@ import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-nati
 import { Ionicons } from '@expo/vector-icons'
 import styles from '../StyleSheet'
 
-const CurrentPrayer = ({ loadNextPrayer, statePrayer, fadeOut, followPrayer }) => (
+const CurrentPrayer = ({ statePrayer, fadeOut, followPrayer, opacity }) => (
   <View style={styles.container}>
     <SafeAreaView style={[styles.cover, styles.spaceAround]}>
       <Text style={styles.flex1}>{statePrayer.subject}</Text>
-      <View style={styles.flex3}>
+      <Animated.View style={[styles.flex3, { opacity }]}>
         <Text>{statePrayer.body}</Text>
-      </View>
+      </Animated.View>
       <TouchableOpacity
         style={styles.flex1}
-        onPress={loadNextPrayer}
+        onPress={fadeOut}
       >
         <Text>Next Prayer</Text>
       </TouchableOpacity>

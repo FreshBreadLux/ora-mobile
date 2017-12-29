@@ -9,7 +9,6 @@ const ManageTabNav = TabNavigator({
     screen: ManagePrayerScroll,
     navigationOptions: {
       title: 'Prayers',
-      tabBarLabel: 'Prayers',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
           name="ios-paper-plane"
@@ -23,7 +22,6 @@ const ManageTabNav = TabNavigator({
     screen: ManageFollowScroll,
     navigationOptions: {
       title: 'Following',
-      tabBarLabel: 'Following',
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
           name="ios-bookmarks"

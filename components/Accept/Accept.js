@@ -22,6 +22,7 @@ export default class Accept extends React.Component {
       this.state.fadeAnim,
       {toValue: 0, duration: 500}
     ).start()
+    setTimeout(this.loadNextPrayer, 500)
   }
 
   loadNextPrayer() {
@@ -61,10 +62,10 @@ export default class Accept extends React.Component {
     }
     return (
       <CurrentPrayer
-        loadNextPrayer={this.loadNextPrayer}
         statePrayer={this.state.currentPrayer}
         fadeOut={this.fadeOut}
         followPrayer={this.followPrayer}
+        opacity={this.state.fadeAnim}
       />
     )
   }
