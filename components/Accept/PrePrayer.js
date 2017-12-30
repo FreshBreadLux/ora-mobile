@@ -6,7 +6,7 @@ const PrePrayer = ({ loadNextPrayer }) => (
   <View style={styles.container}>
     <View style={styles.backgroundImage}>
       <Image
-        source={require('../../assets/images/milky-way.jpg')}
+        source={require('../../assets/images/nightSky.jpg')}
         style={{flex: 1, resizeMode: 'cover', width: '100%'}}
       />
     </View>

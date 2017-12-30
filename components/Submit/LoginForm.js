@@ -1,19 +1,17 @@
 import React from 'react'
-import tcomb from 'tcomb-form-native'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, AsyncStorage, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, AsyncStorage, TextInput } from 'react-native'
 import { Permissions, Notifications } from 'expo'
+import styles from '../StyleSheet'
 import IP_ADDRESS from '../../config'
-
-const Form = tcomb.form.Form
-const Person = tcomb.struct({
-  email: tcomb.String,
-  password: tcomb.String,
-})
 
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      email: null,
+      password: null,
+    }
     this.setAsyncStorage = this.setAsyncStorage.bind(this)
     this.userSignup = this.userSignup.bind(this)
     this.userLogin = this.userLogin.bind(this)
@@ -38,11 +36,10 @@ export default class LoginForm extends React.Component {
 
   async userSignup() {
     let token = await this.registerForPushNotificationsAsync()
-    const value = this.refs.form.getValue()
-    if (value) {
+    if (this.state.email && this.state.password) {
       axios.post(`http://${IP_ADDRESS}:8080/api/users`, {
-        email: value.email,
-        password: value.password,
+        email: this.state.email,
+        password: this.state.password,
         pushToken: token,
       })
       .then(response => JSON.stringify(response.data))
@@ -54,11 +51,10 @@ export default class LoginForm extends React.Component {
   }
 
   userLogin() {
-    const value = this.refs.form.getValue()
-    if (value) {
+    if (this.state.email && this.state.password) {
       axios.post(`http://${IP_ADDRESS}:8080/api/users/sessions`, {
-        email: value.email,
-        password: value.password,
+        email: this.state.email,
+        password: this.state.password,
       })
       .then(response => JSON.stringify(response.data))
       .then(payload => {
@@ -70,26 +66,24 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.login}>
-        <Form
-          ref="form"
-          type={Person}
-          options={{
-            auto: 'placeholders',
-            fields: {
-              email: {
-                label: 'Email',
-                keyboardType: 'email-address',
-                autoCapitalize: 'none',
-                onSubmitEditing: () => this.refs.form.getComponent('password').refs.input.focus(),
-                placeholderTextColor: '#777',
-              },
-              password: {
-                label: 'Password',
-                placeholderTextColor: '#777',
-              },
-            }
-          }}
+      <View style={styles.container}>
+        <Text>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+        <Text>Email</Text>
+        <TextInput
+          placeholder="Email"
+          placeholderTextColor="#777"
+          keyboardType="default"
+          autoCapitalize="none"
+          onChangeText={email => this.setState({email})}
+          value={this.state.email}
+        />
+        <Text>Password</Text>
+        <TextInput
+          placeholder="Password"
+          placeholderTextColor="#777"
+          secureTextEntry={true}
+          onChangeText={password => this.setState({password})}
+          value={this.state.password}
         />
         <TouchableOpacity
           onPress={this.userSignup}
@@ -105,10 +99,3 @@ export default class LoginForm extends React.Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  login: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-})

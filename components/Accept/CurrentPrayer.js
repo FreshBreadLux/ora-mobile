@@ -1,38 +1,60 @@
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
+import { Text, View, Image, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import styles from '../StyleSheet'
 
 const CurrentPrayer = ({ statePrayer, fadeOut, followPrayer, opacity }) => (
   <View style={styles.container}>
     <SafeAreaView style={[styles.cover, styles.spaceAround]}>
-      <View style={[styles.flex1, styles.center]}>
-        <Text>{statePrayer.subject}</Text>
+      <View style={styles.flex1}>
+        <Animated.View style={[styles.flex1, styles.center, { opacity }]}>
+          <Text>{statePrayer.subject}</Text>
+        </Animated.View>
       </View>
       <View style={styles.flex3}>
         <Animated.ScrollView style={[styles.flex1, { opacity }]}>
           <Text>{statePrayer.body}</Text>
         </Animated.ScrollView>
       </View>
-      <TouchableOpacity
-        style={styles.flex1}
-        onPress={fadeOut}
+      <View style={[styles.flex1, styles.center]}>
+        <TouchableOpacity
+          onPress={fadeOut}
+        >
+          <Text>Next Prayer</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={[
+        styles.row,
+        styles.flex1,
+        styles.spaceAround,
+        styles.fullWidth]}
       >
-        <Text>Next Prayer</Text>
-      </TouchableOpacity>
-      <View style={[styles.row, styles.flex1]}>
-        <TouchableOpacity>
-          <Ionicons name="ios-flag" />
+        <TouchableOpacity
+          style={[styles.column, styles.center]}
+        >
+          <Ionicons
+            name="ios-flag-outline"
+            size={26}
+          />
           <Text>Flag</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="ios-help-circle" />
+        <TouchableOpacity
+          style={[styles.column, styles.center]}
+        >
+          <Ionicons
+            name="ios-help-circle-outline"
+            size={26}
+          />
           <Text>How to pray</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          style={[styles.column, styles.center]}
           onPress={followPrayer}
         >
-          <Ionicons name="ios-bookmark" />
+          <Ionicons
+            name="ios-bookmark-outline"
+            size={26}
+          />
           <Text>Follow</Text>
         </TouchableOpacity>
       </View>

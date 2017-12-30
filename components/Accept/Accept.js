@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated } from 'react-native'
+import { Animated, AlertIOS } from 'react-native'
 import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
@@ -41,15 +41,22 @@ export default class Accept extends React.Component {
   followPrayer() {
     const userId = this.props.userId
     const prayer = this.state.currentPrayer
-    axios.post(`http://${IP_ADDRESS}:8080/api/follows`, {     followerUserId: userId,
-     prayerId: prayer.id,
-     subject: prayer.subject,
-     body: prayer.body,
-     views: prayer.views,
-     closed: prayer.closed,
-    })
-    .then(() => this.props.fetchUserFollows(userId))
-    .catch(console.error)
+    if (userId) {
+      axios.post(`http://${IP_ADDRESS}:8080/api/follows`, {   followerUserId: userId,
+       prayerId: prayer.id,
+       subject: prayer.subject,
+       body: prayer.body,
+       views: prayer.views,
+       closed: prayer.closed,
+      })
+      .then(() => {
+        this.props.fetchUserFollows(userId)
+        AlertIOS.alert('You are now following this prayer')
+      })
+      .catch(console.error)
+    } else {
+      AlertIOS.alert('You must be logged in to follow prayers')
+    }
   }
 
   render() {

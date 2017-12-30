@@ -54,6 +54,9 @@ const styles = StyleSheet.create({
    },
    flex3: {
      flex: 3
+   },
+   fullWidth: {
+     width: '100%'
    }
 })
 
