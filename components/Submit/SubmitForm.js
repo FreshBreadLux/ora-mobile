@@ -1,20 +1,15 @@
 import React from 'react'
-import tcomb from 'tcomb-form-native'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, AsyncStorage, StyleSheet, Keyboard } from 'react-native'
+import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
 import IP_ADDRESS from '../../config'
-
-const Form = tcomb.form.Form
-const Prayer = tcomb.struct({
-  subject: tcomb.String,
-  body: tcomb.String,
-})
+import styles from '../StyleSheet'
 
 export default class SubmitForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      formValue: null,
+      subject: null,
+      body: null,
       prayerSent: false,
     }
     this.submitPrayer = this.submitPrayer.bind(this)
@@ -24,12 +19,13 @@ export default class SubmitForm extends React.Component {
     Keyboard.dismiss()
     axios.post(`http://${IP_ADDRESS}:8080/api/prayers`, {
       userId: this.props.userId,
-      subject: this.state.formValue.subject,
-      body: this.state.formValue.body,
+      subject: this.state.subject,
+      body: this.state.body,
     })
     .then(() => {
       this.setState({
-        formValue: null,
+        subject: null,
+        body: null,
         prayerSent: true,
       })
       this.props.fetchUserPrayers(this.props.userId)
@@ -37,49 +33,38 @@ export default class SubmitForm extends React.Component {
     .catch(console.error)
   }
 
-  onChange(value) {
-    this.setState({ formValue: value })
-  }
-
   render() {
     return (
-      <View style={styles.submit}>
-        { this.state.prayerSent
-          ? <Text>Your prayer has been submitted</Text>
-          : null }
-        <Form
-          ref="form"
-          type={Prayer}
-          value={this.state.formValue}
-          onChange={this.onChange.bind(this)}
-          options={{
-            auto: 'placehodlers',
-            fields: {
-              subject: {
-                label: 'Subject',
-                onSubmitEditing: () => this.refs.form.getComponent('body').refs.input.focus(),
-                placeholderTextColor: '#777',
-              },
-              body: {
-                label: 'Body',
-                placeholderTextColor: '#777',
-              },
-            }
-          }}
-        />
-        <TouchableOpacity
-          onPress={this.submitPrayer}
-        >
-          <Text>Submit Prayer</Text>
-        </TouchableOpacity>
+      <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
+          { this.state.prayerSent
+            ? <Text>Your prayer has been submitted</Text>
+            : null }
+          <Text>Subject</Text>
+          <TextInput
+            placeholder="Write the subject of your prayer here"
+            placeholderTextColor="#777"
+            keyboardType="default"
+            onChangeText={subject => this.setState({subject})}
+            value={this.state.subject}
+          />
+          <Text>Body</Text>
+          <TextInput
+            style={styles.flex1}
+            placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
+            placeholderTextColor="#777"
+            keyboardType="default"
+            multiline={true}
+            onChangeText={body => this.setState({body})}
+            value={this.state.body}
+          />
+          <TouchableOpacity
+            onPress={this.submitPrayer}
+          >
+            <Text>Submit Prayer</Text>
+          </TouchableOpacity>
+        </SafeAreaView>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  submit: {
-    flex: 1,
-    justifyContent: 'center',
-  }
-})

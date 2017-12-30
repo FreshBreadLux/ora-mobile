@@ -6,10 +6,14 @@ import styles from '../StyleSheet'
 const CurrentPrayer = ({ statePrayer, fadeOut, followPrayer, opacity }) => (
   <View style={styles.container}>
     <SafeAreaView style={[styles.cover, styles.spaceAround]}>
-      <Text style={styles.flex1}>{statePrayer.subject}</Text>
-      <Animated.View style={[styles.flex3, { opacity }]}>
-        <Text>{statePrayer.body}</Text>
-      </Animated.View>
+      <View style={[styles.flex1, styles.center]}>
+        <Text>{statePrayer.subject}</Text>
+      </View>
+      <View style={styles.flex3}>
+        <Animated.ScrollView style={[styles.flex1, { opacity }]}>
+          <Text>{statePrayer.body}</Text>
+        </Animated.ScrollView>
+      </View>
       <TouchableOpacity
         style={styles.flex1}
         onPress={fadeOut}
