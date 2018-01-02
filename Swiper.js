@@ -2,7 +2,7 @@ import React from 'react'
 import { AsyncStorage, AlertIOS } from 'react-native'
 import { Notifications } from 'expo'
 import Swiper from 'react-native-swiper'
-import { Settings, Home, Accept, Submit, Manage } from './components'
+import { Settings, Accept, Submit, Manage } from './components'
 import axios from 'axios'
 import IP_ADDRESS from './config'
 
@@ -92,7 +92,6 @@ export default class SwiperClass extends React.Component {
         index={1}
       >
         <Settings userLogout={this.userLogout}/>
-        <Home />
         <Accept
           userId={this.state.userId}
           fetchUserFollows={this.fetchUserFollows}
