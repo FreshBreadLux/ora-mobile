@@ -3,24 +3,30 @@ import { Text, View, Image, SafeAreaView, TouchableOpacity, Animated } from 'rea
 import { Ionicons } from '@expo/vector-icons'
 import styles from '../StyleSheet'
 
-const CurrentPrayer = ({ statePrayer, fadeOut, followPrayer, opacity }) => (
-  <View style={styles.container}>
-    <SafeAreaView style={[styles.cover, styles.spaceAround]}>
+const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opacity }) => (
+  <SafeAreaView style={styles.cover}>
+    <View style={[styles.addPadding, styles.spaceAround]}>
       <View style={styles.flex1}>
         <Animated.View style={[styles.flex1, styles.center, { opacity }]}>
-          <Text>{statePrayer.subject}</Text>
+          <Text style={styles.subject}>{statePrayer.subject}</Text>
         </Animated.View>
       </View>
       <View style={styles.flex3}>
-        <Animated.ScrollView style={[styles.flex1, { opacity }]}>
-          <Text>{statePrayer.body}</Text>
+        <Animated.ScrollView
+          style={[styles.flex1, styles.box, { opacity }]}>
+          <Text style={styles.body}>{statePrayer.body}</Text>
         </Animated.ScrollView>
       </View>
       <View style={[styles.flex1, styles.center]}>
         <TouchableOpacity
           onPress={fadeOut}
         >
-          <Text>Next Prayer</Text>
+          <Text style={styles.buttonText}>Next Prayer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={finishPraying}
+        >
+          <Text style={styles.buttonText}>Finish Praying</Text>
         </TouchableOpacity>
       </View>
       <View style={[
@@ -58,8 +64,8 @@ const CurrentPrayer = ({ statePrayer, fadeOut, followPrayer, opacity }) => (
           <Text>Follow</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
-  </View>
+    </View>
+  </SafeAreaView>
 )
 
 export default CurrentPrayer

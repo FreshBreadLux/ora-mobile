@@ -36,33 +36,35 @@ export default class SubmitForm extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <SafeAreaView style={styles.container}>
-          { this.state.prayerSent
-            ? <Text>Your prayer has been submitted</Text>
-            : null }
-          <Text>Subject</Text>
-          <TextInput
-            placeholder="Write the subject of your prayer here"
-            placeholderTextColor="#777"
-            keyboardType="default"
-            onChangeText={subject => this.setState({subject})}
-            value={this.state.subject}
-          />
-          <Text>Body</Text>
-          <TextInput
-            style={styles.flex1}
-            placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
-            placeholderTextColor="#777"
-            keyboardType="default"
-            multiline={true}
-            onChangeText={body => this.setState({body})}
-            value={this.state.body}
-          />
-          <TouchableOpacity
-            onPress={this.submitPrayer}
-          >
-            <Text>Submit Prayer</Text>
-          </TouchableOpacity>
+        <SafeAreaView style={styles.cover}>
+          <View style={styles.addPadding}>
+            { this.state.prayerSent
+              ? <Text>Your prayer has been submitted</Text>
+              : null }
+            <Text>Subject</Text>
+            <TextInput
+              placeholder="Write the subject of your prayer here"
+              placeholderTextColor="#777"
+              keyboardType="default"
+              onChangeText={subject => this.setState({subject})}
+              value={this.state.subject}
+            />
+            <Text>Body</Text>
+            <TextInput
+              style={styles.flex1}
+              placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
+              placeholderTextColor="#777"
+              keyboardType="default"
+              multiline={true}
+              onChangeText={body => this.setState({body})}
+              value={this.state.body}
+            />
+            <TouchableOpacity
+              onPress={this.submitPrayer}
+            >
+              <Text>Submit Prayer</Text>
+            </TouchableOpacity>
+          </View>
         </SafeAreaView>
       </View>
     )
