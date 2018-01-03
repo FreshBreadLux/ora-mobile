@@ -33,3 +33,25 @@ export const AboutModalContent = ({ setModal }) => (
     </View>
   </View>
 )
+
+export const FlagModalContent = ({ setModal, flagPrayer }) => (
+  <View style={[styles.center, { padding: 20 }]}>
+    <View style={styles.modalContent}>
+      <Text style={[styles.body, { paddingBottom: 10, color: '#888' }]}>Please select the category that this prayer should be flagged under</Text>
+      <TouchableOpacity onPress={() => flagPrayer('spam')}>
+        <Text style={styles.body}>Spam</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => flagPrayer('dangerous')}>
+        <Text style={styles.body}>Dangerous</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => flagPrayer('inappropriate')}>
+        <Text style={styles.body}>Inappropriate</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.modalContent}>
+      <TouchableOpacity onPress={() => setModal(null)}>
+        <Text style={styles.body}>Cancel</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+)

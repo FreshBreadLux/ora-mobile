@@ -2,10 +2,10 @@ import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
-import { FollowModalContent, AboutModalContent } from './Modals'
+import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import styles from '../StyleSheet'
 
-const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opacity, visibleModal, setModal }) => (
+const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, opacity, visibleModal, setModal }) => (
   <SafeAreaView style={styles.cover}>
     <View style={[styles.addPadding, styles.spaceAround]}>
       <View style={styles.flex1}>
@@ -41,6 +41,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
       >
         <TouchableOpacity
           style={[styles.column, styles.center]}
+          onPress={() => setModal('flag')}
         >
           <Ionicons
             name="ios-flag"
@@ -70,12 +71,12 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
         </TouchableOpacity>
       </View>
       <Modal
-        isVisible={visibleModal === 'follow'}
+        isVisible={visibleModal === 'flag'}
         style={styles.bottomModal}
       >
-        <FollowModalContent
+        <FlagModalContent
           setModal={setModal}
-          followPrayer={followPrayer}
+          flagPrayer={flagPrayer}
         />
       </Modal>
       <Modal
@@ -84,6 +85,15 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
       >
         <AboutModalContent
           setModal={setModal}
+        />
+      </Modal>
+      <Modal
+        isVisible={visibleModal === 'follow'}
+        style={styles.bottomModal}
+      >
+        <FollowModalContent
+          setModal={setModal}
+          followPrayer={followPrayer}
         />
       </Modal>
     </View>
