@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
+import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
+import FollowModalContent from './Modals'
 import styles from '../StyleSheet'
 
 const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opacity, visibleModal, setModal }) => (
@@ -57,7 +59,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.column, styles.center]}
-          onPress={followPrayer}
+          onPress={() => setModal('follow')}
         >
           <Ionicons
             name="ios-bookmark"
@@ -66,6 +68,15 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
           />
         </TouchableOpacity>
       </View>
+      <Modal
+        isVisible={visibleModal === 'follow'}
+        style={styles.bottomModal}
+      >
+        <FollowModalContent
+          setModal={setModal}
+          followPrayer={followPrayer}
+        />
+      </Modal>
     </View>
   </SafeAreaView>
 )

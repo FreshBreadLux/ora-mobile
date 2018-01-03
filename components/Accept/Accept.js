@@ -66,7 +66,11 @@ export default class Accept extends React.Component {
       })
       .then(() => {
         this.props.fetchUserFollows(userId)
-        AlertIOS.alert('You are now following this prayer')
+        AlertIOS.alert(
+          'You are now following this prayer',
+          'You can manage the prayers you follow in the My Follows section',
+          () => this.setModal(null)
+        )
       })
       .catch(console.error)
     } else {
@@ -75,6 +79,7 @@ export default class Accept extends React.Component {
   }
 
   render() {
+    console.log('accept state: ', this.state)
     return (
       <View style={styles.container}>
         <View style={styles.backgroundImage}>

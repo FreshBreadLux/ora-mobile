@@ -72,6 +72,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#fff'
   },
+  bottomModal: {
+    justifyContent: 'flex-end',
+    margin: 0,
+  },
+  modalContent: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 10,
+  },
   flex1: {
     flex: 1
   },
