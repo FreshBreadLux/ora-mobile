@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
-import FollowModalContent from './Modals'
+import { FollowModalContent, AboutModalContent } from './Modals'
 import styles from '../StyleSheet'
 
 const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opacity, visibleModal, setModal }) => (
@@ -50,6 +50,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.column, styles.center]}
+          onPress={() => setModal('about')}
         >
           <Ionicons
             name="ios-help-circle"
@@ -75,6 +76,14 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, followPrayer, opac
         <FollowModalContent
           setModal={setModal}
           followPrayer={followPrayer}
+        />
+      </Modal>
+      <Modal
+        isVisible={visibleModal === 'about'}
+        style={styles.bottomModal}
+      >
+        <AboutModalContent
+          setModal={setModal}
         />
       </Modal>
     </View>
