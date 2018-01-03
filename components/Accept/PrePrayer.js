@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, SafeAreaView, Animated, TouchableOpacity, Image } from 'react-native'
+import { Text, View, SafeAreaView, Animated, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const PrePrayer = ({ loadNextPrayer }) => (

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, AsyncStorage, TextInput } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import styles from '../StyleSheet'
 import IP_ADDRESS from '../../config'
@@ -66,36 +66,52 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
-        <Text>Email</Text>
-        <TextInput
-          placeholder="Email"
-          placeholderTextColor="#777"
-          keyboardType="default"
-          autoCapitalize="none"
-          onChangeText={email => this.setState({email})}
-          value={this.state.email}
-        />
-        <Text>Password</Text>
-        <TextInput
-          placeholder="Password"
-          placeholderTextColor="#777"
-          secureTextEntry={true}
-          onChangeText={password => this.setState({password})}
-          value={this.state.password}
-        />
-        <TouchableOpacity
-          onPress={this.userSignup}
-        >
-          <Text>Signup</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.userLogin}
-        >
-          <Text>Login</Text>
-        </TouchableOpacity>
-      </View>
+      <SafeAreaView style={styles.cover}>
+        <View style={styles.addPadding}>
+          <View style={[styles.flex1, { justifyContent: 'center' }]}>
+            <View style={styles.flex1}>
+              <Text style={styles.label}>Email</Text>
+              <TextInput
+                style={styles.box}
+                placeholder="Email"
+                placeholderTextColor="#555"
+                keyboardType="default"
+                autoCapitalize="none"
+                onChangeText={email => this.setState({email})}
+                value={this.state.email}
+              />
+            </View>
+            <View style={styles.flex1}>
+              <Text style={styles.label}>Password</Text>
+              <TextInput
+                style={styles.box}
+                placeholder="Password"
+                placeholderTextColor="#555"
+                secureTextEntry={true}
+                onChangeText={password => this.setState({password})}
+                value={this.state.password}
+              />
+            </View>
+            <View style={[styles.flex1, styles.center]}>
+              <TouchableOpacity
+                onPress={this.userSignup}
+              >
+                <Text style={styles.buttonText}>Signup</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.flex1, styles.center]}>
+            <TouchableOpacity
+              onPress={this.userLogin}
+            >
+              <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
+          </View>
+          </View>
+          <View style={[styles.flex1, { justifyContent: 'center' }]}>
+            <Text style={styles.subject}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+          </View>
+        </View>
+      </SafeAreaView>
     )
   }
 }

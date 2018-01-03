@@ -35,38 +35,41 @@ export default class SubmitForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <SafeAreaView style={styles.cover}>
-          <View style={styles.addPadding}>
-            { this.state.prayerSent
-              ? <Text>Your prayer has been submitted</Text>
-              : null }
-            <Text>Subject</Text>
+      <SafeAreaView style={styles.cover}>
+        <View style={styles.addPadding}>
+          { this.state.prayerSent
+            ? <Text style={styles.subject}>Your prayer has been submitted</Text>
+            : null }
+          <View style={[styles.flex1, { justifyContent: 'center' }]}>
+            <Text style={styles.label}>Subject</Text>
             <TextInput
+              style={styles.box}
               placeholder="Write the subject of your prayer here"
-              placeholderTextColor="#777"
+              placeholderTextColor="#555"
               keyboardType="default"
               onChangeText={subject => this.setState({subject})}
               value={this.state.subject}
             />
-            <Text>Body</Text>
-            <TextInput
-              style={styles.flex1}
-              placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
-              placeholderTextColor="#777"
-              keyboardType="default"
-              multiline={true}
-              onChangeText={body => this.setState({body})}
-              value={this.state.body}
-            />
+          </View>
+          <Text style={styles.label}>Body</Text>
+          <TextInput
+            style={[styles.flex3, styles.box]}
+            placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
+            placeholderTextColor="#555"
+            keyboardType="default"
+            multiline={true}
+            onChangeText={body => this.setState({body})}
+            value={this.state.body}
+          />
+          <View style={[styles.flex1, styles.center]}>
             <TouchableOpacity
               onPress={this.submitPrayer}
             >
-              <Text>Submit Prayer</Text>
+              <Text style={styles.buttonText}>Submit Prayer</Text>
             </TouchableOpacity>
           </View>
-        </SafeAreaView>
-      </View>
+        </View>
+      </SafeAreaView>
     )
   }
 }

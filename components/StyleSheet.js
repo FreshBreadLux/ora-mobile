@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
+  label: {
+    fontFamily: 'open-sans',
+    fontSize: 22,
+    color: '#fff',
+    paddingBottom: 5,
+  },
   body: {
     fontFamily: 'open-sans',
     fontSize: 16,
