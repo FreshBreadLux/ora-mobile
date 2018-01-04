@@ -85,12 +85,7 @@ export default class Accept extends React.Component {
     const prayer = this.state.currentPrayer
     if (userId) {
       axios.post(`http://${IP_ADDRESS}:8080/api/follows`, {
-        followerUserId: userId,
-        prayerId: prayer.id,
-        subject: prayer.subject,
-        body: prayer.body,
-        views: prayer.views,
-        closed: prayer.closed,
+        userId, prayer
       })
       .then(() => {
         this.props.fetchUserFollows(userId)

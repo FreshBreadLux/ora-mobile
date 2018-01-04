@@ -9,11 +9,8 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
           <Text>Please login to manage your follows</Text>
         </View>
       : <View style={styles.container}>
-          {!screenProps.follows
-            ? <View style={styles.center}>
-                <Text>When you follow prayers, they will be listed here.</Text>
-              </View>
-            : <View style={styles.addPadding}>
+          {screenProps.follows && screenProps.follows.length
+            ? <View style={styles.addPadding}>
                 <ScrollView>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
@@ -25,8 +22,11 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
                     </View>
                   </TouchableOpacity>
                 ))}
-              </ScrollView>
-            </View>
+                </ScrollView>
+              </View>
+            : <View style={styles.center}>
+                <Text>When you follow prayers, they will be listed here.</Text>
+              </View>
           }
         </View>
     }

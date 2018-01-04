@@ -9,11 +9,8 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
           <Text>Please login to manage your prayers</Text>
         </View>
       : <View style={styles.container}>
-          {!screenProps.prayers
-            ? <View style={styles.center}>
-                <Text>When you submit prayers, they will be listed here.</Text>
-              </View>
-            : <View style={styles.addPadding}>
+          {screenProps.prayers && screenProps.prayers.length
+            ? <View style={styles.addPadding}>
                 <ScrollView>
                 { screenProps.prayers.map(prayer => (
                   <TouchableOpacity
@@ -26,7 +23,10 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
                   </TouchableOpacity>
                 ))}
               </ScrollView>
-            </View>
+              </View>
+            : <View style={styles.center}>
+                <Text>When you submit prayers, they will be listed here.</Text>
+              </View>
           }
         </View>
     }
