@@ -30,6 +30,7 @@ export default class ManageStack extends React.Component {
         follows: this.props.follows,
         userId: this.props.userId,
         fetchUserPrayers: this.props.fetchUserPrayers,
+        fetchUserFollows: this.props.fetchUserFollows,
       }} />
     )
   }

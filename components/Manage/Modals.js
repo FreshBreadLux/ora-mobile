@@ -33,3 +33,19 @@ export const OpenModalContent = ({ setModal, togglePrayer }) => (
     </View>
   </View>
 )
+
+export const UnfollowModalContent = ({ setModal, unfollowPrayer }) => (
+  <View style={[styles.center, { padding: 20 }]}>
+    <View style={styles.modalContent}>
+      <Text style={[styles.body, { paddingBottom: 10, color: '#888' }]}>If you unfollow this prayer, it will no longer show up in your Following section and you will not receive any updates about the prayer request.</Text>
+      <TouchableOpacity onPress={unfollowPrayer}>
+        <Text style={styles.body}>Unfollow Prayer</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.modalContent}>
+      <TouchableOpacity onPress={() => setModal(null)}>
+        <Text style={styles.body}>Cancel</Text>
+      </TouchableOpacity>
+    </View>
+  </View>
+)
