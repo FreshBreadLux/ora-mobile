@@ -2,34 +2,35 @@ import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
-export default class ManageMyPrayer extends React.Component {
-  render() {
-    const { prayers } = this.props.screenProps
-    const { navigate } = this.props.navigation
-    if (!prayers) {
-      return (
-        <View style={styles.container}>
-          <View style={[styles.cover, styles.center]}>
-            <Text>Please login to manage your prayers</Text>
-          </View>
+const ManageMyPrayer = ({ screenProps, navigation }) => (
+  <View style={styles.container}>
+    {!screenProps.userId
+      ? <View style={styles.center}>
+          <Text>Please login to manage your prayers</Text>
         </View>
-      )
+      : <View style={styles.container}>
+          {!screenProps.prayers
+            ? <View style={styles.center}>
+                <Text>When you submit prayers, they will be listed here.</Text>
+              </View>
+            : <View style={styles.addPadding}>
+                <ScrollView>
+                { screenProps.prayers.map(prayer => (
+                  <TouchableOpacity
+                    key={prayer.id}
+                    onPress={() => navigation.navigate('MyPrayer', { prayer })}>
+                    <View style={[styles.fullWidth, styles.listBottomBorder]}>
+                      <Text style={[styles.buttonText, { color: '#000' }]}>{prayer.subject}</Text>
+                      <Text style={styles.body} numberOfLines={2}>{prayer.body}</Text>
+                    </View>
+                  </TouchableOpacity>
+                ))}
+              </ScrollView>
+            </View>
+          }
+        </View>
     }
-    return (
-      <View style={styles.addPadding}>
-      <ScrollView>
-      { prayers.map(prayer =>
-        <TouchableOpacity
-          key={prayer.id}
-          onPress={() => navigate('MyPrayer', { prayer })}>
-          <View style={[styles.fullWidth, styles.listBottomBorder]}>
-            <Text style={[styles.buttonText, { color: '#000' }]}>{prayer.subject}</Text>
-            <Text style={styles.body} numberOfLines={2}>{prayer.body}</Text>
-          </View>
-        </TouchableOpacity>
-      )}
-    </ScrollView>
-    </View>
-    )
-  }
-}
+  </View>
+)
+
+export default ManageMyPrayer
