@@ -63,6 +63,12 @@ const styles = StyleSheet.create({
     padding: 7,
     borderRadius: 7,
   },
+  listBottomBorder: {
+    paddingBottom: 10,
+    paddingTop: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
   button: {
     padding: 15,
     borderRadius: 7,
