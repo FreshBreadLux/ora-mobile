@@ -28,6 +28,8 @@ export default class ManageStack extends React.Component {
       <ManageStackNav screenProps={{
         prayers: this.props.prayers,
         follows: this.props.follows,
+        userId: this.props.userId,
+        fetchUserPrayers: this.props.fetchUserPrayers,
       }} />
     )
   }

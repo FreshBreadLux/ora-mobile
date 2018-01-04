@@ -103,6 +103,8 @@ export default class SwiperClass extends React.Component {
           fetchUserPrayers={this.fetchUserPrayers}
         />
         <Manage
+          userId={this.state.userId}
+          fetchUserPrayers={this.fetchUserPrayers}
           prayers={this.state.prayers}
           follows={this.state.follows}
           isLoggedIn={this.state.isLoggedIn}

@@ -32,15 +32,15 @@ export default class Accept extends React.Component {
 
   loadNextPrayer() {
     axios.put(`http://${IP_ADDRESS}:8080/api/prayers/next`, { userId: this.props.userId })
-      .then(response => response.data)
-      .then(prayer => {
-        this.setState({ currentPrayer: prayer })
-        Animated.timing(
-          this.state.fadeAnim,
-          { toValue: 1, duration: 500 }
-        ).start()
-      })
-      .catch(console.error)
+    .then(response => response.data)
+    .then(prayer => {
+      this.setState({ currentPrayer: prayer })
+      Animated.timing(
+        this.state.fadeAnim,
+        { toValue: 1, duration: 500 }
+      ).start()
+    })
+    .catch(console.error)
   }
 
   finishPraying() {
@@ -67,14 +67,14 @@ export default class Accept extends React.Component {
         views: prayer.views,
         closed: prayer.closed,
       })
-        .then(() => {
-          AlertIOS.alert(
-            'This prayer has been flagged',
-            'The Ora team will look into this and resolve the issue as quickly as possible',
-            () => this.setModal(null)
-          )
-        })
-        .catch(console.error)
+      .then(() => {
+        AlertIOS.alert(
+          'This prayer has been flagged',
+          'The Ora team will look into this and resolve the issue as quickly as possible',
+          () => this.setModal(null)
+        )
+      })
+      .catch(console.error)
     } else {
       AlertIOS.alert('You must be logged in to flag prayers')
     }
@@ -92,22 +92,21 @@ export default class Accept extends React.Component {
         views: prayer.views,
         closed: prayer.closed,
       })
-        .then(() => {
-          this.props.fetchUserFollows(userId)
-          AlertIOS.alert(
-            'You are now following this prayer',
-            'You can manage the prayers you follow in the My Follows section',
-            () => this.setModal(null)
-          )
-        })
-        .catch(console.error)
+      .then(() => {
+        this.props.fetchUserFollows(userId)
+        AlertIOS.alert(
+          'You are now following this prayer',
+          'You can manage the prayers you follow in the My Follows section',
+          () => this.setModal(null)
+        )
+      })
+      .catch(console.error)
     } else {
       AlertIOS.alert('You must be logged in to follow prayers')
     }
   }
 
   render() {
-    console.log('accept state: ', this.state)
     return (
       <View style={styles.container}>
         <View style={styles.backgroundImage}>
