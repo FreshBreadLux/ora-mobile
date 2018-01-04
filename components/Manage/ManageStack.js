@@ -1,6 +1,5 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-// import ManageTab from './ManageTab'
 import ManageMyPrayer from './ManageMyPrayer'
 import ManageMyFollow from './ManageMyFollow'
 import ManagePrayerScroll from './ManagePrayerScroll'
