@@ -11,7 +11,8 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
       : <View style={styles.container}>
           {screenProps.prayers && screenProps.prayers.length
             ? <View style={styles.addPadding}>
-                <ScrollView>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}>
                 { screenProps.prayers.map(prayer => (
                   <TouchableOpacity
                     key={prayer.id}

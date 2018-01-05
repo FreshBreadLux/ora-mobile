@@ -13,7 +13,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Text style={styles.subject}>{statePrayer.subject}</Text>
         </Animated.View>
       </View>
-      <View style={[styles.flex3, styles.fullWidth]}>
+      <View style={[styles.flex4, styles.fullWidth]}>
         <Animated.ScrollView
           style={[styles.flex1, styles.box, { opacity }]}>
           <Text style={styles.body}>{statePrayer.body}</Text>
@@ -22,50 +22,53 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
       <View style={[styles.flex1, styles.center]}>
         <TouchableOpacity
           onPress={fadeOut}
+          style={{padding: 10}}
         >
           <Text style={styles.buttonText}>Next Prayer</Text>
         </TouchableOpacity>
       </View>
-      <View>
-        <TouchableOpacity
-          onPress={finishPraying}
-        >
-          <Text style={styles.buttonText}>Finish Praying</Text>
-        </TouchableOpacity>
-      </View>
       <View style={[
         styles.row,
-        styles.flex1,
         styles.spaceAround,
         styles.fullWidth]}
       >
         <TouchableOpacity
-          style={[styles.column, styles.center]}
-          onPress={() => setModal('flag')}
+          style={[styles.addPadding, styles.center]}
+          onPress={finishPraying}
         >
           <Ionicons
-            name="ios-flag"
-            size={30}
+            name="ios-home"
+            size={26}
             color="white"
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.column, styles.center]}
+          style={[styles.addPadding, styles.center]}
           onPress={() => setModal('about')}
         >
           <Ionicons
             name="ios-help-circle"
-            size={30}
+            size={26}
             color="white"
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.column, styles.center]}
+          style={[styles.addPadding, styles.center]}
+          onPress={() => setModal('flag')}
+        >
+          <Ionicons
+            name="ios-flag"
+            size={26}
+            color="white"
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.addPadding, styles.center]}
           onPress={() => setModal('follow')}
         >
           <Ionicons
             name="ios-bookmark"
-            size={30}
+            size={26}
             color="white"
           />
         </TouchableOpacity>

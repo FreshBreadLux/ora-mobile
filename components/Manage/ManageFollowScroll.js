@@ -11,7 +11,8 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
       : <View style={styles.container}>
           {screenProps.follows && screenProps.follows.length
             ? <View style={styles.addPadding}>
-                <ScrollView>
+                <ScrollView
+                showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
                     key={follow.id}

@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 15,
   },
+  addViewSpacing: {
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
   center: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -98,6 +102,9 @@ const styles = StyleSheet.create({
   },
   flex3: {
     flex: 3
+  },
+  flex4: {
+    flex: 4
   },
   fullWidth: {
     width: '100%'

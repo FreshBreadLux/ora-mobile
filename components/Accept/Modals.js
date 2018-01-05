@@ -10,11 +10,13 @@ export const FollowModalContent = ({ setModal, followPrayer }) => (
         <Text style={styles.body}>Follow Prayer</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )
 
@@ -26,11 +28,13 @@ export const AboutModalContent = ({ setModal }) => (
       You can use the bookmark icon to follow a prayer that you would like to receive updates about. The prayer will be added to your My Follows section. You can use the flag icon to draw attention to messages that may be dangerous, inappropriate, or spam.
       </Text>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Got it!</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )
 
@@ -48,10 +52,12 @@ export const FlagModalContent = ({ setModal, flagPrayer }) => (
         <Text style={styles.body}>Inappropriate</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )

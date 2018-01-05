@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native'
 import Modal from 'react-native-modal'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios'
 import styles from '../StyleSheet'
 import IP_ADDRESS from '../../config'
@@ -60,7 +61,8 @@ export default class ManageMyPrayer extends React.Component {
     return (
       <View style={[styles.container, styles.addPadding]}>
         {this.state.editMode
-          ? <View style={styles.container}>
+          ? <KeyboardAwareScrollView
+              contentContainerStyle={styles.container}>
               <TextInput
                 style={styles.box}
                 onChangeText={subject => this.setState({ subject })}
@@ -88,7 +90,7 @@ export default class ManageMyPrayer extends React.Component {
                   <Text>Cancel</Text>
                 </TouchableOpacity>
               </View>
-            </View>
+            </KeyboardAwareScrollView>
           : <View style={styles.container}>
               <ScrollView>
                 <Text style={styles.body}>{`${prayer.body}`}</Text>
