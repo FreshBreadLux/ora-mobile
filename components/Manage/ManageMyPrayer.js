@@ -64,9 +64,11 @@ export default class ManageMyPrayer extends React.Component {
               <TextInput
                 style={styles.box}
                 onChangeText={subject => this.setState({ subject })}
+                onSubmitEditing={event => this.refs.body.focus()}
                 value={this.state.subject}
               />
               <TextInput
+                ref="body"
                 style={[styles.flex1, styles.box]}
                 multiline={true}
                 onChangeText={body => this.setState({ body })}

@@ -48,11 +48,13 @@ export default class SubmitForm extends React.Component {
               placeholderTextColor="#555"
               keyboardType="default"
               onChangeText={subject => this.setState({subject})}
+              onSubmitEditing={event => this.refs.body.focus()}
               value={this.state.subject}
             />
           </View>
           <Text style={styles.label}>Body</Text>
           <TextInput
+            ref="body"
             style={[styles.flex3, styles.box]}
             placeholder="Describe your prayer request here. We recommend providing as much detail as you are comfortable with, as it will help the people that take up your prayer request."
             placeholderTextColor="#555"
