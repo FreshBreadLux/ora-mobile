@@ -64,7 +64,7 @@ export default class Accept extends React.Component {
         prayerId: prayer.id,
         subject: prayer.subject,
         body: prayer.body,
-        views: prayer.views,
+        totalViews: prayer.totalViews,
         closed: prayer.closed,
       })
       .then(() => {

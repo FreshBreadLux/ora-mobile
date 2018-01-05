@@ -75,15 +75,17 @@ export default class LoginForm extends React.Component {
                 style={styles.box}
                 placeholder="Email"
                 placeholderTextColor="#555"
-                keyboardType="default"
+                keyboardType="email-address"
                 autoCapitalize="none"
                 onChangeText={email => this.setState({email})}
+                onSubmitEditing={event => this.refs.password.focus()}
                 value={this.state.email}
               />
             </View>
             <View style={styles.flex1}>
               <Text style={styles.label}>Password</Text>
               <TextInput
+                ref="password"
                 style={styles.box}
                 placeholder="Password"
                 placeholderTextColor="#555"

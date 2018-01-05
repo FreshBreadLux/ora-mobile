@@ -92,7 +92,7 @@ export default class ManageMyPrayer extends React.Component {
                 <Text style={styles.body}>{`${prayer.body}`}</Text>
               </ScrollView>
               <View>
-                <Text>{`Views: ${prayer.views}`}</Text>
+                <Text>{`Total Views: ${prayer.totalViews}`}</Text>
               </View>
               <View style={styles.center}>
                 <TouchableOpacity
