@@ -1,19 +1,20 @@
 import React from 'react'
-import { TabNavigator } from 'react-navigation'
-import Settings from './Settings'
+import { StackNavigator, TabNavigator } from 'react-navigation'
+import Profile from './Profile'
 import About from './About'
-import LogoutForm from './LogoutForm'
+import Donate from './Donate'
+import AngelRank from './AngelRank'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const SettingsTab = TabNavigator({
-  Settings: {
-    screen: Settings,
+  Profile: {
+    screen: Profile,
     navigationOptions: {
-      title: 'Settings',
-      tabBarLabel: 'Settings',
+      title: 'Profile',
+      headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-settings"
+          name="ios-person"
           size={26}
           style={{ color: tintColor }}
         />
@@ -24,7 +25,7 @@ const SettingsTab = TabNavigator({
     screen: About,
     navigationOptions: {
       title: 'About',
-      tabBarLabel: 'About',
+      headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
           name="ios-information-circle-outline"
@@ -34,14 +35,14 @@ const SettingsTab = TabNavigator({
       ),
     },
   },
-  LogoutForm: {
-    screen: LogoutForm,
+  Donate: {
+    screen: Donate,
     navigationOptions: {
-      title: 'Logout',
-      tabBarLabel: 'Logout',
+      title: 'Donate',
+      headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-log-out"
+          name="ios-heart"
           size={26}
           style={{ color: tintColor }}
         />
@@ -52,12 +53,20 @@ const SettingsTab = TabNavigator({
   tabBarPosition: 'bottom',
 })
 
-export default class SettingsNav extends React.Component {
-  render() {
-    return (
-      <SettingsTab screenProps={{
-        userLogout: this.props.userLogout
-      }}/>
-    )
+const SettingsStack = StackNavigator({
+  Root: {
+    screen: SettingsTab
+  },
+  AngelRank: {
+    screen: AngelRank,
+    navigationOptions: {
+      title: 'Angel Rank'
+    }
   }
-}
+})
+
+const SettingsNav = ({ userLogout }) => (
+  <SettingsStack screenProps={{userLogout: userLogout}} />
+)
+
+export default SettingsNav

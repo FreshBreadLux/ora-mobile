@@ -10,11 +10,13 @@ export const CloseModalContent = ({ setModal, togglePrayer }) => (
         <Text style={styles.body}>Close Prayer</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )
 
@@ -26,11 +28,13 @@ export const OpenModalContent = ({ setModal, togglePrayer }) => (
         <Text style={styles.body}>Open Prayer</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )
 
@@ -42,10 +46,12 @@ export const UnfollowModalContent = ({ setModal, unfollowPrayer }) => (
         <Text style={styles.body}>Unfollow Prayer</Text>
       </TouchableOpacity>
     </View>
-    <View style={styles.modalContent}>
-      <TouchableOpacity onPress={() => setModal(null)}>
+    <TouchableOpacity
+      style={styles.fullWidth}
+      onPress={() => setModal(null)}>
+      <View style={styles.modalContent}>
         <Text style={styles.body}>Cancel</Text>
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   </View>
 )

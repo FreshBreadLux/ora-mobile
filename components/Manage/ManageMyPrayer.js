@@ -63,19 +63,23 @@ export default class ManageMyPrayer extends React.Component {
         {this.state.editMode
           ? <KeyboardAwareScrollView
               contentContainerStyle={styles.container}>
-              <TextInput
-                style={styles.box}
-                onChangeText={subject => this.setState({ subject })}
-                onSubmitEditing={event => this.refs.body.focus()}
-                value={this.state.subject}
-              />
-              <TextInput
-                ref="body"
-                style={[styles.flex1, styles.box]}
-                multiline={true}
-                onChangeText={body => this.setState({ body })}
-                value={this.state.body}
-              />
+              <View style={styles.addViewSpacing}>
+                <TextInput
+                  style={styles.box}
+                  onChangeText={subject => this.setState({ subject })}
+                  onSubmitEditing={event => this.refs.body.focus()}
+                  value={this.state.subject}
+                />
+              </View>
+              <View style={[styles.addViewSpacing, styles.flex1]}>
+                <TextInput
+                  ref="body"
+                  style={[styles.flex1, styles.box]}
+                  multiline={true}
+                  onChangeText={body => this.setState({ body })}
+                  value={this.state.body}
+                />
+              </View>
               <View style={styles.center}>
                 <TouchableOpacity
                   onPress={this.updatePrayer}
