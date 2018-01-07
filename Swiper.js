@@ -15,6 +15,7 @@ export default class SwiperClass extends React.Component {
       jwToken: null,
       prayers: null,
       follows: null,
+      userEmail: null,
       userTotalPrayers: null,
       notification: null,
     }
@@ -22,6 +23,7 @@ export default class SwiperClass extends React.Component {
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
+    this.fetchUserEmail = this.fetchUserEmail.bind(this)
     this.fetchUserTotalPrayers = this.fetchUserTotalPrayers.bind(this)
     this.userLogout = this.userLogout.bind(this)
   }
@@ -48,6 +50,7 @@ export default class SwiperClass extends React.Component {
       })
       this.fetchUserPrayers(payloadJson.userId)
       this.fetchUserFollows(payloadJson.userId)
+      this.fetchUserEmail(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
     }
   }
@@ -68,6 +71,14 @@ export default class SwiperClass extends React.Component {
         follows: follows.data // TODO: CLEAN BACKEND
       })
     }
+  }
+
+  async fetchUserEmail(userId) {
+    const user = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}`)
+    const userEmail = user.data.email
+    this.setState({
+      userEmail
+    })
   }
 
   async fetchUserTotalPrayers(userId) {
@@ -104,6 +115,7 @@ export default class SwiperClass extends React.Component {
       >
         <Settings
           userLogout={this.userLogout}
+          userEmail={this.state.userEmail}
           userTotalPrayers={this.state.userTotalPrayers}
         />
         <Accept

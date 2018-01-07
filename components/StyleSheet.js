@@ -38,6 +38,13 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row'
   },
+  profileRow: {
+    flexDirection: 'row',
+    paddingTop: 15,
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
   column: {
     flexDirection: 'column'
   },

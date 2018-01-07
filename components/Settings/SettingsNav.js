@@ -50,24 +50,25 @@ const SettingsTab = TabNavigator({
     },
   },
 }, {
-  tabBarPosition: 'bottom',
+  tabBarPosition: 'bottom'
 })
 
 const SettingsStack = StackNavigator({
   Root: {
-    screen: SettingsTab
+    screen: SettingsTab,
   },
   AngelRank: {
     screen: AngelRank,
     navigationOptions: {
-      title: 'Angel Rank'
+      title: 'Angel Rank',
     }
   }
 })
 
-const SettingsNav = ({ userLogout, userTotalPrayers }) => (
+const SettingsNav = ({ userLogout, userEmail, userTotalPrayers }) => (
   <SettingsStack screenProps={{
     userLogout,
+    userEmail,
     userTotalPrayers
   }} />
 )
