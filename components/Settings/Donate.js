@@ -7,11 +7,7 @@ export default class LogoutForm extends React.Component {
     return (
       <View style={styles.container}>
         <View style={[styles.cover, styles.center]}>
-          <TouchableOpacity
-            onPress={this.props.screenProps.userLogout}
-          >
-            <Text>Donate Placeholder</Text>
-          </TouchableOpacity>
+          <Text>Donate Placeholder</Text>
         </View>
       </View>
     )

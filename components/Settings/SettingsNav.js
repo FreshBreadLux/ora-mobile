@@ -65,8 +65,11 @@ const SettingsStack = StackNavigator({
   }
 })
 
-const SettingsNav = ({ userLogout }) => (
-  <SettingsStack screenProps={{userLogout: userLogout}} />
+const SettingsNav = ({ userLogout, userTotalPrayers }) => (
+  <SettingsStack screenProps={{
+    userLogout,
+    userTotalPrayers
+  }} />
 )
 
 export default SettingsNav
