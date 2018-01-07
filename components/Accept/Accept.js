@@ -31,7 +31,8 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/next`, { userId: this.props.userId })
+    const { userId, fetchUserTotalPrayers } = this.props
+    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/next`, { userId })
     .then(response => response.data)
     .then(prayer => {
       this.setState({ currentPrayer: prayer })
@@ -40,6 +41,7 @@ export default class Accept extends React.Component {
         { toValue: 1, duration: 500 }
       ).start()
     })
+    .then(() => fetchUserTotalPrayers(userId))
     .catch(console.error)
   }
 

@@ -109,6 +109,7 @@ export default class SwiperClass extends React.Component {
         <Accept
           userId={this.state.userId}
           fetchUserFollows={this.fetchUserFollows}
+          fetchUserTotalPrayers={this.fetchUserTotalPrayers}
         />
         <Submit
           isLoggedIn={this.state.isLoggedIn}

@@ -2,16 +2,16 @@ import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
-const Profile = () => (
+const Profile = ({ screenProps, navigation }) => (
   <View style={styles.container}>
     <View style={[styles.cover, styles.center]}>
       <Text>Profile Placeholder</Text>
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('AngelRank')}>
+        onPress={() => navigation.navigate('AngelRank', { userTotalPrayers: screenProps.userTotalPrayers })}>
         <Text>Link to Angel Rank Placeholder</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={this.props.screenProps.userLogout}>
+        onPress={screenProps.userLogout}>
         <Text>Logout</Text>
       </TouchableOpacity>
     </View>
