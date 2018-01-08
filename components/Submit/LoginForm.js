@@ -3,7 +3,7 @@ import axios from 'axios'
 import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import styles from '../StyleSheet'
-import IP_ADDRESS from '../../config'
+import ROOT_URL from '../../config'
 
 export default class LoginForm extends React.Component {
   constructor(props) {
@@ -37,7 +37,7 @@ export default class LoginForm extends React.Component {
   async userSignup() {
     let token = await this.registerForPushNotificationsAsync()
     if (this.state.email && this.state.password) {
-      axios.post(`http://${IP_ADDRESS}:8080/api/users`, {
+      axios.post(`${ROOT_URL}/api/users`, {
         email: this.state.email,
         password: this.state.password,
         pushToken: token,
@@ -52,7 +52,7 @@ export default class LoginForm extends React.Component {
 
   userLogin() {
     if (this.state.email && this.state.password) {
-      axios.post(`http://${IP_ADDRESS}:8080/api/users/sessions`, {
+      axios.post(`${ROOT_URL}/api/users/sessions`, {
         email: this.state.email,
         password: this.state.password,
       })

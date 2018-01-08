@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import IP_ADDRESS from '../../config'
+import ROOT_URL from '../../config'
 import styles from '../StyleSheet'
 
 export default class SubmitForm extends React.Component {
@@ -19,7 +19,7 @@ export default class SubmitForm extends React.Component {
 
   submitPrayer() {
     Keyboard.dismiss()
-    axios.post(`http://${IP_ADDRESS}:8080/api/prayers`, {
+    axios.post(`${ROOT_URL}/api/prayers`, {
       userId: this.props.userId,
       subject: this.state.subject,
       body: this.state.body,

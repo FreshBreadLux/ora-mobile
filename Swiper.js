@@ -4,7 +4,7 @@ import { Notifications } from 'expo'
 import Swiper from 'react-native-swiper'
 import { Settings, Accept, Submit, Manage } from './components'
 import axios from 'axios'
-import IP_ADDRESS from './config'
+import ROOT_URL from './config'
 
 export default class SwiperClass extends React.Component {
   constructor(props) {
@@ -56,7 +56,7 @@ export default class SwiperClass extends React.Component {
   }
 
   async fetchUserPrayers(userId) {
-    const prayers = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/prayers`)
+    const prayers = await axios.get(`${ROOT_URL}/api/users/${userId}/prayers`)
     if (prayers) {
       this.setState({
         prayers: prayers.data
@@ -65,7 +65,7 @@ export default class SwiperClass extends React.Component {
   }
 
   async fetchUserFollows(userId) {
-    const follows = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}/follows`)
+    const follows = await axios.get(`${ROOT_URL}/api/users/${userId}/follows`)
     if (follows) {
       this.setState({
         follows: follows.data // TODO: CLEAN BACKEND
@@ -74,7 +74,7 @@ export default class SwiperClass extends React.Component {
   }
 
   async fetchUserEmail(userId) {
-    const user = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}`)
+    const user = await axios.get(`${ROOT_URL}/api/users/${userId}`)
     const userEmail = user.data.email
     this.setState({
       userEmail
@@ -82,7 +82,7 @@ export default class SwiperClass extends React.Component {
   }
 
   async fetchUserTotalPrayers(userId) {
-    const user = await axios.get(`http://${IP_ADDRESS}:8080/api/users/${userId}`)
+    const user = await axios.get(`${ROOT_URL}/api/users/${userId}`)
     const userTotalPrayers = user.data.totalPrayers
     this.setState({
       userTotalPrayers

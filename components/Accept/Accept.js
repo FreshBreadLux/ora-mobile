@@ -3,7 +3,7 @@ import { View, Image, Animated, AlertIOS } from 'react-native'
 import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
-import IP_ADDRESS from '../../config'
+import ROOT_URL from '../../config'
 import styles from '../StyleSheet'
 
 export default class Accept extends React.Component {
@@ -32,7 +32,7 @@ export default class Accept extends React.Component {
 
   loadNextPrayer() {
     const { userId, fetchUserTotalPrayers } = this.props
-    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/next`, { userId })
+    axios.put(`${ROOT_URL}/api/prayers/next`, { userId })
     .then(response => response.data)
     .then(prayer => {
       this.setState({ currentPrayer: prayer })
@@ -60,7 +60,7 @@ export default class Accept extends React.Component {
     const userId = this.props.userId
     const prayer = this.state.currentPrayer
     if (userId) {
-      axios.post(`http://${IP_ADDRESS}:8080/api/flags`, {
+      axios.post(`${ROOT_URL}/api/flags`, {
         flaggerUserId: userId,
         flagCategory: category,
         prayerId: prayer.id,
@@ -86,7 +86,7 @@ export default class Accept extends React.Component {
     const userId = this.props.userId
     const prayer = this.state.currentPrayer
     if (userId) {
-      axios.post(`http://${IP_ADDRESS}:8080/api/follows`, {
+      axios.post(`${ROOT_URL}/api/follows`, {
         userId, prayer
       })
       .then(() => {

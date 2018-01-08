@@ -4,7 +4,7 @@ import Modal from 'react-native-modal'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios'
 import styles from '../StyleSheet'
-import IP_ADDRESS from '../../config'
+import ROOT_URL from '../../config'
 import { OpenModalContent, CloseModalContent } from './Modals'
 
 export default class ManageMyPrayer extends React.Component {
@@ -29,7 +29,7 @@ export default class ManageMyPrayer extends React.Component {
   updatePrayer() {
     Keyboard.dismiss()
     const { fetchUserPrayers, userId } = this.props.screenProps
-    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/update/${this.props.navigation.state.params.prayer.id}`, {
+    axios.put(`${ROOT_URL}/api/prayers/update/${this.props.navigation.state.params.prayer.id}`, {
       subject: this.state.subject,
       body: this.state.body,
     })
@@ -46,7 +46,7 @@ export default class ManageMyPrayer extends React.Component {
   togglePrayer(bool) {
     Keyboard.dismiss()
     const { fetchUserPrayers, userId } = this.props.screenProps
-    axios.put(`http://${IP_ADDRESS}:8080/api/prayers/close/${this.props.navigation.state.params.prayer.id}`, {
+    axios.put(`${ROOT_URL}/api/prayers/close/${this.props.navigation.state.params.prayer.id}`, {
       closed: bool
     })
     .then(() => {

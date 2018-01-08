@@ -4,7 +4,7 @@ import Modal from 'react-native-modal'
 import { UnfollowModalContent } from './Modals'
 import axios from 'axios'
 import styles from '../StyleSheet'
-import IP_ADDRESS from '../../config'
+import ROOT_URL from '../../config'
 
 export default class ManageMyPrayer extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class ManageMyPrayer extends React.Component {
   unfollowPrayer() {
     Keyboard.dismiss()
     const { fetchUserFollows, userId } = this.props.screenProps
-    axios.delete(`http://${IP_ADDRESS}:8080/api/follows/${this.props.navigation.state.params.follow.id}`)
+    axios.delete(`${ROOT_URL}/api/follows/${this.props.navigation.state.params.follow.id}`)
     .then(() => {
       fetchUserFollows(userId)
       this.props.navigation.goBack()
