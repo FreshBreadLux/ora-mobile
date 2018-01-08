@@ -114,6 +114,7 @@ export default class SwiperClass extends React.Component {
         index={1}
       >
         <Settings
+          isLoggedIn={this.state.isLoggedIn}
           userLogout={this.userLogout}
           userEmail={this.state.userEmail}
           userTotalPrayers={this.state.userTotalPrayers}
@@ -125,17 +126,17 @@ export default class SwiperClass extends React.Component {
         />
         <Submit
           isLoggedIn={this.state.isLoggedIn}
-          verifyStorageKey={this.verifyStorageKey}
           userId={this.state.userId}
+          verifyStorageKey={this.verifyStorageKey}
           fetchUserPrayers={this.fetchUserPrayers}
         />
         <Manage
+          isLoggedIn={this.state.isLoggedIn}
           userId={this.state.userId}
           fetchUserPrayers={this.fetchUserPrayers}
           fetchUserFollows={this.fetchUserFollows}
           prayers={this.state.prayers}
           follows={this.state.follows}
-          isLoggedIn={this.state.isLoggedIn}
         />
       </Swiper>
     )

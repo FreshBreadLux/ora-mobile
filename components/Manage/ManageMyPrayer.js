@@ -83,8 +83,8 @@ export default class ManageMyPrayer extends React.Component {
               <View style={styles.center}>
                 <TouchableOpacity
                   onPress={this.updatePrayer}
-                  style={styles.modalContent}>
-                  <Text>Update Prayer</Text>
+                  style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                  <Text style={{color: '#fff'}}>Update Prayer</Text>
                 </TouchableOpacity>
               </View>
               <View style={styles.center}>
@@ -105,8 +105,8 @@ export default class ManageMyPrayer extends React.Component {
               <View style={styles.center}>
                 <TouchableOpacity
                   onPress={() => this.setState({ editMode: true })}
-                  style={styles.modalContent}>
-                  <Text>Edit</Text>
+                  style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                  <Text style={{color: '#fff'}}>Edit</Text>
                 </TouchableOpacity>
               </View>
               {prayer.closed

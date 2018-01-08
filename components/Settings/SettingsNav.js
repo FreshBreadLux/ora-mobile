@@ -65,8 +65,9 @@ const SettingsStack = StackNavigator({
   }
 })
 
-const SettingsNav = ({ userLogout, userEmail, userTotalPrayers }) => (
+const SettingsNav = ({ isLoggedIn, userLogout, userEmail, userTotalPrayers }) => (
   <SettingsStack screenProps={{
+    isLoggedIn,
     userLogout,
     userEmail,
     userTotalPrayers
