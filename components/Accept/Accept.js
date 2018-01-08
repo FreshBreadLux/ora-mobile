@@ -41,7 +41,9 @@ export default class Accept extends React.Component {
         { toValue: 1, duration: 500 }
       ).start()
     })
-    .then(() => fetchUserTotalPrayers(userId))
+    .then(() => {
+      if (userId) fetchUserTotalPrayers(userId)
+    })
     .catch(console.error)
   }
 

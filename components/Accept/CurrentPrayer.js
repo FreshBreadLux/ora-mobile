@@ -16,7 +16,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
       <View style={[styles.flex4, styles.fullWidth]}>
         <Animated.ScrollView
           style={[styles.flex1, styles.box, { opacity }]}>
-          <Text style={styles.body}>{statePrayer.body}</Text>
+          <Text style={[styles.body, {paddingBottom: 15}]}>{statePrayer.body}</Text>
         </Animated.ScrollView>
       </View>
       <View style={[styles.flex1, styles.center]}>

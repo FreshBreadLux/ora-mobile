@@ -6,8 +6,12 @@ export const FollowModalContent = ({ setModal, followPrayer }) => (
   <View style={[styles.center, { padding: 20 }]}>
     <View style={styles.modalContent}>
       <Text style={[styles.body, { paddingBottom: 10, color: '#888' }]}>Following prayers is a sign of support and engagement, and will keep you updated on the status of the prayer request</Text>
-      <TouchableOpacity onPress={followPrayer}>
-        <Text style={styles.body}>Follow Prayer</Text>
+      <TouchableOpacity
+        style={styles.fullWidth}
+        onPress={followPrayer}>
+        <View style={[{paddingTop: 10, borderTopWidth: 1, borderTopColor: '#ccc'}, styles.fullWidth, styles.center]}>
+          <Text style={styles.body}>Follow Prayer</Text>
+        </View>
       </TouchableOpacity>
     </View>
     <TouchableOpacity
@@ -42,14 +46,26 @@ export const FlagModalContent = ({ setModal, flagPrayer }) => (
   <View style={[styles.center, { padding: 20 }]}>
     <View style={styles.modalContent}>
       <Text style={[styles.body, { paddingBottom: 10, color: '#888' }]}>Please select the category that this prayer should be flagged under</Text>
-      <TouchableOpacity onPress={() => flagPrayer('spam')}>
-        <Text style={styles.body}>Spam</Text>
+      <TouchableOpacity
+        style={styles.fullWidth}
+        onPress={() => flagPrayer('spam')}>
+        <View style={[{paddingTop: 10, paddingBottom: 10, borderTopWidth: 1, borderTopColor: '#ccc'}, styles.fullWidth, styles.center]}>
+          <Text style={styles.body}>Spam</Text>
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => flagPrayer('dangerous')}>
-        <Text style={styles.body}>Dangerous</Text>
+      <TouchableOpacity
+        style={styles.fullWidth}
+        onPress={() => flagPrayer('dangerous')}>
+        <View style={[{paddingTop: 10, paddingBottom: 10, borderTopWidth: 1, borderTopColor: '#ccc'}, styles.fullWidth, styles.center]}>
+          <Text style={styles.body}>Dangerous</Text>
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => flagPrayer('inappropriate')}>
-        <Text style={styles.body}>Inappropriate</Text>
+      <TouchableOpacity
+        style={styles.fullWidth}
+        onPress={() => flagPrayer('inappropriate')}>
+        <View style={[{paddingTop: 10, borderTopWidth: 1, borderTopColor: '#ccc'}, styles.fullWidth, styles.center]}>
+          <Text style={styles.body}>Inappropriate</Text>
+        </View>
       </TouchableOpacity>
     </View>
     <TouchableOpacity
