@@ -97,11 +97,10 @@ export default class ManageMyPrayer extends React.Component {
                 </View>
               </KeyboardAwareScrollView>
             : <View style={styles.container}>
-                <ScrollView
-                  showsVerticalScrollIndicator={false}>
-                  <Text style={styles.body}>{`${prayer.body}`}</Text>
+                <ScrollView showsVerticalScrollIndicator={false}>
+                  <Text style={[styles.body, {paddingBottom: 10}]}>{`${prayer.body}`}</Text>
                 </ScrollView>
-                <View>
+                <View style={[styles.addViewSpacing, styles.fullWidth, {borderTopWidth: 1, borderTopColor: '#ccc'}]}>
                   <Text>{`Total Views: ${prayer.totalViews}`}</Text>
                 </View>
                 <View style={styles.center}>
