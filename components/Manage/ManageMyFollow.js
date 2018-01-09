@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, TouchableOpacity, Keyboard } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, Keyboard, SafeAreaView } from 'react-native'
 import Modal from 'react-native-modal'
 import { UnfollowModalContent } from './Modals'
 import axios from 'axios'
@@ -34,27 +34,29 @@ export default class ManageMyPrayer extends React.Component {
   render() {
     const follow = this.props.navigation.state.params.follow
     return (
-      <View style={[styles.container, styles.addPadding]}>
-        <ScrollView>
-          <Text style={styles.body}>{`${follow.body}`}</Text>
-        </ScrollView>
-        <View style={styles.center}>
-          <TouchableOpacity
-            onPress={() => this.setModal('unfollow')}
-            style={styles.modalContent}>
-            <Text>Unfollow</Text>
-          </TouchableOpacity>
+      <SafeAreaView style={[styles.cover, {backgroundColor: '#fff'}]}>
+        <View style={[styles.container, styles.addPadding]}>
+          <ScrollView>
+            <Text style={styles.body}>{`${follow.body}`}</Text>
+          </ScrollView>
+          <View style={styles.center}>
+            <TouchableOpacity
+              onPress={() => this.setModal('unfollow')}
+              style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+              <Text style={{color: '#fff'}}>Unfollow</Text>
+            </TouchableOpacity>
+          </View>
+          <Modal
+            isVisible={this.state.visibleModal === 'unfollow'}
+            style={styles.bottomModal}
+          >
+            <UnfollowModalContent
+              setModal={this.setModal}
+              unfollowPrayer={this.unfollowPrayer}
+            />
+          </Modal>
         </View>
-        <Modal
-          isVisible={this.state.visibleModal === 'unfollow'}
-          style={styles.bottomModal}
-        >
-          <UnfollowModalContent
-            setModal={this.setModal}
-            unfollowPrayer={this.unfollowPrayer}
-          />
-        </Modal>
-      </View>
+      </SafeAreaView>
     )
   }
 }

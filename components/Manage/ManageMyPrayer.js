@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView } from 'react-native'
 import Modal from 'react-native-modal'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios'
@@ -59,93 +59,96 @@ export default class ManageMyPrayer extends React.Component {
   render() {
     const prayer = this.props.navigation.state.params.prayer
     return (
-      <View style={[styles.container, styles.addPadding]}>
-        {this.state.editMode
-          ? <KeyboardAwareScrollView
-              contentContainerStyle={styles.container}>
-              <View style={styles.addViewSpacing}>
-                <TextInput
-                  style={styles.box}
-                  onChangeText={subject => this.setState({ subject })}
-                  onSubmitEditing={event => this.refs.body.focus()}
-                  value={this.state.subject}
-                />
+      <SafeAreaView style={[styles.cover, {backgroundColor: '#fff'}]}>
+        <View style={[styles.container, styles.addPadding, {backgroundColor: '#fff'}]}>
+          {this.state.editMode
+            ? <KeyboardAwareScrollView
+                contentContainerStyle={styles.container}>
+                <View style={styles.addViewSpacing}>
+                  <TextInput
+                    style={styles.box}
+                    onChangeText={subject => this.setState({ subject })}
+                    onSubmitEditing={event => this.refs.body.focus()}
+                    value={this.state.subject}
+                  />
+                </View>
+                <View style={[styles.addViewSpacing, styles.flex1]}>
+                  <TextInput
+                    ref="body"
+                    style={[styles.flex1, styles.box]}
+                    multiline={true}
+                    onChangeText={body => this.setState({ body })}
+                    value={this.state.body}
+                  />
+                </View>
+                <View style={styles.center}>
+                  <TouchableOpacity
+                    onPress={this.updatePrayer}
+                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                    <Text style={{color: '#fff'}}>Update Prayer</Text>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.center}>
+                  <TouchableOpacity
+                    onPress={() => this.setState({ editMode: false })}
+                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                    <Text style={{color: '#fff'}}>Cancel</Text>
+                  </TouchableOpacity>
+                </View>
+              </KeyboardAwareScrollView>
+            : <View style={styles.container}>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}>
+                  <Text style={styles.body}>{`${prayer.body}`}</Text>
+                </ScrollView>
+                <View>
+                  <Text>{`Total Views: ${prayer.totalViews}`}</Text>
+                </View>
+                <View style={styles.center}>
+                  <TouchableOpacity
+                    onPress={() => this.setState({ editMode: true })}
+                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                    <Text style={{color: '#fff'}}>Edit</Text>
+                  </TouchableOpacity>
+                </View>
+                {prayer.closed
+                  ? <View style={styles.center}>
+                      <TouchableOpacity
+                        onPress={() => this.setModal('open')}
+                        style={styles.modalContent}>
+                        <Text>Open Prayer</Text>
+                      </TouchableOpacity>
+                    </View>
+                  : <View style={styles.center}>
+                      <TouchableOpacity
+                        onPress={() => this.setModal('close')}
+                        style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
+                        <Text style={{color: '#fff'}}>Close Prayer</Text>
+                      </TouchableOpacity>
+                    </View>
+                }
+                <Modal
+                  isVisible={this.state.visibleModal === 'open'}
+                  style={styles.bottomModal}
+                >
+                  <OpenModalContent
+                    setModal={this.setModal}
+                    togglePrayer={this.togglePrayer}
+                  />
+                </Modal>
+                <Modal
+                  isVisible={this.state.visibleModal === 'close'}
+                  style={styles.bottomModal}
+                >
+                  <CloseModalContent
+                    setModal={this.setModal}
+                    togglePrayer={this.togglePrayer}
+                  />
+                </Modal>
               </View>
-              <View style={[styles.addViewSpacing, styles.flex1]}>
-                <TextInput
-                  ref="body"
-                  style={[styles.flex1, styles.box]}
-                  multiline={true}
-                  onChangeText={body => this.setState({ body })}
-                  value={this.state.body}
-                />
-              </View>
-              <View style={styles.center}>
-                <TouchableOpacity
-                  onPress={this.updatePrayer}
-                  style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                  <Text style={{color: '#fff'}}>Update Prayer</Text>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.center}>
-                <TouchableOpacity
-                  onPress={() => this.setState({ editMode: false })}
-                  style={styles.modalContent}>
-                  <Text>Cancel</Text>
-                </TouchableOpacity>
-              </View>
-            </KeyboardAwareScrollView>
-          : <View style={styles.container}>
-              <ScrollView>
-                <Text style={styles.body}>{`${prayer.body}`}</Text>
-              </ScrollView>
-              <View>
-                <Text>{`Total Views: ${prayer.totalViews}`}</Text>
-              </View>
-              <View style={styles.center}>
-                <TouchableOpacity
-                  onPress={() => this.setState({ editMode: true })}
-                  style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                  <Text style={{color: '#fff'}}>Edit</Text>
-                </TouchableOpacity>
-              </View>
-              {prayer.closed
-                ? <View style={styles.center}>
-                    <TouchableOpacity
-                      onPress={() => this.setModal('open')}
-                      style={styles.modalContent}>
-                      <Text>Open Prayer</Text>
-                    </TouchableOpacity>
-                  </View>
-                : <View style={styles.center}>
-                    <TouchableOpacity
-                      onPress={() => this.setModal('close')}
-                      style={styles.modalContent}>
-                      <Text>Close Prayer</Text>
-                    </TouchableOpacity>
-                  </View>
-              }
-              <Modal
-                isVisible={this.state.visibleModal === 'open'}
-                style={styles.bottomModal}
-              >
-                <OpenModalContent
-                  setModal={this.setModal}
-                  togglePrayer={this.togglePrayer}
-                />
-              </Modal>
-              <Modal
-                isVisible={this.state.visibleModal === 'close'}
-                style={styles.bottomModal}
-              >
-                <CloseModalContent
-                  setModal={this.setModal}
-                  togglePrayer={this.togglePrayer}
-                />
-              </Modal>
-            </View>
-        }
-      </View>
+          }
+        </View>
+      </SafeAreaView>
     )
   }
 }

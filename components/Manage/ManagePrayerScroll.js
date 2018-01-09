@@ -3,7 +3,7 @@ import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const ManageMyPrayer = ({ screenProps, navigation }) => (
-  <View style={styles.container}>
+  <View style={[styles.container, {backgroundColor: '#fff'}]}>
     {!screenProps.userId
       ? <View style={styles.center}>
           <Text>Please login to manage your prayers</Text>
@@ -18,8 +18,13 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
                     key={prayer.id}
                     onPress={() => navigation.navigate('MyPrayer', { prayer })}>
                     <View style={[styles.fullWidth, styles.listBottomBorder]}>
-                      <Text style={[styles.buttonText, { color: '#000' }]}>{prayer.subject}</Text>
-                      <Text style={styles.body} numberOfLines={2}>{prayer.body}</Text>
+                      <Text
+                        numberOfLines={1}
+                        style={[styles.buttonText, { color: '#000' }]}>{prayer.subject}</Text>
+                      <Text
+                        numberOfLines={2}
+                        style={styles.body}>
+                        {prayer.body}</Text>
                     </View>
                   </TouchableOpacity>
                 ))}

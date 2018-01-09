@@ -5,7 +5,7 @@ import styles from '../StyleSheet'
 export default class LogoutForm extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, {backgroundColor: '#fff'}]}>
         <View style={[styles.cover, styles.center]}>
           <Text>Donate Placeholder</Text>
         </View>

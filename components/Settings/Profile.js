@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const Profile = ({ screenProps, navigation }) => (
-  <View style={styles.container}>
+  <View style={[styles.container, {backgroundColor: '#fff'}]}>
     {screenProps.isLoggedIn
       ? <View style={[styles.cover, styles.addPadding, { justifyContent: 'flex-start' }]}>
           <View style={styles.profileRow}>
@@ -30,9 +30,9 @@ const Profile = ({ screenProps, navigation }) => (
           </View>
           <View style={[styles.flex1]}>
             <TouchableOpacity
-              style={[styles.modalContent]}
+              style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}
               onPress={screenProps.userLogout}>
-              <Text>Logout</Text>
+              <Text style={{color: '#fff'}}>Logout</Text>
             </TouchableOpacity>
           </View>
         </View>

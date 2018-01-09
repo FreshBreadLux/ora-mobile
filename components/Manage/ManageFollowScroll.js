@@ -3,7 +3,7 @@ import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const ManageMyFollow = ({ screenProps, navigation }) => (
-  <View style={styles.container}>
+  <View style={[styles.container, {backgroundColor: '#fff'}]}>
     {!screenProps.userId
       ? <View style={styles.center}>
           <Text>Please login to manage your follows</Text>
@@ -12,7 +12,7 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
           {screenProps.follows && screenProps.follows.length
             ? <View style={styles.addPadding}>
                 <ScrollView
-                showsVerticalScrollIndicator={false}>
+                  showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
                     key={follow.id}

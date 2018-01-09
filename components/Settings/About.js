@@ -3,7 +3,7 @@ import { Text, View, ScrollView } from 'react-native'
 import styles from '../StyleSheet'
 
 const About = () => (
-  <View style={styles.container}>
+  <View style={[styles.container, {backgroundColor: '#fff'}]}>
     <View style={[styles.cover, styles.addPadding]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
