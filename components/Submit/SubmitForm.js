@@ -38,21 +38,21 @@ export default class SubmitForm extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.cover}>
-        <View style={styles.addPadding}>
+      <SafeAreaView style={styles.invisiContainer}>
+        <View style={[styles.flex1, styles.padding15]}>
           <KeyboardAwareScrollView
             contentContainerStyle={styles.flex1}>
             { this.state.prayerSent
               ? <View style={styles.addViewSpacing}>
-                  <Text style={styles.subject}>Your prayer has been submitted</Text>
+                  <Text style={[styles.font24, styles.whiteText, styles.centerText]}>Your prayer has been submitted</Text>
                 </View>
               : <View style={styles.addViewSpacing}>
-                  <Text style={styles.subject}>Submit a prayer</Text>
+                  <Text style={[styles.font24, styles.whiteText, styles.centerText]}>Submit a prayer</Text>
                 </View> }
             <View style={styles.addViewSpacing}>
-              <Text style={styles.label}>Subject</Text>
+              <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Subject</Text>
               <TextInput
-                style={styles.box}
+                style={[styles.box, styles.font16]}
                 placeholder="Write the subject of your prayer here"
                 placeholderTextColor="#555"
                 keyboardType="default"
@@ -62,10 +62,10 @@ export default class SubmitForm extends React.Component {
               />
             </View>
             <View style={styles.addViewSpacing}>
-              <Text style={styles.label}>Body</Text>
+              <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Body</Text>
               <TextInput
                 ref="body"
-                style={[styles.box, { height: Math.min(Math.max(this.state.bodyHeight, 100), 200), paddingBottom: 15 }]}
+                style={[styles.box, styles.font16, styles.paddingBottom15, { height: Math.min(Math.max(this.state.bodyHeight, 100), 200)}]}
                 placeholder="Describe your prayer request here. We recommend using as much detail as you are comfortable with. There is no space limit."
                 placeholderTextColor="#555"
                 keyboardType="default"
@@ -80,9 +80,9 @@ export default class SubmitForm extends React.Component {
             <View style={[styles.center, styles.addViewSpacing]}>
               <TouchableOpacity
                 onPress={this.submitPrayer}
-                style={{padding: 10}}
+                style={styles.padding10}
               >
-                <Text style={styles.buttonText}>Send</Text>
+                <Text style={[styles.font24, styles.whiteText]}>Send</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAwareScrollView>
