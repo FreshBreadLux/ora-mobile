@@ -1,9 +1,13 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-  container: {
+  whiteContainer: {
     flex: 1,
-    justifyContent: 'center',
+    backgroundColor: '#fff',
+  },
+  invisiContainer: {
+    flex: 1,
+    backgroundColor: 'transparent',
   },
   backgroundImage: {
     flex: 1,
@@ -13,10 +17,6 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
-  },
-  cover: {
-    flex: 1,
-    backgroundColor: 'transparent',
   },
   addPadding: {
     flex: 1,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     paddingBottom: 5,
   },
-  body: {
+  font16: {
     fontFamily: 'open-sans',
     fontSize: 16,
   },
@@ -81,12 +81,16 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
   },
   button: {
-    padding: 15,
-    borderRadius: 7,
+    backgroundColor: 'rgb(69, 119, 238)',
+    borderRadius: 6,
+    padding: 10,
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 10,
   },
   buttonText: {
     fontFamily: 'open-sans',
-    fontSize: 18,
+    fontSize: 16,
     color: '#fff'
   },
   bottomModal: {

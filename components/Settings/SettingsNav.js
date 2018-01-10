@@ -3,7 +3,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation'
 import Profile from './Profile'
 import About from './About'
 import Donate from './Donate'
-import AngelRank from './AngelRank'
+import ChoirRank from './ChoirRank'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const SettingsTab = TabNavigator({
@@ -57,10 +57,10 @@ const SettingsStack = StackNavigator({
   Root: {
     screen: SettingsTab,
   },
-  AngelRank: {
-    screen: AngelRank,
+  ChoirRank: {
+    screen: ChoirRank,
     navigationOptions: {
-      title: 'Angel Rank',
+      title: 'The Nine Choirs',
     }
   }
 })

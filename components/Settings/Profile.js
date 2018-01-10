@@ -3,36 +3,36 @@ import { Text, View, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const Profile = ({ screenProps, navigation }) => (
-  <View style={[styles.container, {backgroundColor: '#fff'}]}>
+  <View style={styles.whiteContainer}>
     {screenProps.isLoggedIn
-      ? <View style={[styles.cover, styles.addPadding, { justifyContent: 'flex-start' }]}>
+      ? <View style={[styles.invisiContainer, styles.addPadding]}>
           <View style={styles.profileRow}>
-            <Text>{`${screenProps.userEmail}`}</Text>
+            <Text style={styles.font16}>{`${screenProps.userEmail}`}</Text>
           </View>
           <View style={styles.profileRow}>
-            <Text>Reset Password Placeholder</Text>
+            <Text style={styles.font16}>Reset Password Placeholder</Text>
           </View>
           <View style={styles.profileRow}>
-            <Text>{`Total prayers accepted: ${screenProps.userTotalPrayers}`}</Text>
+            <Text style={styles.font16}>{`Total prayers accepted: ${screenProps.userTotalPrayers}`}</Text>
           </View>
           <View style={styles.profileRow}>
-            <Text>Consecutive Days Praying Placeholder</Text>
+            <Text style={styles.font16}>Consecutive Days Praying Placeholder</Text>
           </View>
           <View style={styles.profileRow}>
             <View style={[styles.column, styles.fullWidth]}>
-              <Text>Choir Logic Placeholder:</Text>
+              <Text style={styles.font16}>Choir Logic Placeholder:</Text>
               <TouchableOpacity
-                style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}
-                onPress={() => navigation.navigate('AngelRank', { userTotalPrayers: screenProps.userTotalPrayers })}>
-                <Text style={{color: '#fff'}}>{`Choir Name Placeholder`}</Text>
+                style={styles.button}
+                onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: screenProps.userTotalPrayers })}>
+                <Text style={styles.buttonText}>{`Choir Name Placeholder`}</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View style={[styles.flex1]}>
             <TouchableOpacity
-              style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}
+              style={styles.button}
               onPress={screenProps.userLogout}>
-              <Text style={{color: '#fff'}}>Logout</Text>
+              <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
           </View>
         </View>
