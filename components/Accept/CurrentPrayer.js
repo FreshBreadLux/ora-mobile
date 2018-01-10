@@ -6,25 +6,25 @@ import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modal
 import styles from '../StyleSheet'
 
 const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, opacity, visibleModal, setModal }) => (
-  <SafeAreaView style={styles.cover}>
-    <View style={[styles.addPadding, styles.spaceAround]}>
+  <SafeAreaView style={styles.invisiContainer}>
+    <View style={[styles.invisiContainer, styles.padding15, styles.spaceAround]}>
       <View style={styles.flex1}>
         <Animated.View style={[styles.flex1, styles.center, { opacity }]}>
-          <Text style={styles.subject}>{statePrayer.subject}</Text>
+          <Text style={[styles.font24, styles.whiteText]}>{statePrayer.subject}</Text>
         </Animated.View>
       </View>
       <View style={[styles.flex4, styles.fullWidth]}>
         <Animated.ScrollView
           style={[styles.flex1, styles.box, { opacity }]}>
-          <Text style={[styles.body, {paddingBottom: 15}]}>{statePrayer.body}</Text>
+          <Text style={[styles.font16, styles.paddingBottom15]}>{statePrayer.body}</Text>
         </Animated.ScrollView>
       </View>
       <View style={[styles.flex1, styles.center]}>
         <TouchableOpacity
           onPress={fadeOut}
-          style={{padding: 10}}
+          style={styles.padding10}
         >
-          <Text style={styles.buttonText}>Next Prayer</Text>
+          <Text style={[styles.font20, styles.whiteText]}>Next Prayer</Text>
         </TouchableOpacity>
       </View>
       <View style={[
@@ -33,7 +33,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
         styles.fullWidth]}
       >
         <TouchableOpacity
-          style={[styles.addPadding, styles.center]}
+          style={[styles.padding10, styles.center]}
           onPress={finishPraying}
         >
           <Ionicons
@@ -43,7 +43,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.addPadding, styles.center]}
+          style={[styles.padding10, styles.center]}
           onPress={() => setModal('about')}
         >
           <Ionicons
@@ -53,7 +53,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.addPadding, styles.center]}
+          style={[styles.padding10, styles.center]}
           onPress={() => setModal('flag')}
         >
           <Ionicons
@@ -63,7 +63,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           />
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.addPadding, styles.center]}
+          style={[styles.padding10, styles.center]}
           onPress={() => setModal('follow')}
         >
           <Ionicons

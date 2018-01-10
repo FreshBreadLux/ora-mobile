@@ -5,7 +5,7 @@ import styles from '../StyleSheet'
 const Profile = ({ screenProps, navigation }) => (
   <View style={styles.whiteContainer}>
     {screenProps.isLoggedIn
-      ? <View style={[styles.invisiContainer, styles.addPadding]}>
+      ? <View style={[styles.invisiContainer, styles.padding15]}>
           <View style={styles.profileRow}>
             <Text style={styles.font16}>{`${screenProps.userEmail}`}</Text>
           </View>

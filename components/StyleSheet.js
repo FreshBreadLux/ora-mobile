@@ -23,10 +23,14 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: '100%',
   },
-  addPadding: {
-    flex: 1,
-    justifyContent: 'center',
+  padding15: {
     padding: 15,
+  },
+  padding10: {
+    padding: 10,
+  },
+  paddingBottom15: {
+    paddingBottom: 15,
   },
   horizontalPadding: {
     flex: 1,
@@ -68,6 +72,10 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 24,
   },
+  font20: {
+    fontFamily: 'open-sans',
+    fontSize: 20,
+  },
   font16: {
     fontFamily: 'open-sans',
     fontSize: 16,
@@ -96,9 +104,6 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 10,
-  },
-  padding10: {
-    padding: 10,
   },
   buttonText: {
     fontFamily: 'open-sans',
