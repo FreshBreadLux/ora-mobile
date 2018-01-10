@@ -66,52 +66,50 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.cover}>
-        <View style={styles.addPadding}>
-          <View style={[styles.flex1, { justifyContent: 'center' }]}>
-            <View style={styles.flex1}>
-              <Text style={styles.label}>Email</Text>
-              <TextInput
-                style={styles.box}
-                placeholder="Email"
-                placeholderTextColor="#555"
-                keyboardType="email-address"
-                autoCapitalize="none"
-                onChangeText={email => this.setState({email})}
-                onSubmitEditing={event => this.refs.password.focus()}
-                value={this.state.email}
-              />
-            </View>
-            <View style={styles.flex1}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                ref="password"
-                style={styles.box}
-                placeholder="Password"
-                placeholderTextColor="#555"
-                secureTextEntry={true}
-                onChangeText={password => this.setState({password})}
-                value={this.state.password}
-              />
-            </View>
-            <View style={[styles.flex1, styles.center]}>
-              <TouchableOpacity
-                onPress={this.userSignup}
-              >
-                <Text style={styles.buttonText}>Signup</Text>
-              </TouchableOpacity>
-            </View>
-            <View style={[styles.flex1, styles.center]}>
+      <SafeAreaView style={styles.invisiContainer}>
+        <View style={[styles.flex1, styles.padding15]}>
+          <View style={styles.flex1}>
+            <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Email</Text>
+            <TextInput
+              style={[styles.box, styles.font16]}
+              placeholder="Email"
+              placeholderTextColor="#555"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              onChangeText={email => this.setState({email})}
+              onSubmitEditing={event => this.refs.password.focus()}
+              value={this.state.email}
+            />
+          </View>
+          <View style={styles.flex1}>
+            <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Password</Text>
+            <TextInput
+              ref="password"
+              style={[styles.box, styles.font16]}
+              placeholder="Password"
+              placeholderTextColor="#555"
+              secureTextEntry={true}
+              onChangeText={password => this.setState({password})}
+              value={this.state.password}
+            />
+          </View>
+          <View style={[styles.flex1, styles.center]}>
+            <TouchableOpacity
+              onPress={this.userSignup}
+            >
+              <Text style={[styles.font24, styles.whiteText]}>Signup</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={[styles.flex1, styles.center]}>
             <TouchableOpacity
               onPress={this.userLogin}
             >
-              <Text style={styles.buttonText}>Login</Text>
+              <Text style={[styles.font24, styles.whiteText]}>Login</Text>
             </TouchableOpacity>
           </View>
-          </View>
-          <View style={[styles.flex1, { justifyContent: 'center' }]}>
-            <Text style={styles.subject}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
-          </View>
+        </View>
+        <View style={[styles.flex1, styles.center, styles.padding15]}>
+          <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
         </View>
       </SafeAreaView>
     )

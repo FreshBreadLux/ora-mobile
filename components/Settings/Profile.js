@@ -36,7 +36,7 @@ const Profile = ({ screenProps, navigation }) => (
             </TouchableOpacity>
           </View>
         </View>
-      : <View style={[styles.center, styles.addPadding]}>
+      : <View style={[styles.flex1, styles.center, styles.addPadding]}>
           <Text>Signup or Login to view your profile</Text>
         </View>
     }
