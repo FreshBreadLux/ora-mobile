@@ -97,6 +97,17 @@ const styles = StyleSheet.create({
     padding: 7,
     borderRadius: 7,
   },
+  boxBorder: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  viewTopBorder: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: '100%',
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
+  },
   listBottomBorder: {
     paddingBottom: 10,
     paddingTop: 10,

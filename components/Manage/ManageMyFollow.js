@@ -34,16 +34,16 @@ export default class ManageMyPrayer extends React.Component {
   render() {
     const follow = this.props.navigation.state.params.follow
     return (
-      <SafeAreaView style={[styles.cover, {backgroundColor: '#fff'}]}>
-        <View style={[styles.container, styles.addPadding]}>
+      <SafeAreaView style={styles.whiteContainer}>
+        <View style={[styles.invisiContainer, styles.padding15]}>
           <ScrollView>
-            <Text style={styles.body}>{`${follow.body}`}</Text>
+            <Text style={[styles.font16, styles.paddingBottom10]}>{`${follow.body}`}</Text>
           </ScrollView>
           <View style={styles.center}>
             <TouchableOpacity
               onPress={() => this.setModal('unfollow')}
-              style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-              <Text style={{color: '#fff'}}>Unfollow</Text>
+              style={styles.button}>
+              <Text style={styles.buttonText}>Unfollow</Text>
             </TouchableOpacity>
           </View>
           <Modal

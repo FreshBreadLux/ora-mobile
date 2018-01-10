@@ -59,14 +59,14 @@ export default class ManageMyPrayer extends React.Component {
   render() {
     const prayer = this.props.navigation.state.params.prayer
     return (
-      <SafeAreaView style={[styles.cover, {backgroundColor: '#fff'}]}>
-        <View style={[styles.container, styles.addPadding, {backgroundColor: '#fff'}]}>
+      <SafeAreaView style={styles.whiteContainer}>
+        <View style={[styles.whiteContainer, styles.padding15]}>
           {this.state.editMode
             ? <KeyboardAwareScrollView
-                contentContainerStyle={styles.container}>
+                contentContainerStyle={styles.invisiContainer}>
                 <View style={styles.addViewSpacing}>
                   <TextInput
-                    style={styles.box}
+                    style={[styles.box, styles.font16, styles.boxBorder]}
                     onChangeText={subject => this.setState({ subject })}
                     onSubmitEditing={event => this.refs.body.focus()}
                     value={this.state.subject}
@@ -75,7 +75,7 @@ export default class ManageMyPrayer extends React.Component {
                 <View style={[styles.addViewSpacing, styles.flex1]}>
                   <TextInput
                     ref="body"
-                    style={[styles.flex1, styles.box]}
+                    style={[styles.flex1, styles.box, styles.font16, styles.boxBorder]}
                     multiline={true}
                     onChangeText={body => this.setState({ body })}
                     value={this.state.body}
@@ -84,45 +84,45 @@ export default class ManageMyPrayer extends React.Component {
                 <View style={styles.center}>
                   <TouchableOpacity
                     onPress={this.updatePrayer}
-                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                    <Text style={{color: '#fff'}}>Update Prayer</Text>
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>Update Prayer</Text>
                   </TouchableOpacity>
                 </View>
                 <View style={styles.center}>
                   <TouchableOpacity
                     onPress={() => this.setState({ editMode: false })}
-                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                    <Text style={{color: '#fff'}}>Cancel</Text>
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
               </KeyboardAwareScrollView>
-            : <View style={styles.container}>
+            : <View style={styles.invisiContainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
-                  <Text style={[styles.body, {paddingBottom: 10}]}>{`${prayer.body}`}</Text>
+                  <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>
                 </ScrollView>
-                <View style={[styles.addViewSpacing, styles.fullWidth, {borderTopWidth: 1, borderTopColor: '#ccc'}]}>
-                  <Text>{`Total Views: ${prayer.totalViews}`}</Text>
+                <View style={styles.viewTopBorder}>
+                  <Text style={styles.font16}>{`Total Views: ${prayer.totalViews}`}</Text>
                 </View>
                 <View style={styles.center}>
                   <TouchableOpacity
                     onPress={() => this.setState({ editMode: true })}
-                    style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                    <Text style={{color: '#fff'}}>Edit</Text>
+                    style={styles.button}>
+                    <Text style={styles.buttonText}>Edit</Text>
                   </TouchableOpacity>
                 </View>
                 {prayer.closed
                   ? <View style={styles.center}>
                       <TouchableOpacity
                         onPress={() => this.setModal('open')}
-                        style={styles.modalContent}>
-                        <Text>Open Prayer</Text>
+                        style={styles.button}>
+                        <Text style={styles.buttonText}>Open Prayer</Text>
                       </TouchableOpacity>
                     </View>
                   : <View style={styles.center}>
                       <TouchableOpacity
                         onPress={() => this.setModal('close')}
-                        style={[styles.modalContent, {backgroundColor: 'rgb(69, 119, 238)'}]}>
-                        <Text style={{color: '#fff'}}>Close Prayer</Text>
+                        style={styles.button}>
+                        <Text style={styles.buttonText}>Close Prayer</Text>
                       </TouchableOpacity>
                     </View>
                 }
