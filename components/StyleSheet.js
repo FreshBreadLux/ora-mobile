@@ -63,9 +63,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
-  column: {
-    flexDirection: 'column'
-  },
   title: {
     fontFamily: 'open-sans',
     fontSize: 100,

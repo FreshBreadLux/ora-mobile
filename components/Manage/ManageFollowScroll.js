@@ -3,14 +3,14 @@ import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const ManageMyFollow = ({ screenProps, navigation }) => (
-  <View style={[styles.container, {backgroundColor: '#fff'}]}>
+  <View style={[styles.whiteContainer, styles.padding15]}>
     {!screenProps.userId
-      ? <View style={styles.center}>
-          <Text>Please login to manage your follows</Text>
+      ? <View style={[styles.flex1, styles.center]}>
+          <Text style={styles.font16}>Please login to manage your follows</Text>
         </View>
-      : <View style={styles.container}>
+      : <View style={styles.invisiContainer}>
           {screenProps.follows && screenProps.follows.length
-            ? <View style={styles.addPadding}>
+            ? <View style={[styles.flex1, styles.center]}>
                 <ScrollView
                   showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
@@ -18,15 +18,19 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
                     key={follow.id}
                     onPress={() => navigation.navigate('MyFollow', { follow })}>
                     <View style={[styles.fullWidth, styles.listBottomBorder]}>
-                      <Text style={[styles.buttonText, { color: '#000' }]}>{follow.subject}</Text>
-                      <Text style={styles.body} numberOfLines={2}>{follow.body}</Text>
+                      <Text
+                        numberOfLines={1}
+                        style={styles.font20}>{follow.subject}</Text>
+                      <Text
+                        numberOfLines={1}
+                        style={styles.font16}>{follow.body}</Text>
                     </View>
                   </TouchableOpacity>
                 ))}
                 </ScrollView>
               </View>
-            : <View style={styles.center}>
-                <Text>When you follow prayers, they will be listed here.</Text>
+            : <View style={[styles.flex1, styles.center]}>
+                <Text style={styles.font16}>When you follow prayers, they will be listed here.</Text>
               </View>
           }
         </View>
