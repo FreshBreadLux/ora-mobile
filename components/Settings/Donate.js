@@ -1,15 +1,11 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View } from 'react-native'
 import styles from '../StyleSheet'
 
-export default class LogoutForm extends React.Component {
-  render() {
-    return (
-      <View style={[styles.container, {backgroundColor: '#fff'}]}>
-        <View style={[styles.cover, styles.center]}>
-          <Text>Donate Placeholder</Text>
-        </View>
-      </View>
-    )
-  }
-}
+const Donate = () => (
+  <View style={[styles.whiteContainer, styles.center]}>
+    <Text style={styles.font16}>Donate Placeholder</Text>
+  </View>
+)
+
+export default Donate
