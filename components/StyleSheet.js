@@ -86,6 +86,12 @@ const styles = StyleSheet.create({
   whiteText: {
     color: '#fff'
   },
+  blueText: {
+    color: 'rgb(69, 119, 238)',
+  },
+  redText: {
+    color: 'red',
+  },
   box: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
     padding: 7,
@@ -121,6 +127,21 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 10,
+  },
+  modalText: {
+    fontFamily: 'open-sans',
+    fontSize: 14,
+    color: '#888',
+    paddingBottom: 10,
+  },
+  modalLineView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderTopWidth: 1,
+    borderTopColor: '#ccc',
   },
   flex1: {
     flex: 1
