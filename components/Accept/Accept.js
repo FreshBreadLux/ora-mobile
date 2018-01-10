@@ -107,11 +107,11 @@ export default class Accept extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.backgroundImage}>
+      <View style={styles.invisiContainer}>
+        <View style={styles.backgroundImageFrame}>
           <Image
             source={require('../../assets/images/nightSky.jpg')}
-            style={{ flex: 1, resizeMode: 'cover', width: '100%' }}
+            style={styles.backgroundImage}
           />
         </View>
         {!this.state.currentPrayer

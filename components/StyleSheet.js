@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
-  backgroundImage: {
+  backgroundImageFrame: {
     flex: 1,
     justifyContent: 'center',
     position: 'absolute',
@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
     left: 0,
     width: '100%',
     height: '100%',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
   },
   addPadding: {
     flex: 1,
@@ -56,14 +61,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'open-sans',
-    fontSize: 90,
+    fontSize: 100,
     color: '#fff'
-  },
-  label: {
-    fontFamily: 'open-sans',
-    fontSize: 22,
-    color: '#fff',
-    paddingBottom: 5,
   },
   font24: {
     fontFamily: 'open-sans',
@@ -75,6 +74,9 @@ const styles = StyleSheet.create({
   },
   centerText: {
     textAlign: 'center',
+  },
+  whiteText: {
+    color: '#fff'
   },
   box: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -94,6 +96,9 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     marginTop: 10,
+  },
+  padding10: {
+    padding: 10,
   },
   buttonText: {
     fontFamily: 'open-sans',

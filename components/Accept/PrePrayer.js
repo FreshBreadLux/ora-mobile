@@ -1,15 +1,15 @@
 import React from 'react'
-import { Text, View, SafeAreaView, Animated, TouchableOpacity } from 'react-native'
+import { Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
 const PrePrayer = ({ loadNextPrayer }) => (
-  <SafeAreaView style={[styles.cover, styles.spaceAround]}>
+  <SafeAreaView style={[styles.invisiContainer, styles.spaceAround]}>
     <Text style={styles.title}>Ora</Text>
     <TouchableOpacity
-      style={styles.button}
+      style={styles.padding10}
       onPress={loadNextPrayer}
     >
-      <Text style={styles.buttonText}>Start Praying</Text>
+      <Text style={[styles.font24, styles.whiteText]}>Start Praying</Text>
     </TouchableOpacity>
   </SafeAreaView>
 )
