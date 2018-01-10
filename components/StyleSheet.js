@@ -23,6 +23,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 15,
   },
+  horizontalPadding: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
   addViewSpacing: {
     paddingTop: 10,
     paddingBottom: 10,
@@ -53,21 +59,22 @@ const styles = StyleSheet.create({
     fontSize: 90,
     color: '#fff'
   },
-  subject: {
-    fontFamily: 'open-sans',
-    fontSize: 22,
-    color: '#fff',
-    textAlign: 'center',
-  },
   label: {
     fontFamily: 'open-sans',
     fontSize: 22,
     color: '#fff',
     paddingBottom: 5,
   },
+  font24: {
+    fontFamily: 'open-sans',
+    fontSize: 24,
+  },
   font16: {
     fontFamily: 'open-sans',
     fontSize: 16,
+  },
+  centerText: {
+    textAlign: 'center',
   },
   box: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
