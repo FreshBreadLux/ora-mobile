@@ -10,7 +10,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
     <View style={[styles.invisiContainer, styles.padding15, styles.spaceAround]}>
       <View style={styles.flex1}>
         <Animated.View style={[styles.flex1, styles.center, { opacity }]}>
-          <Text style={[styles.font24, styles.whiteText]}>{statePrayer.subject}</Text>
+          <Text style={[styles.font24, styles.whiteText, styles.centerText]}>{statePrayer.subject}</Text>
         </Animated.View>
       </View>
       <View style={[styles.flex4, styles.fullWidth]}>

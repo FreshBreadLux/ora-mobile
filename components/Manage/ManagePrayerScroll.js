@@ -31,7 +31,7 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
                 </ScrollView>
               </View>
             : <View style={[styles.flex1, styles.center]}>
-                <Text style={styles.font16}>When you submit prayers, they will be listed here.</Text>
+                <Text style={[styles.font16, styles.centerText]}>When you submit prayers, they will be listed here.</Text>
               </View>
           }
         </View>
