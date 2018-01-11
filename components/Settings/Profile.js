@@ -37,7 +37,7 @@ const Profile = ({ screenProps, navigation }) => (
           </View>
         </View>
       : <View style={[styles.flex1, styles.center, styles.addPadding]}>
-          <Text>Signup or Login to view your profile</Text>
+          <Text style={styles.font16}>Signup or Login to view your profile</Text>
         </View>
     }
   </View>
