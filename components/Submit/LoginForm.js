@@ -11,6 +11,7 @@ export default class LoginForm extends React.Component {
     this.state = {
       email: null,
       password: null,
+      error: false,
     }
     this.setAsyncStorage = this.setAsyncStorage.bind(this)
     this.userSignup = this.userSignup.bind(this)
@@ -58,7 +59,11 @@ export default class LoginForm extends React.Component {
       })
       .then(response => JSON.stringify(response.data))
       .then(payload => {
-        return this.setAsyncStorage('payload', payload)
+        if (payload) {
+          return this.setAsyncStorage('payload', payload)
+        } else {
+          this.setState({error: true})
+        }
       })
       .done()
     }
@@ -108,9 +113,14 @@ export default class LoginForm extends React.Component {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={[styles.flex1, styles.center, styles.padding15]}>
-          <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
-        </View>
+        {this.state.error
+          ? <View style={[styles.flex1, styles.center, styles.padding15]}>
+              <Text style={[styles.box, styles.font20, styles.redText, styles.centerText]}>There was an error logging in or signing up. Please double check your email and password and try again.</Text>
+            </View>
+          : <View style={[styles.flex1, styles.center, styles.padding15]}>
+              <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+            </View>
+        }
       </SafeAreaView>
     )
   }
