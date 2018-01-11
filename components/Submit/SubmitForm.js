@@ -65,8 +65,8 @@ export default class SubmitForm extends React.Component {
               <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Body</Text>
               <TextInput
                 ref="body"
-                style={[styles.box, styles.font16, styles.paddingBottom15, { height: Math.min(Math.max(this.state.bodyHeight, 100), 200)}]}
-                placeholder="Describe your prayer request here. We recommend using as much detail as you are comfortable with. There is no space limit."
+                style={[styles.box, styles.font16, styles.paddingBottom15, { height: Math.min(Math.max(this.state.bodyHeight, 110), 200)}]}
+                placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
                 placeholderTextColor="#555"
                 keyboardType="default"
                 multiline={true}

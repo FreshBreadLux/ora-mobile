@@ -15,6 +15,7 @@ const ManageMyFollow = ({ screenProps, navigation }) => (
                   showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
+                    style={styles.fullWidth}
                     key={follow.id}
                     onPress={() => navigation.navigate('MyFollow', { follow })}>
                     <View style={[styles.fullWidth, styles.listBottomBorder]}>

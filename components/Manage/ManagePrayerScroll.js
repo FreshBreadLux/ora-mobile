@@ -15,6 +15,7 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
                   showsVerticalScrollIndicator={false}>
                 { screenProps.prayers.map(prayer => (
                     <TouchableOpacity
+                      style={styles.fullWidth}
                       key={prayer.id}
                       onPress={() => navigation.navigate('MyPrayer', { prayer })}>
                       <View style={[styles.fullWidth, styles.listBottomBorder]}>

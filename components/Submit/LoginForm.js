@@ -97,7 +97,7 @@ export default class LoginForm extends React.Component {
             <TouchableOpacity
               onPress={this.userSignup}
             >
-              <Text style={[styles.font24, styles.whiteText]}>Signup</Text>
+              <Text style={[styles.font24, styles.whiteText]}>Sign up</Text>
             </TouchableOpacity>
           </View>
           <View style={[styles.flex1, styles.center]}>
