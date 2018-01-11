@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView } from 'react-native'
 import Modal from 'react-native-modal'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios'
@@ -62,16 +62,9 @@ export default class ManageMyPrayer extends React.Component {
       <SafeAreaView style={styles.whiteContainer}>
         <View style={[styles.whiteContainer, styles.padding15]}>
           {this.state.editMode
-            ? <KeyboardAwareScrollView
-                contentContainerStyle={styles.invisiContainer}>
-                <View style={styles.addViewSpacing}>
-                  <TextInput
-                    style={[styles.box, styles.font16, styles.boxBorder]}
-                    onChangeText={subject => this.setState({ subject })}
-                    onSubmitEditing={event => this.refs.body.focus()}
-                    value={this.state.subject}
-                  />
-                </View>
+            ? <KeyboardAvoidingView
+                behavior="padding"
+                style={styles.invisiContainer}>
                 <View style={[styles.addViewSpacing, styles.flex1]}>
                   <TextInput
                     ref="body"
@@ -95,7 +88,7 @@ export default class ManageMyPrayer extends React.Component {
                     <Text style={styles.buttonText}>Cancel</Text>
                   </TouchableOpacity>
                 </View>
-              </KeyboardAwareScrollView>
+              </KeyboardAvoidingView>
             : <View style={styles.invisiContainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                   <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>

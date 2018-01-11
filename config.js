@@ -5,7 +5,8 @@ const IP_ADDRESS = '172.16.22.196'
 // 206 Thompson: '192.168.2.5'
 // Kaldi: '172.10.11.86'
 
-// http://IP_ADDRESS:8080
-const ROOT_URL = 'https://ora-pro-nobis.herokuapp.com'
+// `http://${IP_ADDRESS}:8080`
+// `https://ora-pro-nobis.herokuapp.com`
+const ROOT_URL = `http://${IP_ADDRESS}:8080`
 
 export default ROOT_URL
