@@ -62,10 +62,11 @@ export default class ManageMyPrayer extends React.Component {
       <SafeAreaView style={styles.whiteContainer}>
         <View style={[styles.whiteContainer, styles.padding15]}>
           {this.state.editMode
-            ? <KeyboardAvoidingView
+            ? <KeyboardAwareScrollView
+                keyboardShouldPersistTaps="handled"
                 behavior="padding"
                 style={styles.invisiContainer}>
-                <View style={[styles.addViewSpacing, styles.flex1]}>
+                <View style={[styles.addViewSpacing, styles.flex2]}>
                   <TextInput
                     ref="body"
                     style={[styles.flex1, styles.box, styles.font16, styles.boxBorder]}
@@ -74,21 +75,23 @@ export default class ManageMyPrayer extends React.Component {
                     value={this.state.body}
                   />
                 </View>
-                <View style={styles.center}>
-                  <TouchableOpacity
-                    onPress={this.updatePrayer}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>Update Prayer</Text>
-                  </TouchableOpacity>
+                <View style={[styles.invisiContainer, styles.flex1]}>
+                  <View style={styles.center}>
+                    <TouchableOpacity
+                      onPress={this.updatePrayer}
+                      style={styles.button}>
+                      <Text style={styles.buttonText}>Update Prayer</Text>
+                    </TouchableOpacity>
+                  </View>
+                  <View style={styles.center}>
+                    <TouchableOpacity
+                      onPress={() => this.setState({ editMode: false })}
+                      style={styles.button}>
+                      <Text style={styles.buttonText}>Cancel</Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-                <View style={styles.center}>
-                  <TouchableOpacity
-                    onPress={() => this.setState({ editMode: false })}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>Cancel</Text>
-                  </TouchableOpacity>
-                </View>
-              </KeyboardAvoidingView>
+              </KeyboardAwareScrollView>
             : <View style={styles.invisiContainer}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                   <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>

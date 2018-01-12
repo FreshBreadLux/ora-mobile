@@ -4,6 +4,7 @@ import ManageMyPrayer from './ManageMyPrayer'
 import ManageMyFollow from './ManageMyFollow'
 import ManagePrayerScroll from './ManagePrayerScroll'
 import ManageFollowScroll from './ManageFollowScroll'
+import KeyboardTest from './KeyboardTest'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 const ManageTabNav = TabNavigator({
@@ -44,7 +45,7 @@ const ManageStackNav = StackNavigator({
     screen: ManageTabNav,
   },
   MyPrayer: {
-    screen: ManageMyPrayer,
+    screen: KeyboardTest,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.prayer.subject}`,
     })

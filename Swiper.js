@@ -112,6 +112,7 @@ export default class SwiperClass extends React.Component {
     console.log('state: ', this.state)
     return (
       <Swiper
+        keyboardShouldPersistTaps="handled"
         showsPagination={false}
         loop={false}
         index={1}
