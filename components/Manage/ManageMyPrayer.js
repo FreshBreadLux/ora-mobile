@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView } from 'react-native'
-import Modal from 'react-native-modal'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import SinglePrayer from './SinglePrayer'
+import EditPrayer from './EditPrayer'
 import axios from 'axios'
 import styles from '../StyleSheet'
 import ROOT_URL from '../../config'
-import { OpenModalContent, CloseModalContent } from './Modals'
 
 export default class ManageMyPrayer extends React.Component {
   constructor(props) {
@@ -18,12 +18,22 @@ export default class ManageMyPrayer extends React.Component {
       visibleModal: null,
     }
     this.setModal = this.setModal.bind(this)
+    this.setBody = this.setBody.bind(this)
     this.updatePrayer = this.updatePrayer.bind(this)
     this.togglePrayer = this.togglePrayer.bind(this)
+    this.toggleEdit = this.toggleEdit.bind(this)
   }
 
   setModal(name) {
     this.setState({ visibleModal: name })
+  }
+
+  setBody(body) {
+    this.setState({ body })
+  }
+
+  toggleEdit() {
+    this.setState({editMode: !this.state.editMode})
   }
 
   updatePrayer() {
@@ -60,89 +70,19 @@ export default class ManageMyPrayer extends React.Component {
     const prayer = this.props.navigation.state.params.prayer
     return (
       <SafeAreaView style={styles.whiteContainer}>
-        <View style={[styles.whiteContainer, styles.padding15]}>
-          {this.state.editMode
-            ? <KeyboardAwareScrollView
-                keyboardShouldPersistTaps="handled"
-                behavior="padding"
-                style={styles.invisiContainer}>
-                <View style={[styles.addViewSpacing, styles.flex2]}>
-                  <TextInput
-                    ref="body"
-                    style={[styles.flex1, styles.box, styles.font16, styles.boxBorder]}
-                    multiline={true}
-                    onChangeText={body => this.setState({ body })}
-                    value={this.state.body}
-                  />
-                </View>
-                <View style={[styles.invisiContainer, styles.flex1]}>
-                  <View style={styles.center}>
-                    <TouchableOpacity
-                      onPress={this.updatePrayer}
-                      style={styles.button}>
-                      <Text style={styles.buttonText}>Update Prayer</Text>
-                    </TouchableOpacity>
-                  </View>
-                  <View style={styles.center}>
-                    <TouchableOpacity
-                      onPress={() => this.setState({ editMode: false })}
-                      style={styles.button}>
-                      <Text style={styles.buttonText}>Cancel</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </KeyboardAwareScrollView>
-            : <View style={styles.invisiContainer}>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                  <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>
-                </ScrollView>
-                <View style={styles.viewTopBorder}>
-                  <Text style={styles.font16}>{`Total Views: ${prayer.totalViews}`}</Text>
-                </View>
-                <View style={styles.center}>
-                  <TouchableOpacity
-                    onPress={() => this.setState({ editMode: true })}
-                    style={styles.button}>
-                    <Text style={styles.buttonText}>Edit</Text>
-                  </TouchableOpacity>
-                </View>
-                {prayer.closed
-                  ? <View style={styles.center}>
-                      <TouchableOpacity
-                        onPress={() => this.setModal('open')}
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>Open Prayer</Text>
-                      </TouchableOpacity>
-                    </View>
-                  : <View style={styles.center}>
-                      <TouchableOpacity
-                        onPress={() => this.setModal('close')}
-                        style={styles.button}>
-                        <Text style={styles.buttonText}>Close Prayer</Text>
-                      </TouchableOpacity>
-                    </View>
-                }
-                <Modal
-                  isVisible={this.state.visibleModal === 'open'}
-                  style={styles.bottomModal}
-                >
-                  <OpenModalContent
-                    setModal={this.setModal}
-                    togglePrayer={this.togglePrayer}
-                  />
-                </Modal>
-                <Modal
-                  isVisible={this.state.visibleModal === 'close'}
-                  style={styles.bottomModal}
-                >
-                  <CloseModalContent
-                    setModal={this.setModal}
-                    togglePrayer={this.togglePrayer}
-                  />
-                </Modal>
-              </View>
-          }
-        </View>
+        {this.state.editMode
+          ? <EditPrayer
+              setBody={this.setBody}
+              body={this.state.body}
+              updatePrayer={this.updatePrayer}
+              toggleEdit={this.toggleEdit} />
+          : <SinglePrayer
+              visibleModal={this.state.visibleModal}
+              setModal={this.setModal}
+              toggleEdit={this.toggleEdit}
+              togglePrayer={this.togglePrayer}
+              prayer={prayer} />
+        }
       </SafeAreaView>
     )
   }
