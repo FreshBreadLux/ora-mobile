@@ -4,7 +4,7 @@ import LoginForm from './LoginForm'
 import SubmitForm from './SubmitForm'
 import styles from '../StyleSheet'
 
-const SubmitVerify = ({ isLoggedIn, verifyStorageKey, fetchUserPrayers, userId }) => (
+const SubmitVerify = ({ screenProps }) => (
   <View style={styles.invisiContainer}>
     <View style={styles.backgroundImageFrame}>
       <Image
@@ -12,13 +12,13 @@ const SubmitVerify = ({ isLoggedIn, verifyStorageKey, fetchUserPrayers, userId }
         style={styles.backgroundImage}
       />
     </View>
-    { !isLoggedIn
+    { !screenProps.isLoggedIn
       ? <LoginForm
-          verifyStorageKey={verifyStorageKey}
+          verifyStorageKey={screenProps.verifyStorageKey}
         />
       : <SubmitForm
-          fetchUserPrayers={fetchUserPrayers}
-          userId={userId}
+          fetchUserPrayers={screenProps.fetchUserPrayers}
+          userId={screenProps.userId}
         />
     }
   </View>

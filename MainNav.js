@@ -76,9 +76,10 @@ const MainTabNav = TabNavigator({
   },
 }, {
   swipeEnabled: true,
+  initialRouteName: 'Accept',
   tabBarOptions: {
     showLabel: false,
-  }
+  },
 })
 
 const MainStackNav = StackNavigator({
