@@ -120,8 +120,11 @@ const MainStackNav = StackNavigator({
   },
 })
 
-const MainNav = () => (
-  <MainStackNav />
+const MainNav = ({ screenProps, navigation }) => (
+  <MainStackNav
+    screenProps={screenProps}
+    navigation={navigation}
+  />
 )
 
 export default MainNav
