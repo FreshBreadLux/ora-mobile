@@ -2,7 +2,7 @@ import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity } from 'react-native'
 import styles from '../StyleSheet'
 
-const ManageMyPrayer = ({ screenProps, navigation }) => (
+const ManagePrayerScroll = ({ screenProps, navigation }) => (
   <View style={[styles.whiteContainer, styles.padding15]}>
     {!screenProps.userId
       ? <View style={[styles.flex1, styles.center]}>
@@ -40,4 +40,4 @@ const ManageMyPrayer = ({ screenProps, navigation }) => (
   </View>
 )
 
-export default ManageMyPrayer
+export default ManagePrayerScroll

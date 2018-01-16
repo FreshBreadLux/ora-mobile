@@ -31,7 +31,7 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { userId, fetchUserTotalPrayers } = this.props
+    const { userId, fetchUserTotalPrayers } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId })
     .then(response => response.data)
     .then(prayer => {
@@ -59,7 +59,7 @@ export default class Accept extends React.Component {
   }
 
   flagPrayer(category) {
-    const userId = this.props.userId
+    const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
     if (userId) {
       axios.post(`${ROOT_URL}/api/flags`, {
@@ -85,14 +85,14 @@ export default class Accept extends React.Component {
   }
 
   followPrayer() {
-    const userId = this.props.userId
+    const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
     if (userId) {
       axios.post(`${ROOT_URL}/api/follows`, {
         userId, prayer
       })
       .then(() => {
-        this.props.fetchUserFollows(userId)
+        this.props.screenProps.fetchUserFollows(userId)
         AlertIOS.alert(
           'You are now following this prayer',
           'You can manage the prayers you follow in the My Follows section',

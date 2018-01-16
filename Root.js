@@ -1,12 +1,11 @@
 import React from 'react'
 import { AsyncStorage, AlertIOS } from 'react-native'
 import { Notifications } from 'expo'
-import Swiper from 'react-native-swiper'
-import { Settings, Accept, Submit, Manage } from './components'
+import MainNav from './MainNav'
 import axios from 'axios'
 import ROOT_URL from './config'
 
-export default class SwiperClass extends React.Component {
+export default class Root extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -111,7 +110,24 @@ export default class SwiperClass extends React.Component {
   render() {
     console.log('state: ', this.state)
     return (
-      <Swiper
+      <MainNav screenProps={{
+        isLoggedIn: this.state.isLoggedIn,
+        userLogout: this.userLogout,
+        userEmail: this.state.userEmail,
+        userTotalPrayers: this.state.userTotalPrayers,
+        userId: this.state.userId,
+        fetchUserFollows: this.fetchUserFollows,
+        fetchUserTotalPrayers: this.fetchUserTotalPrayers,
+        verifyStorageKey: this.verifyStorageKey,
+        fetchUserPrayers: this.fetchUserPrayers,
+        prayers: this.state.prayers,
+        follows: this.state.follows,
+      }} />
+    )
+  }
+}
+
+{/* <Swiper
         keyboardShouldPersistTaps="handled"
         showsPagination={false}
         loop={false}
@@ -142,7 +158,4 @@ export default class SwiperClass extends React.Component {
           prayers={this.state.prayers}
           follows={this.state.follows}
         />
-      </Swiper>
-    )
-  }
-}
+      </Swiper> */}

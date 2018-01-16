@@ -6,7 +6,7 @@ import axios from 'axios'
 import styles from '../StyleSheet'
 import ROOT_URL from '../../config'
 
-export default class ManageMyPrayer extends React.Component {
+export default class ManageMyFollow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { Image } from 'react-native'
-import SwiperClass from './Swiper'
+import Root from './Root'
 
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
@@ -49,7 +49,7 @@ export default class App extends React.Component {
       )
     }
     return (
-      <SwiperClass />
+      <Root />
     )
   }
 }
