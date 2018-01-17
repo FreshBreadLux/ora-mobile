@@ -1,12 +1,15 @@
 import React from 'react'
-import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView, AlertIOS } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../StyleSheet'
 
 const EditPrayer = ({ setBody, body, updatePrayer, toggleEdit }) => (
   <View style={[styles.invisiContainer, styles.padding15]}>
-    <KeyboardAvoidingView behavior="padding">
+    <KeyboardAwareScrollView
+      extraScrollHeight={80}
+      keyboardShouldPersistTaps="handled">
       <TextInput
-        style={[styles.fullWidth, styles.font16, styles.bottomBorder]}
+        style={[styles.fullWidth, styles.font16, styles.bottomBorder, styles.paddingBottom10]}
         autoFocus={true}
         multiline={true}
         onChangeText={textBody => setBody(textBody)}
@@ -24,7 +27,7 @@ const EditPrayer = ({ setBody, body, updatePrayer, toggleEdit }) => (
           <Text style={[styles.buttonText, styles.font14]}>Update</Text>
         </TouchableOpacity>
       </View>
-    </KeyboardAvoidingView>
+    </KeyboardAwareScrollView>
   </View>
 )
 
