@@ -16,10 +16,12 @@ const SubmitVerify = ({ screenProps }) => (
       ? <LoginForm
           verifyStorageKey={screenProps.verifyStorageKey}
         />
-      : <SubmitForm
-          fetchUserPrayers={screenProps.fetchUserPrayers}
-          userId={screenProps.userId}
-        />
+      : <View style={styles.opacityContainer}>
+          <SubmitForm
+            fetchUserPrayers={screenProps.fetchUserPrayers}
+            userId={screenProps.userId}
+          />
+        </View>
     }
   </View>
 )

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
 import { Settings, Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank } from './components'
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import { EvilIcons, Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
   ManageFollowScroll: {
@@ -11,7 +11,7 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-bookmarks"
+          name="md-heart"
           size={26}
           style={{ color: tintColor }}
         />
@@ -25,7 +25,7 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-book"
+          name="ios-bookmarks"
           size={26}
           style={{ color: tintColor }}
         />

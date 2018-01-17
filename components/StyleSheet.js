@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
+  opacityContainer: {
+    flex: 1,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  },
   backgroundImageFrame: {
     flex: 1,
     justifyContent: 'center',
@@ -113,6 +117,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc'
   },
+  topBorder: {
+    borderTopWidth: 1,
+    borderTopColor: 'rgb(69, 119, 238)',
+  },
   viewTopBorder: {
     paddingTop: 10,
     paddingBottom: 10,
@@ -148,7 +156,23 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(69, 119, 238)',
     borderRadius: 6,
     padding: 7,
-    width: '40%',
+    width: '45%',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  cancelButton: {
+    backgroundColor: '#ccc',
+    borderRadius: 6,
+    padding: 7,
+    width: '45%',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  logoutButton: {
+    backgroundColor: '#ccc',
+    borderRadius: 6,
+    padding: 10,
+    width: '100%',
     alignItems: 'center',
     marginTop: 10,
   },
@@ -192,8 +216,17 @@ const styles = StyleSheet.create({
     flex: 4
   },
   fullWidth: {
-    width: '100%'
-  }
+    width: '100%',
+  },
+  fullHeight: {
+    height: '100%',
+  },
+  submitHeight: {
+    height: 250,
+  },
+  marginBottom: {
+    marginBottom: '25%',
+  },
 })
 
 export default styles

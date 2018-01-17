@@ -118,16 +118,18 @@ export default class Accept extends React.Component {
           ? <PrePrayer
               loadNextPrayer={this.loadNextPrayer}
             />
-          : <CurrentPrayer
-              statePrayer={this.state.currentPrayer}
-              fadeOut={this.fadeOut}
-              finishPraying={this.finishPraying}
-              flagPrayer={this.flagPrayer}
-              followPrayer={this.followPrayer}
-              opacity={this.state.fadeAnim}
-              visibleModal={this.state.visibleModal}
-              setModal={this.setModal}
-            />
+          : <View style={styles.opacityContainer}>
+              <CurrentPrayer
+                statePrayer={this.state.currentPrayer}
+                fadeOut={this.fadeOut}
+                finishPraying={this.finishPraying}
+                flagPrayer={this.flagPrayer}
+                followPrayer={this.followPrayer}
+                opacity={this.state.fadeAnim}
+                visibleModal={this.state.visibleModal}
+                setModal={this.setModal}
+              />
+            </View>
         }
       </View>
     )

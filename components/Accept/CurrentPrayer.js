@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import Modal from 'react-native-modal'
-import { Ionicons } from '@expo/vector-icons'
+import { EvilIcons, Ionicons } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import styles from '../StyleSheet'
 
@@ -10,36 +10,30 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
     <View style={[styles.invisiContainer, styles.padding15, styles.spaceAround]}>
       <View style={styles.flex1}>
         <Animated.View style={[styles.flex1, styles.center, { opacity }]}>
-          <Text style={[styles.font24, styles.whiteText, styles.centerText]}>{statePrayer.subject}</Text>
+          <Text style={[styles.font24, styles.centerText]}>{statePrayer.subject}</Text>
         </Animated.View>
       </View>
       <View style={[styles.flex4, styles.fullWidth]}>
         <Animated.ScrollView
-          style={[styles.flex1, styles.box, { opacity }]}>
+          showsVerticalScrollIndicator={false}
+          style={[styles.flex1, { opacity }]}>
           <Text style={[styles.font16, styles.paddingBottom15]}>{statePrayer.body}</Text>
         </Animated.ScrollView>
-      </View>
-      <View style={[styles.flex1, styles.center]}>
-        <TouchableOpacity
-          onPress={fadeOut}
-          style={styles.padding10}
-        >
-          <Text style={[styles.font20, styles.whiteText]}>Next Prayer</Text>
-        </TouchableOpacity>
       </View>
       <View style={[
         styles.row,
         styles.spaceAround,
-        styles.fullWidth]}
+        styles.fullWidth,
+        styles.topBorder]}
       >
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={finishPraying}
         >
-          <Ionicons
-            name="ios-home"
+          <EvilIcons
+            name="close-o"
             size={26}
-            color="white"
+            color="rgb(69, 119, 238)"
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -47,9 +41,9 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           onPress={() => setModal('about')}
         >
           <Ionicons
-            name="ios-help-circle"
+            name="ios-help-circle-outline"
             size={26}
-            color="white"
+            color="rgb(69, 119, 238)"
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -57,20 +51,28 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           onPress={() => setModal('flag')}
         >
           <Ionicons
-            name="ios-flag"
+            name="ios-flag-outline"
             size={26}
-            color="white"
+            color="rgb(69, 119, 238)"
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={() => setModal('follow')}
         >
-          <Ionicons
-            name="ios-bookmark"
+          <EvilIcons
+            name="heart"
             size={26}
-            color="white"
+            color="rgb(69, 119, 238)"
           />
+        </TouchableOpacity>
+      </View>
+      <View style={[styles.padding10, styles.center, styles.fullWidth]}>
+        <TouchableOpacity
+          onPress={fadeOut}
+          style={[styles.button, styles.fullWidth]}
+        >
+          <Text style={styles.buttonText}>Accept Prayer</Text>
         </TouchableOpacity>
       </View>
       <Modal
