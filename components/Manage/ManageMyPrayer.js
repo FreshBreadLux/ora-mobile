@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import SinglePrayer from './SinglePrayer'
 import EditPrayer from './EditPrayer'
 import axios from 'axios'

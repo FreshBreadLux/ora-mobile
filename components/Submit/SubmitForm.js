@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
-import InputScrollView from 'react-native-input-scroll-view'
 import ROOT_URL from '../../config'
 import styles from '../StyleSheet'
 
@@ -40,52 +39,48 @@ export default class SubmitForm extends React.Component {
     return (
       <SafeAreaView style={styles.invisiContainer}>
         <View style={[styles.flex1, styles.padding15]}>
-          <InputScrollView
-            keyboardOffset={65}
-            keyboardShouldPersistTaps="handled">
-            { this.state.prayerSent
-              ? <View style={styles.addViewSpacing}>
-                  <Text style={[styles.font24, styles.centerText]}>Your prayer has been submitted</Text>
-                </View>
-              : <View style={styles.addViewSpacing}>
-                  <Text style={[styles.font24, styles.centerText]}>Submit a prayer</Text>
-                </View> }
-              <View style={styles.addViewSpacing}>
-                <TextInput
-                  style={[styles.fullWidth, styles.font24, styles.paddingBottom10]}
-                  placeholder="Enter prayer subject"
-                  placeholderTextColor="#555"
-                  keyboardType="default"
-                  onChangeText={subject => this.setState({subject})}
-                  onSubmitEditing={event => this.refs.body.focus()}
-                  value={this.state.subject}
-                />
+          { this.state.prayerSent
+            ? <View style={styles.addViewSpacing}>
+                <Text style={[styles.font24, styles.centerText]}>Your prayer has been submitted</Text>
               </View>
-              <View style={styles.submitHeight}>
-                <TextInput
-                  ref="body"
-                  style={[styles.fullWidth, styles.fullHeight, styles.font16, styles.paddingBottom10]}
-                  placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
-                  placeholderTextColor="#555"
-                  keyboardType="default"
-                  multiline={true}
-                  onChangeText={body => this.setState({body})}
-                  onContentSizeChange={event => {
-                    this.setState({bodyHeight: event.nativeEvent.contentSize.height})
-                  }}
-                  value={this.state.body}
-                  numberOfLines={4}
-                />
-              </View>
-              <View style={[styles.center, styles.addViewSpacing, styles.marginBottom]}>
-                <TouchableOpacity
-                  onPress={this.submitPrayer}
-                  style={styles.padding10}
-                >
-                  <Text style={[styles.font24, styles.whiteText]}>Send</Text>
-                </TouchableOpacity>
-              </View>
-          </InputScrollView>
+            : <View style={styles.addViewSpacing}>
+                <Text style={[styles.font24, styles.centerText]}>Submit a prayer</Text>
+              </View> }
+            <View style={styles.addViewSpacing}>
+              <TextInput
+                style={[styles.fullWidth, styles.font24, styles.paddingBottom10]}
+                placeholder="Enter prayer subject"
+                placeholderTextColor="#555"
+                keyboardType="default"
+                onChangeText={subject => this.setState({subject})}
+                onSubmitEditing={event => this.refs.body.focus()}
+                value={this.state.subject}
+              />
+            </View>
+            <View style={styles.submitHeight}>
+              <TextInput
+                ref="body"
+                style={[styles.fullWidth, styles.fullHeight, styles.font16, styles.paddingBottom10]}
+                placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
+                placeholderTextColor="#555"
+                keyboardType="default"
+                multiline={true}
+                onChangeText={body => this.setState({body})}
+                onContentSizeChange={event => {
+                  this.setState({bodyHeight: event.nativeEvent.contentSize.height})
+                }}
+                value={this.state.body}
+                numberOfLines={4}
+              />
+            </View>
+            <View style={[styles.center, styles.addViewSpacing, styles.marginBottom]}>
+              <TouchableOpacity
+                onPress={this.submitPrayer}
+                style={styles.padding10}
+              >
+                <Text style={[styles.font24, styles.whiteText]}>Send</Text>
+              </TouchableOpacity>
+            </View>
         </View>
       </SafeAreaView>
     )

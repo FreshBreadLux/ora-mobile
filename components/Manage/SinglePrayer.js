@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView, AlertIOS } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Modal from 'react-native-modal'
 import styles from '../StyleSheet'
 import { OpenModalContent, CloseModalContent } from './Modals'
