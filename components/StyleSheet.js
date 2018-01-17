@@ -53,6 +53,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
+  spaceBetween: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   row: {
     flexDirection: 'row'
   },
@@ -80,6 +84,10 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 16,
   },
+  font14: {
+    fontFamily: 'open-sans',
+    fontSize: 14,
+  },
   centerText: {
     textAlign: 'center',
   },
@@ -101,6 +109,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
   },
+  bottomBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc'
+  },
   viewTopBorder: {
     paddingTop: 10,
     paddingBottom: 10,
@@ -114,6 +126,11 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
+  titleBottomBorder: {
+    paddingBottom: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgb(69, 119, 238)',
+  },
   button: {
     backgroundColor: 'rgb(69, 119, 238)',
     borderRadius: 6,
@@ -126,6 +143,14 @@ const styles = StyleSheet.create({
     fontFamily: 'open-sans',
     fontSize: 16,
     color: '#fff'
+  },
+  editButton: {
+    backgroundColor: 'rgb(69, 119, 238)',
+    borderRadius: 6,
+    padding: 7,
+    width: '40%',
+    alignItems: 'center',
+    marginTop: 10,
   },
   bottomModal: {
     justifyContent: 'flex-end',

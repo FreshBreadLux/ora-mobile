@@ -6,29 +6,29 @@ import styles from '../StyleSheet'
 
 const EditPrayer = ({ setBody, body, updatePrayer, toggleEdit }) => (
   <View style={[styles.invisiContainer, styles.padding15]}>
-    <View style={styles.padding15}>
-    <TouchableOpacity
-      style={styles.button}
-      onPress={updatePrayer}>
-      <Text style={styles.buttonText}>Update</Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      style={styles.button}
-      onPress={toggleEdit}>
-      <Text style={styles.buttonText}>Cancel</Text>
-    </TouchableOpacity>
-    </View>
-    <InputScrollView>
-      <ScrollView
-        keyboardShouldPersistTaps="handled">
-        <TextInput
-          style={[styles.box, styles.fullWidth, styles.font16, styles.boxBorder]}
-          multiline={true}
-          autoFocus={true}
-          onChangeText={textBody => setBody(textBody)}
-          value={body}
-        />
-      </ScrollView>
+    <InputScrollView
+      keyboardOffset={60}
+      scrollEnabled={true}
+      keyboardShouldPersistTaps="handled">
+      <TextInput
+        style={[styles.fullWidth, styles.font16, styles.bottomBorder, styles.paddingBottom10]}
+        multiline={true}
+        autoFocus={true}
+        onChangeText={textBody => setBody(textBody)}
+        value={body}
+      />
+      <View style={[styles.row, styles.spaceBetween, {marginBottom: 75}]}>
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={toggleEdit}>
+          <Text style={[styles.buttonText, styles.font14]}>Cancel</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.editButton}
+          onPress={updatePrayer}>
+          <Text style={[styles.buttonText, styles.font14]}>Update</Text>
+        </TouchableOpacity>
+      </View>
     </InputScrollView>
   </View>
 )
