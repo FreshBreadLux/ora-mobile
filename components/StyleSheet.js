@@ -117,6 +117,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc'
   },
+  darkBottomBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#777'
+  },
   topBorder: {
     borderTopWidth: 1,
     borderTopColor: 'rgb(69, 119, 238)',
@@ -136,7 +140,7 @@ const styles = StyleSheet.create({
   },
   titleBottomBorder: {
     paddingBottom: 15,
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderBottomColor: 'rgb(69, 119, 238)',
   },
   button: {
@@ -218,11 +222,14 @@ const styles = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
+  halfWidth: {
+    width: '50%',
+  },
   fullHeight: {
     height: '100%',
   },
   submitHeight: {
-    height: 250,
+    height: 230,
   },
   marginBottom: {
     marginBottom: '25%',

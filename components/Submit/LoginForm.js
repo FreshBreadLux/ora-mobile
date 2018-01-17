@@ -70,10 +70,9 @@ export default class LoginForm extends React.Component {
               {this.state.error ? `${this.state.error}` : null}
             </Text>
           </View>
-          <View style={styles.flex2}>
-            <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Email</Text>
+          <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
             <TextInput
-              style={[styles.box, styles.font16]}
+              style={[styles.fullWidth, styles.font20]}
               placeholder="Email"
               placeholderTextColor="#555"
               keyboardType="email-address"
@@ -84,11 +83,10 @@ export default class LoginForm extends React.Component {
               value={this.state.email}
             />
           </View>
-          <View style={styles.flex2}>
-            <Text style={[styles.font20, styles.whiteText, styles.paddingBottom10]}>Password</Text>
+          <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
             <TextInput
               ref="password"
-              style={[styles.box, styles.font16]}
+              style={[styles.fullWidth, styles.font20]}
               placeholder="Password"
               placeholderTextColor="#555"
               secureTextEntry={true}
@@ -98,21 +96,21 @@ export default class LoginForm extends React.Component {
           </View>
           <View style={[styles.flex1, styles.center]}>
             <TouchableOpacity
-              onPress={this.userSignup}
-            >
-              <Text style={[styles.font24, styles.whiteText]}>Sign up</Text>
+              style={[styles.button, styles.halfWidth]}
+              onPress={this.userSignup}>
+              <Text style={[styles.buttonText]}>Sign up</Text>
             </TouchableOpacity>
           </View>
           <View style={[styles.flex1, styles.center]}>
             <TouchableOpacity
-              onPress={this.userLogin}
-            >
-              <Text style={[styles.font24, styles.whiteText]}>Login</Text>
+              style={[styles.button, styles.halfWidth]}
+              onPress={this.userLogin}>
+              <Text style={[styles.buttonText]}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={[styles.flex1, styles.center, styles.padding15]}>
-          <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+          <Text style={[styles.font20, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
         </View>
       </SafeAreaView>
     )

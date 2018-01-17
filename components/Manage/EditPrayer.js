@@ -6,6 +6,7 @@ import styles from '../StyleSheet'
 const EditPrayer = ({ setBody, body, updatePrayer, toggleEdit }) => (
   <View style={[styles.invisiContainer, styles.padding15]}>
     <KeyboardAwareScrollView
+      style={styles.flex1}
       extraScrollHeight={80}
       keyboardShouldPersistTaps="handled">
       <TextInput

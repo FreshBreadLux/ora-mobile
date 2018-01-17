@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ROOT_URL from '../../config'
 import styles from '../StyleSheet'
 
@@ -46,7 +47,8 @@ export default class SubmitForm extends React.Component {
             : <View style={styles.addViewSpacing}>
                 <Text style={[styles.font24, styles.centerText]}>Submit a prayer</Text>
               </View> }
-            <View style={styles.addViewSpacing}>
+          <KeyboardAwareScrollView>
+            <View style={[styles.addViewSpacing, styles.darkBottomBorder]}>
               <TextInput
                 style={[styles.fullWidth, styles.font24, styles.paddingBottom10]}
                 placeholder="Enter prayer subject"
@@ -57,7 +59,7 @@ export default class SubmitForm extends React.Component {
                 value={this.state.subject}
               />
             </View>
-            <View style={styles.submitHeight}>
+            <View style={[styles.addViewSpacing, styles.submitHeight]}>
               <TextInput
                 ref="body"
                 style={[styles.fullWidth, styles.fullHeight, styles.font16, styles.paddingBottom10]}
@@ -73,14 +75,15 @@ export default class SubmitForm extends React.Component {
                 numberOfLines={4}
               />
             </View>
-            <View style={[styles.center, styles.addViewSpacing, styles.marginBottom]}>
+            <View style={[styles.center, styles.addViewSpacing, styles.fullWidth]}>
               <TouchableOpacity
                 onPress={this.submitPrayer}
-                style={styles.padding10}
+                style={[styles.button, styles.halfWidth]}
               >
-                <Text style={[styles.font24, styles.whiteText]}>Send</Text>
+                <Text style={[styles.buttonText]}>Send</Text>
               </TouchableOpacity>
             </View>
+          </KeyboardAwareScrollView>
         </View>
       </SafeAreaView>
     )
