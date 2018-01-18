@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import styles from '../StyleSheet'
 
@@ -9,14 +9,16 @@ const EditPrayer = ({ setBody, body, updatePrayer, toggleEdit }) => (
       style={styles.flex1}
       extraScrollHeight={80}
       keyboardShouldPersistTaps="handled">
-      <TextInput
-        style={[styles.fullWidth, styles.font16, styles.bottomBorder, styles.paddingBottom10]}
-        autoFocus={true}
-        multiline={true}
-        onChangeText={textBody => setBody(textBody)}
-        value={body}
-      />
-      <View style={[styles.row, styles.spaceBetween]}>
+      <View style={styles.editHeight}>
+        <TextInput
+          style={[styles.flex1, styles.font16, styles.paddingBottom10]}
+          autoFocus={true}
+          multiline={true}
+          onChangeText={textBody => setBody(textBody)}
+          value={body}
+        />
+      </View>
+      <View style={[styles.row, styles.spaceBetween, styles.topBorder]}>
         <TouchableOpacity
           style={styles.cancelButton}
           onPress={toggleEdit}>

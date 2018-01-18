@@ -159,16 +159,16 @@ const styles = StyleSheet.create({
   editButton: {
     backgroundColor: 'rgb(69, 119, 238)',
     borderRadius: 6,
-    padding: 7,
-    width: '45%',
+    padding: 8,
+    width: '49%',
     alignItems: 'center',
     marginTop: 10,
   },
   cancelButton: {
     backgroundColor: '#ccc',
     borderRadius: 6,
-    padding: 7,
-    width: '45%',
+    padding: 8,
+    width: '49%',
     alignItems: 'center',
     marginTop: 10,
   },
@@ -230,6 +230,9 @@ const styles = StyleSheet.create({
   },
   submitHeight: {
     height: 230,
+  },
+  editHeight: {
+    height: 300,
   },
   marginBottom: {
     marginBottom: '25%',

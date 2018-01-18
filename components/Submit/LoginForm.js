@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import styles from '../StyleSheet'
 import ROOT_URL from '../../config'
@@ -64,54 +64,58 @@ export default class LoginForm extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.invisiContainer}>
-        <View style={[styles.flex1, styles.padding15]}>
-          <View style={[styles.flex1, styles.center, styles.padding15]}>
-            <Text style={[styles.font20, styles.whiteText, styles.centerText]}>
-              {this.state.error ? `${this.state.error}` : null}
-            </Text>
+        <ScrollView
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={styles.flex1}>
+          <View style={[styles.flex3, styles.padding15]}>
+            <View style={[styles.flex1, styles.center, styles.padding15]}>
+              <Text style={[styles.font20, styles.whiteText, styles.centerText]}>
+                {this.state.error ? `${this.state.error}` : null}
+              </Text>
+            </View>
+            <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
+              <TextInput
+                style={[styles.fullWidth, styles.font20]}
+                placeholder="Email"
+                placeholderTextColor="#555"
+                keyboardType="email-address"
+                autoCorrect={false}
+                autoCapitalize="none"
+                onChangeText={email => this.setState({email})}
+                onSubmitEditing={event => this.refs.password.focus()}
+                value={this.state.email}
+              />
+            </View>
+            <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
+              <TextInput
+                ref="password"
+                style={[styles.fullWidth, styles.font20]}
+                placeholder="Password"
+                placeholderTextColor="#555"
+                secureTextEntry={true}
+                onChangeText={password => this.setState({password})}
+                value={this.state.password}
+              />
+            </View>
+            <View style={[styles.flex1, styles.center]}>
+              <TouchableOpacity
+                style={[styles.button, styles.halfWidth]}
+                onPress={this.userSignup}>
+                <Text style={[styles.buttonText]}>Sign up</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={[styles.flex1, styles.center]}>
+              <TouchableOpacity
+                style={[styles.button, styles.halfWidth]}
+                onPress={this.userLogin}>
+                <Text style={[styles.buttonText]}>Login</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
-            <TextInput
-              style={[styles.fullWidth, styles.font20]}
-              placeholder="Email"
-              placeholderTextColor="#555"
-              keyboardType="email-address"
-              autoCorrect={false}
-              autoCapitalize="none"
-              onChangeText={email => this.setState({email})}
-              onSubmitEditing={event => this.refs.password.focus()}
-              value={this.state.email}
-            />
+          <View style={[styles.flex2, styles.center, styles.padding15]}>
+            <Text style={[styles.font20, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
           </View>
-          <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
-            <TextInput
-              ref="password"
-              style={[styles.fullWidth, styles.font20]}
-              placeholder="Password"
-              placeholderTextColor="#555"
-              secureTextEntry={true}
-              onChangeText={password => this.setState({password})}
-              value={this.state.password}
-            />
-          </View>
-          <View style={[styles.flex1, styles.center]}>
-            <TouchableOpacity
-              style={[styles.button, styles.halfWidth]}
-              onPress={this.userSignup}>
-              <Text style={[styles.buttonText]}>Sign up</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={[styles.flex1, styles.center]}>
-            <TouchableOpacity
-              style={[styles.button, styles.halfWidth]}
-              onPress={this.userLogin}>
-              <Text style={[styles.buttonText]}>Login</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={[styles.flex1, styles.center, styles.padding15]}>
-          <Text style={[styles.font20, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
-        </View>
+        </ScrollView>
       </SafeAreaView>
     )
   }
