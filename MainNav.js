@@ -79,6 +79,9 @@ const MainTabNav = TabNavigator({
   initialRouteName: 'Accept',
   tabBarOptions: {
     showLabel: false,
+    style: {
+      backgroundColor: '#fff',
+    }
   },
 })
 

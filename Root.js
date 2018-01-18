@@ -126,36 +126,3 @@ export default class Root extends React.Component {
     )
   }
 }
-
-{/* <Swiper
-        keyboardShouldPersistTaps="handled"
-        showsPagination={false}
-        loop={false}
-        index={1}
-      >
-        <Settings
-          isLoggedIn={this.state.isLoggedIn}
-          userLogout={this.userLogout}
-          userEmail={this.state.userEmail}
-          userTotalPrayers={this.state.userTotalPrayers}
-        />
-        <Accept
-          userId={this.state.userId}
-          fetchUserFollows={this.fetchUserFollows}
-          fetchUserTotalPrayers={this.fetchUserTotalPrayers}
-        />
-        <Submit
-          isLoggedIn={this.state.isLoggedIn}
-          userId={this.state.userId}
-          verifyStorageKey={this.verifyStorageKey}
-          fetchUserPrayers={this.fetchUserPrayers}
-        />
-        <Manage
-          isLoggedIn={this.state.isLoggedIn}
-          userId={this.state.userId}
-          fetchUserPrayers={this.fetchUserPrayers}
-          fetchUserFollows={this.fetchUserFollows}
-          prayers={this.state.prayers}
-          follows={this.state.follows}
-        />
-      </Swiper> */}

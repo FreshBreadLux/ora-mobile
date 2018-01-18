@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { determineChoirText } from './DetermineChoirFunc'
 import styles from '../StyleSheet'
 
 const ChoirRank = ({ screenProps }) => (
-  <View style={[styles.whiteContainer, styles.center]}>
-    <Text style={styles.font16}>{`Total people you have prayed for: ${screenProps.userTotalPrayers}`}</Text>
+  <View style={[styles.whiteContainer, styles.padding15]}>
+    { determineChoirText(screenProps.userTotalPrayers) }
   </View>
 )
 

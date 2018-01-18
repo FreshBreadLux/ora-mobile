@@ -31,6 +31,7 @@ export default class App extends React.Component {
     const imageAssets = cacheImages([
       'https://static.pexels.com/photos/414727/pexels-photo-414727.jpeg',
       require('./assets/images/milky-way.jpg'),
+      require('./assets/images/beach.jpg'),
     ])
     const fontAssets = cacheFonts([{
       'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'
