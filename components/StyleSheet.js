@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     height: 230,
   },
   editHeight: {
-    height: 300,
+    height: 320,
   },
   marginBottom: {
     marginBottom: '25%',

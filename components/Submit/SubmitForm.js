@@ -17,6 +17,24 @@ export default class SubmitForm extends React.Component {
     this.submitPrayer = this.submitPrayer.bind(this)
   }
 
+  componentWillMount() {
+    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
+    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
+  }
+
+  componentWillUnmount() {
+    this.keyboardWillShowListener.remove()
+    this.keyboardWillHideListener.remove()
+  }
+
+  keyboardWillShow(event) {
+    console.log('keyboard show event object: ', event)
+  }
+
+  keyboardWillHide(event) {
+    console.log('keyboard hide event object: ', event)
+  }
+
   submitPrayer() {
     Keyboard.dismiss()
     axios.post(`${ROOT_URL}/api/prayers`, {
