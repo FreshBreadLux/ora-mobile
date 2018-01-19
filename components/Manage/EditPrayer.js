@@ -5,13 +5,14 @@ import styles from '../StyleSheet'
 
 export default class EditPrayer extends React.Component {
   constructor(props) {
-    //jack was here hahhahaah
     super(props)
     this.state = {
-      viewHeight: new Animated.Value(Dimensions.get('window').height)
+      startHeight: null,
+      animatedHeight: null,
     }
     this.keyboardWillShow = this.keyboardWillShow.bind(this)
     this.keyboardWillHide = this.keyboardWillHide.bind(this)
+    this.handleOnLayout = this.handleOnLayout.bind(this)
   }
 
   componentWillMount () {
@@ -25,35 +26,39 @@ export default class EditPrayer extends React.Component {
   }
 
   keyboardWillShow(event) {
-    Animated.timing(this.state.viewHeight, {
+    Animated.timing(this.state.animatedHeight, {
       duration: event.duration,
-      toValue: event.endCoordinates.screenY - 50 - 70,
+      toValue: this.state.startHeight - event.startCoordinates.height,
     }).start()
   }
 
   keyboardWillHide(event) {
-    Animated.timing(this.state.viewHeight, {
+    Animated.timing(this.state.animatedHeight, {
       duration: event.duration,
       toValue: 0,
     }).start()
   }
 
+  handleOnLayout(event) {
+    console.log('handle layout event: ', event.nativeEvent.layout)
+  }
+
   render() {
     return (
-      <View style={[styles.invisiContainer, styles.editPadding]}>
+      <View
+        onLayout={this.handleOnLayout}
+        style={[styles.invisiContainer, styles.editPadding]}>
         <Animated.View
-          onLayout={event => console.log('onLayout event: ', event)}
-          style={{height: this.state.viewHeight}}>
+          style={{height: this.state.animatedHeight}}>
           <TextInput
             style={[styles.flex1, styles.font16, styles.paddingBottom10]}
             multiline={true}
-            autoFocus={true}
             onChangeText={textBody => this.props.setBody(textBody)}
             value={this.props.body}
           />
         </Animated.View>
-        {/* who wrote this garbage??*/ }
-        <View style={[styles.row, styles.spaceBetween, styles.topBorder]}>
+        <View
+          style={[styles.row, styles.spaceBetween, styles.topBorder]}>
           <TouchableOpacity
             style={styles.cancelButton}
             onPress={this.props.toggleEdit}>
