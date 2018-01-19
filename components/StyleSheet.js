@@ -45,6 +45,10 @@ const styles = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
+  editPadding: {
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
   addViewSpacing: {
     paddingTop: 10,
     paddingBottom: 10,

@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
+import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView, Animated, ScrollView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ROOT_URL from '../../config'
 import styles from '../StyleSheet'
@@ -15,24 +15,6 @@ export default class SubmitForm extends React.Component {
       bodyHeight: null,
     }
     this.submitPrayer = this.submitPrayer.bind(this)
-  }
-
-  componentWillMount() {
-    this.keyboardWillShowListener = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
-    this.keyboardWillHideListener = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
-  }
-
-  componentWillUnmount() {
-    this.keyboardWillShowListener.remove()
-    this.keyboardWillHideListener.remove()
-  }
-
-  keyboardWillShow(event) {
-    console.log('keyboard show event object: ', event)
-  }
-
-  keyboardWillHide(event) {
-    console.log('keyboard hide event object: ', event)
   }
 
   submitPrayer() {
