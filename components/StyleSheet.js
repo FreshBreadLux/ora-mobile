@@ -166,8 +166,6 @@ const styles = StyleSheet.create({
     padding: 8,
     width: '49%',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 10,
   },
   cancelButton: {
     backgroundColor: '#ccc',
@@ -175,8 +173,6 @@ const styles = StyleSheet.create({
     padding: 8,
     width: '49%',
     alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 10,
   },
   logoutButton: {
     backgroundColor: '#ccc',

@@ -72,7 +72,7 @@ export default class EditPrayer extends React.Component {
             value={this.props.body}
           />
         <View
-          style={[styles.row, styles.spaceBetween, styles.topBorder]}>
+          style={[styles.row, styles.spaceBetween, styles.viewTopBorder]}>
           <TouchableOpacity
             style={styles.cancelButton}
             onPress={this.props.toggleEdit}>

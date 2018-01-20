@@ -9,8 +9,9 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, setModal, visibleModal
     <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>
     </ScrollView>
-    <View style={styles.viewTopBorder}>
+    <View style={[styles.row, styles.spaceBetween, styles.viewTopBorder]}>
       <Text style={styles.font16}>{`Total Views: ${prayer.totalViews}`}</Text>
+      <Text style={styles.font16}>{`Total Follows: ${prayer.totalFollows}`}</Text>
     </View>
     <View style={styles.center}>
       <TouchableOpacity
