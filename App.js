@@ -32,10 +32,13 @@ export default class App extends React.Component {
       'https://static.pexels.com/photos/414727/pexels-photo-414727.jpeg',
       require('./assets/images/milky-way.jpg'),
       require('./assets/images/beach.jpg'),
+      require('./assets/images/Rome.jpg'),
     ])
     const fontAssets = cacheFonts([{
-      'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'
-    )}])
+      'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+      'raleway': require('./assets/fonts/Raleway-Regular.ttf'),
+      'eb': require('./assets/fonts/EBGaramond-Regular.ttf'),
+    }])
     await Promise.all([...imageAssets, ...fontAssets])
   }
   // ONCE ASSETS ARE LOADED, RENDER THE APP

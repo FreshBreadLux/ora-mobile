@@ -111,7 +111,7 @@ export default class Accept extends React.Component {
       <View style={styles.invisiContainer}>
         <View style={styles.backgroundImageFrame}>
           <Image
-            source={require('../../assets/images/nightSky.jpg')}
+            source={require('../../assets/images/Rome.jpg')}
             style={styles.backgroundImage}
           />
         </View>

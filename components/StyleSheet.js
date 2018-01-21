@@ -76,24 +76,24 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc',
   },
   title: {
-    fontFamily: 'open-sans',
+    fontFamily: 'raleway',
     fontSize: 100,
     color: '#fff'
   },
   font24: {
-    fontFamily: 'open-sans',
+    fontFamily: 'raleway',
     fontSize: 24,
   },
   font20: {
-    fontFamily: 'open-sans',
+    fontFamily: 'raleway',
     fontSize: 20,
   },
   font16: {
-    fontFamily: 'open-sans',
+    fontFamily: 'eb',
     fontSize: 16,
   },
   font14: {
-    fontFamily: 'open-sans',
+    fontFamily: 'raleway',
     fontSize: 14,
   },
   centerText: {
@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   },
   topBorder: {
     borderTopWidth: 1,
-    borderTopColor: 'rgb(69, 119, 238)',
+    borderTopColor: '#ccc',
   },
   viewTopBorder: {
     paddingTop: 10,
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
   titleBottomBorder: {
     paddingBottom: 15,
     borderBottomWidth: 2,
-    borderBottomColor: 'rgb(69, 119, 238)',
+    borderBottomColor: '#ccc',
   },
   button: {
-    backgroundColor: 'rgb(69, 119, 238)',
+    backgroundColor: '#fff',
     borderRadius: 6,
     padding: 10,
     width: '100%',
@@ -156,9 +156,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   buttonText: {
-    fontFamily: 'open-sans',
+    fontFamily: 'raleway',
     fontSize: 16,
-    color: '#fff'
   },
   editButton: {
     backgroundColor: 'rgb(69, 119, 238)',

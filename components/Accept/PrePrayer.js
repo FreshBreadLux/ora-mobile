@@ -4,12 +4,12 @@ import styles from '../StyleSheet'
 
 const PrePrayer = ({ loadNextPrayer }) => (
   <SafeAreaView style={[styles.invisiContainer, styles.spaceAround]}>
-    <Text style={styles.title}>Ora</Text>
+    <Text style={styles.title}>ORA</Text>
     <TouchableOpacity
-      style={styles.padding10}
+      style={[styles.button, styles.halfWidth]}
       onPress={loadNextPrayer}
     >
-      <Text style={[styles.font24, styles.whiteText]}>Start Praying</Text>
+      <Text style={[styles.buttonText]}>Start Praying</Text>
     </TouchableOpacity>
   </SafeAreaView>
 )

@@ -42,10 +42,10 @@ export default class SubmitForm extends React.Component {
         <View style={[styles.flex1, styles.padding15]}>
           { this.state.prayerSent
             ? <View style={styles.addViewSpacing}>
-                <Text style={[styles.font24, styles.centerText]}>Prayer successfully submitted</Text>
+                <Text style={[styles.font24, styles.centerText]}>prayer successfully submitted</Text>
               </View>
             : <View style={styles.addViewSpacing}>
-                <Text style={[styles.font24, styles.centerText]}>Submit a prayer</Text>
+                <Text style={[styles.font24, styles.centerText]}>SUBMIT A PRAYER</Text>
               </View> }
           <KeyboardAwareScrollView
             keyboardShouldPersistTaps="handled">

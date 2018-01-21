@@ -30,10 +30,10 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           style={[styles.padding10, styles.center]}
           onPress={finishPraying}
         >
-          <EvilIcons
-            name="close-o"
+          <Ionicons
+            name="ios-close-circle-outline"
             size={26}
-            color="rgb(69, 119, 238)"
+            color="#777"
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -43,7 +43,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Ionicons
             name="ios-help-circle-outline"
             size={26}
-            color="rgb(69, 119, 238)"
+            color="#777"
           />
         </TouchableOpacity>
         <TouchableOpacity
@@ -53,17 +53,17 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Ionicons
             name="ios-flag-outline"
             size={26}
-            color="rgb(69, 119, 238)"
+            color="#777"
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={() => setModal('follow')}
         >
-          <EvilIcons
-            name="heart"
+          <Ionicons
+            name="md-heart-outline"
             size={26}
-            color="rgb(69, 119, 238)"
+            color="#777"
           />
         </TouchableOpacity>
       </View>

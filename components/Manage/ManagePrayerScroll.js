@@ -16,6 +16,7 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
             {screenProps.prayers && screenProps.prayers.length
               ? <View style={[styles.flex1, styles.center]}>
                   <ScrollView
+                    style={[styles.flex1]}
                     showsVerticalScrollIndicator={false}>
                   { screenProps.prayers.map(prayer => (
                       <TouchableOpacity

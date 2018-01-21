@@ -20,7 +20,7 @@ const Profile = ({ screenProps, navigation }) => (
     <SafeAreaView style={styles.invisiContainer}>
       <View style={[styles.invisiContainer, styles.padding15]}>
         <View style={[styles.center, styles.titleBottomBorder]}>
-          <Text style={styles.font24}>Profile</Text>
+          <Text style={styles.font24}>PROFILE</Text>
         </View>
         {screenProps.isLoggedIn
           ? <ScrollView>

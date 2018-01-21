@@ -3,27 +3,29 @@ import { View, Image } from 'react-native'
 import LoginForm from './LoginForm'
 import SubmitForm from './SubmitForm'
 import styles from '../StyleSheet'
+import { LinearGradient } from 'expo'
 
 const SubmitVerify = ({ screenProps }) => (
   <View style={styles.invisiContainer}>
     <View style={styles.backgroundImageFrame}>
       <Image
         source={require('../../assets/images/nightSky.jpg')}
-        style={styles.backgroundImage}
-      />
+        style={styles.backgroundImage} />
+    </View>
+    <View style={styles.backgroundImageFrame}>
+      <LinearGradient
+        colors={['#fff', 'transparent']}
+        start={[0.5, 0.14]}
+        style={styles.flex1} />
     </View>
     { !screenProps.isLoggedIn
-      ? <View style={styles.opacityContainer}>
-          <LoginForm
-            verifyStorageKey={screenProps.verifyStorageKey}
-          />
-        </View>
-      : <View style={styles.opacityContainer}>
-          <SubmitForm
-            fetchUserPrayers={screenProps.fetchUserPrayers}
-            userId={screenProps.userId}
-          />
-        </View>
+      ? <LoginForm
+          verifyStorageKey={screenProps.verifyStorageKey}
+        />
+      : <SubmitForm
+          fetchUserPrayers={screenProps.fetchUserPrayers}
+          userId={screenProps.userId}
+        />
     }
   </View>
 )
