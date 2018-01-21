@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   font16: {
     fontFamily: 'eb',
-    fontSize: 16,
+    fontSize: 20,
   },
   font14: {
     fontFamily: 'raleway',

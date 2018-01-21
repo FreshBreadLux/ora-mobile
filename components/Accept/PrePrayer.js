@@ -9,7 +9,7 @@ const PrePrayer = ({ loadNextPrayer }) => (
       style={[styles.button, styles.halfWidth]}
       onPress={loadNextPrayer}
     >
-      <Text style={[styles.buttonText]}>Start Praying</Text>
+      <Text style={[styles.buttonText]}>start praying</Text>
     </TouchableOpacity>
   </SafeAreaView>
 )

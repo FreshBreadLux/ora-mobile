@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import Modal from 'react-native-modal'
-import { EvilIcons, Ionicons } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import styles from '../StyleSheet'
 
@@ -30,40 +30,40 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           style={[styles.padding10, styles.center]}
           onPress={finishPraying}
         >
-          <Ionicons
-            name="ios-close-circle-outline"
-            size={26}
-            color="#777"
+          <Feather
+            name="x-circle"
+            size={22}
+            color="#555"
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={() => setModal('about')}
         >
-          <Ionicons
-            name="ios-help-circle-outline"
-            size={26}
-            color="#777"
+          <Feather
+            name="help-circle"
+            size={22}
+            color="#555"
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={() => setModal('flag')}
         >
-          <Ionicons
-            name="ios-flag-outline"
-            size={26}
-            color="#777"
+          <Feather
+            name="flag"
+            size={22}
+            color="#555"
           />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
           onPress={() => setModal('follow')}
         >
-          <Ionicons
-            name="md-heart-outline"
-            size={26}
-            color="#777"
+          <Feather
+            name="heart"
+            size={22}
+            color="#555"
           />
         </TouchableOpacity>
       </View>

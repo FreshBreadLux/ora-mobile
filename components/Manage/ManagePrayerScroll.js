@@ -11,7 +11,7 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
           </View>
         : <View style={styles.invisiContainer}>
             <View style={[styles.center, styles.titleBottomBorder]}>
-              <Text style={styles.font24}>Prayers</Text>
+              <Text style={styles.font24}>PRAYERS</Text>
             </View>
             {screenProps.prayers && screenProps.prayers.length
               ? <View style={[styles.flex1, styles.center]}>

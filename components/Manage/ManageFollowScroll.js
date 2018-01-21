@@ -12,7 +12,7 @@ const ManageFollowScroll = ({ screenProps, navigation }) => {
             </View>
           : <View style={styles.invisiContainer}>
               <View style={[styles.center, styles.titleBottomBorder]}>
-                <Text style={styles.font24}>Follows</Text>
+                <Text style={styles.font24}>FOLLOWS</Text>
               </View>
               {screenProps.follows && screenProps.follows.length
                 ? <View style={[styles.flex1, styles.center]}>
