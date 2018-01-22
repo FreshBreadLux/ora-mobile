@@ -29,9 +29,6 @@ export default class App extends React.Component {
   // WAIT FOR ASSETS TO BE LOADED
   async _loadAssetsAsync() {
     const imageAssets = cacheImages([
-      'https://static.pexels.com/photos/414727/pexels-photo-414727.jpeg',
-      require('./assets/images/milky-way.jpg'),
-      require('./assets/images/beach.jpg'),
       require('./assets/images/Rome.jpg'),
       require('./assets/images/Rome-Submit.jpg'),
       require('./assets/images/Rome-Profile.jpg'),
@@ -39,6 +36,7 @@ export default class App extends React.Component {
       require('./assets/images/Rome-Follows.jpg'),
       require('./assets/images/Adoration.jpg'),
       require('./assets/images/Choirs.jpg'),
+      require('./assets/images/Paintings.jpg'),
     ])
     const fontAssets = cacheFonts([{
       'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
