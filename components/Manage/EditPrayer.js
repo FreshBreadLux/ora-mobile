@@ -27,11 +27,10 @@ export default class EditPrayer extends React.Component {
   }
 
   keyboardWillShow(event) {
-    console.log('keyboardShow event: ', event)
     Animated.timing(this.state.animatedHeight, {
       duration: event.duration,
       toValue: this.state.startHeight - event.endCoordinates.height,
-    }).start(() => console.log(this.state))
+    }).start()
   }
 
   keyboardWillHide(event) {
@@ -42,13 +41,11 @@ export default class EditPrayer extends React.Component {
   }
 
   handleOnLayout(event) {
-    console.log('handle layout event: ', event.nativeEvent.layout)
     const startHeight = event.nativeEvent.layout.height
     this.setState({
       startHeight: startHeight,
       animatedHeight: new Animated.Value(startHeight)},
       () => {
-      console.log('state: ', this.state)
       this.focusTextInput()
     })
   }
@@ -81,7 +78,7 @@ export default class EditPrayer extends React.Component {
           <TouchableOpacity
             style={styles.editButton}
             onPress={this.props.updatePrayer}>
-            <Text style={[styles.buttonText, styles.font14]}>Update</Text>
+            <Text style={[styles.font14, styles.whiteText]}>Update</Text>
           </TouchableOpacity>
         </View>
         </Animated.View>

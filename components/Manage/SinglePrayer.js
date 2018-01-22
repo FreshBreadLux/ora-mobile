@@ -16,23 +16,23 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, setModal, visibleModal
     <View style={styles.center}>
       <TouchableOpacity
         onPress={toggleEdit}
-        style={styles.button}>
-        <Text style={styles.buttonText}>Edit</Text>
+        style={[styles.blackButton, styles.halfWidth]}>
+        <Text style={[styles.buttonText, styles.whiteText]}>Edit</Text>
       </TouchableOpacity>
     </View>
     {prayer.closed
       ? <View style={styles.center}>
           <TouchableOpacity
             onPress={() => setModal('open')}
-            style={styles.button}>
-            <Text style={styles.buttonText}>Open Prayer</Text>
+            style={[styles.blackButton, styles.halfWidth]}>
+            <Text style={[styles.buttonText, styles.whiteText]}>Open Prayer</Text>
           </TouchableOpacity>
         </View>
       : <View style={styles.center}>
           <TouchableOpacity
             onPress={() => setModal('close')}
-            style={styles.button}>
-            <Text style={styles.buttonText}>Close Prayer</Text>
+            style={[styles.blackButton, styles.halfWidth]}>
+            <Text style={[styles.buttonText, styles.whiteText]}>Close Prayer</Text>
           </TouchableOpacity>
         </View>
     }

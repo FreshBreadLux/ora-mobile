@@ -7,8 +7,7 @@ const PrePrayer = ({ loadNextPrayer }) => (
     <Text style={styles.title}>ORA</Text>
     <TouchableOpacity
       style={[styles.button, styles.halfWidth]}
-      onPress={loadNextPrayer}
-    >
+      onPress={loadNextPrayer}>
       <Text style={[styles.buttonText]}>start praying</Text>
     </TouchableOpacity>
   </SafeAreaView>

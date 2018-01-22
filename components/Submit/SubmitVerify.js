@@ -9,13 +9,13 @@ const SubmitVerify = ({ screenProps }) => (
   <View style={styles.invisiContainer}>
     <View style={styles.backgroundImageFrame}>
       <Image
-        source={require('../../assets/images/nightSky.jpg')}
+        source={require('../../assets/images/Rome-Submit.jpg')}
         style={styles.backgroundImage} />
     </View>
     <View style={styles.backgroundImageFrame}>
       <LinearGradient
         colors={['#fff', 'transparent']}
-        start={[0.5, 0.14]}
+        start={[0.5, 0.35]}
         style={styles.flex1} />
     </View>
     { !screenProps.isLoggedIn

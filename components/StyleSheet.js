@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     width: '100%',
   },
+  thumbnail: {
+    height: 90,
+    width: 90,
+  },
   padding15: {
     padding: 15,
   },
@@ -53,6 +57,14 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
+  addMedViewSpacing: {
+    paddingTop: 20,
+    paddingBottom: 20,
+  },
+  addLargeViewSpacing: {
+    paddingTop: 30,
+    paddingBottom: 30,
+  },
   center: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -68,6 +80,16 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row'
   },
+  proflileHeader: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 15,
+    paddingTop: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: '#fff',
+    marginLeft: 15,
+    marginRight: 15,
+  },
   profileRow: {
     flexDirection: 'row',
     paddingTop: 15,
@@ -75,10 +97,22 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
   },
+  consecutiveDays: {
+    flexDirection: 'row',
+    padding: 15,
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   title: {
     fontFamily: 'raleway',
     fontSize: 100,
     color: '#fff'
+  },
+  choirName: {
+    fontFamily: 'raleway',
+    fontSize: 70,
+    color: '#fff',
   },
   font24: {
     fontFamily: 'raleway',
@@ -107,6 +141,22 @@ const styles = StyleSheet.create({
   },
   redText: {
     color: 'red',
+  },
+  blackTextShadow: {
+    fontWeight: 'bold',
+    textShadowColor: '#000',
+    textShadowOffset: {
+      width: 1,
+      height: 1,
+    },
+  },
+  whiteTextShadow: {
+    fontWeight: 'bold',
+    textShadowColor: '#fff',
+    textShadowOffset: {
+      width: 1,
+      height: 1,
+    },
   },
   box: {
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
@@ -160,7 +210,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   editButton: {
-    backgroundColor: 'rgb(69, 119, 238)',
+    backgroundColor: '#000',
     borderRadius: 6,
     padding: 8,
     width: '49%',
@@ -173,13 +223,11 @@ const styles = StyleSheet.create({
     width: '49%',
     alignItems: 'center',
   },
-  logoutButton: {
-    backgroundColor: '#ccc',
+  blackButton: {
+    backgroundColor: '#000',
     borderRadius: 6,
     padding: 10,
-    width: '100%',
     alignItems: 'center',
-    marginTop: 10,
   },
   bottomModal: {
     justifyContent: 'flex-end',
@@ -223,6 +271,9 @@ const styles = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
+  threeQuarterWidth: {
+    width: '75%',
+  },
   halfWidth: {
     width: '50%',
   },
@@ -235,8 +286,8 @@ const styles = StyleSheet.create({
   editHeight: {
     height: 320,
   },
-  marginBottom: {
-    marginBottom: '25%',
+  marginTop: {
+    marginTop: 10,
   },
 })
 

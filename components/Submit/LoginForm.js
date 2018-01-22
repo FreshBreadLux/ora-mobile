@@ -69,7 +69,7 @@ export default class LoginForm extends React.Component {
           contentContainerStyle={styles.flex1}>
           <View style={[styles.flex3, styles.padding15]}>
             <View style={[styles.flex1, styles.center, styles.padding15]}>
-              <Text style={[styles.font20, styles.whiteText, styles.centerText]}>
+              <Text style={[styles.font20, styles.centerText]}>
                 {this.state.error ? `${this.state.error}` : null}
               </Text>
             </View>
@@ -101,19 +101,19 @@ export default class LoginForm extends React.Component {
               <TouchableOpacity
                 style={[styles.button, styles.halfWidth]}
                 onPress={this.userSignup}>
-                <Text style={[styles.buttonText]}>Sign up</Text>
+                <Text style={[styles.buttonText]}>sign up</Text>
               </TouchableOpacity>
             </View>
             <View style={[styles.flex1, styles.center]}>
               <TouchableOpacity
                 style={[styles.button, styles.halfWidth]}
                 onPress={this.userLogin}>
-                <Text style={[styles.buttonText]}>Login</Text>
+                <Text style={[styles.buttonText]}>login</Text>
               </TouchableOpacity>
             </View>
           </View>
           <View style={[styles.flex2, styles.center, styles.padding15]}>
-            <Text style={[styles.font20, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+            <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
           </View>
         </ScrollView>
       </SafeAreaView>

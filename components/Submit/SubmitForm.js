@@ -81,7 +81,7 @@ export default class SubmitForm extends React.Component {
                 onPress={this.submitPrayer}
                 style={[styles.button, styles.halfWidth]}
               >
-                <Text style={[styles.buttonText]}>Send</Text>
+                <Text style={[styles.buttonText]}>send</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAwareScrollView>

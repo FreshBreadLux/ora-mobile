@@ -42,8 +42,8 @@ export default class ManageMyFollow extends React.Component {
           <View style={styles.center}>
             <TouchableOpacity
               onPress={() => this.setModal('unfollow')}
-              style={styles.button}>
-              <Text style={styles.buttonText}>Unfollow</Text>
+              style={[styles.blackButton, styles.halfWidth]}>
+              <Text style={[styles.buttonText, styles.whiteText]}>Unfollow</Text>
             </TouchableOpacity>
           </View>
           <Modal
