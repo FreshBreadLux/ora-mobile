@@ -37,6 +37,7 @@ export default class App extends React.Component {
       require('./assets/images/Rome-Profile.jpg'),
       require('./assets/images/Rome-Prayers.jpg'),
       require('./assets/images/Rome-Follows.jpg'),
+      require('./assets/images/Adoration.jpg'),
     ])
     const fontAssets = cacheFonts([{
       'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),

@@ -4,7 +4,7 @@ import styles from '../StyleSheet'
 
 export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
-    case userTotalPrayers < 100:
+    case userTotalPrayers < 100 && userTotalPrayers > 31:
     return (
       <Text style={[styles.buttonText]}>First Choir</Text>
     )
@@ -21,7 +21,7 @@ export const determineChoirTitle = userTotalPrayers => {
 
 export const determineChoirName = userTotalPrayers => {
   switch (true) {
-    case userTotalPrayers < 100:
+    case userTotalPrayers < 100 && userTotalPrayers > 31:
     return (
       <Text style={styles.choirName}>Angel</Text>
     )
@@ -38,7 +38,7 @@ export const determineChoirName = userTotalPrayers => {
 
 export const determineChoirText = userTotalPrayers => {
   switch (true) {
-    case userTotalPrayers < 100:
+    case userTotalPrayers < 100 && userTotalPrayers > 31:
       return (
         <Text style={styles.font16}>First Choir: Standard Angels</Text>
       )

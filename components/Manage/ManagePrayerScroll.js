@@ -18,7 +18,7 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
             <TouchableOpacity
             style={[styles.button, styles.fullWidth]}
             onPress={() => navigation.navigate('Submit')}>
-              <Text style={styles.buttonText}>Please login to manage your prayers</Text>
+              <Text style={[styles.buttonText, styles.centerText]}>please login to manage your prayers</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -31,36 +31,39 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
             style={styles.flex1} />
         </View>
         <View style={[styles.invisiContainer, styles.padding15]}>
-            <View style={styles.invisiContainer}>
-                <View style={[styles.center, styles.titleBottomBorder]}>
-                  <Text style={styles.font24}>PRAYERS</Text>
-                </View>
-                {screenProps.prayers && screenProps.prayers.length
-                  ? <View style={[styles.flex1, styles.center]}>
-                      <ScrollView
-                        style={[styles.flex1]}
-                        showsVerticalScrollIndicator={false}>
-                      { screenProps.prayers.map(prayer => (
-                          <TouchableOpacity
-                            style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
-                            key={prayer.id}
-                            onPress={() => navigation.navigate('MyPrayer', { prayer })}>
-                            <Text
-                              numberOfLines={1}
-                              style={styles.font20}>{prayer.subject}</Text>
-                            <Text
-                              numberOfLines={1}
-                              style={styles.font16}>
-                              {prayer.body}</Text>
-                          </TouchableOpacity>
-                        ))}
-                      </ScrollView>
-                    </View>
-                  : <View style={[styles.flex1, styles.center]}>
-                      <Text style={[styles.font16, styles.centerText]}>When you submit prayers, they will be listed here.</Text>
-                    </View>
-                }
+          <View style={styles.invisiContainer}>
+            <View style={[styles.center, styles.titleBottomBorder]}>
+              <Text style={styles.font24}>PRAYERS</Text>
+            </View>
+            {screenProps.prayers && screenProps.prayers.length
+            ? <View style={[styles.flex1, styles.center]}>
+                <ScrollView
+                  showsVerticalScrollIndicator={false}>
+                { screenProps.prayers.map(prayer => (
+                  <TouchableOpacity
+                    style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
+                    key={prayer.id}
+                    onPress={() => navigation.navigate('MyPrayer', { prayer })}>
+                    <Text
+                      numberOfLines={1}
+                      style={styles.font20}>{prayer.subject}</Text>
+                    <Text
+                      numberOfLines={1}
+                      style={styles.font16}>
+                      {prayer.body}</Text>
+                  </TouchableOpacity>
+                  ))}
+                </ScrollView>
               </View>
+            : <View style={[styles.flex1, styles.center]}>
+            <TouchableOpacity
+                style={[styles.button, styles.fullWidth]}
+                onPress={() => navigation.navigate('Submit')}>
+                  <Text style={[styles.buttonText, styles.centerText]}>when you submit prayers, they will be listed here</Text>
+                </TouchableOpacity>
+              </View>
+            }
+            </View>
         </View>
       </SafeAreaView>
     }
