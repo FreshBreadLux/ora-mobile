@@ -81,11 +81,41 @@ export const determineChoirText = userTotalPrayers => {
       )
     case userTotalPrayers < 32:
       return (
-        <Text style={styles.font16}>Welcome to Ora!</Text>
+        <View style={styles.invisiContainer}>
+          <View style={styles.backgroundImageFrame}>
+            <Image
+              source={require('../../assets/images/Choirs.jpg')}
+              style={styles.backgroundImage}
+            />
+          </View>
+          <ScrollView>
+            <View style={[styles.center, styles.addViewSpacing, styles.whiteBackground, styles.padding15]}>
+              <Text style={[styles.font24, styles.padding15]}>WELCOME TO ORA</Text>
+            </View>
+            <View style={[styles.addLargeViewSpacing, styles.whiteBackground, styles.padding15]}>
+              <Text style={styles.font16}>We hope you're enjoying the app. Once you've accepted more prayers, come back and visit this page to learn a little about the hierarchical nature of the Nine Choirs.</Text>
+            </View>
+          </ScrollView>
+        </View>
       )
     default:
       return (
-        <Text style={styles.font16}>Welcome to Ora!</Text>
+        <View style={styles.invisiContainer}>
+          <View style={styles.backgroundImageFrame}>
+            <Image
+              source={require('../../assets/images/Choirs.jpg')}
+              style={styles.backgroundImage}
+            />
+          </View>
+          <ScrollView>
+            <View style={[styles.center, styles.addViewSpacing, styles.whiteBackground, styles.padding15]}>
+              <Text style={[styles.font24, styles.padding15]}>WELCOME TO ORA</Text>
+            </View>
+            <View style={[styles.addLargeViewSpacing, styles.whiteBackground, styles.padding15]}>
+              <Text style={styles.font16}>Christians believe that God has organized the entirety of creation in a hierarchical fashion. This belief in a hierarchy extends to the realm of angels, and for the past two thousand years theologians have speculated about the nature and structure of the hierarchy of angels. Our understanding comes from references to angels in Sacred Scripture, the teachings of the early Church Fathers, and guidance of Sacred Tradition.</Text>
+            </View>
+          </ScrollView>
+        </View>
       )
   }
 }
