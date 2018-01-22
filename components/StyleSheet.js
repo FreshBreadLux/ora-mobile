@@ -5,6 +5,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  whiteBackground: {
+    backgroundColor: '#fff',
+  },
   invisiContainer: {
     flex: 1,
     backgroundColor: 'transparent',

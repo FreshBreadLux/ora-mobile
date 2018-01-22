@@ -66,7 +66,7 @@ const Profile = ({ screenProps, navigation }) => (
                 </TouchableOpacity>
               </View>
               <View style={[styles.addMedViewSpacing, styles.darkBottomBorder]}>
-                <Text style={[styles.font20]}>Image Themes (pending feature)</Text>
+                <Text style={[styles.font20]}>Themes (pending feature)</Text>
               </View>
               <View style={[styles.addMedViewSpacing, styles.row, styles.spaceBetween]}>
                 <View style={styles.center}>
