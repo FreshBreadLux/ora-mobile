@@ -39,7 +39,7 @@ export default class ManageMyFollow extends React.Component {
           <ScrollView>
             <Text style={[styles.font16, styles.paddingBottom10]}>{`${follow.body}`}</Text>
           </ScrollView>
-          <View style={styles.center}>
+          <View style={[styles.center, styles.addViewSpacing]}>
             <TouchableOpacity
               onPress={() => this.setModal('unfollow')}
               style={[styles.blackButton, styles.halfWidth]}>
