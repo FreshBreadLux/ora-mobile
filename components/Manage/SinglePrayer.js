@@ -18,18 +18,18 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, setModal, visibleModal
       ? <TouchableOpacity
           onPress={() => setModal('open')}
           style={styles.cancelButton}>
-          <Text style={styles.buttonText}>Open Prayer</Text>
+          <Text style={styles.buttonText}>open prayer</Text>
         </TouchableOpacity>
       : <TouchableOpacity
           onPress={() => setModal('close')}
           style={styles.cancelButton}>
-          <Text style={styles.buttonText}>Close Prayer</Text>
+          <Text style={styles.buttonText}>close prayer</Text>
         </TouchableOpacity>
       }
       <TouchableOpacity
         onPress={toggleEdit}
         style={styles.editButton}>
-        <Text style={[styles.buttonText, styles.whiteText]}>Edit</Text>
+        <Text style={[styles.buttonText, styles.whiteText]}>edit</Text>
       </TouchableOpacity>
     </View>
     <Modal

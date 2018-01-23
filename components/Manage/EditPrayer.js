@@ -73,12 +73,12 @@ export default class EditPrayer extends React.Component {
           <TouchableOpacity
             style={styles.cancelButton}
             onPress={this.props.toggleEdit}>
-            <Text style={[styles.font14]}>Cancel</Text>
+            <Text style={[styles.font14]}>cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.editButton}
             onPress={this.props.updatePrayer}>
-            <Text style={[styles.font14, styles.whiteText]}>Update</Text>
+            <Text style={[styles.font14, styles.whiteText]}>update</Text>
           </TouchableOpacity>
         </View>
         </Animated.View>

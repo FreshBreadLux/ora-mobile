@@ -6,15 +6,15 @@ export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
     case userTotalPrayers > 31:
     return (
-      <Text style={[styles.buttonText]}>Ninth Choir</Text>
+      <Text style={[styles.buttonText]}>ninth choir</Text>
     )
   case userTotalPrayers < 32:
     return (
-      <Text style={[styles.buttonText]}>Welcome</Text>
+      <Text style={[styles.buttonText]}>welcome</Text>
     )
   default:
     return (
-      <Text style={[styles.buttonText]}>Welcome</Text>
+      <Text style={[styles.buttonText]}>welcome</Text>
     )
   }
 }
@@ -50,7 +50,7 @@ export const determineChoirText = userTotalPrayers => {
           <ScrollView>
             <View style={[styles.center, styles.addViewSpacing, styles.whiteBackground, styles.padding15]}>
               <Text style={[styles.font24, styles.padding15]}>NINTH CHOIR</Text>
-              <Text style={styles.font20}>Standard Angels</Text>
+              <Text style={styles.font20}>STANDARD ANGELS</Text>
             </View>
             <View style={[styles.addLargeViewSpacing, styles.whiteBackground, styles.padding15]}>
               <Text style={styles.font16}>Christians believe that God has organized the entirety of creation in a hierarchical fashion. This belief in a hierarchy extends to the realm of angels, and for the past two thousand years theologians have speculated about the nature and structure of the hierarchy of angels. Our understanding comes from references to angels in Sacred Scripture, the teachings of the early Church Fathers, and guidance of Sacred Tradition.</Text>
