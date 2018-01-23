@@ -24,82 +24,66 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
         styles.row,
         styles.spaceAround,
         styles.fullWidth,
-        styles.topBorder]}
-      >
+        styles.topBorder]}>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
-          onPress={finishPraying}
-        >
+          onPress={finishPraying}>
           <Feather
             name="x-circle"
             size={22}
-            color="#555"
-          />
+            color="#555" />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
-          onPress={() => setModal('about')}
-        >
+          onPress={() => setModal('about')}>
           <Feather
             name="help-circle"
             size={22}
-            color="#555"
-          />
+            color="#555" />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
-          onPress={() => setModal('flag')}
-        >
+          onPress={() => setModal('flag')}>
           <Feather
             name="flag"
             size={22}
-            color="#555"
-          />
+            color="#555" />
         </TouchableOpacity>
         <TouchableOpacity
           style={[styles.padding10, styles.center]}
-          onPress={() => setModal('follow')}
-        >
+          onPress={() => setModal('follow')}>
           <Feather
             name="heart"
             size={22}
-            color="#555"
-          />
+            color="#555" />
         </TouchableOpacity>
       </View>
       <View style={[styles.padding10, styles.center, styles.fullWidth]}>
         <TouchableOpacity
           onPress={fadeOut}
-          style={[styles.button, styles.fullWidth]}
-        >
+          style={[styles.button, styles.fullWidth]}>
           <Text style={styles.buttonText}>Accept Prayer</Text>
         </TouchableOpacity>
       </View>
       <Modal
         isVisible={visibleModal === 'flag'}
-        style={styles.bottomModal}
-      >
+        style={styles.bottomModal}>
         <FlagModalContent
           setModal={setModal}
-          flagPrayer={flagPrayer}
-        />
+          flagPrayer={flagPrayer} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'about'}
-        style={styles.bottomModal}
-      >
+        style={styles.bottomModal}>
         <AboutModalContent
-          setModal={setModal}
-        />
+          setModal={setModal} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'follow'}
-        style={styles.bottomModal}
-      >
+        style={styles.bottomModal}>
         <FollowModalContent
           setModal={setModal}
-          followPrayer={followPrayer}
-        />
+          followPrayer={followPrayer} />
       </Modal>
     </View>
   </SafeAreaView>

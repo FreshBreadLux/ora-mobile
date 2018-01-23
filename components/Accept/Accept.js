@@ -118,6 +118,7 @@ export default class Accept extends React.Component {
         {!this.state.currentPrayer
           ? <PrePrayer
               loadNextPrayer={this.loadNextPrayer}
+              navigation={this.props.navigation}
             />
           : <View style={styles.opacityContainer}>
               <CurrentPrayer
