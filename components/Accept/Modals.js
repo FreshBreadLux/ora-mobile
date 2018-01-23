@@ -27,9 +27,13 @@ export const FollowModalContent = ({ setModal, followPrayer }) => (
 export const AboutModalContent = ({ setModal }) => (
   <View style={[styles.center, styles.padding15]}>
     <View style={styles.modalContent}>
-      <Text style={styles.modalText}>Ora lets you accept prayer requests from all over the world. Before beginning to pray, it's important to take some time to remind yourself what Ora is, and what it is not. Ora is nothing more than an illustration; the reality of universal prayer exists with or without this app. So before you begin to pray, recall that you are in the presence of God. Realize that there are people praying at all times, all over the world. Recognize that your prayers have a real impact.
+      <Text style={styles.modalText}>Ora lets you accept prayer requests from all over the world. This app is nothing more than an illustration; the reality of universal prayer exists with or without Ora. So before you begin to pray, recall that you are in the presence of God. Realize that there are people praying at all times, all over the world. Recognize that your prayers have a real impact.
       {'\n\n'}
-      You can use the bookmark icon to follow a prayer that you would like to receive updates about. The prayer will be added to your My Follows section. You can use the flag icon to draw attention to messages that may be dangerous, inappropriate, or spam.
+      Prayer distribution is random. You will not be able to navigate back to the last prayer that you viewed. If you want to stay updated about a prayer that you see, make sure that you follow it by using the heart icon. The prayer will be added to your Follows section, and you'll receive notifications when the author edits the prayer.
+      {'\n\n'}
+      You can use the flag icon to draw attention to messages that may be dangerous, inappropriate, or spam. This will notify the Ora team, and we will handle these issues on a case-by-case basis.
+      {'\n\n'}
+      Use the small 'x' icon to return to the main screen.
       </Text>
     </View>
     <TouchableOpacity
