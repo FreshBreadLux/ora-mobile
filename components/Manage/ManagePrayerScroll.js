@@ -43,7 +43,10 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
                   <TouchableOpacity
                     style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
                     key={prayer.id}
-                    onPress={() => navigation.navigate('MyPrayer', { prayer })}>
+                    onPress={() => {
+                      screenProps.fetchUserPrayers(screenProps.userId)
+                      navigation.navigate('MyPrayer', { prayer })
+                    }}>
                     <Text
                       numberOfLines={1}
                       style={styles.font20}>{prayer.subject}</Text>

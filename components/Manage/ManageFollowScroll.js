@@ -43,7 +43,9 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
                   <TouchableOpacity
                     style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
                     key={follow.id}
-                    onPress={() => navigation.navigate('MyFollow', { follow })}>
+                    onPress={() => {
+                      navigation.navigate('MyFollow', { follow })
+                    }}>
                     <Text
                       numberOfLines={1}
                       style={styles.font20}>{follow.subject}</Text>
