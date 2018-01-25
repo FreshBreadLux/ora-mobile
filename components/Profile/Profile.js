@@ -1,22 +1,22 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
 import { determineChoirTitle, determineChoirName } from './DetermineChoirFunc'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 import { Feather } from '@expo/vector-icons'
 
 const Profile = ({ screenProps, navigation }) => (
-  <View style={styles.invisiContainer}>
-    <View style={styles.backgroundImageFrame}>
+  <View style={ss.invisiContainer}>
+    <View style={ss.backgroundImageFrame}>
       <Image
         source={require('../../assets/images/Rome-Profile.jpg')}
-        style={styles.backgroundImage}
+        style={ss.backgroundImage}
       />
     </View>
     {screenProps.isLoggedIn
-    ? <SafeAreaView style={styles.invisiContainer}>
-        <View style={styles.proflileHeader}>
-          <Text style={styles.font24}>PROFILE</Text>
+    ? <SafeAreaView style={ss.invisiContainer}>
+        <View style={ss.proflileHeader}>
+          <Text style={ss.header}>PROFILE</Text>
         </View>
         <ScrollView
           showsVerticalScrollIndicator={false}>
@@ -24,98 +24,98 @@ const Profile = ({ screenProps, navigation }) => (
             colors={['transparent', '#fff']}
             start={[0.5, 0.2]}
             end={[0.5, 0.8]}
-            style={styles.flex1}>
-            <View style={styles.padding15}>
-              <View style={[styles.addViewSpacing, styles.fullWidth, styles.center]}>
+            style={ss.flex1}>
+            <View style={ss.padding15}>
+              <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
                 { determineChoirName(screenProps.userTotalPrayers) }
                 <TouchableOpacity
-                  style={[styles.button, styles.halfWidth]}
+                  style={[ss.button, ss.halfWidth]}
                   onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: screenProps.userTotalPrayers })}>
                   { determineChoirTitle(screenProps.userTotalPrayers) }
                 </TouchableOpacity>
               </View>
-              <View style={styles.addLargeViewSpacing}>
-                <Text style={[styles.font20, styles.whiteText]}>{`${screenProps.userEmail}`}</Text>
+              <View style={ss.addLargeViewSpacing}>
+                <Text style={[ss.subHeader, ss.whiteText]}>{`${screenProps.userEmail}`}</Text>
               </View>
-              <View style={styles.consecutiveDays}>
-                <Text style={styles.font20}>Consecutive{'\n'}Days Praying</Text>
-                <Text style={styles.font20}>Placeholder</Text>
+              <View style={ss.consecutiveDays}>
+                <Text style={ss.subHeader}>Consecutive{'\n'}Days Praying</Text>
+                <Text style={ss.subHeader}>Placeholder</Text>
               </View>
-              <View style={styles.addLargeViewSpacing}>
-                <Text style={[styles.font20, styles.whiteText]}>Prayers{'\n'}Accepted</Text>
-                <Text style={styles.choirName}>{screenProps.userTotalPrayers}</Text>
+              <View style={ss.addLargeViewSpacing}>
+                <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>
+                <Text style={ss.choirName}>{screenProps.userTotalPrayers}</Text>
               </View>
-              <View style={[styles.addViewSpacing]}>
+              <View style={[ss.addViewSpacing]}>
                 <TouchableOpacity
-                  style={[styles.button, styles.fullWidth, styles.row, styles.spaceBetween]}
+                  style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                   onPress={() => navigation.navigate('About')}>
-                  <Text style={styles.buttonText}>learn more about Ora</Text>
+                  <Text style={ss.buttonText}>learn more about Ora</Text>
                   <Feather
                     name="chevron-right"
                     size={26} />
                 </TouchableOpacity>
               </View>
-              <View style={[styles.addViewSpacing]}>
+              <View style={[ss.addViewSpacing]}>
                 <TouchableOpacity
-                  style={[styles.button, styles.fullWidth, styles.row, styles.spaceBetween]}
+                  style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                   onPress={() => navigation.navigate('Donate')}>
-                  <Text style={styles.buttonText}>donate</Text>
+                  <Text style={ss.buttonText}>donate</Text>
                   <Feather
                     name="chevron-right"
                     size={26} />
                 </TouchableOpacity>
               </View>
-              <View style={[styles.addMedViewSpacing, styles.darkBottomBorder]}>
-                <Text style={[styles.font20]}>Themes (pending feature)</Text>
+              <View style={[ss.addMedViewSpacing, ss.darkBottomBorder]}>
+                <Text style={[ss.subHeader]}>Themes (pending feature)</Text>
               </View>
-              <View style={[styles.addMedViewSpacing, styles.row, styles.spaceBetween]}>
-                <View style={styles.center}>
-                  <View style={styles.thumbnail}>
+              <View style={[ss.addMedViewSpacing, ss.row, ss.spaceBetween]}>
+                <View style={ss.center}>
+                  <View style={ss.thumbnail}>
                   <Image
-                    style={styles.backgroundImage}
+                    style={ss.backgroundImage}
                     source={require('../../assets/images/Rome.jpg')} />
                   </View>
-                  <Text style={[styles.font14, styles.padding10]}>Rome</Text>
+                  <Text style={[ss.subBody, ss.padding10]}>Rome</Text>
                 </View>
-                <View style={styles.center}>
-                  <View style={styles.thumbnail}>
+                <View style={ss.center}>
+                  <View style={ss.thumbnail}>
                   <Image
-                    style={styles.backgroundImage}
+                    style={ss.backgroundImage}
                     source={require('../../assets/images/Adoration.jpg')} />
                   </View>
-                  <Text style={[styles.font14, styles.padding10]}>Adoration</Text>
+                  <Text style={[ss.subBody, ss.padding10]}>Adoration</Text>
                 </View>
-                <View style={styles.center}>
-                  <View style={styles.thumbnail}>
+                <View style={ss.center}>
+                  <View style={ss.thumbnail}>
                   <Image
-                    style={styles.backgroundImage}
+                    style={ss.backgroundImage}
                     source={require('../../assets/images/Paintings.jpg')} />
                   </View>
-                  <Text style={[styles.font14, styles.padding10]}>Paintings</Text>
+                  <Text style={[ss.subBody, ss.padding10]}>Paintings</Text>
                 </View>
               </View>
             </View>
           </LinearGradient>
-          <View style={[styles.editHeight, styles.center]}>
-            <Text style={[styles.font16, styles.blackTextShadow, styles.whiteText, styles.centerText, styles.threeQuarterWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.{'\n'}-{'\n'}</Text>
-            <Text style={[styles.font16, styles.blackTextShadow, styles.whiteText]}>Revelation 8:4</Text>
+          <View style={[ss.editHeight, ss.center]}>
+            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.{'\n'}-{'\n'}</Text>
+            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText]}>Revelation 8:4</Text>
           </View>
-          <View style={[styles.addLargeViewSpacing, styles.whiteContainer, styles.center]}>
+          <View style={[ss.addLargeViewSpacing, ss.whiteContainer, ss.center]}>
             <TouchableOpacity
-              style={[styles.halfWidth, styles.blackButton]}
+              style={[ss.halfWidth, ss.blackButton]}
               onPress={screenProps.userLogout}>
-              <Text style={[styles.buttonText, styles.whiteText]}>logout</Text>
+              <Text style={[ss.buttonText, ss.whiteText]}>logout</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
       </SafeAreaView>
-    : <SafeAreaView style={styles.invisiContainer}>
+    : <SafeAreaView style={ss.invisiContainer}>
         <View style={[
-          styles.flex1, styles.center, styles.padding15]}>
+          ss.flex1, ss.center, ss.padding15]}>
           <TouchableOpacity
-            style={[styles.button, styles.fullWidth]}
+            style={[ss.button, ss.fullWidth]}
             onPress={() => navigation.navigate('Submit')}>
-              <Text style={[styles.buttonText, styles.centerText]}>sign up or login to view your profile</Text>
+              <Text style={[ss.buttonText, ss.centerText]}>sign up or login to view your profile</Text>
             </TouchableOpacity>
         </View>
       </SafeAreaView>
