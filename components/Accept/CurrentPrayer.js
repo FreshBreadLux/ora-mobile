@@ -57,7 +57,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
             size={22}
             color={ follows.find(follow => {
               return follow.prayerId === statePrayer.id
-            }) ? 'red' : '#555' } />
+            }) ? '#FF4081' : '#555' } />
         </TouchableOpacity>
       </View>
       <View style={[styles.padding10, styles.center, styles.fullWidth]}>
