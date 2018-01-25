@@ -99,15 +99,18 @@ export default class Accept extends React.Component {
         this.props.screenProps.fetchUserFollows(userId)
         AlertIOS.alert(
           'You are now following this prayer',
-          'You can manage the prayers you follow in the My Follows section',
-          () => this.setModal(null)
-        )
+          'You can manage the prayers you follow in the Follows section',
+          () => this.setModal(null))
       })
       .catch(console.error)
     } else if (userId && alreadyFollowing) {
-      AlertIOS.alert('You are already following this prayer')
+      AlertIOS.alert('You are already following this prayer',
+      'You can manage the prayers you follow in the Follows section',
+      () => this.setModal(null))
     } else {
-      AlertIOS.alert('You must be logged in to follow prayers')
+      AlertIOS.alert('You must be logged in to follow prayers',
+      'Log in or sign up in order to get the most out of Ora',
+      () => this.setModal(null))
     }
   }
 
