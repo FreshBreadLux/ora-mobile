@@ -1,9 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView, Animated, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ROOT_URL from '../../config'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 
 export default class SubmitForm extends React.Component {
   constructor(props) {
@@ -38,32 +38,32 @@ export default class SubmitForm extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.invisiContainer}>
-        <View style={[styles.flex1, styles.padding15]}>
+      <SafeAreaView style={ss.invisiContainer}>
+        <View style={[ss.flex1, ss.padding15]}>
           { this.state.prayerSent
-            ? <View style={styles.addViewSpacing}>
-                <Text style={[styles.font24, styles.centerText]}>prayer successfully submitted</Text>
+            ? <View style={ss.addViewSpacing}>
+                <Text style={[ss.header, ss.centerText]}>prayer successfully submitted</Text>
               </View>
-            : <View style={styles.addViewSpacing}>
-                <Text style={[styles.font24, styles.centerText]}>SUBMIT A PRAYER</Text>
+            : <View style={ss.addViewSpacing}>
+                <Text style={[ss.header, ss.centerText]}>SUBMIT A PRAYER</Text>
               </View> }
           <KeyboardAwareScrollView
             keyboardShouldPersistTaps="handled">
-            <View style={[styles.addViewSpacing, styles.darkBottomBorder]}>
+            <View style={[ss.addViewSpacing, ss.darkBottomBorder]}>
               <TextInput
-                style={[styles.fullWidth, styles.font20, styles.paddingBottom10]}
+                style={[ss.fullWidth, ss.subHeader, ss.paddingBottom10]}
                 placeholder="Enter prayer subject"
                 placeholderTextColor="#555"
                 keyboardType="default"
                 onChangeText={subject => this.setState({subject})}
-                onSubmitEditing={event => this.refs.body.focus()}
+                onSubmitEditing={() => this.body.focus()}
                 value={this.state.subject}
               />
             </View>
-            <View style={[styles.addViewSpacing, styles.submitHeight]}>
+            <View style={[ss.addViewSpacing, ss.submitHeight]}>
               <TextInput
-                ref="body"
-                style={[styles.fullWidth, styles.fullHeight, styles.font16, styles.paddingBottom10]}
+                ref={ref => { this.body = ref }}
+                style={[ss.fullWidth, ss.fullHeight, ss.body, ss.paddingBottom10]}
                 placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
                 placeholderTextColor="#555"
                 keyboardType="default"
@@ -76,12 +76,12 @@ export default class SubmitForm extends React.Component {
                 numberOfLines={4}
               />
             </View>
-            <View style={[styles.center, styles.addViewSpacing, styles.fullWidth]}>
+            <View style={[ss.center, ss.addViewSpacing, ss.fullWidth]}>
               <TouchableOpacity
                 onPress={this.submitPrayer}
-                style={[styles.button, styles.halfWidth]}
+                style={[ss.button, ss.halfWidth]}
               >
-                <Text style={[styles.buttonText]}>send</Text>
+                <Text style={[ss.buttonText]}>send</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAwareScrollView>

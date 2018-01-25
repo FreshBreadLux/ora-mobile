@@ -2,21 +2,21 @@ import React from 'react'
 import { View, Image } from 'react-native'
 import LoginForm from './LoginForm'
 import SubmitForm from './SubmitForm'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 
 const SubmitVerify = ({ screenProps }) => (
-  <View style={styles.invisiContainer}>
-    <View style={styles.backgroundImageFrame}>
+  <View style={ss.invisiContainer}>
+    <View style={ss.backgroundImageFrame}>
       <Image
         source={require('../../assets/images/Rome-Submit.jpg')}
-        style={styles.backgroundImage} />
+        style={ss.backgroundImage} />
     </View>
-    <View style={styles.backgroundImageFrame}>
+    <View style={ss.backgroundImageFrame}>
       <LinearGradient
         colors={['#fff', 'transparent']}
         start={[0.5, 0.35]}
-        style={styles.flex1} />
+        style={ss.flex1} />
     </View>
     { !screenProps.isLoggedIn
       ? <LoginForm

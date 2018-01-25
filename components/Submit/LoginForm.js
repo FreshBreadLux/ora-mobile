@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
 import { Permissions, Notifications } from 'expo'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
 export default class LoginForm extends React.Component {
@@ -63,19 +63,19 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.invisiContainer}>
+      <SafeAreaView style={ss.invisiContainer}>
         <ScrollView
           keyboardShouldPersistTaps="handled"
-          contentContainerStyle={styles.flex1}>
-          <View style={[styles.flex3, styles.padding15]}>
-            <View style={[styles.flex1, styles.center, styles.padding15]}>
-              <Text style={[styles.font20, styles.centerText]}>
+          contentContainerStyle={ss.flex1}>
+          <View style={[ss.flex3, ss.padding15]}>
+            <View style={[ss.flex1, ss.center, ss.padding15]}>
+              <Text style={[ss.subHeader, ss.centerText]}>
                 {this.state.error ? `${this.state.error}` : null}
               </Text>
             </View>
-            <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
+            <View style={[ss.flex1, ss.center, ss.darkBottomBorder]}>
               <TextInput
-                style={[styles.fullWidth, styles.font20]}
+                style={[ss.fullWidth, ss.subHeader]}
                 placeholder="Email"
                 placeholderTextColor="#555"
                 keyboardType="email-address"
@@ -86,10 +86,10 @@ export default class LoginForm extends React.Component {
                 value={this.state.email}
               />
             </View>
-            <View style={[styles.flex1, styles.center, styles.darkBottomBorder]}>
+            <View style={[ss.flex1, ss.center, ss.darkBottomBorder]}>
               <TextInput
                 ref="password"
-                style={[styles.fullWidth, styles.font20]}
+                style={[ss.fullWidth, ss.subHeader]}
                 placeholder="Password"
                 placeholderTextColor="#555"
                 secureTextEntry={true}
@@ -97,23 +97,23 @@ export default class LoginForm extends React.Component {
                 value={this.state.password}
               />
             </View>
-            <View style={[styles.flex1, styles.center]}>
+            <View style={[ss.flex1, ss.center]}>
               <TouchableOpacity
-                style={[styles.button, styles.halfWidth]}
+                style={[ss.button, ss.halfWidth]}
                 onPress={this.userSignup}>
-                <Text style={[styles.buttonText]}>sign up</Text>
+                <Text style={[ss.buttonText]}>sign up</Text>
               </TouchableOpacity>
             </View>
-            <View style={[styles.flex1, styles.center]}>
+            <View style={[ss.flex1, ss.center]}>
               <TouchableOpacity
-                style={[styles.button, styles.halfWidth]}
+                style={[ss.button, ss.halfWidth]}
                 onPress={this.userLogin}>
-                <Text style={[styles.buttonText]}>login</Text>
+                <Text style={[ss.buttonText]}>login</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <View style={[styles.flex2, styles.center, styles.padding15]}>
-            <Text style={[styles.font20, styles.whiteText, styles.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+          <View style={[ss.flex2, ss.center, ss.padding15]}>
+            <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
