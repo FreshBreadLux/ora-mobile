@@ -7,7 +7,7 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
   <View style={styles.invisiContainer}>
     <View style={styles.backgroundImageFrame}>
       <Image
-        source={require('../../assets/images/Rome-Follows2.jpg')}
+        source={require('../../assets/images/Rome-Follows.jpg')}
         style={styles.backgroundImage}
       />
     </View>

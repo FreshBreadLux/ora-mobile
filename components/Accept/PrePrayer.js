@@ -1,21 +1,21 @@
 import React from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import { Feather } from '@expo/vector-icons'
 
 const PrePrayer = ({ navigation, loadNextPrayer }) => (
-  <SafeAreaView style={[styles.invisiContainer]}>
-    <View style={[styles.invisiContainer, styles.spaceAround]}>
-      <Text style={styles.title}>ORA</Text>
+  <SafeAreaView style={[ss.invisiContainer]}>
+    <View style={[ss.invisiContainer, ss.spaceAround]}>
+      <Text style={ss.title}>ORA</Text>
       <TouchableOpacity
-        style={[styles.button, styles.halfWidth]}
+        style={[ss.button, ss.halfWidth]}
         onPress={loadNextPrayer}>
-        <Text style={[styles.buttonText]}>accept a prayer</Text>
+        <Text style={[ss.buttonText]}>accept a prayer</Text>
       </TouchableOpacity>
     </View>
-    <View style={[styles.addViewSpacing]}>
+    <View style={[ss.addViewSpacing]}>
       <TouchableOpacity
-        style={[styles.padding10, {alignSelf: 'flex-end'}]}
+        style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={() => navigation.navigate('About')}>
         <Feather
           name="help-circle"

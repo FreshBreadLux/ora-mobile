@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Settings, Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank } from './components'
-import { Feather, Ionicons } from '@expo/vector-icons'
+import { Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank } from './components'
+import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
   ManageFollowScroll: {

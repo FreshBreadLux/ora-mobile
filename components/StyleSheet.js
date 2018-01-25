@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = StyleSheet.create({
+const ss = StyleSheet.create({
   whiteContainer: {
     flex: 1,
     backgroundColor: '#fff',
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   rowOpacity: {
     flex: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: 'rgba(255, 255, 255, 0.95)',
   },
   backgroundImageFrame: {
     flex: 1,
@@ -121,19 +121,19 @@ const styles = StyleSheet.create({
     fontSize: 70,
     color: '#fff',
   },
-  font24: {
+  header: {
     fontFamily: 'raleway',
     fontSize: 24,
   },
-  font20: {
+  subHeader: {
     fontFamily: 'raleway',
     fontSize: 20,
   },
-  font16: {
+  body: {
     fontFamily: 'eb',
     fontSize: 20,
   },
-  font14: {
+  subBody: {
     fontFamily: 'raleway',
     fontSize: 14,
   },
@@ -298,4 +298,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default styles
+export default ss

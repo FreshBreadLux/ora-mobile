@@ -4,7 +4,7 @@ import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
 import ROOT_URL from '../../config'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 
 export default class Accept extends React.Component {
   constructor(props) {
@@ -116,11 +116,11 @@ export default class Accept extends React.Component {
 
   render() {
     return (
-      <View style={styles.invisiContainer}>
-        <View style={styles.backgroundImageFrame}>
+      <View style={ss.invisiContainer}>
+        <View style={ss.backgroundImageFrame}>
           <Image
             source={require('../../assets/images/Rome.jpg')}
-            style={styles.backgroundImage}
+            style={ss.backgroundImage}
           />
         </View>
         {!this.state.currentPrayer
@@ -128,7 +128,7 @@ export default class Accept extends React.Component {
               loadNextPrayer={this.loadNextPrayer}
               navigation={this.props.navigation}
             />
-          : <View style={styles.opacityContainer}>
+          : <View style={ss.opacityContainer}>
               <CurrentPrayer
                 statePrayer={this.state.currentPrayer}
                 fadeOut={this.fadeOut}
