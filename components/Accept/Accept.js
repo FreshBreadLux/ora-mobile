@@ -88,7 +88,10 @@ export default class Accept extends React.Component {
   followPrayer() {
     const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
-    if (userId) {
+    const alreadyFollowing = this.props.screenProps.follows.find(follow => {
+      return follow.prayerId === this.state.currentPrayer.id
+    })
+    if (userId && !alreadyFollowing) {
       axios.post(`${ROOT_URL}/api/follows`, {
         userId, prayer
       })
@@ -101,6 +104,8 @@ export default class Accept extends React.Component {
         )
       })
       .catch(console.error)
+    } else if (userId && alreadyFollowing) {
+      AlertIOS.alert('You are already following this prayer')
     } else {
       AlertIOS.alert('You must be logged in to follow prayers')
     }
