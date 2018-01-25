@@ -3,7 +3,7 @@ import { Keyboard, SafeAreaView } from 'react-native'
 import SinglePrayer from './SinglePrayer'
 import EditPrayer from './EditPrayer'
 import axios from 'axios'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
 export default class ManageMyPrayer extends React.Component {
@@ -68,7 +68,7 @@ export default class ManageMyPrayer extends React.Component {
   render() {
     const prayer = this.props.navigation.state.params.prayer
     return (
-      <SafeAreaView style={styles.whiteContainer}>
+      <SafeAreaView style={ss.whiteContainer}>
         {this.state.editMode
           ? <EditPrayer
               setBody={this.setBody}

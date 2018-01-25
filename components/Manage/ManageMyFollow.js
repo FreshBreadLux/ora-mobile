@@ -3,7 +3,7 @@ import { View, Text, ScrollView, TouchableOpacity, Keyboard, SafeAreaView } from
 import Modal from 'react-native-modal'
 import { UnfollowModalContent } from './Modals'
 import axios from 'axios'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
 export default class ManageMyFollow extends React.Component {
@@ -34,21 +34,21 @@ export default class ManageMyFollow extends React.Component {
   render() {
     const follow = this.props.navigation.state.params.follow
     return (
-      <SafeAreaView style={styles.whiteContainer}>
-        <View style={[styles.invisiContainer, styles.padding15]}>
+      <SafeAreaView style={ss.whiteContainer}>
+        <View style={[ss.invisiContainer, ss.padding15]}>
           <ScrollView>
-            <Text style={[styles.font16, styles.paddingBottom10]}>{`${follow.body}`}</Text>
+            <Text style={[ss.font16, ss.paddingBottom10]}>{`${follow.body}`}</Text>
           </ScrollView>
-          <View style={[styles.center, styles.addViewSpacing]}>
+          <View style={[ss.center, ss.addViewSpacing]}>
             <TouchableOpacity
               onPress={() => this.setModal('unfollow')}
-              style={[styles.blackButton, styles.halfWidth]}>
-              <Text style={[styles.buttonText, styles.whiteText]}>Unfollow</Text>
+              style={[ss.blackButton, ss.halfWidth]}>
+              <Text style={[ss.buttonText, ss.whiteText]}>Unfollow</Text>
             </TouchableOpacity>
           </View>
           <Modal
             isVisible={this.state.visibleModal === 'unfollow'}
-            style={styles.bottomModal}
+            style={ss.bottomModal}
           >
             <UnfollowModalContent
               setModal={this.setModal}

@@ -1,66 +1,66 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 
 const ManageFollowScroll = ({ screenProps, navigation }) => (
-  <View style={styles.invisiContainer}>
-    <View style={styles.backgroundImageFrame}>
+  <View style={ss.invisiContainer}>
+    <View style={ss.backgroundImageFrame}>
       <Image
         source={require('../../assets/images/Rome-Follows.jpg')}
-        style={styles.backgroundImage}
+        style={ss.backgroundImage}
       />
     </View>
     {!screenProps.userId
-    ? <SafeAreaView style={styles.invisiContainer}>
-        <View style={[styles.invisiContainer, styles.padding15]}>
-          <View style={[styles.flex1, styles.center]}>
+    ? <SafeAreaView style={ss.invisiContainer}>
+        <View style={[ss.invisiContainer, ss.padding15]}>
+          <View style={[ss.flex1, ss.center]}>
           <TouchableOpacity
-            style={[styles.button, styles.fullWidth]}
+            style={[ss.button, ss.fullWidth]}
             onPress={() => navigation.navigate('Submit')}>
-              <Text style={[styles.buttonText, styles.centerText]}>please login to manage your follows</Text>
+              <Text style={[ss.buttonText, ss.centerText]}>please login to manage your follows</Text>
             </TouchableOpacity>
           </View>
         </View>
       </SafeAreaView>
-    : <SafeAreaView style={styles.invisiContainer}>
-        <View style={styles.backgroundImageFrame}>
+    : <SafeAreaView style={ss.invisiContainer}>
+        <View style={ss.backgroundImageFrame}>
           <LinearGradient
             colors={['transparent', 'transparent']}
             start={[0.5, 0.2]}
-            style={styles.flex1} />
+            style={ss.flex1} />
         </View>
-        <View style={[styles.invisiContainer, styles.padding15]}>
-          <View style={styles.invisiContainer}>
-            <View style={[styles.center, styles.titleBottomBorder]}>
-              <Text style={[styles.font24, styles.whiteText]}>FOLLOWS</Text>
+        <View style={[ss.invisiContainer, ss.padding15]}>
+          <View style={ss.invisiContainer}>
+            <View style={[ss.center, ss.titleBottomBorder]}>
+              <Text style={[ss.header, ss.whiteText]}>FOLLOWS</Text>
             </View>
             {screenProps.follows && screenProps.follows.length
-            ? <View style={[styles.flex1, styles.center]}>
+            ? <View style={[ss.flex1, ss.center]}>
                 <ScrollView
                   showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
-                    style={[styles.fullWidth, styles.padding15, styles.rowOpacity, styles.marginTop]}
+                    style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={follow.id}
                     onPress={() => {
                       navigation.navigate('MyFollow', { follow })
                     }}>
                     <Text
                       numberOfLines={1}
-                      style={styles.font20}>{follow.subject}</Text>
+                      style={ss.subHeader}>{follow.subject}</Text>
                     <Text
                       numberOfLines={1}
-                      style={styles.font16}>{follow.body}</Text>
+                      style={ss.body}>{follow.body}</Text>
                   </TouchableOpacity>
                 ))}
                 </ScrollView>
               </View>
-            : <View style={[styles.flex1, styles.center]}>
+            : <View style={[ss.flex1, ss.center]}>
                 <TouchableOpacity
-                style={[styles.button, styles.fullWidth]}
+                style={[ss.button, ss.fullWidth]}
                 onPress={() => navigation.navigate('Accept')}>
-                  <Text style={[styles.buttonText, styles.centerText]}>when you follow prayers, they will be listed here</Text>
+                  <Text style={[ss.buttonText, ss.centerText]}>when you follow prayers, they will be listed here</Text>
                 </TouchableOpacity>
               </View>
             }

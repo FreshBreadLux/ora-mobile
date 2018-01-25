@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Keyboard, KeyboardAvoidingView, ScrollView, Animated, Dimensions, SafeAreaView } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import styles from '../StyleSheet'
+import { View, Text, TouchableOpacity, TextInput, Keyboard, Animated } from 'react-native'
+import ss from '../StyleSheet'
 
 export default class EditPrayer extends React.Component {
   constructor(props) {
@@ -58,27 +57,27 @@ export default class EditPrayer extends React.Component {
     return (
       <View
         onLayout={this.handleOnLayout}
-        style={[styles.invisiContainer, styles.editPadding]}>
+        style={[ss.invisiContainer, ss.editPadding]}>
         <Animated.View
           style={{height: this.state.animatedHeight ? this.state.animatedHeight : 600 }}>
           <TextInput
-            ref={ref => this.editTextInput = ref}
-            style={[styles.flex1, styles.font16, styles.paddingBottom10]}
+            ref={ref => { this.editTextInput = ref }}
+            style={[ss.flex1, ss.body, ss.paddingBottom10]}
             multiline={true}
             onChangeText={textBody => this.props.setBody(textBody)}
             value={this.props.body}
           />
         <View
-          style={[styles.row, styles.spaceBetween, styles.viewTopBorder]}>
+          style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
           <TouchableOpacity
-            style={styles.cancelButton}
+            style={ss.cancelButton}
             onPress={this.props.toggleEdit}>
-            <Text style={[styles.font14]}>cancel</Text>
+            <Text style={[ss.subBody]}>cancel</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.editButton}
+            style={ss.editButton}
             onPress={this.props.updatePrayer}>
-            <Text style={[styles.font14, styles.whiteText]}>update</Text>
+            <Text style={[ss.subBody, ss.whiteText]}>update</Text>
           </TouchableOpacity>
         </View>
         </Animated.View>

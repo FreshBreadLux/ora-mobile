@@ -1,40 +1,40 @@
 import React from 'react'
-import { View, ScrollView, Text, TouchableOpacity, TextInput, Keyboard, SafeAreaView, KeyboardAvoidingView, AlertIOS } from 'react-native'
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import Modal from 'react-native-modal'
-import styles from '../StyleSheet'
+import ss from '../StyleSheet'
 import { OpenModalContent, CloseModalContent } from './Modals'
 
 const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, setModal, visibleModal }) => (
-  <View style={[styles.invisiContainer, styles.padding15]}>
+  <View style={[ss.invisiContainer, ss.padding15]}>
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Text style={[styles.font16, styles.paddingBottom10]}>{`${prayer.body}`}</Text>
+      <Text style={[ss.body, ss.paddingBottom10]}>{`${prayer.body}`}</Text>
     </ScrollView>
-    <View style={[styles.row, styles.spaceBetween, styles.viewTopBorder]}>
-      <Text style={styles.font16}>{`Total Views: ${prayer.totalViews}`}</Text>
-      <Text style={styles.font16}>{`Total Follows: ${prayer.totalFollows}`}</Text>
+    <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
+      <Text style={ss.body}>{`Total Views: ${prayer.totalViews}`}</Text>
+      <Text style={ss.body}>{`Total Follows: ${prayer.totalFollows}`}</Text>
     </View>
-    <View style={[styles.row, styles.spaceBetween]}>
+    <View style={[ss.row, ss.spaceBetween]}>
       {prayer.closed
       ? <TouchableOpacity
           onPress={() => setModal('open')}
-          style={styles.cancelButton}>
-          <Text style={styles.buttonText}>open prayer</Text>
+          style={ss.cancelButton}>
+          <Text style={ss.buttonText}>open prayer</Text>
         </TouchableOpacity>
       : <TouchableOpacity
           onPress={() => setModal('close')}
-          style={styles.cancelButton}>
-          <Text style={styles.buttonText}>close prayer</Text>
+          style={ss.cancelButton}>
+          <Text style={ss.buttonText}>close prayer</Text>
         </TouchableOpacity>
       }
       <TouchableOpacity
         onPress={toggleEdit}
-        style={styles.editButton}>
-        <Text style={[styles.buttonText, styles.whiteText]}>edit</Text>
+        style={ss.editButton}>
+        <Text style={[ss.buttonText, ss.whiteText]}>edit</Text>
       </TouchableOpacity>
     </View>
     <Modal
       isVisible={visibleModal === 'open'}
-      style={styles.bottomModal}
+      style={ss.bottomModal}
     >
       <OpenModalContent
         setModal={setModal}
@@ -43,7 +43,7 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, setModal, visibleModal
     </Modal>
     <Modal
       isVisible={visibleModal === 'close'}
-      style={styles.bottomModal}
+      style={ss.bottomModal}
     >
       <CloseModalContent
         setModal={setModal}
