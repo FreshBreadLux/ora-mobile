@@ -5,7 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import styles from '../StyleSheet'
 
-const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, opacity, visibleModal, setModal }) => (
+const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal }) => (
   <SafeAreaView style={styles.invisiContainer}>
     <View style={[styles.invisiContainer, styles.padding15, styles.spaceAround]}>
       <View style={styles.flex1}>
@@ -55,7 +55,9 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Feather
             name="heart"
             size={22}
-            color="#555" />
+            color={ follows.find(follow => {
+              return follow.prayerId === statePrayer.id
+            }) ? 'red' : '#555' } />
         </TouchableOpacity>
       </View>
       <View style={[styles.padding10, styles.center, styles.fullWidth]}>

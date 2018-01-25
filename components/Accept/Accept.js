@@ -127,6 +127,7 @@ export default class Accept extends React.Component {
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
                 followPrayer={this.followPrayer}
+                follows={this.props.screenProps.follows}
                 opacity={this.state.fadeAnim}
                 visibleModal={this.state.visibleModal}
                 setModal={this.setModal}
