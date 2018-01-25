@@ -1,9 +1,11 @@
 import React from 'react'
-import { AsyncStorage, AlertIOS } from 'react-native'
+import { View, AsyncStorage, AlertIOS } from 'react-native'
 import { Notifications } from 'expo'
 import MainNav from './MainNav'
 import axios from 'axios'
 import ROOT_URL from './config'
+import Modal from 'react-native-modal'
+import ss from './components/StyleSheet'
 
 export default class Root extends React.Component {
   constructor(props) {
@@ -19,6 +21,7 @@ export default class Root extends React.Component {
       notification: null,
     }
     this.handleNotification = this.handleNotification.bind(this)
+    this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
@@ -36,6 +39,12 @@ export default class Root extends React.Component {
     console.log('notification: ', notification)
     this.setState({ notification })
     console.log('state: ', this.state)
+  }
+
+  hideNotificationModal() {
+    setTimeout(() => {
+      this.setState({ notification: null })
+    }, 4000);
   }
 
   async verifyStorageKey() {
@@ -110,19 +119,36 @@ export default class Root extends React.Component {
   render() {
     console.log('state: ', this.state)
     return (
-      <MainNav screenProps={{
-        isLoggedIn: this.state.isLoggedIn,
-        userLogout: this.userLogout,
-        userEmail: this.state.userEmail,
-        userTotalPrayers: this.state.userTotalPrayers,
-        userId: this.state.userId,
-        fetchUserFollows: this.fetchUserFollows,
-        fetchUserTotalPrayers: this.fetchUserTotalPrayers,
-        verifyStorageKey: this.verifyStorageKey,
-        fetchUserPrayers: this.fetchUserPrayers,
-        prayers: this.state.prayers,
-        follows: this.state.follows,
-      }} />
+      <View style={ss.invisiContainer}>
+        <Modal
+          isVisible={!!this.state.notification}
+          style={ss.topModal}
+          animationIn="slideInDown"
+          animationOut="slideOutUp"
+          backdropOpacity={0}
+          onModalShow={() => this.hideNotificationModal}
+          onSwipe={() => this.setState({ notification: null })}
+          swipeDirection="up">
+          <View style={[ss.center, ss.padding15]}>
+            <View style={ss.modalContent}>
+              <Text style={ss.modalText}>New Notification</Text>
+            </View>
+          </View>
+        </Modal>
+        <MainNav screenProps={{
+          isLoggedIn: this.state.isLoggedIn,
+          userLogout: this.userLogout,
+          userEmail: this.state.userEmail,
+          userTotalPrayers: this.state.userTotalPrayers,
+          userId: this.state.userId,
+          fetchUserFollows: this.fetchUserFollows,
+          fetchUserTotalPrayers: this.fetchUserTotalPrayers,
+          verifyStorageKey: this.verifyStorageKey,
+          fetchUserPrayers: this.fetchUserPrayers,
+          prayers: this.state.prayers,
+          follows: this.state.follows,
+        }} />
+      </View>
     )
   }
 }

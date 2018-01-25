@@ -240,6 +240,10 @@ const ss = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
+  topModal: {
+    justifyContent: 'flex-start',
+    margin: 0,
+  },
   modalContent: {
     backgroundColor: '#fff',
     borderRadius: 10,
