@@ -10,7 +10,7 @@ const PrePrayer = ({ navigation, loadNextPrayer }) => (
       <TouchableOpacity
         style={[styles.button, styles.halfWidth]}
         onPress={loadNextPrayer}>
-        <Text style={[styles.buttonText]}>start praying</Text>
+        <Text style={[styles.buttonText]}>accept a prayer</Text>
       </TouchableOpacity>
     </View>
     <View style={[styles.addViewSpacing]}>

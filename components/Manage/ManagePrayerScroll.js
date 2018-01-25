@@ -26,14 +26,14 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
     : <SafeAreaView style={styles.invisiContainer}>
         <View style={styles.backgroundImageFrame}>
           <LinearGradient
-            colors={['#fff', 'transparent']}
+            colors={['transparent', 'transparent']}
             start={[0.5, 0.2]}
             style={styles.flex1} />
         </View>
         <View style={[styles.invisiContainer, styles.padding15]}>
           <View style={styles.invisiContainer}>
             <View style={[styles.center, styles.titleBottomBorder]}>
-              <Text style={styles.font24}>PRAYERS</Text>
+              <Text style={[styles.font24, styles.whiteText]}>PRAYERS</Text>
             </View>
             {screenProps.prayers && screenProps.prayers.length
             ? <View style={[styles.flex1, styles.center]}>
@@ -41,7 +41,7 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
                   showsVerticalScrollIndicator={false}>
                 { screenProps.prayers.map(prayer => (
                   <TouchableOpacity
-                    style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
+                    style={[styles.fullWidth, styles.padding15, styles.rowOpacity, styles.marginTop]}
                     key={prayer.id}
                     onPress={() => {
                       screenProps.fetchUserPrayers(screenProps.userId)

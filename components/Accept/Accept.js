@@ -108,7 +108,7 @@ export default class Accept extends React.Component {
       'You can manage the prayers you follow in the Follows section',
       () => this.setModal(null))
     } else {
-      AlertIOS.alert('You must be logged in to follow prayers',
+      AlertIOS.alert('You must log in or sign up to follow prayers',
       'Log in or sign up in order to get the most out of Ora',
       () => this.setModal(null))
     }

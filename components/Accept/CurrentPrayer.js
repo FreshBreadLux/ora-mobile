@@ -64,7 +64,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
         <TouchableOpacity
           onPress={fadeOut}
           style={[styles.button, styles.fullWidth]}>
-          <Text style={styles.buttonText}>Accept Prayer</Text>
+          <Text style={styles.buttonText}>accept a new prayer</Text>
         </TouchableOpacity>
       </View>
       <Modal

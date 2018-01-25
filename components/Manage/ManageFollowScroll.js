@@ -7,7 +7,7 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
   <View style={styles.invisiContainer}>
     <View style={styles.backgroundImageFrame}>
       <Image
-        source={require('../../assets/images/Rome-Follows.jpg')}
+        source={require('../../assets/images/Rome-Follows2.jpg')}
         style={styles.backgroundImage}
       />
     </View>
@@ -26,14 +26,14 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
     : <SafeAreaView style={styles.invisiContainer}>
         <View style={styles.backgroundImageFrame}>
           <LinearGradient
-            colors={['#fff', 'transparent']}
+            colors={['transparent', 'transparent']}
             start={[0.5, 0.2]}
             style={styles.flex1} />
         </View>
         <View style={[styles.invisiContainer, styles.padding15]}>
           <View style={styles.invisiContainer}>
             <View style={[styles.center, styles.titleBottomBorder]}>
-              <Text style={styles.font24}>FOLLOWS</Text>
+              <Text style={[styles.font24, styles.whiteText]}>FOLLOWS</Text>
             </View>
             {screenProps.follows && screenProps.follows.length
             ? <View style={[styles.flex1, styles.center]}>
@@ -41,7 +41,7 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
                   showsVerticalScrollIndicator={false}>
                 { screenProps.follows.map(follow => (
                   <TouchableOpacity
-                    style={[styles.fullWidth, styles.padding15, styles.opacityContainer, styles.marginTop]}
+                    style={[styles.fullWidth, styles.padding15, styles.rowOpacity, styles.marginTop]}
                     key={follow.id}
                     onPress={() => {
                       navigation.navigate('MyFollow', { follow })
