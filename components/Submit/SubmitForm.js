@@ -13,40 +13,53 @@ export default class SubmitForm extends React.Component {
       body: null,
       prayerSent: false,
       bodyHeight: null,
+      errorMessage: null,
     }
     this.submitPrayer = this.submitPrayer.bind(this)
   }
 
   submitPrayer() {
-    Keyboard.dismiss()
-    axios.post(`${ROOT_URL}/api/prayers`, {
-      userId: this.props.userId,
-      subject: this.state.subject,
-      body: this.state.body,
-    })
-    .then(() => {
-      this.setState({
-        subject: null,
-        body: null,
-        prayerSent: true,
+    if (this.state.subject && this.state.body) {
+      Keyboard.dismiss()
+      axios.post(`${ROOT_URL}/api/prayers`, {
+        userId: this.props.userId,
+        subject: this.state.subject,
+        body: this.state.body,
       })
-      this.props.fetchUserPrayers(this.props.userId)
-      setTimeout(() => this.setState({prayerSent: false}), 10000)
-    })
-    .catch(console.error)
+      .then(() => {
+        this.setState({
+          subject: null,
+          body: null,
+          prayerSent: true,
+          errorMessage: null,
+        })
+        this.props.fetchUserPrayers(this.props.userId)
+        setTimeout(() => this.setState({prayerSent: false}), 10000)
+      })
+      .catch(console.error)
+    } else {
+      this.setState({ errorMessage: 'your prayer needs both a subject and a body'})
+    }
   }
 
   render() {
     return (
       <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.flex1, ss.padding15]}>
-          { this.state.prayerSent
+          { this.state.errorMessage
+          ? <View style={ss.addViewSpacing}>
+              <Text style={[ss.header, ss.centerText]}>{this.state.errorMessage}</Text>
+            </View>
+          : <View>
+            { this.state.prayerSent
             ? <View style={ss.addViewSpacing}>
                 <Text style={[ss.header, ss.centerText]}>prayer successfully submitted</Text>
               </View>
             : <View style={ss.addViewSpacing}>
                 <Text style={[ss.header, ss.centerText]}>SUBMIT A PRAYER</Text>
               </View> }
+            </View>
+          }
           <KeyboardAwareScrollView
             keyboardShouldPersistTaps="handled">
             <View style={[ss.addViewSpacing, ss.darkBottomBorder]}>
