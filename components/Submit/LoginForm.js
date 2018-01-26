@@ -36,8 +36,8 @@ export default class LoginForm extends React.Component {
   }
 
   async userSignup() {
-    let token = await this.registerForPushNotificationsAsync()
     if (this.state.email && this.state.password) {
+      let token = await this.registerForPushNotificationsAsync()
       axios.post(`${ROOT_URL}/api/users`, {
         email: this.state.email,
         password: this.state.password,
@@ -46,6 +46,8 @@ export default class LoginForm extends React.Component {
       .then(response => JSON.stringify(response.data))
       .then(payload => this.setAsyncStorage('payload', payload))
       .catch(error => this.setState({error: error.response.request._response}))
+    } else {
+      this.setState({ error: 'please provide both an email and a password' })
     }
   }
 
@@ -58,6 +60,8 @@ export default class LoginForm extends React.Component {
       .then(response => JSON.stringify(response.data))
       .then(payload => this.setAsyncStorage('payload', payload))
       .catch(error => this.setState({error: error.response.request._response}))
+    } else {
+      this.setState({ error: 'please provide both an email and a password' })
     }
   }
 
