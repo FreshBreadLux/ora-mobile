@@ -26,14 +26,15 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
     : <SafeAreaView style={ss.invisiContainer}>
         <View style={ss.backgroundImageFrame}>
           <LinearGradient
-            colors={['transparent', 'transparent']}
-            start={[0.5, 0.2]}
+            colors={['#fff', 'transparent']}
+            start={[0.5, 0]}
+            end={[0.5, 0.5]}
             style={ss.flex1} />
         </View>
         <View style={[ss.invisiContainer, ss.padding15]}>
           <View style={ss.invisiContainer}>
-            <View style={[ss.center, ss.titleBottomBorder]}>
-              <Text style={[ss.header, ss.whiteText]}>FOLLOWS</Text>
+            <View style={[ss.center, ss.titleBottomBorderWhite]}>
+              <Text style={[ss.header]}>FOLLOWS</Text>
             </View>
             {screenProps.follows && screenProps.follows.length
             ? <View style={[ss.flex1, ss.center]}>

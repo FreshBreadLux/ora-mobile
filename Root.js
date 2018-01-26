@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AsyncStorage, AlertIOS } from 'react-native'
+import { View, Text, AsyncStorage, AlertIOS } from 'react-native'
 import { Notifications } from 'expo'
 import MainNav from './MainNav'
 import axios from 'axios'
@@ -38,13 +38,10 @@ export default class Root extends React.Component {
   handleNotification(notification) {
     console.log('notification: ', notification)
     this.setState({ notification })
-    console.log('state: ', this.state)
   }
 
   hideNotificationModal() {
-    setTimeout(() => {
-      this.setState({ notification: null })
-    }, 4000);
+    setTimeout(() => { this.setState({ notification: null }) }, 3000)
   }
 
   async verifyStorageKey() {
@@ -124,14 +121,19 @@ export default class Root extends React.Component {
           isVisible={!!this.state.notification}
           style={ss.topModal}
           animationIn="slideInDown"
+          animationInTiming={500}
           animationOut="slideOutUp"
+          animationOutTiming={500}
           backdropOpacity={0}
-          onModalShow={() => this.hideNotificationModal}
-          onSwipe={() => this.setState({ notification: null })}
-          swipeDirection="up">
+          onModalShow={this.hideNotificationModal}
+          onBackdropPress={() => { this.setState({ notification: null }) }}>
           <View style={[ss.center, ss.padding15]}>
             <View style={ss.modalContent}>
-              <Text style={ss.modalText}>New Notification</Text>
+              <Text>
+                {this.state.notification
+                ? `${this.state.notification.data.body}`
+                : null }
+              </Text>
             </View>
           </View>
         </Modal>

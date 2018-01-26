@@ -37,7 +37,7 @@ export default class ManageMyFollow extends React.Component {
       <SafeAreaView style={ss.whiteContainer}>
         <View style={[ss.invisiContainer, ss.padding15]}>
           <ScrollView>
-            <Text style={[ss.font16, ss.paddingBottom10]}>{`${follow.body}`}</Text>
+            <Text style={[ss.body, ss.paddingBottom10]}>{`${follow.body}`}</Text>
           </ScrollView>
           <View style={[ss.center, ss.addViewSpacing]}>
             <TouchableOpacity

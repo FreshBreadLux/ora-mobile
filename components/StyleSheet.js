@@ -204,6 +204,11 @@ const ss = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#ccc',
   },
+  titleBottomBorderWhite: {
+    paddingBottom: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: '#fff',
+  },
   button: {
     backgroundColor: '#fff',
     borderRadius: 6,
