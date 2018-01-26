@@ -10,7 +10,11 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <View style={ss.flex1}>
         <Animated.View style={[ss.flex1, ss.center, { opacity }]}>
-          <Text style={[ss.header, ss.centerText]}>{statePrayer.subject}</Text>
+          <Text
+            numberOfLines={3}
+            style={[ss.header, ss.centerText]}>
+            {statePrayer.subject}
+          </Text>
         </Animated.View>
       </View>
       <View style={[ss.flex4, ss.fullWidth]}>
@@ -55,7 +59,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Feather
             name="heart"
             size={22}
-            color={ follows.find(follow => {
+            color={ follows && follows.find(follow => {
               return follow.prayerId === statePrayer.id
             }) ? '#FF4081' : '#555' } />
         </TouchableOpacity>
