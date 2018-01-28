@@ -47,16 +47,16 @@ export default class SubmitForm extends React.Component {
       <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.flex1, ss.padding15]}>
           { this.state.errorMessage
-          ? <View style={ss.addViewSpacing}>
-              <Text style={[ss.header, ss.centerText]}>{this.state.errorMessage}</Text>
+          ? <View style={[ss.center, ss.paddingBottom10]}>
+              <Text style={[ss.header]}>{this.state.errorMessage}</Text>
             </View>
           : <View>
             { this.state.prayerSent
-            ? <View style={ss.addViewSpacing}>
-                <Text style={[ss.header, ss.centerText]}>prayer successfully submitted</Text>
+            ? <View style={[ss.center, ss.paddingBottom10]}>
+                <Text style={[ss.header]}>prayer successfully submitted</Text>
               </View>
-            : <View style={ss.addViewSpacing}>
-                <Text style={[ss.header, ss.centerText]}>SUBMIT A PRAYER</Text>
+            : <View style={[ss.center, ss.paddingBottom10]}>
+                <Text style={[ss.header]}>SUBMIT A PRAYER</Text>
               </View> }
             </View>
           }
