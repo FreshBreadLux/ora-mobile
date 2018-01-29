@@ -63,14 +63,8 @@ export default class Accept extends React.Component {
     const prayer = this.state.currentPrayer
     if (userId) {
       axios.post(`${ROOT_URL}/api/flags`, {
-        flaggerUserId: userId,
-        flagCategory: category,
-        prayerId: prayer.id,
-        subject: prayer.subject,
-        body: prayer.body,
-        totalViews: prayer.totalViews,
-        totalFollows: prayer.totalFollows,
-        closed: prayer.closed,
+        flaggerId: userId,
+        flaggedId: prayer.id,
       })
       .then(() => {
         AlertIOS.alert(
@@ -88,9 +82,11 @@ export default class Accept extends React.Component {
   followPrayer() {
     const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
-    const alreadyFollowing = this.props.screenProps.follows.find(follow => {
+    const alreadyFollowing = this.props.screenProps.follows
+    ? this.props.screenProps.follows.find(follow => {
       return follow.prayerId === this.state.currentPrayer.id
     })
+    : null
     if (userId && !alreadyFollowing) {
       axios.post(`${ROOT_URL}/api/follows`, {
         userId, prayer
