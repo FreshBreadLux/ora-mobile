@@ -19,6 +19,7 @@ export default class SubmitForm extends React.Component {
   }
 
   submitPrayer() {
+    console.log('submit prayer props: ', this.props)
     if (this.state.subject && this.state.body) {
       Keyboard.dismiss()
       axios.post(`${ROOT_URL}/api/prayers`, {
