@@ -32,11 +32,14 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { userId, fetchUserTotalPrayers, prayerIdsOfViews } = this.props.screenProps
+    const { userId, fetchUserTotalPrayers, prayerIdsOfViews, addPrayerIdOfView } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, prayerIdsOfViews })
     .then(response => response.data)
     .then(obj => {
-      this.setState({ currentPrayer: obj.updatedPrayer })
+      addPrayerIdOfView(obj.newView[0][0].viewedId)
+      this.setState({
+        currentPrayer: obj.updatedPrayer
+      })
       Animated.timing(
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
@@ -128,7 +131,6 @@ export default class Accept extends React.Component {
   }
 
   render() {
-    console.log('Accept state: ', this.state)
     return (
       <View style={ss.invisiContainer}>
         <View style={ss.backgroundImageFrame}>

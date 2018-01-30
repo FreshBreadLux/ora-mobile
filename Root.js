@@ -23,6 +23,7 @@ export default class Root extends React.Component {
     }
     this.handleNotification = this.handleNotification.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
+    this.addPrayerIdOfView = this.addPrayerIdOfView.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
@@ -44,6 +45,10 @@ export default class Root extends React.Component {
 
   hideNotificationModal() {
     setTimeout(() => { this.setState({ notification: null }) }, 3000)
+  }
+
+  addPrayerIdOfView(prayerId) {
+    this.setState({prayerIdsOfViews: [...this.state.prayerIdsOfViews, prayerId]})
   }
 
   async verifyStorageKey() {
@@ -163,6 +168,7 @@ export default class Root extends React.Component {
           prayers: this.state.prayers,
           follows: this.state.follows,
           prayerIdsOfViews: this.state.prayerIdsOfViews,
+          addPrayerIdOfView: this.addPrayerIdOfView,
         }} />
       </View>
     )

@@ -5,9 +5,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import ss from '../StyleSheet'
 
-const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal, noPrayers }) => {
-  console.log('statePrayer: ', statePrayer)
-  return (
+const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
         <View style={ss.flex1}>
@@ -95,6 +93,6 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
         </Modal>
       </View>
   </SafeAreaView>
-  )}
+)
 
 export default CurrentPrayer
