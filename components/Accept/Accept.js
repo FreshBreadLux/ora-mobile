@@ -13,6 +13,7 @@ export default class Accept extends React.Component {
       currentPrayer: null,
       fadeAnim: new Animated.Value(0),
       visibleModal: null,
+      noPrayers: false,
     }
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.fadeOut = this.fadeOut.bind(this)
@@ -31,11 +32,11 @@ export default class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { userId, fetchUserTotalPrayers } = this.props.screenProps
-    axios.put(`${ROOT_URL}/api/prayers/next`, { userId })
+    const { userId, fetchUserTotalPrayers, prayerIdsOfViews } = this.props.screenProps
+    axios.put(`${ROOT_URL}/api/prayers/next`, { userId, prayerIdsOfViews })
     .then(response => response.data)
-    .then(prayer => {
-      this.setState({ currentPrayer: prayer })
+    .then(obj => {
+      this.setState({ currentPrayer: obj.updatedPrayer })
       Animated.timing(
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
@@ -44,7 +45,23 @@ export default class Accept extends React.Component {
     .then(() => {
       if (userId) fetchUserTotalPrayers(userId)
     })
-    .catch(console.error)
+    .catch(err => {
+      if (err.response.status === 404) {
+        this.setState({
+          currentPrayer: {
+            subject: 'Thank You',
+            body: 'There are currently no new prayers in the Ora Prayer Network. Please take some time to pray for the intentions that you have followed, and check back later to accept new prayer requests.'
+          },
+          noPrayers: true,
+        })
+        Animated.timing(
+          this.state.fadeAnim,
+          { toValue: 1, duration: 500 }
+        ).start()
+      } else {
+        console.error(err)
+      }
+    })
   }
 
   finishPraying() {
@@ -111,6 +128,7 @@ export default class Accept extends React.Component {
   }
 
   render() {
+    console.log('Accept state: ', this.state)
     return (
       <View style={ss.invisiContainer}>
         <View style={ss.backgroundImageFrame}>
@@ -135,6 +153,7 @@ export default class Accept extends React.Component {
                 opacity={this.state.fadeAnim}
                 visibleModal={this.state.visibleModal}
                 setModal={this.setModal}
+                noPrayers={this.state.noPrayers}
               />
             </View>
         }

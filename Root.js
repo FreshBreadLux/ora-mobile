@@ -16,6 +16,7 @@ export default class Root extends React.Component {
       jwToken: null,
       prayers: null,
       follows: null,
+      prayerIdsOfViews: null,
       userEmail: null,
       userTotalPrayers: null,
       notification: null,
@@ -25,6 +26,7 @@ export default class Root extends React.Component {
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
+    this.fetchUserViews = this.fetchUserViews.bind(this)
     this.fetchUserEmail = this.fetchUserEmail.bind(this)
     this.fetchUserTotalPrayers = this.fetchUserTotalPrayers.bind(this)
     this.userLogout = this.userLogout.bind(this)
@@ -55,6 +57,7 @@ export default class Root extends React.Component {
       })
       this.fetchUserPrayers(payloadJson.userId)
       this.fetchUserFollows(payloadJson.userId)
+      this.fetchUserViews(payloadJson.userId)
       this.fetchUserEmail(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
     }
@@ -73,7 +76,16 @@ export default class Root extends React.Component {
     const follows = await axios.get(`${ROOT_URL}/api/users/${userId}/follows`)
     if (follows) {
       this.setState({
-        follows: follows.data // TODO: CLEAN BACKEND
+        follows: follows.data
+      })
+    }
+  }
+
+  async fetchUserViews(userId) {
+    const prayerIdsOfViews = await axios.get(`${ROOT_URL}/api/users/${userId}/views`)
+    if (prayerIdsOfViews) {
+      this.setState({
+        prayerIdsOfViews: prayerIdsOfViews.data
       })
     }
   }
@@ -103,6 +115,7 @@ export default class Root extends React.Component {
         jwToken: null,
         prayers: null,
         follows: null,
+        prayerIdsOfViews: null,
         userEmail: null,
         userTotalPrayers: null,
         notification: null,
@@ -149,6 +162,7 @@ export default class Root extends React.Component {
           fetchUserPrayers: this.fetchUserPrayers,
           prayers: this.state.prayers,
           follows: this.state.follows,
+          prayerIdsOfViews: this.state.prayerIdsOfViews,
         }} />
       </View>
     )
