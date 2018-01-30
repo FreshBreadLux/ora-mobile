@@ -29,7 +29,7 @@ export default class Root extends React.Component {
     this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
     this.fetchUserViews = this.fetchUserViews.bind(this)
-    this.fetchUserEmail = this.fetchUserEmail.bind(this)
+    this.fetchUserInfo = this.fetchUserInfo.bind(this)
     this.fetchUserTotalPrayers = this.fetchUserTotalPrayers.bind(this)
     this.userLogout = this.userLogout.bind(this)
   }
@@ -64,7 +64,7 @@ export default class Root extends React.Component {
       this.fetchUserPrayers(payloadJson.userId)
       this.fetchUserFollows(payloadJson.userId)
       this.fetchUserViews(payloadJson.userId)
-      this.fetchUserEmail(payloadJson.userId)
+      this.fetchUserInfo(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
     }
   }
@@ -125,6 +125,7 @@ export default class Root extends React.Component {
         follows: null,
         prayerIdsOfViews: null,
         userEmail: null,
+        consecutiveDays: null,
         userTotalPrayers: null,
         notification: null,
       })
@@ -162,6 +163,7 @@ export default class Root extends React.Component {
           isLoggedIn: this.state.isLoggedIn,
           userLogout: this.userLogout,
           userEmail: this.state.userEmail,
+          consecutiveDays: this.state.consecutiveDays,
           userTotalPrayers: this.state.userTotalPrayers,
           userId: this.state.userId,
           fetchUserFollows: this.fetchUserFollows,

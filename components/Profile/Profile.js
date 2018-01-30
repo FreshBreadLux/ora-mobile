@@ -39,7 +39,7 @@ const Profile = ({ screenProps, navigation }) => (
               </View>
               <View style={ss.consecutiveDays}>
                 <Text style={ss.subHeader}>Consecutive{'\n'}Days Praying</Text>
-                <Text style={ss.subHeader}>Placeholder</Text>
+                <Text style={ss.subHeader}>{screenProps.consecutiveDays}</Text>
               </View>
               <View style={ss.addLargeViewSpacing}>
                 <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>

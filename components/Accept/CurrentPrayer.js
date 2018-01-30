@@ -42,17 +42,17 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
             ss.topBorder]}>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
-              onPress={() => setModal('about')}>
+              onPress={() => setModal('flag')}>
               <Feather
-                name="help-circle"
+                name="flag"
                 size={22}
                 color="#555" />
             </TouchableOpacity>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
-              onPress={() => setModal('flag')}>
+              onPress={() => setModal('about')}>
               <Feather
-                name="flag"
+                name="help-circle"
                 size={22}
                 color="#555" />
             </TouchableOpacity>
@@ -63,7 +63,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
                 name="heart"
                 size={22}
                 color={ follows && follows.find(follow => {
-                  return follow.prayerId === statePrayer.id
+                  return follow.id === statePrayer.id
                 }) ? '#FF4081' : '#555' } />
             </TouchableOpacity>
           </View>
