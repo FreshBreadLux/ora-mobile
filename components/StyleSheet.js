@@ -76,6 +76,9 @@ const ss = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  alignFlexEnd: {
+    alignSelf: 'flex-end'
+  },
   spaceAround: {
     justifyContent: 'space-around',
     alignItems: 'center',

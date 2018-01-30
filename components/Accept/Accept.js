@@ -38,7 +38,8 @@ export default class Accept extends React.Component {
     .then(obj => {
       addPrayerIdOfView(obj.newView[0][0].viewedId)
       this.setState({
-        currentPrayer: obj.updatedPrayer
+        currentPrayer: obj.updatedPrayer,
+        noPrayers: false,
       })
       Animated.timing(
         this.state.fadeAnim,

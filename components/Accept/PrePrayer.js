@@ -19,7 +19,7 @@ const PrePrayer = ({ navigation, loadNextPrayer }) => (
         onPress={() => navigation.navigate('About')}>
         <Feather
           name="help-circle"
-          size={26}
+          size={24}
           color="#fff"
         />
       </TouchableOpacity>

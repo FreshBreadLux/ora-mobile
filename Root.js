@@ -18,6 +18,7 @@ export default class Root extends React.Component {
       follows: null,
       prayerIdsOfViews: null,
       userEmail: null,
+      consecutiveDays: null,
       userTotalPrayers: null,
       notification: null,
     }
@@ -95,11 +96,13 @@ export default class Root extends React.Component {
     }
   }
 
-  async fetchUserEmail(userId) {
+  async fetchUserInfo(userId) {
     const user = await axios.get(`${ROOT_URL}/api/users/${userId}`)
     const userEmail = user.data.email
+    const consecutiveDays = user.data.consecutiveDays
     this.setState({
-      userEmail
+      userEmail,
+      consecutiveDays
     })
   }
 
