@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, TextInput, ScrollView } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
