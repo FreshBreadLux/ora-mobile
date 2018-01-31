@@ -9,6 +9,10 @@
     "react-native-keyboard-aware-scroll-view": "^0.4.2",
     "react-native-modal": "^4.1.1",
     "react-native-vector-icons": "^4.4.3",
-    "react-navigation": "^1.0.0-beta.21"
+    "react-navigation": "^1.0.0-beta.21",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
   }
 }
