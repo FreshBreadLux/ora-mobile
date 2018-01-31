@@ -36,7 +36,9 @@ export default class Accept extends React.Component {
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, prayerIdsOfViews })
     .then(response => response.data)
     .then(obj => {
-      addPrayerIdOfView(obj.newView[0][0].viewedId)
+      if (obj.newView) {
+        addPrayerIdOfView(obj.newView[0][0].viewedId)
+      }
       this.setState({
         currentPrayer: obj.updatedPrayer,
         noPrayers: false,
