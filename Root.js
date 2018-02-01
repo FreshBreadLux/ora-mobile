@@ -161,7 +161,6 @@ class Root extends React.Component {
           fetchUserFollows: this.fetchUserFollows,
           fetchUserTotalPrayers: this.fetchUserTotalPrayers,
           verifyStorageKey: this.verifyStorageKey,
-          fetchUserPrayers: this.fetchUserPrayers,
           prayers: this.props.prayers,
           follows: this.state.follows,
           prayerIdsOfViews: this.state.prayerIdsOfViews,
@@ -172,18 +171,14 @@ class Root extends React.Component {
   }
 }
 
-const mapState = state => {
-  return {
-    prayers: state.prayers,
-  }
-}
+const mapState = state => ({
+  prayers: state.prayers,
+})
 
-const mapDispatch = dispatch => {
-  return {
-    loadInitialData(userId) {
-      dispatch(fetchUserPrayers(userId))
-    }
+const mapDispatch = dispatch => ({
+  loadInitialData(userId) {
+    dispatch(fetchUserPrayers(userId))
   }
-}
+})
 
 export default connect(mapState, mapDispatch)(Root)

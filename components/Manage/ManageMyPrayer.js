@@ -1,12 +1,14 @@
 import React from 'react'
 import { Keyboard, SafeAreaView } from 'react-native'
+import { connect } from 'react-redux'
+import { fetchUserPrayers } from '../../store'
 import SinglePrayer from './SinglePrayer'
 import EditPrayer from './EditPrayer'
 import axios from 'axios'
 import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
-export default class ManageMyPrayer extends React.Component {
+class ManageMyPrayer extends React.Component {
   constructor(props) {
     super(props)
     const prayer = this.props.navigation.state.params.prayer
@@ -37,7 +39,7 @@ export default class ManageMyPrayer extends React.Component {
 
   updatePrayer() {
     Keyboard.dismiss()
-    const { fetchUserPrayers, userId } = this.props.screenProps
+    const { userId } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/update/${this.props.navigation.state.params.prayer.id}`, {
       subject: this.state.subject,
       body: this.state.body,
@@ -54,12 +56,12 @@ export default class ManageMyPrayer extends React.Component {
 
   togglePrayer(bool) {
     Keyboard.dismiss()
-    const { fetchUserPrayers, userId } = this.props.screenProps
+    const { userId } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/close/${this.props.navigation.state.params.prayer.id}`, {
       closed: bool
     })
     .then(() => {
-      fetchUserPrayers(userId)
+      this.props.refreshUserPrayers(userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -86,3 +88,11 @@ export default class ManageMyPrayer extends React.Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  refreshUserPrayers(userId) {
+    dispatch(fetchUserPrayers(userId))
+  }
+})
+
+export default connect(null, mapDispatch)(ManageMyPrayer)

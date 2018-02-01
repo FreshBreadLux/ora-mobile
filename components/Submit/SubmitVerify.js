@@ -23,7 +23,6 @@ const SubmitVerify = ({ screenProps }) => (
           verifyStorageKey={screenProps.verifyStorageKey}
         />
       : <SubmitForm
-          fetchUserPrayers={screenProps.fetchUserPrayers}
           userId={screenProps.userId}
         />
     }

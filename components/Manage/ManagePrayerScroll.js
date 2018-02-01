@@ -1,9 +1,11 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
-import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
+import { connect } from 'react-redux'
+import { fetchUserPrayers } from '../../store'
+import ss from '../StyleSheet'
 
-const ManagePrayerScroll = ({ screenProps, navigation }) => (
+const ManagePrayerScroll = ({ screenProps, navigation, refreshUserPrayers }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -45,7 +47,7 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
                     style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={prayer.id}
                     onPress={() => {
-                      screenProps.fetchUserPrayers(screenProps.userId)
+                      refreshUserPrayers(screenProps.userId)
                       navigation.navigate('MyPrayer', { prayer })
                     }}>
                     <Text
@@ -74,4 +76,10 @@ const ManagePrayerScroll = ({ screenProps, navigation }) => (
   </View>
 )
 
-export default ManagePrayerScroll
+const mapDispatch = dispatch => ({
+  refreshUserPrayers(userId) {
+    dispatch(fetchUserPrayers(userId))
+  }
+})
+
+export default connect(null, mapDispatch)(ManagePrayerScroll)

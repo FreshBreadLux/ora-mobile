@@ -1,11 +1,13 @@
 import React from 'react'
 import axios from 'axios'
 import { View, Text, TouchableOpacity, Keyboard, TextInput, SafeAreaView } from 'react-native'
+import { connect } from 'react-redux'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { fetchUserPrayers } from '../../store'
 import ROOT_URL from '../../config'
 import ss from '../StyleSheet'
 
-export default class SubmitForm extends React.Component {
+class SubmitForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -34,7 +36,7 @@ export default class SubmitForm extends React.Component {
           prayerSent: true,
           errorMessage: null,
         })
-        this.props.fetchUserPrayers(this.props.userId)
+        this.props.refreshUserPrayers(this.props.userId)
         setTimeout(() => this.setState({prayerSent: false}), 10000)
       })
       .catch(console.error)
@@ -104,3 +106,11 @@ export default class SubmitForm extends React.Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  refreshUserPrayers(userId) {
+    dispatch(fetchUserPrayers(userId))
+  }
+})
+
+export default connect(null, mapDispatch)(SubmitForm)
