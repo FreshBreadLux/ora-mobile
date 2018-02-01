@@ -1,12 +1,14 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
+import { connect } from 'react-redux'
+import { fetchUserFollows } from '../../store'
 import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
 import ROOT_URL from '../../config'
 import ss from '../StyleSheet'
 
-export default class Accept extends React.Component {
+class Accept extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -105,8 +107,8 @@ export default class Accept extends React.Component {
   followPrayer() {
     const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
-    const alreadyFollowing = this.props.screenProps.follows
-    ? this.props.screenProps.follows.find(follow => {
+    const alreadyFollowing = this.props.follows
+    ? this.props.follows.find(follow => {
       return follow.prayerId === this.state.currentPrayer.id
     })
     : null
@@ -115,7 +117,7 @@ export default class Accept extends React.Component {
         userId, prayer
       })
       .then(() => {
-        this.props.screenProps.fetchUserFollows(userId)
+        this.props.refreshUserFollows(userId)
         AlertIOS.alert(
           'You are now following this prayer',
           'You can manage the prayers you follow in the Follows section',
@@ -154,7 +156,6 @@ export default class Accept extends React.Component {
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
                 followPrayer={this.followPrayer}
-                follows={this.props.screenProps.follows}
                 opacity={this.state.fadeAnim}
                 visibleModal={this.state.visibleModal}
                 setModal={this.setModal}
@@ -166,3 +167,15 @@ export default class Accept extends React.Component {
     )
   }
 }
+
+const mapState = state => ({
+  follows: state.follows,
+})
+
+const mapDispatch = dispatch => ({
+  refreshUserFollows(userId) {
+    dispatch(fetchUserFollows(userId))
+  }
+})
+
+export default connect(mapState, mapDispatch)(Accept)

@@ -1,12 +1,14 @@
 import React from 'react'
 import { View, Text, ScrollView, TouchableOpacity, Keyboard, SafeAreaView } from 'react-native'
 import Modal from 'react-native-modal'
+import { connect } from 'react-redux'
+import { fetchUserFollows } from '../../store'
 import { UnfollowModalContent } from './Modals'
 import axios from 'axios'
 import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
-export default class ManageMyFollow extends React.Component {
+class ManageMyFollow extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,10 +24,10 @@ export default class ManageMyFollow extends React.Component {
 
   unfollowPrayer() {
     Keyboard.dismiss()
-    const { fetchUserFollows, userId } = this.props.screenProps
+    const { userId } = this.props.screenProps
     axios.delete(`${ROOT_URL}/api/follows/${this.props.navigation.state.params.follow.id}`)
     .then(() => {
-      fetchUserFollows(userId)
+      this.props.refreshUserFollows(userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -60,3 +62,11 @@ export default class ManageMyFollow extends React.Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  refreshUserFollows(userId) {
+    dispatch(fetchUserFollows(userId))
+  }
+})
+
+export default connect(null, mapDispatch)(ManageMyFollow)

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
+import { connect } from 'react-redux'
 import Modal from 'react-native-modal'
 import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
@@ -100,4 +101,8 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
   </SafeAreaView>
 )
 
-export default CurrentPrayer
+const mapState = state => ({
+  follows:  state.follows,
+})
+
+export default connect(mapState)(CurrentPrayer)

@@ -1,9 +1,10 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
+import { connect } from 'react-redux'
 import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const ManageFollowScroll = ({ screenProps, navigation }) => (
+const ManageFollowScroll = ({ follows, screenProps, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -36,11 +37,11 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
             <View style={[ss.center, ss.titleBottomBorderWhite]}>
               <Text style={[ss.header]}>FOLLOWS</Text>
             </View>
-            {screenProps.follows && screenProps.follows.length
+            {follows && follows.length
             ? <View style={[ss.flex1, ss.center]}>
                 <ScrollView
                   showsVerticalScrollIndicator={false}>
-                { screenProps.follows.map(follow => (
+                { follows.map(follow => (
                   <TouchableOpacity
                     style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={follow.id}
@@ -72,5 +73,8 @@ const ManageFollowScroll = ({ screenProps, navigation }) => (
   </View>
 )
 
+const mapState = state => ({
+  follows: state.follows,
+})
 
-export default ManageFollowScroll
+export default connect(mapState)(ManageFollowScroll)

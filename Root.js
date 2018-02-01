@@ -3,7 +3,7 @@ import { View, Text, AsyncStorage, AlertIOS } from 'react-native'
 import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers } from './store'
+import { fetchUserPrayers, fetchUserFollows } from './store'
 import axios from 'axios'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
@@ -16,7 +16,6 @@ class Root extends React.Component {
       isLoggedIn: false,
       userId: null,
       jwToken: null,
-      follows: null,
       prayerIdsOfViews: null,
       userEmail: null,
       consecutiveDays: null,
@@ -27,7 +26,6 @@ class Root extends React.Component {
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.addPrayerIdOfView = this.addPrayerIdOfView.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
-    this.fetchUserFollows = this.fetchUserFollows.bind(this)
     this.fetchUserViews = this.fetchUserViews.bind(this)
     this.fetchUserInfo = this.fetchUserInfo.bind(this)
     this.fetchUserTotalPrayers = this.fetchUserTotalPrayers.bind(this)
@@ -62,19 +60,9 @@ class Root extends React.Component {
         jwToken: payloadJson.jwToken,
       })
       this.props.loadInitialData(payloadJson.userId)
-      this.fetchUserFollows(payloadJson.userId)
       this.fetchUserViews(payloadJson.userId)
       this.fetchUserInfo(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
-    }
-  }
-
-  async fetchUserFollows(userId) {
-    const follows = await axios.get(`${ROOT_URL}/api/users/${userId}/follows`)
-    if (follows) {
-      this.setState({
-        follows: follows.data
-      })
     }
   }
 
@@ -158,11 +146,8 @@ class Root extends React.Component {
           consecutiveDays: this.state.consecutiveDays,
           userTotalPrayers: this.state.userTotalPrayers,
           userId: this.state.userId,
-          fetchUserFollows: this.fetchUserFollows,
           fetchUserTotalPrayers: this.fetchUserTotalPrayers,
           verifyStorageKey: this.verifyStorageKey,
-          prayers: this.props.prayers,
-          follows: this.state.follows,
           prayerIdsOfViews: this.state.prayerIdsOfViews,
           addPrayerIdOfView: this.addPrayerIdOfView,
         }} />
@@ -173,11 +158,13 @@ class Root extends React.Component {
 
 const mapState = state => ({
   prayers: state.prayers,
+  follows: state.follows,
 })
 
 const mapDispatch = dispatch => ({
   loadInitialData(userId) {
     dispatch(fetchUserPrayers(userId))
+    dispatch(fetchUserFollows(userId))
   }
 })
 
