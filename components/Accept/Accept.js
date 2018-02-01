@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows } from '../../store'
+import { fetchUserFollows, addView } from '../../store'
 import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
@@ -34,12 +34,13 @@ class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { userId, fetchUserTotalPrayers, prayerIdsOfViews, addPrayerIdOfView } = this.props.screenProps
-    axios.put(`${ROOT_URL}/api/prayers/next`, { userId, prayerIdsOfViews })
+    const { userId, fetchUserTotalPrayers } = this.props.screenProps
+    const { views, addNewView } = this.props
+    axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
     .then(obj => {
       if (obj.newView) {
-        addPrayerIdOfView(obj.newView[0][0].viewedId)
+        addNewView(obj.newView[0][0].viewedId)
       }
       this.setState({
         currentPrayer: obj.updatedPrayer,
@@ -170,11 +171,15 @@ class Accept extends React.Component {
 
 const mapState = state => ({
   follows: state.follows,
+  views: state.views,
 })
 
 const mapDispatch = dispatch => ({
   refreshUserFollows(userId) {
     dispatch(fetchUserFollows(userId))
+  },
+  addNewView(viewedId) {
+    dispatch(addView(viewedId))
   }
 })
 

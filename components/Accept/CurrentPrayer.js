@@ -102,7 +102,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
 )
 
 const mapState = state => ({
-  follows:  state.follows,
+  follows: state.follows,
 })
 
 export default connect(mapState)(CurrentPrayer)

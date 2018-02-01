@@ -3,7 +3,7 @@ import { View, Text, AsyncStorage, AlertIOS } from 'react-native'
 import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows } from './store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews } from './store'
 import axios from 'axios'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
@@ -16,7 +16,6 @@ class Root extends React.Component {
       isLoggedIn: false,
       userId: null,
       jwToken: null,
-      prayerIdsOfViews: null,
       userEmail: null,
       consecutiveDays: null,
       userTotalPrayers: null,
@@ -24,9 +23,7 @@ class Root extends React.Component {
     }
     this.handleNotification = this.handleNotification.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
-    this.addPrayerIdOfView = this.addPrayerIdOfView.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
-    this.fetchUserViews = this.fetchUserViews.bind(this)
     this.fetchUserInfo = this.fetchUserInfo.bind(this)
     this.fetchUserTotalPrayers = this.fetchUserTotalPrayers.bind(this)
     this.userLogout = this.userLogout.bind(this)
@@ -46,10 +43,6 @@ class Root extends React.Component {
     setTimeout(() => { this.setState({ notification: null }) }, 3000)
   }
 
-  addPrayerIdOfView(prayerId) {
-    this.setState({prayerIdsOfViews: [...this.state.prayerIdsOfViews, prayerId]})
-  }
-
   async verifyStorageKey() {
     const payload = await AsyncStorage.getItem('payload')
     const payloadJson = JSON.parse(payload)
@@ -60,18 +53,8 @@ class Root extends React.Component {
         jwToken: payloadJson.jwToken,
       })
       this.props.loadInitialData(payloadJson.userId)
-      this.fetchUserViews(payloadJson.userId)
       this.fetchUserInfo(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
-    }
-  }
-
-  async fetchUserViews(userId) {
-    const prayerIdsOfViews = await axios.get(`${ROOT_URL}/api/users/${userId}/views`)
-    if (prayerIdsOfViews) {
-      this.setState({
-        prayerIdsOfViews: prayerIdsOfViews.data
-      })
     }
   }
 
@@ -116,7 +99,6 @@ class Root extends React.Component {
 
   render() {
     console.log('state: ', this.state)
-    console.log('props: ', this.props)
     return (
       <View style={ss.invisiContainer}>
         <Modal
@@ -148,8 +130,6 @@ class Root extends React.Component {
           userId: this.state.userId,
           fetchUserTotalPrayers: this.fetchUserTotalPrayers,
           verifyStorageKey: this.verifyStorageKey,
-          prayerIdsOfViews: this.state.prayerIdsOfViews,
-          addPrayerIdOfView: this.addPrayerIdOfView,
         }} />
       </View>
     )
@@ -159,12 +139,14 @@ class Root extends React.Component {
 const mapState = state => ({
   prayers: state.prayers,
   follows: state.follows,
+  views: state.views,
 })
 
 const mapDispatch = dispatch => ({
   loadInitialData(userId) {
     dispatch(fetchUserPrayers(userId))
     dispatch(fetchUserFollows(userId))
+    dispatch(fetchUserViews(userId))
   }
 })
 

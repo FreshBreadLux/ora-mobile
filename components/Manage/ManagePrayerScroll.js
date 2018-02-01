@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchUserPrayers } from '../../store'
 import ss from '../StyleSheet'
 
-const ManagePrayerScroll = ({ screenProps, navigation, refreshUserPrayers }) => (
+const ManagePrayerScroll = ({ prayers, refreshUserPrayers, screenProps, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -38,11 +38,11 @@ const ManagePrayerScroll = ({ screenProps, navigation, refreshUserPrayers }) => 
             <View style={[ss.center, ss.titleBottomBorderWhite]}>
               <Text style={[ss.header]}>PRAYERS</Text>
             </View>
-            {screenProps.prayers && screenProps.prayers.length
+            {prayers && prayers.length
             ? <View style={[ss.flex1, ss.center]}>
                 <ScrollView
                   showsVerticalScrollIndicator={false}>
-                { screenProps.prayers.map(prayer => (
+                { prayers.map(prayer => (
                   <TouchableOpacity
                     style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={prayer.id}
@@ -76,10 +76,14 @@ const ManagePrayerScroll = ({ screenProps, navigation, refreshUserPrayers }) => 
   </View>
 )
 
+const mapState = state => ({
+  prayers: state.prayers,
+})
+
 const mapDispatch = dispatch => ({
   refreshUserPrayers(userId) {
     dispatch(fetchUserPrayers(userId))
   }
 })
 
-export default connect(null, mapDispatch)(ManagePrayerScroll)
+export default connect(mapState, mapDispatch)(ManagePrayerScroll)
