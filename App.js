@@ -1,7 +1,9 @@
 import React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { Image } from 'react-native'
+import { Provider } from 'react-redux'
 import Root from './Root'
+import store from './store'
 
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
@@ -57,7 +59,9 @@ export default class App extends React.Component {
       )
     }
     return (
-      <Root />
+      <Provider store={store}>
+        <Root />
+      </Provider>
     )
   }
 }

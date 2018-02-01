@@ -1,20 +1,21 @@
 import React from 'react'
 import { View, Text, AsyncStorage, AlertIOS } from 'react-native'
-import { Notifications } from 'expo'
-import MainNav from './MainNav'
-import axios from 'axios'
-import ROOT_URL from './config'
 import Modal from 'react-native-modal'
+import { Notifications } from 'expo'
+import { connect } from 'react-redux'
+import { fetchUserPrayers } from './store'
+import axios from 'axios'
+import MainNav from './MainNav'
 import ss from './components/StyleSheet'
+import ROOT_URL from './config'
 
-export default class Root extends React.Component {
+class Root extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isLoggedIn: false,
       userId: null,
       jwToken: null,
-      prayers: null,
       follows: null,
       prayerIdsOfViews: null,
       userEmail: null,
@@ -26,7 +27,6 @@ export default class Root extends React.Component {
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.addPrayerIdOfView = this.addPrayerIdOfView.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
-    this.fetchUserPrayers = this.fetchUserPrayers.bind(this)
     this.fetchUserFollows = this.fetchUserFollows.bind(this)
     this.fetchUserViews = this.fetchUserViews.bind(this)
     this.fetchUserInfo = this.fetchUserInfo.bind(this)
@@ -61,20 +61,11 @@ export default class Root extends React.Component {
         userId: payloadJson.userId,
         jwToken: payloadJson.jwToken,
       })
-      this.fetchUserPrayers(payloadJson.userId)
+      this.props.loadInitialData(payloadJson.userId)
       this.fetchUserFollows(payloadJson.userId)
       this.fetchUserViews(payloadJson.userId)
       this.fetchUserInfo(payloadJson.userId)
       this.fetchUserTotalPrayers(payloadJson.userId)
-    }
-  }
-
-  async fetchUserPrayers(userId) {
-    const prayers = await axios.get(`${ROOT_URL}/api/users/${userId}/prayers`)
-    if (prayers) {
-      this.setState({
-        prayers: prayers.data
-      })
     }
   }
 
@@ -170,7 +161,7 @@ export default class Root extends React.Component {
           fetchUserTotalPrayers: this.fetchUserTotalPrayers,
           verifyStorageKey: this.verifyStorageKey,
           fetchUserPrayers: this.fetchUserPrayers,
-          prayers: this.state.prayers,
+          prayers: this.props.prayers,
           follows: this.state.follows,
           prayerIdsOfViews: this.state.prayerIdsOfViews,
           addPrayerIdOfView: this.addPrayerIdOfView,
@@ -179,3 +170,19 @@ export default class Root extends React.Component {
     )
   }
 }
+
+const mapState = state => {
+  return {
+    prayers: state.prayers,
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    loadInitialData(userId) {
+      dispatch(fetchUserPrayers(userId))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(Root)
