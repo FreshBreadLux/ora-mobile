@@ -1,13 +1,31 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
+import { logout } from '../../store'
 import { determineChoirTitle, determineChoirName } from './DetermineChoirFunc'
 import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 import { Feather } from '@expo/vector-icons'
 
-const Profile = ({ userInfo, isLoggedIn, screenProps, navigation }) => {
-  return (
+class Profile extends React.Component {
+  constructor(props) {
+    super(props)
+    this.userLogout = this.userLogout.bind(this)
+  }
+
+  async userLogout() {
+    try {
+      await AsyncStorage.removeItem('payload')
+      this.props.logUserOut()
+      AlertIOS.alert('Logout Successful')
+    } catch (error) {
+      console.error('AsyncStorage error: ' + error.message)
+    }
+  }
+
+  render() {
+    const { userInfo, isLoggedIn, navigation } = this.props
+    return (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -98,13 +116,13 @@ const Profile = ({ userInfo, isLoggedIn, screenProps, navigation }) => {
             </View>
           </LinearGradient>
           <View style={[ss.editHeight, ss.center]}>
-            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.{'\n'}-{'\n'}</Text>
-            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText]}>Revelation 8:4</Text>
+            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.</Text>
+            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText]}>- Revelation 8:4</Text>
           </View>
           <View style={[ss.addLargeViewSpacing, ss.whiteContainer, ss.center]}>
             <TouchableOpacity
               style={[ss.halfWidth, ss.blackButton]}
-              onPress={screenProps.userLogout}>
+              onPress={this.userLogout}>
               <Text style={[ss.buttonText, ss.whiteText]}>logout</Text>
             </TouchableOpacity>
           </View>
@@ -122,11 +140,19 @@ const Profile = ({ userInfo, isLoggedIn, screenProps, navigation }) => {
       </SafeAreaView>
     }
   </View>
-)}
+    )
+  }
+}
 
 const mapState = state => ({
   userInfo: state.userInfo,
   isLoggedIn: state.auth.isLoggedIn,
 })
 
-export default connect(mapState)(Profile)
+const mapDispatch = dispatch => ({
+  logUserOut() {
+    dispatch(logout())
+  }
+})
+
+export default connect(mapState, mapDispatch)(Profile)

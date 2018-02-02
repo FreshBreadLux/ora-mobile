@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, AsyncStorage, AlertIOS } from 'react-native'
+import { View, Text, AsyncStorage } from 'react-native'
 import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login, logout } from './store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login } from './store'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
 
@@ -16,7 +16,6 @@ class Root extends React.Component {
     this.handleNotification = this.handleNotification.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
-    this.userLogout = this.userLogout.bind(this)
   }
 
   componentDidMount() {
@@ -39,16 +38,6 @@ class Root extends React.Component {
     if (payloadJson) {
       this.props.logUserIn(payloadJson)
       this.props.loadInitialData(payloadJson.userId)
-    }
-  }
-
-  async userLogout() {
-    try {
-      await AsyncStorage.removeItem('payload')
-      this.props.logUserOut()
-      AlertIOS.alert('Logout Successful')
-    } catch (error) {
-      console.error('AsyncStorage error: ' + error.message)
     }
   }
 
@@ -76,8 +65,7 @@ class Root extends React.Component {
           </View>
         </Modal>
         <MainNav screenProps={{
-          userLogout: this.userLogout,
-          verifyStorageKey: this.verifyStorageKey,
+          verifyStorageKey: this.verifyStorageKey
         }} />
       </View>
     )
@@ -93,9 +81,6 @@ const mapDispatch = dispatch => ({
   },
   logUserIn(payloadJson) {
     dispatch(login(payloadJson))
-  },
-  logUserOut() {
-    dispatch(logout())
   }
 })
 
