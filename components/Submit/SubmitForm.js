@@ -21,7 +21,6 @@ class SubmitForm extends React.Component {
   }
 
   submitPrayer() {
-    console.log('submit prayer props: ', this.props)
     if (this.state.subject && this.state.body) {
       Keyboard.dismiss()
       axios.post(`${ROOT_URL}/api/prayers`, {
@@ -107,10 +106,14 @@ class SubmitForm extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userId: state.auth.userId,
+})
+
 const mapDispatch = dispatch => ({
   refreshUserPrayers(userId) {
     dispatch(fetchUserPrayers(userId))
   }
 })
 
-export default connect(null, mapDispatch)(SubmitForm)
+export default connect(mapState, mapDispatch)(SubmitForm)

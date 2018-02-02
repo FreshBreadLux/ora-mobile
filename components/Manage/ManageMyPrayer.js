@@ -39,7 +39,6 @@ class ManageMyPrayer extends React.Component {
 
   updatePrayer() {
     Keyboard.dismiss()
-    const { userId } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/update/${this.props.navigation.state.params.prayer.id}`, {
       subject: this.state.subject,
       body: this.state.body,
@@ -48,7 +47,7 @@ class ManageMyPrayer extends React.Component {
       this.setState({
         editMode: false
       })
-      fetchUserPrayers(userId)
+      fetchUserPrayers(this.props.userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -56,12 +55,11 @@ class ManageMyPrayer extends React.Component {
 
   togglePrayer(bool) {
     Keyboard.dismiss()
-    const { userId } = this.props.screenProps
     axios.put(`${ROOT_URL}/api/prayers/close/${this.props.navigation.state.params.prayer.id}`, {
       closed: bool
     })
     .then(() => {
-      this.props.refreshUserPrayers(userId)
+      this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -89,10 +87,14 @@ class ManageMyPrayer extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userId: state.auth.userId,
+})
+
 const mapDispatch = dispatch => ({
   refreshUserPrayers(userId) {
     dispatch(fetchUserPrayers(userId))
   }
 })
 
-export default connect(null, mapDispatch)(ManageMyPrayer)
+export default connect(mapState, mapDispatch)(ManageMyPrayer)

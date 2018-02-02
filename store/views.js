@@ -1,5 +1,6 @@
 import axios from 'axios'
 import ROOT_URL from '../config'
+import { LOGOUT } from './auth'
 
 /**
  * ACTION TYPES
@@ -40,6 +41,8 @@ export default function(state = defaultViews, action) {
     case ADD_VIEW:
      return [...state, action.view]
     case REMOVE_VIEWS:
+      return defaultViews
+    case LOGOUT:
       return defaultViews
     default:
      return state

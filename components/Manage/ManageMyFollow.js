@@ -24,10 +24,10 @@ class ManageMyFollow extends React.Component {
 
   unfollowPrayer() {
     Keyboard.dismiss()
-    const { userId } = this.props.screenProps
-    axios.delete(`${ROOT_URL}/api/follows/${this.props.navigation.state.params.follow.id}`)
+    const { followedId, followerId } = this.props.navigation.state.params.follow.follow
+    axios.delete(`${ROOT_URL}/api/follows/followedId/${followedId}/followerId/${followerId}`)
     .then(() => {
-      this.props.refreshUserFollows(userId)
+      this.props.refreshUserFollows(this.props.userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -63,10 +63,14 @@ class ManageMyFollow extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userId: state.auth.userId,
+})
+
 const mapDispatch = dispatch => ({
   refreshUserFollows(userId) {
     dispatch(fetchUserFollows(userId))
   }
 })
 
-export default connect(null, mapDispatch)(ManageMyFollow)
+export default connect(mapState, mapDispatch)(ManageMyFollow)

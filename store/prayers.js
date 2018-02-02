@@ -1,5 +1,6 @@
 import axios from 'axios'
 import ROOT_URL from '../config'
+import { LOGOUT } from './auth'
 
 /**
  * ACTION TYPES
@@ -36,6 +37,8 @@ export default function(state = defaultPrayers, action) {
     case GET_PRAYERS:
      return action.prayers
     case REMOVE_PRAYERS:
+      return defaultPrayers
+    case LOGOUT:
       return defaultPrayers
     default:
      return state

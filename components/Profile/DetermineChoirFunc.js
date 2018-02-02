@@ -101,21 +101,21 @@ export const determineChoirText = userTotalPrayers => {
     default:
       return (
         <View style={ss.invisiContainer}>
-          <View style={ss.backgroundImageFrame}>
-            <Image
-              source={require('../../assets/images/Choirs.jpg')}
-              style={ss.backgroundImage}
-            />
-          </View>
-          <ScrollView>
-            <View style={[ss.center, ss.addViewSpacing, ss.whiteBackground, ss.padding15]}>
-              <Text style={[ss.header, ss.padding15]}>WELCOME TO ORA</Text>
-            </View>
-            <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>Christians believe that God has organized the entirety of creation in a hierarchical fashion. This belief in a hierarchy extends to the realm of angels, and for the past two thousand years theologians have speculated about the nature and structure of the hierarchy of angels. Our understanding comes from references to angels in Sacred Scripture, the teachings of the early Church Fathers, and guidance of Sacred Tradition.</Text>
-            </View>
-          </ScrollView>
+        <View style={ss.backgroundImageFrame}>
+          <Image
+            source={require('../../assets/images/Choirs.jpg')}
+            style={ss.backgroundImage}
+          />
         </View>
+        <ScrollView>
+          <View style={[ss.center, ss.addViewSpacing, ss.whiteBackground, ss.padding15]}>
+            <Text style={[ss.header, ss.padding15]}>WELCOME TO ORA</Text>
+          </View>
+          <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
+            <Text style={ss.body}>We hope you're enjoying the app. Once you've accepted more prayers, come back and visit this page to learn a little about the hierarchical nature of the Nine Choirs.</Text>
+          </View>
+        </ScrollView>
+      </View>
       )
   }
 }

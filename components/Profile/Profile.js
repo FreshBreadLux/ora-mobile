@@ -1,19 +1,20 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
+import { connect } from 'react-redux'
 import { determineChoirTitle, determineChoirName } from './DetermineChoirFunc'
 import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 import { Feather } from '@expo/vector-icons'
 
-const Profile = ({ screenProps, navigation }) => (
+const Profile = ({ userInfo, isLoggedIn, screenProps, navigation }) => {
+  return (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
         source={require('../../assets/images/Rome-Profile.jpg')}
-        style={ss.backgroundImage}
-      />
+        style={ss.backgroundImage} />
     </View>
-    {screenProps.isLoggedIn
+    {isLoggedIn
     ? <SafeAreaView style={ss.invisiContainer}>
         <View style={ss.proflileHeader}>
           <Text style={ss.header}>PROFILE</Text>
@@ -27,23 +28,23 @@ const Profile = ({ screenProps, navigation }) => (
             style={ss.flex1}>
             <View style={ss.padding15}>
               <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
-                { determineChoirName(screenProps.userTotalPrayers) }
+                { determineChoirName(userInfo.totalPrayers) }
                 <TouchableOpacity
                   style={[ss.button, ss.halfWidth]}
-                  onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: screenProps.userTotalPrayers })}>
-                  { determineChoirTitle(screenProps.userTotalPrayers) }
+                  onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: userInfo.totalPrayers })}>
+                  { determineChoirTitle(userInfo.totalPrayers) }
                 </TouchableOpacity>
               </View>
               <View style={ss.addLargeViewSpacing}>
-                <Text style={[ss.subHeader, ss.whiteText]}>{`${screenProps.userEmail}`}</Text>
+                <Text style={[ss.subHeader, ss.whiteText]}>{`${userInfo.email}`}</Text>
               </View>
               <View style={ss.consecutiveDays}>
                 <Text style={ss.subHeader}>Consecutive{'\n'}Days Praying</Text>
-                <Text style={ss.subHeader}>{screenProps.consecutiveDays}</Text>
+                <Text style={ss.subHeader}>{userInfo.consecutiveDays}</Text>
               </View>
               <View style={ss.addLargeViewSpacing}>
                 <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>
-                <Text style={ss.choirName}>{screenProps.userTotalPrayers}</Text>
+                <Text style={ss.choirName}>{userInfo.totalPrayers}</Text>
               </View>
               <View style={[ss.addViewSpacing]}>
                 <TouchableOpacity
@@ -121,6 +122,11 @@ const Profile = ({ screenProps, navigation }) => (
       </SafeAreaView>
     }
   </View>
-)
+)}
 
-export default Profile
+const mapState = state => ({
+  userInfo: state.userInfo,
+  isLoggedIn: state.auth.isLoggedIn,
+})
+
+export default connect(mapState)(Profile)

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const ManageFollowScroll = ({ follows, screenProps, navigation }) => (
+const ManageFollowScroll = ({ isLoggedIn, follows, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -12,7 +12,7 @@ const ManageFollowScroll = ({ follows, screenProps, navigation }) => (
         style={ss.backgroundImage}
       />
     </View>
-    {!screenProps.userId
+    {!isLoggedIn
     ? <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.invisiContainer, ss.padding15]}>
           <View style={[ss.flex1, ss.center]}>
@@ -75,6 +75,7 @@ const ManageFollowScroll = ({ follows, screenProps, navigation }) => (
 
 const mapState = state => ({
   follows: state.follows,
+  isLoggedIn: state.auth.isLoggedIn,
 })
 
 export default connect(mapState)(ManageFollowScroll)

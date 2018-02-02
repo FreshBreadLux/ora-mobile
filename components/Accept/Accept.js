@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, addView } from '../../store'
+import { fetchUserFollows, fetchUserInfo, addView } from '../../store'
 import PrePrayer from './PrePrayer'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
@@ -34,8 +34,7 @@ class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { userId, fetchUserTotalPrayers } = this.props.screenProps
-    const { views, addNewView } = this.props
+    const { views, addNewView, userId } = this.props
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
     .then(obj => {
@@ -52,7 +51,7 @@ class Accept extends React.Component {
       ).start()
     })
     .then(() => {
-      if (userId) fetchUserTotalPrayers(userId)
+      if (userId) this.props.refreshUserInfo(userId)
     })
     .catch(err => {
       if (err.response.status === 404) {
@@ -85,11 +84,10 @@ class Accept extends React.Component {
   }
 
   flagPrayer(category) {
-    const userId = this.props.screenProps.userId
     const prayer = this.state.currentPrayer
-    if (userId) {
+    if (this.props.isLoggedIn) {
       axios.post(`${ROOT_URL}/api/flags`, {
-        flaggerId: userId,
+        flaggerId: this.props.userId,
         flaggedId: prayer.id,
       })
       .then(() => {
@@ -106,26 +104,24 @@ class Accept extends React.Component {
   }
 
   followPrayer() {
-    const userId = this.props.screenProps.userId
+    const { isLoggedIn, userId, follows, refreshUserFollows } = this.props
     const prayer = this.state.currentPrayer
-    const alreadyFollowing = this.props.follows
-    ? this.props.follows.find(follow => {
+    const alreadyFollowing = follows
+    ? follows.find(follow => {
       return follow.prayerId === this.state.currentPrayer.id
     })
     : null
-    if (userId && !alreadyFollowing) {
-      axios.post(`${ROOT_URL}/api/follows`, {
-        userId, prayer
-      })
+    if (isLoggedIn && !alreadyFollowing) {
+      axios.post(`${ROOT_URL}/api/follows`, { userId, prayer })
       .then(() => {
-        this.props.refreshUserFollows(userId)
+        refreshUserFollows(userId)
         AlertIOS.alert(
           'You are now following this prayer',
           'You can manage the prayers you follow in the Follows section',
           () => this.setModal(null))
       })
       .catch(console.error)
-    } else if (userId && alreadyFollowing) {
+    } else if (isLoggedIn && alreadyFollowing) {
       AlertIOS.alert('You are already following this prayer',
       'You can manage the prayers you follow in the Follows section',
       () => this.setModal(null))
@@ -172,6 +168,8 @@ class Accept extends React.Component {
 const mapState = state => ({
   follows: state.follows,
   views: state.views,
+  userId: state.auth.userId,
+  isLoggedIn: state.auth.isLoggedIn,
 })
 
 const mapDispatch = dispatch => ({
@@ -180,7 +178,10 @@ const mapDispatch = dispatch => ({
   },
   addNewView(viewedId) {
     dispatch(addView(viewedId))
-  }
+  },
+  refreshUserInfo(userId) {
+    dispatch(fetchUserInfo(userId))
+  },
 })
 
 export default connect(mapState, mapDispatch)(Accept)

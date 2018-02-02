@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { fetchUserPrayers } from '../../store'
 import ss from '../StyleSheet'
 
-const ManagePrayerScroll = ({ prayers, refreshUserPrayers, screenProps, navigation }) => (
+const ManagePrayerScroll = ({ isLoggedIn, userId, prayers, refreshUserPrayers, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -13,7 +13,7 @@ const ManagePrayerScroll = ({ prayers, refreshUserPrayers, screenProps, navigati
         style={ss.backgroundImage}
       />
     </View>
-    {!screenProps.userId
+    {!isLoggedIn
     ? <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.invisiContainer, ss.padding15]}>
           <View style={[ss.flex1, ss.center]}>
@@ -47,7 +47,7 @@ const ManagePrayerScroll = ({ prayers, refreshUserPrayers, screenProps, navigati
                     style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={prayer.id}
                     onPress={() => {
-                      refreshUserPrayers(screenProps.userId)
+                      refreshUserPrayers(userId)
                       navigation.navigate('MyPrayer', { prayer })
                     }}>
                     <Text
@@ -78,6 +78,8 @@ const ManagePrayerScroll = ({ prayers, refreshUserPrayers, screenProps, navigati
 
 const mapState = state => ({
   prayers: state.prayers,
+  isLoggedIn: state.auth.isLoggedIn,
+  userId: state.auth.userId,
 })
 
 const mapDispatch = dispatch => ({

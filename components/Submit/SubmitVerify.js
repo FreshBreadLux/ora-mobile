@@ -1,11 +1,12 @@
 import React from 'react'
 import { View, Image } from 'react-native'
+import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
 import SubmitForm from './SubmitForm'
 import ss from '../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const SubmitVerify = ({ screenProps }) => (
+const SubmitVerify = ({ isLoggedIn, screenProps }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -18,15 +19,16 @@ const SubmitVerify = ({ screenProps }) => (
         start={[0.5, 0.35]}
         style={ss.flex1} />
     </View>
-    { !screenProps.isLoggedIn
+    { !isLoggedIn
       ? <LoginForm
-          verifyStorageKey={screenProps.verifyStorageKey}
-        />
-      : <SubmitForm
-          userId={screenProps.userId}
-        />
+          verifyStorageKey={screenProps.verifyStorageKey} />
+      : <SubmitForm />
     }
   </View>
 )
 
-export default SubmitVerify
+const mapState = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
+})
+
+export default connect(mapState)(SubmitVerify)
