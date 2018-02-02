@@ -5,7 +5,10 @@ import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login } from './store'
 import MainNav from './MainNav'
+import SocketIOClient from 'socket.io-client'
+import socketProcessor from './socket'
 import ss from './components/StyleSheet'
+import ROOT_URL from './config'
 
 class Root extends React.Component {
   constructor(props) {
@@ -16,6 +19,9 @@ class Root extends React.Component {
     this.handleNotification = this.handleNotification.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
+
+    this.io = SocketIOClient(ROOT_URL)
+    socketProcessor(this.io)
   }
 
   componentDidMount() {
