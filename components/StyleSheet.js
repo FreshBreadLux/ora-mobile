@@ -152,6 +152,9 @@ const ss = StyleSheet.create({
   redText: {
     color: 'red',
   },
+  greyText: {
+    color: '#555'
+  },
   blackTextShadow: {
     fontWeight: 'bold',
     textShadowColor: '#000',
@@ -229,6 +232,13 @@ const ss = StyleSheet.create({
     borderRadius: 6,
     padding: 8,
     width: '49%',
+    alignItems: 'center',
+  },
+  smallButton: {
+    backgroundColor: '#000',
+    borderRadius: 6,
+    padding: 8,
+    width: '24%',
     alignItems: 'center',
   },
   cancelButton: {

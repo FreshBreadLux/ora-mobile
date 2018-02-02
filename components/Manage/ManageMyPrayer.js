@@ -22,6 +22,7 @@ class ManageMyPrayer extends React.Component {
     this.setBody = this.setBody.bind(this)
     this.updatePrayer = this.updatePrayer.bind(this)
     this.togglePrayer = this.togglePrayer.bind(this)
+    this.deletePrayer = this.deletePrayer.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
   }
 
@@ -54,10 +55,18 @@ class ManageMyPrayer extends React.Component {
   }
 
   togglePrayer(bool) {
-    Keyboard.dismiss()
     axios.put(`${ROOT_URL}/api/prayers/close/${this.props.navigation.state.params.prayer.id}`, {
       closed: bool
     })
+    .then(() => {
+      this.props.refreshUserPrayers(this.props.userId)
+      this.props.navigation.goBack()
+    })
+    .catch(console.error)
+  }
+
+  deletePrayer() {
+    axios.delete(`${ROOT_URL}/api/prayers/${this.props.navigation.state.params.prayer.id}`)
     .then(() => {
       this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
@@ -80,6 +89,7 @@ class ManageMyPrayer extends React.Component {
               setModal={this.setModal}
               toggleEdit={this.toggleEdit}
               togglePrayer={this.togglePrayer}
+              deletePrayer={this.deletePrayer}
               prayer={prayer} />
         }
       </SafeAreaView>
