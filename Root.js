@@ -71,7 +71,8 @@ class Root extends React.Component {
           </View>
         </Modal>
         <MainNav screenProps={{
-          verifyStorageKey: this.verifyStorageKey
+          verifyStorageKey: this.verifyStorageKey,
+          io: this.io
         }} />
       </View>
     )

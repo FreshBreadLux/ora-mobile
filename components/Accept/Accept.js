@@ -34,6 +34,7 @@ class Accept extends React.Component {
   }
 
   loadNextPrayer() {
+    this.props.screenProps.io.emit('new-view', 'sent a message')
     const { views, addNewView, userId } = this.props
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
