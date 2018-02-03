@@ -34,7 +34,6 @@ class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    this.props.screenProps.io.emit('new-view', 'sent a message')
     const { views, addNewView, userId } = this.props
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
@@ -50,6 +49,7 @@ class Accept extends React.Component {
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
       ).start()
+      this.props.screenProps.io.emit('new-view', {prayer: obj.updatedPrayer})
     })
     .then(() => {
       if (userId) this.props.refreshUserInfo(userId)

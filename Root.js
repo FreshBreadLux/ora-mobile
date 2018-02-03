@@ -44,6 +44,7 @@ class Root extends React.Component {
     if (payloadJson) {
       this.props.logUserIn(payloadJson)
       this.props.loadInitialData(payloadJson.userId)
+      this.io.emit('verify-user', payloadJson.userId)
     }
   }
 

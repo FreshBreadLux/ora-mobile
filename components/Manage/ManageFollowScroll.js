@@ -40,6 +40,7 @@ const ManageFollowScroll = ({ isLoggedIn, follows, navigation }) => (
             {follows && follows.length
             ? <View style={[ss.flex1, ss.center]}>
                 <ScrollView
+                  style={ss.fullWidth}
                   showsVerticalScrollIndicator={false}>
                 { follows.map(follow => (
                   <TouchableOpacity

@@ -41,6 +41,7 @@ const ManagePrayerScroll = ({ isLoggedIn, userId, prayers, refreshUserPrayers, n
             {prayers && prayers.length
             ? <View style={[ss.flex1, ss.center]}>
                 <ScrollView
+                  style={ss.fullWidth}
                   showsVerticalScrollIndicator={false}>
                 { prayers.map(prayer => (
                   <TouchableOpacity
