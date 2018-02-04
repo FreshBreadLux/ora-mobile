@@ -20,8 +20,8 @@ class Root extends React.Component {
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
 
-    this.io = SocketIOClient(ROOT_URL)
-    socketProcessor(this.io)
+    this.socket = SocketIOClient(ROOT_URL)
+    socketProcessor(this.socket)
   }
 
   componentDidMount() {
@@ -30,7 +30,6 @@ class Root extends React.Component {
   }
 
   handleNotification(notification) {
-    console.log('notification: ', notification)
     this.setState({ notification })
   }
 
@@ -44,7 +43,7 @@ class Root extends React.Component {
     if (payloadJson) {
       this.props.logUserIn(payloadJson)
       this.props.loadInitialData(payloadJson.userId)
-      this.io.emit('verify-user', payloadJson.userId)
+      this.socket.emit('verify-user', payloadJson.userId)
     }
   }
 
@@ -73,7 +72,7 @@ class Root extends React.Component {
         </Modal>
         <MainNav screenProps={{
           verifyStorageKey: this.verifyStorageKey,
-          io: this.io
+          socket: this.socket
         }} />
       </View>
     )

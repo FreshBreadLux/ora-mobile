@@ -76,6 +76,9 @@ const ss = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  justifyCenter: {
+    justifyContent: 'center',
+  },
   alignFlexEnd: {
     alignSelf: 'flex-end'
   },
@@ -139,6 +142,12 @@ const ss = StyleSheet.create({
   subBody: {
     fontFamily: 'raleway',
     fontSize: 14,
+  },
+  reflectionPrayer: {
+    fontFamily: 'eb',
+    fontSize: 26,
+    fontStyle: 'italic',
+    textAlign: 'center',
   },
   centerText: {
     textAlign: 'center',

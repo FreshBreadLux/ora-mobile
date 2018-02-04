@@ -3,6 +3,7 @@ import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, addView } from '../../store'
 import PrePrayer from './PrePrayer'
+import Reflection from './Reflection'
 import CurrentPrayer from './CurrentPrayer'
 import axios from 'axios'
 import ROOT_URL from '../../config'
@@ -13,12 +14,14 @@ class Accept extends React.Component {
     super(props)
     this.state = {
       currentPrayer: null,
+      reflection: false,
       fadeAnim: new Animated.Value(0),
       visibleModal: null,
       noPrayers: false,
     }
-    this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.fadeOut = this.fadeOut.bind(this)
+    this.loadReflection = this.loadReflection.bind(this)
+    this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
     this.setModal = this.setModal.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
@@ -33,6 +36,14 @@ class Accept extends React.Component {
     setTimeout(this.loadNextPrayer, 500)
   }
 
+  loadReflection() {
+    this.setState({ reflection: true })
+    Animated.timing(
+      this.state.fadeAnim,
+      { toValue: 1, duration: 500 }
+    ).start()
+  }
+
   loadNextPrayer() {
     const { views, addNewView, userId } = this.props
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
@@ -44,12 +55,13 @@ class Accept extends React.Component {
       this.setState({
         currentPrayer: obj.updatedPrayer,
         noPrayers: false,
+        reflection: false,
       })
       Animated.timing(
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
       ).start()
-      this.props.screenProps.io.emit('new-view', {prayer: obj.updatedPrayer})
+      this.props.screenProps.socket.emit('new-view', obj.updatedPrayer)
     })
     .then(() => {
       if (userId) this.props.refreshUserInfo(userId)
@@ -62,6 +74,7 @@ class Accept extends React.Component {
             body: 'There are currently no new prayers in the Ora Prayer Network. Please take some time to pray for the intentions that you have followed, and check back later to accept new prayer requests.'
           },
           noPrayers: true,
+          reflection: false,
         })
         Animated.timing(
           this.state.fadeAnim,
@@ -77,6 +90,7 @@ class Accept extends React.Component {
     this.setState({
       currentPrayer: null,
       fadeAnim: new Animated.Value(0),
+      reflection: false,
     })
   }
 
@@ -143,10 +157,16 @@ class Accept extends React.Component {
           />
         </View>
         {!this.state.currentPrayer
-          ? <PrePrayer
-              loadNextPrayer={this.loadNextPrayer}
-              navigation={this.props.navigation}
-            />
+          ? <View style={ss.invisiContainer}>
+            {!this.state.reflection
+            ? <PrePrayer
+                loadReflection={this.loadReflection}
+                navigation={this.props.navigation} />
+            : <Reflection
+                opacity={this.state.fadeAnim}
+                fadeOut={this.fadeOut} />
+            }
+            </View>
           : <View style={ss.opacityContainer}>
               <CurrentPrayer
                 statePrayer={this.state.currentPrayer}

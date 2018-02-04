@@ -3,14 +3,14 @@ import { View, Text, SafeAreaView, TouchableOpacity } from 'react-native'
 import ss from '../StyleSheet'
 import { Feather } from '@expo/vector-icons'
 
-const PrePrayer = ({ navigation, loadNextPrayer }) => (
+const PrePrayer = ({ navigation, loadReflection }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
     <View style={[ss.invisiContainer, ss.spaceAround]}>
       <Text style={ss.title}>ORA</Text>
       <TouchableOpacity
         style={[ss.button, ss.halfWidth]}
-        onPress={loadNextPrayer}>
-        <Text style={[ss.buttonText]}>accept a prayer</Text>
+        onPress={loadReflection}>
+        <Text style={[ss.buttonText]}>start praying</Text>
       </TouchableOpacity>
     </View>
     <View style={[ss.addViewSpacing]}>
