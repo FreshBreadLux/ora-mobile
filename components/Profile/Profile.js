@@ -25,6 +25,7 @@ class Profile extends React.Component {
 
   render() {
     const { userInfo, isLoggedIn, navigation } = this.props
+    console.log('profile props userInfo: ', this.props.userInfo)
     return (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
@@ -152,7 +153,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   logUserOut() {
     dispatch(logout())
-  }
+  },
 })
 
 export default connect(mapState, mapDispatch)(Profile)

@@ -16,7 +16,10 @@ const defaultUserInfo = {}
 /**
  * ACTION CREATORS
  */
-export const getUserInfo = userInfo => ({ type: GET_USER_INFO, userInfo })
+export const getUserInfo = userInfo => {
+  console.log('Made it to redux getUserInfo with this object: ', userInfo)
+  return ({ type: GET_USER_INFO, userInfo })
+}
 export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
 
 /**

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, addView } from '../../store'
+import { fetchUserFollows, fetchUserInfo, getUserInfo, addView } from '../../store'
 import PrePrayer from './PrePrayer'
 import Reflection from './Reflection'
 import CurrentPrayer from './CurrentPrayer'
@@ -49,9 +49,8 @@ class Accept extends React.Component {
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
     .then(obj => {
-      if (obj.newView) {
-        addNewView(obj.newView[0][0].viewedId)
-      }
+      console.log('obj: ', obj)
+      if (obj.newView) addNewView(obj.newView[0][0].viewedId)
       this.setState({
         currentPrayer: obj.updatedPrayer,
         noPrayers: false,
@@ -61,10 +60,10 @@ class Accept extends React.Component {
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
       ).start()
-      this.props.screenProps.socket.emit('new-view', obj.updatedPrayer)
-    })
-    .then(() => {
-      if (userId) this.props.refreshUserInfo(userId)
+      if (obj.scrubbedUser) {
+        getUserInfo(obj.scrubbedUser)
+        console.log('hit getUserInfo: ', obj.scrubbedUser)
+      }
     })
     .catch(err => {
       if (err.response.status === 404) {
