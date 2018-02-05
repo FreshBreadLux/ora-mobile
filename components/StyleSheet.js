@@ -50,6 +50,11 @@ const ss = StyleSheet.create({
   paddingBottom10: {
     paddingBottom: 10,
   },
+  scrollViewPadding: {
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
   horizontalPadding: {
     flex: 1,
     justifyContent: 'center',

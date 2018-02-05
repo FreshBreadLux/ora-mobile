@@ -5,7 +5,7 @@ import { LOGOUT } from './auth'
 /**
  * ACTION TYPES
  */
-const GET_USER_INFO = 'GET_USER_INFO'
+const SET_USER_INFO = 'SET_USER_INFO'
 const REMOVE_USER_INFO = 'REMOVE_USER_INFO'
 
 /**
@@ -16,10 +16,7 @@ const defaultUserInfo = {}
 /**
  * ACTION CREATORS
  */
-export const getUserInfo = userInfo => {
-  console.log('Made it to redux getUserInfo with this object: ', userInfo)
-  return ({ type: GET_USER_INFO, userInfo })
-}
+export const setUserInfo = userInfo => ({ type: SET_USER_INFO, userInfo })
 export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
 
 /**
@@ -29,7 +26,7 @@ export const fetchUserInfo = userId =>
   dispatch =>
     axios.get(`${ROOT_URL}/api/users/${userId}`)
       .then(res => {
-        dispatch(getUserInfo(res.data || defaultUserInfo))
+        dispatch(setUserInfo(res.data || defaultUserInfo))
       })
       .catch(err => console.log(err))
 
@@ -38,7 +35,7 @@ export const fetchUserInfo = userId =>
  */
 export default function(state = defaultUserInfo, action) {
   switch (action.type) {
-    case GET_USER_INFO:
+    case SET_USER_INFO:
      return action.userInfo
     case REMOVE_USER_INFO:
       return defaultUserInfo

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, getUserInfo, addView } from '../../store'
+import { fetchUserFollows, fetchUserInfo, setUserInfo, addView } from '../../store'
 import PrePrayer from './PrePrayer'
 import Reflection from './Reflection'
 import CurrentPrayer from './CurrentPrayer'
@@ -45,11 +45,11 @@ class Accept extends React.Component {
   }
 
   loadNextPrayer() {
-    const { views, addNewView, userId } = this.props
+    const { views, dispatchAddView, dispatchSetUserInfo, userId } = this.props
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
     .then(obj => {
-      if (obj.newView) addNewView(obj.newView[0][0].viewedId)
+      if (obj.newView) dispatchAddView(obj.newView[0][0].viewedId)
       this.setState({
         currentPrayer: obj.updatedPrayer,
         noPrayers: false,
@@ -59,9 +59,7 @@ class Accept extends React.Component {
         this.state.fadeAnim,
         { toValue: 1, duration: 500 }
       ).start()
-      if (obj.scrubbedUser) {
-        this.props.setUserInfo(obj.scrubbedUser)
-      }
+      if (obj.scrubbedUser) dispatchSetUserInfo(obj.scrubbedUser)
     })
     .catch(err => {
       if (err.response.status === 404) {
@@ -194,14 +192,14 @@ const mapDispatch = dispatch => ({
   refreshUserFollows(userId) {
     dispatch(fetchUserFollows(userId))
   },
-  addNewView(viewedId) {
+  dispatchAddView(viewedId) {
     dispatch(addView(viewedId))
   },
   refreshUserInfo(userId) {
     dispatch(fetchUserInfo(userId))
   },
-  setUserInfo(userInfo) {
-    dispatch(getUserInfo(userInfo))
+  dispatchSetUserInfo(userInfo) {
+    dispatch(setUserInfo(userInfo))
   }
 })
 

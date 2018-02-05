@@ -32,7 +32,7 @@ const ManageFollowScroll = ({ isLoggedIn, follows, navigation }) => (
             end={[0.5, 0.5]}
             style={ss.flex1} />
         </View>
-        <View style={[ss.invisiContainer, ss.padding15]}>
+        <View style={[ss.invisiContainer, ss.scrollViewPadding]}>
           <View style={ss.invisiContainer}>
             <View style={[ss.center, ss.titleBottomBorderWhite]}>
               <Text style={[ss.header]}>FOLLOWS</Text>

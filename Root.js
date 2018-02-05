@@ -25,6 +25,10 @@ class Root extends React.Component {
 
   handleNotification(notification) {
     this.setState({ notification })
+    const { userId, refreshUserPrayers, refreshUserFollows } = this.props
+    if (notification.data.type === 'new-follow') refreshUserPrayers(userId)
+    if (notification.data.type === 'new-view') refreshUserPrayers(userId)
+    if (notification.data.type === 'follow-update') refreshUserFollows(userId)
   }
 
   hideNotificationModal() {
@@ -71,6 +75,10 @@ class Root extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userId: state.auth.userId
+})
+
 const mapDispatch = dispatch => ({
   loadInitialData(userId) {
     dispatch(fetchUserPrayers(userId))
@@ -80,7 +88,13 @@ const mapDispatch = dispatch => ({
   },
   logUserIn(payloadJson) {
     dispatch(login(payloadJson))
-  }
+  },
+  refreshUserPrayers(userId) {
+    dispatch(fetchUserPrayers(userId))
+  },
+  refreshUserFollows(userId) {
+    dispatch(fetchUserFollows(userId))
+  },
 })
 
-export default connect(null, mapDispatch)(Root)
+export default connect(mapState, mapDispatch)(Root)
