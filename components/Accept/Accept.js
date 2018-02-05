@@ -49,7 +49,6 @@ class Accept extends React.Component {
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(response => response.data)
     .then(obj => {
-      console.log('obj: ', obj)
       if (obj.newView) addNewView(obj.newView[0][0].viewedId)
       this.setState({
         currentPrayer: obj.updatedPrayer,
@@ -61,8 +60,7 @@ class Accept extends React.Component {
         { toValue: 1, duration: 500 }
       ).start()
       if (obj.scrubbedUser) {
-        getUserInfo(obj.scrubbedUser)
-        console.log('hit getUserInfo: ', obj.scrubbedUser)
+        this.props.setUserInfo(obj.scrubbedUser)
       }
     })
     .catch(err => {
@@ -202,6 +200,9 @@ const mapDispatch = dispatch => ({
   refreshUserInfo(userId) {
     dispatch(fetchUserInfo(userId))
   },
+  setUserInfo(userInfo) {
+    dispatch(getUserInfo(userInfo))
+  }
 })
 
 export default connect(mapState, mapDispatch)(Accept)
