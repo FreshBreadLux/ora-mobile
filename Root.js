@@ -4,7 +4,7 @@ import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login, notFirstRodeo } from './store'
-import Welcome from './components/Intro/Welcome'
+import IntroSwiper from './components/Intro/Swiper'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
 
@@ -30,7 +30,6 @@ class Root extends React.Component {
 
   async checkFirstTime() {
     const seenIntro = await AsyncStorage.getItem('seenIntro')
-    console.log(seenIntro)
     if (seenIntro) {
       this.props.noIntroNeeded()
     }
@@ -67,7 +66,6 @@ class Root extends React.Component {
   }
 
   render() {
-    console.log('firstTime: ', this.props.firstTime)
     return (
       <View style={ss.invisiContainer}>
         {!this.props.firstTime
@@ -96,7 +94,7 @@ class Root extends React.Component {
               verifyStorageKey: this.verifyStorageKey
             }} />
           </View>
-        : <Welcome />
+        : <IntroSwiper />
         }
       </View>
     )

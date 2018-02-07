@@ -19,7 +19,7 @@ class Accept extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      fadeAnim: new Animated.Value(0),
+      fadeAnim: new Animated.Value(0)
     }
     this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
