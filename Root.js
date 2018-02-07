@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, AsyncStorage } from 'react-native'
+import { View, Text, AsyncStorage, AppState } from 'react-native'
 import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
@@ -12,8 +12,10 @@ class Root extends React.Component {
     super(props)
     this.state = {
       notification: null,
+      appState: AppState.currentState
     }
     this.handleNotification = this.handleNotification.bind(this)
+    this.handleAppStateChange = this.handleAppStateChange.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
   }
@@ -21,6 +23,7 @@ class Root extends React.Component {
   componentDidMount() {
     this.verifyStorageKey()
     Notifications.addListener(this.handleNotification)
+    AppState.addEventListener('change', this.handleAppStateChange)
   }
 
   handleNotification(notification) {
@@ -29,6 +32,15 @@ class Root extends React.Component {
     if (notification.data.type === 'new-follow') refreshUserPrayers(userId)
     if (notification.data.type === 'new-view') refreshUserPrayers(userId)
     if (notification.data.type === 'follow-update') refreshUserFollows(userId)
+  }
+
+  handleAppStateChange(nextAppState) {
+    const { userId, refreshUserPrayers, refreshUserFollows } = this.props
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      refreshUserPrayers(userId)
+      refreshUserFollows(userId)
+    }
+    this.setState({ appState: nextAppState })
   }
 
   hideNotificationModal() {

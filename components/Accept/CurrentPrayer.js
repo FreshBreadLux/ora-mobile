@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import ss from '../StyleSheet'
 
-const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal, noPrayers }) => (
+const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <TouchableOpacity
@@ -22,7 +22,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
           <Text
             numberOfLines={3}
             style={[ss.header, ss.centerText]}>
-            {statePrayer.subject}
+            {currentPrayer.subject}
           </Text>
         </Animated.View>
       </View>
@@ -30,7 +30,7 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           style={[ss.flex1, { opacity }]}>
-          <Text style={[ss.body, ss.paddingBottom15]}>{statePrayer.body}</Text>
+          <Text style={[ss.body, ss.paddingBottom15]}>{currentPrayer.body}</Text>
         </Animated.ScrollView>
       </View>
       {noPrayers
@@ -64,13 +64,13 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
                 name="heart"
                 size={22}
                 color={ follows && follows.find(follow => {
-                  return follow.id === statePrayer.id
+                  return follow.id === currentPrayer.id
                 }) ? '#FF4081' : '#555' } />
             </TouchableOpacity>
           </View>
           <View style={[ss.padding10, ss.center, ss.fullWidth]}>
             <TouchableOpacity
-              onPress={fadeOut}
+              onPress={animateNextPrayerTransition}
               style={[ss.button, ss.fullWidth]}>
               <Text style={ss.buttonText}>accept a new prayer</Text>
             </TouchableOpacity>
@@ -103,6 +103,8 @@ const CurrentPrayer = ({ statePrayer, fadeOut, finishPraying, flagPrayer, follow
 
 const mapState = state => ({
   follows: state.follows,
+  currentPrayer: state.acceptPrayer.currentPrayer,
+  noPrayers: state.acceptPrayer.noPrayers
 })
 
 export default connect(mapState)(CurrentPrayer)

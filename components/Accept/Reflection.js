@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import ss from '../StyleSheet'
 
-const Reflection = ({ fadeOut, opacity }) => (
+const Reflection = ({ animateNextPrayerTransition, opacity }) => (
   <View style={ss.opacityContainer}>
     <SafeAreaView style={ss.invisiContainer}>
       <View style={[ss.invisiContainer, ss.padding15]}>
@@ -14,7 +14,7 @@ const Reflection = ({ fadeOut, opacity }) => (
         </Animated.View>
         <Animated.View style={[ss.padding10, ss.center, {opacity}]}>
           <TouchableOpacity
-            onPress={fadeOut}
+            onPress={animateNextPrayerTransition}
             style={[ss.button, ss.fullWidth]}>
             <Text style={ss.buttonText}>accept a new prayer</Text>
           </TouchableOpacity>

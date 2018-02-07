@@ -11,8 +11,8 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal
       <Text style={[ss.body, ss.paddingBottom10]}>{`${prayer.body}`}</Text>
     </ScrollView>
     <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
-      <Text style={[ss.subBody, ss.greyText]}>{`Total Views: ${prayer.totalViews}`}</Text>
-      <Text style={[ss.subBody, ss.greyText]}>{`Total Follows: ${prayer.totalFollows}`}</Text>
+      <Text style={[ss.subBody, ss.greyText]}>{`VIEWS: ${prayer.totalViews}`}</Text>
+      <Text style={[ss.subBody, ss.greyText]}>{`FOLLOWS: ${prayer.totalFollows}`}</Text>
     </View>
     <View style={[ss.row, ss.spaceBetween, ss.fullWidth]}>
       <TouchableOpacity

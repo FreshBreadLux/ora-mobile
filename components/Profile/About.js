@@ -1,9 +1,9 @@
 import React from 'react'
-import { Text, View, ScrollView } from 'react-native'
+import { Text, View, ScrollView, SafeAreaView } from 'react-native'
 import ss from '../StyleSheet'
 
 const About = () => (
-  <View style={ss.whiteContainer}>
+  <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.horizontalPadding]}>
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -34,7 +34,7 @@ const About = () => (
         </View>
       </ScrollView>
     </View>
-  </View>
+  </SafeAreaView>
 )
 
 export default About

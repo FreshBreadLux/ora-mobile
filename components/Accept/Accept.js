@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, setUserInfo, addView } from '../../store'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection } from '../../store'
 import PrePrayer from './PrePrayer'
 import Reflection from './Reflection'
 import CurrentPrayer from './CurrentPrayer'
@@ -9,19 +9,24 @@ import axios from 'axios'
 import ROOT_URL from '../../config'
 import ss from '../StyleSheet'
 
+function animate(...options) {
+  return new Promise(res => {
+    Animated.timing(...options).start(res)
+  })
+}
+
 class Accept extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentPrayer: null,
-      reflection: false,
       fadeAnim: new Animated.Value(0),
       visibleModal: null,
-      noPrayers: false,
     }
     this.fadeOut = this.fadeOut.bind(this)
-    this.loadReflection = this.loadReflection.bind(this)
+    this.fadeIn = this.fadeIn.bind(this)
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
+    this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
+    this.loadReflection = this.loadReflection.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
     this.setModal = this.setModal.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
@@ -29,64 +34,36 @@ class Accept extends React.Component {
   }
 
   fadeOut() {
-    Animated.timing(
-      this.state.fadeAnim,
-      { toValue: 0, duration: 500 }
-    ).start()
-    setTimeout(this.loadNextPrayer, 500)
+    return animate(this.state.fadeAnim, { toValue: 0, duration: 500 })
   }
 
-  loadReflection() {
-    this.setState({ reflection: true })
-    Animated.timing(
-      this.state.fadeAnim,
-      { toValue: 1, duration: 500 }
-    ).start()
+  fadeIn() {
+    return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
   }
 
   loadNextPrayer() {
-    const { views, dispatchAddView, dispatchSetUserInfo, userId } = this.props
-    axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
-    .then(response => response.data)
-    .then(obj => {
-      if (obj.newView) dispatchAddView(obj.newView[0][0].viewedId)
-      this.setState({
-        currentPrayer: obj.updatedPrayer,
-        noPrayers: false,
-        reflection: false,
-      })
-      Animated.timing(
-        this.state.fadeAnim,
-        { toValue: 1, duration: 500 }
-      ).start()
-      if (obj.scrubbedUser) dispatchSetUserInfo(obj.scrubbedUser)
-    })
-    .catch(err => {
-      if (err.response.status === 404) {
-        this.setState({
-          currentPrayer: {
-            subject: 'Thank You',
-            body: 'There are currently no new prayers in the Ora Prayer Network. Please take some time to pray for the intentions that you have followed, and check back later to accept new prayer requests.'
-          },
-          noPrayers: true,
-          reflection: false,
-        })
-        Animated.timing(
-          this.state.fadeAnim,
-          { toValue: 1, duration: 500 }
-        ).start()
-      } else {
-        console.error(err)
-      }
-    })
+    const { dispatchFetchNextPrayer, userId, views } = this.props
+    dispatchFetchNextPrayer(userId, views)
+  }
+
+  async animateNextPrayerTransition() {
+    try {
+      await this.fadeOut()
+      await this.loadNextPrayer()
+      this.fadeIn()
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  loadReflection() {
+    this.props.dispatchSetReflection()
+    this.fadeIn()
   }
 
   finishPraying() {
-    this.setState({
-      currentPrayer: null,
-      fadeAnim: new Animated.Value(0),
-      reflection: false,
-    })
+    this.setState({ fadeAnim: new Animated.Value(0) })
+    this.props.dispatchFinishPraying()
   }
 
   setModal(name) {
@@ -94,7 +71,7 @@ class Accept extends React.Component {
   }
 
   flagPrayer(category) {
-    const prayer = this.state.currentPrayer
+    const prayer = this.props.currentPrayer
     if (this.props.isLoggedIn) {
       axios.post(`${ROOT_URL}/api/flags`, {
         flaggerId: this.props.userId,
@@ -114,15 +91,12 @@ class Accept extends React.Component {
   }
 
   followPrayer() {
-    const { isLoggedIn, userId, follows, refreshUserFollows } = this.props
-    const prayer = this.state.currentPrayer
+    const { isLoggedIn, userId, follows, refreshUserFollows, currentPrayer } = this.props
     const alreadyFollowing = follows
-    ? follows.find(follow => {
-      return follow.prayerId === this.state.currentPrayer.id
-    })
+    ? follows.find(follow => follow.prayerId === currentPrayer.id)
     : null
     if (isLoggedIn && !alreadyFollowing) {
-      axios.post(`${ROOT_URL}/api/follows`, { userId, prayer })
+      axios.post(`${ROOT_URL}/api/follows`, { userId, currentPrayer })
       .then(() => {
         refreshUserFollows(userId)
         AlertIOS.alert(
@@ -151,28 +125,26 @@ class Accept extends React.Component {
             style={ss.backgroundImage}
           />
         </View>
-        {!this.state.currentPrayer
+        {!this.props.currentPrayer.subject
           ? <View style={ss.invisiContainer}>
-            {!this.state.reflection
+            {!this.props.reflection
             ? <PrePrayer
                 loadReflection={this.loadReflection}
                 navigation={this.props.navigation} />
             : <Reflection
                 opacity={this.state.fadeAnim}
-                fadeOut={this.fadeOut} />
+                animateNextPrayerTransition={this.animateNextPrayerTransition} />
             }
             </View>
           : <View style={ss.opacityContainer}>
               <CurrentPrayer
-                statePrayer={this.state.currentPrayer}
-                fadeOut={this.fadeOut}
+                animateNextPrayerTransition={this.animateNextPrayerTransition}
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
                 followPrayer={this.followPrayer}
                 opacity={this.state.fadeAnim}
                 visibleModal={this.state.visibleModal}
                 setModal={this.setModal}
-                noPrayers={this.state.noPrayers}
               />
             </View>
         }
@@ -186,20 +158,31 @@ const mapState = state => ({
   views: state.views,
   userId: state.auth.userId,
   isLoggedIn: state.auth.isLoggedIn,
+  currentPrayer: state.acceptPrayer.currentPrayer,
+  reflection: state.acceptPrayer.reflection
 })
 
 const mapDispatch = dispatch => ({
   refreshUserFollows(userId) {
-    dispatch(fetchUserFollows(userId))
+    return dispatch(fetchUserFollows(userId))
   },
   dispatchAddView(viewedId) {
-    dispatch(addView(viewedId))
+    return dispatch(addView(viewedId))
   },
   refreshUserInfo(userId) {
-    dispatch(fetchUserInfo(userId))
+    return dispatch(fetchUserInfo(userId))
   },
   dispatchSetUserInfo(userInfo) {
-    dispatch(setUserInfo(userInfo))
+    return dispatch(setUserInfo(userInfo))
+  },
+  dispatchFetchNextPrayer(userId, views) {
+    return dispatch(fetchNextPrayer(userId, views))
+  },
+  dispatchFinishPraying() {
+    return dispatch(finishPraying())
+  },
+  dispatchSetReflection() {
+    return dispatch(setReflection())
   }
 })
 

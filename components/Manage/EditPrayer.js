@@ -77,7 +77,7 @@ export default class EditPrayer extends React.Component {
           <TouchableOpacity
             style={ss.editButton}
             onPress={this.props.updatePrayer}>
-            <Text style={[ss.subBody, ss.whiteText]}>update</Text>
+            <Text style={[ss.subBody, ss.whiteText]}>save edits</Text>
           </TouchableOpacity>
         </View>
         </Animated.View>
