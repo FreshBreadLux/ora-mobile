@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import ss from '../StyleSheet'
 
-export const FollowModalContent = ({ setModal, followPrayer }) => (
+export const FollowModalContent = ({ hideModal, followPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
       <Text style={ss.modalText}>Following prayers is a sign of support and engagement, and will keep you updated on the status of the prayer request</Text>
@@ -16,7 +16,7 @@ export const FollowModalContent = ({ setModal, followPrayer }) => (
     </View>
     <TouchableOpacity
       style={ss.fullWidth}
-      onPress={() => setModal(null)}>
+      onPress={hideModal}>
       <View style={ss.modalContent}>
         <Text style={[ss.subHeader, ss.redText]}>Cancel</Text>
       </View>
@@ -24,7 +24,7 @@ export const FollowModalContent = ({ setModal, followPrayer }) => (
   </View>
 )
 
-export const AboutModalContent = ({ setModal }) => (
+export const AboutModalContent = ({ hideModal }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
       <Text style={ss.modalText}>Ora lets you accept prayer requests from all over the world. This app is nothing more than an illustration; the reality of universal prayer exists with or without Ora. So before you begin to pray, recall that you are in the presence of God. Realize that there are people praying at all times, all over the world. Recognize that your prayers have a real impact.
@@ -38,7 +38,7 @@ export const AboutModalContent = ({ setModal }) => (
     </View>
     <TouchableOpacity
       style={ss.fullWidth}
-      onPress={() => setModal(null)}>
+      onPress={hideModal}>
       <View style={ss.modalContent}>
         <Text style={[ss.subHeader, ss.blueText]}>Got it!</Text>
       </View>
@@ -46,7 +46,7 @@ export const AboutModalContent = ({ setModal }) => (
   </View>
 )
 
-export const FlagModalContent = ({ setModal, flagPrayer }) => (
+export const FlagModalContent = ({ hideModal, flagPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
       <Text style={ss.modalText}>Please select the category that this prayer should be flagged under</Text>
@@ -74,7 +74,7 @@ export const FlagModalContent = ({ setModal, flagPrayer }) => (
     </View>
     <TouchableOpacity
       style={ss.fullWidth}
-      onPress={() => setModal(null)}>
+      onPress={hideModal}>
       <View style={ss.modalContent}>
         <Text style={[ss.subHeader, ss.blueText]}>Cancel</Text>
       </View>

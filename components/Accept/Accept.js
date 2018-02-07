@@ -20,7 +20,6 @@ class Accept extends React.Component {
     super(props)
     this.state = {
       fadeAnim: new Animated.Value(0),
-      visibleModal: null,
     }
     this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
@@ -28,7 +27,6 @@ class Accept extends React.Component {
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
-    this.setModal = this.setModal.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
     this.followPrayer = this.followPrayer.bind(this)
   }
@@ -64,10 +62,6 @@ class Accept extends React.Component {
   finishPraying() {
     this.setState({ fadeAnim: new Animated.Value(0) })
     this.props.dispatchFinishPraying()
-  }
-
-  setModal(name) {
-    this.setState({ visibleModal: name })
   }
 
   flagPrayer(category) {
@@ -122,8 +116,7 @@ class Accept extends React.Component {
         <View style={ss.backgroundImageFrame}>
           <Image
             source={require('../../assets/images/Rome.jpg')}
-            style={ss.backgroundImage}
-          />
+            style={ss.backgroundImage} />
         </View>
         {!this.props.currentPrayer.subject
           ? <View style={ss.invisiContainer}>
@@ -142,10 +135,7 @@ class Accept extends React.Component {
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
                 followPrayer={this.followPrayer}
-                opacity={this.state.fadeAnim}
-                visibleModal={this.state.visibleModal}
-                setModal={this.setModal}
-              />
+                opacity={this.state.fadeAnim} />
             </View>
         }
       </View>

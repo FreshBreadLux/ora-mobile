@@ -1,12 +1,13 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
+import { setVisibleModal, removeVisibleModal } from '../../store'
 import Modal from 'react-native-modal'
 import { Feather } from '@expo/vector-icons'
 import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
 import ss from '../StyleSheet'
 
-const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, setModal, noPrayers }) => (
+const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <TouchableOpacity
@@ -43,7 +44,7 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
             ss.topBorder]}>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
-              onPress={() => setModal('flag')}>
+              onPress={() => showModal('flag')}>
               <Feather
                 name="flag"
                 size={22}
@@ -51,7 +52,7 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
             </TouchableOpacity>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
-              onPress={() => setModal('about')}>
+              onPress={() => showModal('about')}>
               <Feather
                 name="help-circle"
                 size={22}
@@ -59,7 +60,7 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
             </TouchableOpacity>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
-              onPress={() => setModal('follow')}>
+              onPress={() => showModal('follow')}>
               <Feather
                 name="heart"
                 size={22}
@@ -81,20 +82,20 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
         isVisible={visibleModal === 'flag'}
         style={ss.bottomModal}>
         <FlagModalContent
-          setModal={setModal}
+          hideModal={hideModal}
           flagPrayer={flagPrayer} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'about'}
         style={ss.bottomModal}>
         <AboutModalContent
-          setModal={setModal} />
+          hideModal={hideModal} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'follow'}
         style={ss.bottomModal}>
         <FollowModalContent
-          setModal={setModal}
+          hideModal={hideModal}
           followPrayer={followPrayer} />
       </Modal>
     </View>
@@ -104,7 +105,17 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
 const mapState = state => ({
   follows: state.follows,
   currentPrayer: state.acceptPrayer.currentPrayer,
-  noPrayers: state.acceptPrayer.noPrayers
+  noPrayers: state.acceptPrayer.noPrayers,
+  visibleModal: state.visibleModal
 })
 
-export default connect(mapState)(CurrentPrayer)
+const mapDispatch = dispatch => ({
+  showModal(visibleModal) {
+    return dispatch(setVisibleModal(visibleModal))
+  },
+  hideModal() {
+    return dispatch(removeVisibleModal())
+  }
+})
+
+export default connect(mapState, mapDispatch)(CurrentPrayer)

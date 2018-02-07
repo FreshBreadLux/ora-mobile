@@ -16,18 +16,12 @@ class ManageMyPrayer extends React.Component {
       editMode: false,
       subject: prayer.subject,
       body: prayer.body,
-      visibleModal: null,
     }
-    this.setModal = this.setModal.bind(this)
     this.setBody = this.setBody.bind(this)
     this.updatePrayer = this.updatePrayer.bind(this)
     this.togglePrayer = this.togglePrayer.bind(this)
     this.deletePrayer = this.deletePrayer.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
-  }
-
-  setModal(name) {
-    this.setState({ visibleModal: name })
   }
 
   setBody(body) {
@@ -86,7 +80,6 @@ class ManageMyPrayer extends React.Component {
               toggleEdit={this.toggleEdit} />
           : <SinglePrayer
               visibleModal={this.state.visibleModal}
-              setModal={this.setModal}
               toggleEdit={this.toggleEdit}
               togglePrayer={this.togglePrayer}
               deletePrayer={this.deletePrayer}
@@ -103,7 +96,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   refreshUserPrayers(userId) {
-    dispatch(fetchUserPrayers(userId))
+    return dispatch(fetchUserPrayers(userId))
   }
 })
 

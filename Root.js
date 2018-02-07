@@ -3,7 +3,8 @@ import { View, Text, AsyncStorage, AppState } from 'react-native'
 import Modal from 'react-native-modal'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login } from './store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login, notFirstRodeo } from './store'
+import Welcome from './components/Intro/Welcome'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
 
@@ -21,9 +22,27 @@ class Root extends React.Component {
   }
 
   componentDidMount() {
+    this.checkFirstTime()
     this.verifyStorageKey()
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
+  }
+
+  async checkFirstTime() {
+    const seenIntro = await AsyncStorage.getItem('seenIntro')
+    console.log(seenIntro)
+    if (seenIntro) {
+      this.props.noIntroNeeded()
+    }
+  }
+
+  async verifyStorageKey() {
+    const payload = await AsyncStorage.getItem('payload')
+    const payloadJson = JSON.parse(payload)
+    if (payloadJson) {
+      this.props.logUserIn(payloadJson)
+      this.props.loadInitialData(payloadJson.userId)
+    }
   }
 
   handleNotification(notification) {
@@ -47,48 +66,46 @@ class Root extends React.Component {
     setTimeout(() => { this.setState({ notification: null }) }, 3000)
   }
 
-  async verifyStorageKey() {
-    const payload = await AsyncStorage.getItem('payload')
-    const payloadJson = JSON.parse(payload)
-    if (payloadJson) {
-      this.props.logUserIn(payloadJson)
-      this.props.loadInitialData(payloadJson.userId)
-    }
-  }
-
   render() {
+    console.log('firstTime: ', this.props.firstTime)
     return (
       <View style={ss.invisiContainer}>
-        <Modal
-          isVisible={!!this.state.notification}
-          style={ss.topModal}
-          animationIn="slideInDown"
-          animationInTiming={500}
-          animationOut="slideOutUp"
-          animationOutTiming={500}
-          backdropOpacity={0}
-          onModalShow={this.hideNotificationModal}
-          onBackdropPress={() => { this.setState({ notification: null }) }}>
-          <View style={[ss.center, ss.padding15]}>
-            <View style={ss.modalContent}>
-              <Text>
-                {this.state.notification
-                ? `${this.state.notification.data.body}`
-                : null }
-              </Text>
-            </View>
+        {!this.props.firstTime
+        ? <View style={ss.invisiContainer}>
+            <Modal
+              isVisible={!!this.state.notification}
+              style={ss.topModal}
+              animationIn="slideInDown"
+              animationInTiming={500}
+              animationOut="slideOutUp"
+              animationOutTiming={500}
+              backdropOpacity={0}
+              onModalShow={this.hideNotificationModal}
+              onBackdropPress={() => { this.setState({ notification: null }) }}>
+              <View style={[ss.center, ss.padding15]}>
+                <View style={ss.modalContent}>
+                  <Text>
+                    {this.state.notification
+                    ? `${this.state.notification.data.body}`
+                    : null }
+                  </Text>
+                </View>
+              </View>
+            </Modal>
+            <MainNav screenProps={{
+              verifyStorageKey: this.verifyStorageKey
+            }} />
           </View>
-        </Modal>
-        <MainNav screenProps={{
-          verifyStorageKey: this.verifyStorageKey
-        }} />
+        : <Welcome />
+        }
       </View>
     )
   }
 }
 
 const mapState = state => ({
-  userId: state.auth.userId
+  userId: state.auth.userId,
+  firstTime: state.auth.firstTime
 })
 
 const mapDispatch = dispatch => ({
@@ -99,14 +116,17 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserInfo(userId))
   },
   logUserIn(payloadJson) {
-    dispatch(login(payloadJson))
+    return dispatch(login(payloadJson))
   },
   refreshUserPrayers(userId) {
-    dispatch(fetchUserPrayers(userId))
+    return dispatch(fetchUserPrayers(userId))
   },
   refreshUserFollows(userId) {
-    dispatch(fetchUserFollows(userId))
+    return dispatch(fetchUserFollows(userId))
   },
+  noIntroNeeded() {
+    return dispatch(notFirstRodeo())
+  }
 })
 
 export default connect(mapState, mapDispatch)(Root)

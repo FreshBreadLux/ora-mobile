@@ -1,11 +1,13 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
+import { setVisibleModal, removeVisibleModal } from '../../store'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
 import { OpenModalContent, CloseModalContent, DeleteModalContent } from './Modals'
 import ss from '../StyleSheet'
 
-const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal, visibleModal }) => (
+const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
     <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={[ss.body, ss.paddingBottom10]}>{`${prayer.body}`}</Text>
@@ -16,7 +18,7 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal
     </View>
     <View style={[ss.row, ss.spaceBetween, ss.fullWidth]}>
       <TouchableOpacity
-        onPress={() => setModal('delete')}
+        onPress={() => showModal('delete')}
         style={ss.padding10}>
         <Ionicons
           name="ios-trash-outline"
@@ -25,7 +27,7 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal
       </TouchableOpacity>
       {prayer.closed
       ? <TouchableOpacity
-          onPress={() => setModal('open')}
+          onPress={() => showModal('open')}
           style={ss.padding10}>
           <Ionicons
           name="ios-eye-outline"
@@ -33,7 +35,7 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal
           color="#555" />
         </TouchableOpacity>
       : <TouchableOpacity
-          onPress={() => setModal('close')}
+          onPress={() => showModal('close')}
           style={ss.padding10}>
           <Ionicons
           name="ios-eye-off-outline"
@@ -61,24 +63,37 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, setModal
       isVisible={visibleModal === 'delete'}
       style={ss.bottomModal}>
       <DeleteModalContent
-        setModal={setModal}
+        hideModal={hideModal}
         deletePrayer={deletePrayer} />
     </Modal>
     <Modal
       isVisible={visibleModal === 'open'}
       style={ss.bottomModal}>
       <OpenModalContent
-        setModal={setModal}
+        hideModal={hideModal}
         togglePrayer={togglePrayer} />
     </Modal>
     <Modal
       isVisible={visibleModal === 'close'}
       style={ss.bottomModal}>
       <CloseModalContent
-        setModal={setModal}
+        hideModal={hideModal}
         togglePrayer={togglePrayer} />
     </Modal>
   </View>
 )
 
-export default SinglePrayer
+const mapState = state => ({
+  visibleModal: state.visibleModal
+})
+
+const mapDispatch = dispatch => ({
+  showModal(visibleModal) {
+    return dispatch(setVisibleModal(visibleModal))
+  },
+  hideModal() {
+    return dispatch(removeVisibleModal())
+  }
+})
+
+export default connect(mapState, mapDispatch)(SinglePrayer)
