@@ -90,11 +90,10 @@ class Root extends React.Component {
                 </View>
               </View>
             </Modal>
-            <MainNav screenProps={{
-              verifyStorageKey: this.verifyStorageKey
-            }} />
+            <MainNav />
           </View>
-        : <IntroSwiper />
+        : <IntroSwiper screenProps={{
+            verifyStorageKey: this.verifyStorageKey }} />
         }
       </View>
     )

@@ -5,6 +5,13 @@ import { Permissions, Notifications } from 'expo'
 import ss from '../StyleSheet'
 import ROOT_URL from '../../config'
 
+async function registerForPushNotificationsAsync() {
+  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+  if (status !== 'granted') return
+  let token = await Notifications.getExpoPushTokenAsync()
+  return token
+}
+
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props)
@@ -28,16 +35,9 @@ export default class LoginForm extends React.Component {
     }
   }
 
-  async registerForPushNotificationsAsync() {
-    let { status } = await Permissions.askAsync(Permissions.REMOTE_NOTIFICATIONS)
-    if (status !== 'granted') return
-    let token = await Notifications.getExpoPushTokenAsync()
-    return token
-  }
-
   async userSignup() {
     if (this.state.email && this.state.password) {
-      let token = await this.registerForPushNotificationsAsync()
+      let token = await registerForPushNotificationsAsync()
       axios.post(`${ROOT_URL}/api/users`, {
         email: this.state.email,
         password: this.state.password,
@@ -86,13 +86,13 @@ export default class LoginForm extends React.Component {
                 autoCorrect={false}
                 autoCapitalize="none"
                 onChangeText={email => this.setState({email})}
-                onSubmitEditing={event => this.refs.password.focus()}
+                onSubmitEditing={() => this.password.focus()}
                 value={this.state.email}
               />
             </View>
             <View style={[ss.flex1, ss.center, ss.darkBottomBorder]}>
               <TextInput
-                ref="password"
+                ref={ref => { this.password = ref }}
                 style={[ss.fullWidth, ss.subHeader]}
                 placeholder="Password"
                 placeholderTextColor="#555"
@@ -117,7 +117,7 @@ export default class LoginForm extends React.Component {
             </View>
           </View>
           <View style={[ss.flex2, ss.center, ss.padding15]}>
-            <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+            <Text style={[ss.subHeader, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
           </View>
         </ScrollView>
       </SafeAreaView>
