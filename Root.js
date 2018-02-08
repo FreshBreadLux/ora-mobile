@@ -30,7 +30,7 @@ class Root extends React.Component {
 
   async checkFirstTime() {
     const seenIntro = await AsyncStorage.getItem('seenIntro')
-    if (seenIntro) {
+    if (seenIntro === 'true') {
       this.props.noIntroNeeded()
     }
   }
@@ -92,8 +92,7 @@ class Root extends React.Component {
             </Modal>
             <MainNav />
           </View>
-        : <IntroSwiper screenProps={{
-            verifyStorageKey: this.verifyStorageKey }} />
+        : <IntroSwiper verifyStorageKey={this.verifyStorageKey} />
         }
       </View>
     )

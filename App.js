@@ -17,6 +17,10 @@ function cacheImages(images) {
   })
 }
 
+function cacheFonts(fonts) {
+  return fonts.map(font => Font.loadAsync(font))
+}
+
 // WAIT FOR ASSETS TO BE LOADED
 async function _loadAssetsAsync() {
   const imageAssets = cacheImages([
@@ -36,10 +40,6 @@ async function _loadAssetsAsync() {
   }])
   await Promise.all([...imageAssets, ...fontAssets])
   // implicit promise for having completed above side effects
-}
-
-function cacheFonts(fonts) {
-  return fonts.map(font => Font.loadAsync(font))
 }
 
 export default class App extends React.Component {

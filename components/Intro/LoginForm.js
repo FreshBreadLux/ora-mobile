@@ -12,6 +12,14 @@ async function registerForPushNotificationsAsync() {
   return token
 }
 
+async function setAsyncStorage(item, selectedValue) {
+  try {
+    await AsyncStorage.setItem(item, selectedValue)
+  } catch (error) {
+    console.error('AsyncStorage error: ' + error.message)
+  }
+}
+
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props)
@@ -20,19 +28,8 @@ export default class LoginForm extends React.Component {
       password: null,
       error: false,
     }
-    this.setAsyncStorage = this.setAsyncStorage.bind(this)
     this.userSignup = this.userSignup.bind(this)
     this.userLogin = this.userLogin.bind(this)
-    this.registerForPushNotificationsAsync = this.registerForPushNotificationsAsync.bind(this)
-  }
-
-  async setAsyncStorage(item, selectedValue) {
-    try {
-      await AsyncStorage.setItem(item, selectedValue)
-      this.props.verifyStorageKey()
-    } catch (error) {
-      console.error('AsyncStorage error: ' + error.message)
-    }
   }
 
   async userSignup() {
@@ -44,7 +41,8 @@ export default class LoginForm extends React.Component {
         pushToken: token,
       })
       .then(response => JSON.stringify(response.data))
-      .then(payload => this.setAsyncStorage('payload', payload))
+      .then(payload => setAsyncStorage('payload', payload))
+      .then(() => this.props.showAlarm())
       .catch(error => this.setState({error: error.response.request._response}))
     } else {
       this.setState({ error: 'please provide both an email and a password' })
