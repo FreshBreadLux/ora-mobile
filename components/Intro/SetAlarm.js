@@ -20,6 +20,11 @@ class SetAlarm extends React.Component {
   }
 
   async handleSubmit() {
+    let chosenTime =  this.state.chosenTime.getTime()
+    const now = new Date()
+    if (chosenTime - now < 0) {
+      chosenTime += 86400000
+    }
     try {
       const reminderId = await Notifications.scheduleLocalNotificationAsync({
         title: 'Ora',
@@ -27,10 +32,10 @@ class SetAlarm extends React.Component {
         data: { body: 'Time to pray' },
         sound: true
       }, {
-        time: this.state.chosenTime,
+        time: chosenTime,
         repeat: 'day'
       })
-      const userAlarms = await JSON.stringify([{time: this.state.chosenTime, reminderId}])
+      const userAlarms = await JSON.stringify([{time: chosenTime, reminderId}])
       await AsyncStorage.setItem('userAlarms', userAlarms)
       this.props.verifyStorageKey()
       await AsyncStorage.setItem('seenIntro', 'true')

@@ -22,6 +22,11 @@ class ManageAlarms extends React.Component {
   }
 
   async saveNewAlarm() {
+    let chosenTime =  this.state.chosenTime.getTime()
+    const now = new Date()
+    if (chosenTime - now < 0) {
+      chosenTime += 86400000
+    }
     try {
       const reminderId = await Notifications.scheduleLocalNotificationAsync({
         title: 'Ora',
@@ -29,15 +34,15 @@ class ManageAlarms extends React.Component {
         data: { body: 'Time to pray' },
         sound: true
       }, {
-        time: this.state.chosenTime,
+        time: chosenTime,
         repeat: 'day'
       })
       const oldAlarms = await AsyncStorage.getItem('userAlarms')
       const oldAlarmsJson = await JSON.parse(oldAlarms)
       const spreadAlarms =
         oldAlarmsJson
-        ? [...oldAlarmsJson, {time: this.state.chosenTime, reminderId}]
-        : [{time: this.state.chosenTime, reminderId}]
+        ? [...oldAlarmsJson, {time: chosenTime, reminderId}]
+        : [{time: chosenTime, reminderId}]
       const updatedAlarms = await JSON.stringify(spreadAlarms)
       await AsyncStorage.setItem('userAlarms', updatedAlarms)
       this.props.refreshUserAlarms()
@@ -73,7 +78,6 @@ class ManageAlarms extends React.Component {
   }
 
   render() {
-    console.log('props.alarms: ', this.props.alarms)
     return (
       <View style={[ss.whiteContainer]}>
         {Platform.OS === 'ios'
@@ -90,16 +94,17 @@ class ManageAlarms extends React.Component {
             <Text style={[ss.subHeader, ss.whiteText]}>save new alarm</Text>
           </TouchableOpacity>
         </View>
-        {this.props.alarms.map(alarm => (
-          <View key={alarm.reminderId} style={ss.listBottomBorder}>
-            <Text>{alarm.time}</Text>
-            <Text>{alarm.reminderId}</Text>
-            <TouchableOpacity
-              onPress={() => this.deleteAlarm(alarm)}>
-              <Text>delete</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
+        {this.props.alarms.map(alarm => {
+          const time = new Date(alarm.time).toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric'})
+          return (
+            <View key={alarm.reminderId} style={ss.listBottomBorder}>
+              <Text>{time}</Text>
+              <TouchableOpacity
+                onPress={() => this.deleteAlarm(alarm)}>
+                <Text>delete</Text>
+              </TouchableOpacity>
+            </View>
+        )})}
         <View style={[ss.padding15, ss.center]}>
           <TouchableOpacity
             style={[ss.blackButton, ss.halfWidth]}

@@ -69,19 +69,19 @@ class Root extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        {!this.props.firstTime
-        ? <View style={ss.invisiContainer}>
-          {!this.props.isLoggedIn
-          ? <LoginForm verifyStorageKey={this.verifyStorageKey} />
-          : <View style={ss.invisiContainer}>
+        {this.props.firstTime
+        ? <IntroSwiper verifyStorageKey={this.verifyStorageKey} />
+        : <View style={ss.invisiContainer}>
+          {this.props.isLoggedIn
+          ? <View style={ss.invisiContainer}>
               <NotificationModal
                 notification={this.state.notification}
                 hideNotificationModal={this.hideNotificationModal} />
               <MainNav />
             </View>
+          : <LoginForm verifyStorageKey={this.verifyStorageKey} />
           }
           </View>
-        : <IntroSwiper verifyStorageKey={this.verifyStorageKey} />
         }
       </View>
     )

@@ -102,11 +102,8 @@ const ss = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingBottom: 15,
-    paddingTop: 15,
     borderBottomWidth: 2,
     borderBottomColor: '#fff',
-    marginLeft: 15,
-    marginRight: 15,
   },
   profileRow: {
     flexDirection: 'row',
