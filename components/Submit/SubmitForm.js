@@ -26,8 +26,9 @@ class SubmitForm extends React.Component {
       axios.post(`${ROOT_URL}/api/prayers`, {
         userId: this.props.userId,
         subject: this.state.subject,
-        body: this.state.body,
-        jwToken: this.props.jwToken
+        body: this.state.body
+      }, {
+        headers: { token: this.props.jwToken }
       })
       .then(() => {
         this.setState({
