@@ -18,7 +18,7 @@ const defaultAuthInfo = {
 /**
  * ACTION CREATORS
  */
-export const login = payloadJson => ({ type: LOGIN, payloadJson })
+export const login = oraAuthJson => ({ type: LOGIN, oraAuthJson })
 export const notFirstRodeo = () => ({ type: NOT_FIRST_RODEO })
 export const logout = () => ({ type: LOGOUT })
 
@@ -31,8 +31,8 @@ export default function(state = defaultAuthInfo, action) {
       return {
         ...state,
         isLoggedIn: true,
-        userId: action.payloadJson.userId,
-        jwToken: action.payloadJson.jwToken
+        userId: action.oraAuthJson.userId,
+        jwToken: action.oraAuthJson.jwToken
       }
     case NOT_FIRST_RODEO:
       return { ...state, firstTime: false }

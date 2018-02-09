@@ -15,7 +15,7 @@ class Profile extends React.Component {
 
   async userLogout() {
     try {
-      await AsyncStorage.removeItem('payload')
+      await AsyncStorage.removeItem('oraAuth')
       this.props.logUserOut()
       AlertIOS.alert('Logout Successful')
     } catch (error) {

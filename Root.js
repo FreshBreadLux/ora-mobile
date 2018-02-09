@@ -37,11 +37,11 @@ class Root extends React.Component {
   }
 
   async verifyStorageKey() {
-    const payload = await AsyncStorage.getItem('payload')
-    const payloadJson = JSON.parse(payload)
-    if (payloadJson) {
-      this.props.logUserIn(payloadJson)
-      this.props.loadInitialData(payloadJson.userId)
+    const oraAuth = await AsyncStorage.getItem('oraAuth')
+    const oraAuthJson = JSON.parse(oraAuth)
+    if (oraAuthJson) {
+      this.props.logUserIn(oraAuthJson)
+      this.props.loadInitialData(oraAuthJson.userId)
     }
   }
 
@@ -101,8 +101,8 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserViews(userId))
     dispatch(fetchUserInfo(userId))
   },
-  logUserIn(payloadJson) {
-    return dispatch(login(payloadJson))
+  logUserIn(oraAuthJson) {
+    return dispatch(login(oraAuthJson))
   },
   refreshUserPrayers(userId) {
     return dispatch(fetchUserPrayers(userId))

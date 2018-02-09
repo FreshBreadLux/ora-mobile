@@ -19,7 +19,7 @@ const PrePrayer = ({ navigation, loadReflection, logUserOut }) => (
       <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={async function(){
-          await AsyncStorage.removeItem('payload')
+          await AsyncStorage.removeItem('oraAuth')
           logUserOut()
           await AsyncStorage.setItem('seenIntro', 'false')
         }}>

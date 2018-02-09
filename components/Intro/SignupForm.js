@@ -40,7 +40,7 @@ export default class SignupForm extends React.Component {
         pushToken: token,
       })
       .then(response => JSON.stringify(response.data))
-      .then(payload => setAsyncStorage('payload', payload))
+      .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
       .then(() => this.props.showAlarm())
       .catch(error => this.setState({error: error.response.request._response}))
     } else {
