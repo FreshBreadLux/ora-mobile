@@ -1,9 +1,11 @@
 import React from 'react'
 import { View, Text, Platform, DatePickerIOS, TimePickerAndroid, TouchableOpacity, AsyncStorage } from 'react-native'
+import { connect } from 'react-redux'
+import { notFirstRodeo } from '../../store'
 import { Notifications } from 'expo'
 import ss from '../StyleSheet'
 
-export default class SetAlarm extends React.Component {
+class SetAlarm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -17,18 +19,24 @@ export default class SetAlarm extends React.Component {
     this.setState({ chosenTime: newTime })
   }
 
-  handleSubmit() {
-    console.log('time ', this.state.chosenTime.getTime())
-    Notifications.scheduleLocalNotificationAsync({
-      title: 'Ora',
-      body: 'Time to pray',
-      sound: true
-    }, {
-      time: this.state.chosenTime,
-      repeat: 'day'
-    })
-    AsyncStorage.setItem('seenIntro', 'true')
-    this.props.verifyStorageKey()
+  async handleSubmit() {
+    try {
+      const reminderId = await Notifications.scheduleLocalNotificationAsync({
+        title: 'Ora',
+        body: 'Time to pray',
+        data: { body: 'Time to pray' },
+        sound: true
+      }, {
+        time: this.state.chosenTime,
+        repeat: 'day'
+      })
+      this.props.verifyStorageKey()
+      await AsyncStorage.setItem('seenIntro', 'true')
+      await AsyncStorage.setItem('reminderId', reminderId)
+      this.props.noIntroNeeded()
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   render() {
@@ -55,3 +63,11 @@ export default class SetAlarm extends React.Component {
     )
   }
 }
+
+const mapDispatch = dispatch => ({
+  noIntroNeeded() {
+    return dispatch(notFirstRodeo())
+  }
+})
+
+export default connect(null, mapDispatch)(SetAlarm)

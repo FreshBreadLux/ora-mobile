@@ -2,7 +2,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native'
 import Swiper from 'react-native-swiper'
 import Welcome from './Welcome'
-import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
 import SetAlarm from './SetAlarm'
 import ss from '../StyleSheet'
 
@@ -26,7 +26,7 @@ export default class IntroSwiper extends React.Component {
           <Welcome />
           {this.state.alarmVisible
           ? <SetAlarm verifyStorageKey={this.props.verifyStorageKey} />
-          : <LoginForm showAlarm={this.showAlarm} />
+          : <SignupForm showAlarm={this.showAlarm} />
           }
         </Swiper>
       </SafeAreaView>

@@ -27,6 +27,7 @@ class SubmitForm extends React.Component {
         userId: this.props.userId,
         subject: this.state.subject,
         body: this.state.body,
+        jwToken: this.props.jwToken
       })
       .then(() => {
         this.setState({
@@ -108,6 +109,7 @@ class SubmitForm extends React.Component {
 
 const mapState = state => ({
   userId: state.auth.userId,
+  jwToken: state.auth.jwToken
 })
 
 const mapDispatch = dispatch => ({

@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text, AsyncStorage, AppState } from 'react-native'
-import Modal from 'react-native-modal'
+import { View, AsyncStorage, AppState } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login, notFirstRodeo } from './store'
 import IntroSwiper from './components/Intro/Swiper'
+import LoginForm from './components/Intro/LoginForm'
+import NotificationModal from './components/NotificationModal'
 import MainNav from './MainNav'
 import ss from './components/StyleSheet'
 
@@ -23,7 +24,6 @@ class Root extends React.Component {
 
   componentDidMount() {
     this.checkFirstTime()
-    this.verifyStorageKey()
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
   }
@@ -32,6 +32,7 @@ class Root extends React.Component {
     const seenIntro = await AsyncStorage.getItem('seenIntro')
     if (seenIntro === 'true') {
       this.props.noIntroNeeded()
+      this.verifyStorageKey()
     }
   }
 
@@ -62,7 +63,7 @@ class Root extends React.Component {
   }
 
   hideNotificationModal() {
-    setTimeout(() => { this.setState({ notification: null }) }, 3000)
+    this.setState({ notification: null })
   }
 
   render() {
@@ -70,27 +71,15 @@ class Root extends React.Component {
       <View style={ss.invisiContainer}>
         {!this.props.firstTime
         ? <View style={ss.invisiContainer}>
-            <Modal
-              isVisible={!!this.state.notification}
-              style={ss.topModal}
-              animationIn="slideInDown"
-              animationInTiming={500}
-              animationOut="slideOutUp"
-              animationOutTiming={500}
-              backdropOpacity={0}
-              onModalShow={this.hideNotificationModal}
-              onBackdropPress={() => { this.setState({ notification: null }) }}>
-              <View style={[ss.center, ss.padding15]}>
-                <View style={ss.modalContent}>
-                  <Text>
-                    {this.state.notification
-                    ? `${this.state.notification.data.body}`
-                    : null }
-                  </Text>
-                </View>
-              </View>
-            </Modal>
-            <MainNav />
+          {!this.props.isLoggedIn
+          ? <LoginForm verifyStorageKey={this.verifyStorageKey} />
+          : <View style={ss.invisiContainer}>
+              <NotificationModal
+                notification={this.state.notification}
+                hideNotificationModal={this.hideNotificationModal} />
+              <MainNav />
+            </View>
+          }
           </View>
         : <IntroSwiper verifyStorageKey={this.verifyStorageKey} />
         }
@@ -100,6 +89,7 @@ class Root extends React.Component {
 }
 
 const mapState = state => ({
+  isLoggedIn: state.auth.isLoggedIn,
   userId: state.auth.userId,
   firstTime: state.auth.firstTime
 })

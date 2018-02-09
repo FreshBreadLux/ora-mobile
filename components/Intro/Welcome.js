@@ -12,7 +12,7 @@ export default class Welcome extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(this.fadeInWelcome, 1000)
+    setTimeout(this.fadeInWelcome, 500)
   }
 
   fadeInWelcome() {

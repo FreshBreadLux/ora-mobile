@@ -37,7 +37,12 @@ export default function(state = defaultAuthInfo, action) {
     case NOT_FIRST_RODEO:
       return { ...state, firstTime: false }
     case LOGOUT:
-      return defaultAuthInfo
+      return {
+        ...state,
+        isLoggedIn: false,
+        userId: null,
+        jwToken: null,
+      }
     default:
      return state
   }
