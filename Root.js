@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, login, notFirstRodeo } from './store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo } from './store'
 import IntroSwiper from './components/Intro/Swiper'
 import LoginForm from './components/Intro/LoginForm'
 import NotificationModal from './components/NotificationModal'
@@ -100,6 +100,7 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserFollows(userId))
     dispatch(fetchUserViews(userId))
     dispatch(fetchUserInfo(userId))
+    dispatch(fetchUserAlarms())
   },
   logUserIn(oraAuthJson) {
     return dispatch(login(oraAuthJson))

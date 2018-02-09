@@ -39,7 +39,6 @@ export const fetchNextPrayer = (userId, views) =>
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(res => res.data)
     .then(obj => {
-      console.log('obj: ', obj)
       dispatch(addView(obj.newView[0][0].viewedId))
       dispatch(setCurrentPrayer(obj.updatedPrayer))
       dispatch(removeReflection())

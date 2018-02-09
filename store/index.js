@@ -8,8 +8,9 @@ import userInfo from './userInfo'
 import auth from './auth'
 import acceptPrayer from './acceptPrayer'
 import visibleModal from './visibleModal'
+import alarms from './alarms'
 
-const reducer = combineReducers({ prayers, follows, views, userInfo, auth, acceptPrayer, visibleModal })
+const reducer = combineReducers({ prayers, follows, views, userInfo, auth, acceptPrayer, visibleModal, alarms })
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware
 ))
@@ -23,3 +24,4 @@ export * from './userInfo'
 export * from './auth'
 export * from './acceptPrayer'
 export * from './visibleModal'
+export * from './alarms'

@@ -30,9 +30,10 @@ class SetAlarm extends React.Component {
         time: this.state.chosenTime,
         repeat: 'day'
       })
+      const userAlarms = await JSON.stringify([{time: this.state.chosenTime, reminderId}])
+      await AsyncStorage.setItem('userAlarms', userAlarms)
       this.props.verifyStorageKey()
       await AsyncStorage.setItem('seenIntro', 'true')
-      await AsyncStorage.setItem('reminderId', reminderId)
       this.props.noIntroNeeded()
     } catch (error) {
       console.error(error)
@@ -56,7 +57,7 @@ class SetAlarm extends React.Component {
           <TouchableOpacity
             style={[ss.blackButton, ss.halfWidth]}
             onPress={this.handleSubmit}>
-            <Text style={[ss.subHeader, ss.whiteText]}>Get Started</Text>
+            <Text style={[ss.subHeader, ss.whiteText]}>get started</Text>
           </TouchableOpacity>
         </View>
       </View>

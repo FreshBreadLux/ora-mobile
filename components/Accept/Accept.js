@@ -41,14 +41,13 @@ class Accept extends React.Component {
 
   loadNextPrayer() {
     const { dispatchFetchNextPrayer, userId, views } = this.props
-    dispatchFetchNextPrayer(userId, views)
+    dispatchFetchNextPrayer(userId, views).then(this.fadeIn)
   }
 
   async animateNextPrayerTransition() {
     try {
       await this.fadeOut()
       await this.loadNextPrayer()
-      this.fadeIn()
     } catch (err) {
       console.error(err)
     }

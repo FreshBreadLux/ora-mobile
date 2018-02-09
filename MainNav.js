@@ -1,6 +1,6 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank } from './components'
+import { Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank, ManageAlarms } from './components'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
@@ -111,16 +111,22 @@ const MainStackNav = StackNavigator({
       title: 'The Nine Choirs',
     }
   },
-  About: {
-    screen: About,
-    navigationOptions: {
-      title: 'About',
-    },
-  },
   Donate: {
     screen: Donate,
     navigationOptions: {
       title: 'Donate',
+    },
+  },
+  ManageAlarms: {
+    screen: ManageAlarms,
+    navigationOptions: {
+      title: 'Alarms',
+    },
+  },
+  About: {
+    screen: About,
+    navigationOptions: {
+      title: 'About',
     },
   },
 })

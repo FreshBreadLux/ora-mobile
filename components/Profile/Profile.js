@@ -67,8 +67,8 @@ class Profile extends React.Component {
                   <View style={[ss.addViewSpacing]}>
                     <TouchableOpacity
                       style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
-                      onPress={() => navigation.navigate('About')}>
-                      <Text style={ss.buttonText}>learn more about Ora</Text>
+                      onPress={() => navigation.navigate('Donate')}>
+                      <Text style={ss.buttonText}>donate</Text>
                       <Feather
                         name="chevron-right"
                         size={26} />
@@ -77,8 +77,18 @@ class Profile extends React.Component {
                   <View style={[ss.addViewSpacing]}>
                     <TouchableOpacity
                       style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
-                      onPress={() => navigation.navigate('Donate')}>
-                      <Text style={ss.buttonText}>donate</Text>
+                      onPress={() => navigation.navigate('ManageAlarms')}>
+                      <Text style={ss.buttonText}>manage your alarms</Text>
+                      <Feather
+                        name="chevron-right"
+                        size={26} />
+                    </TouchableOpacity>
+                  </View>
+                  <View style={[ss.addViewSpacing]}>
+                    <TouchableOpacity
+                      style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
+                      onPress={() => navigation.navigate('About')}>
+                      <Text style={ss.buttonText}>learn more about Ora</Text>
                       <Feather
                         name="chevron-right"
                         size={26} />
