@@ -2,12 +2,11 @@ import React from 'react'
 import { View, AsyncStorage, AppState } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo } from './store'
-import IntroSwiper from './components/Intro/Swiper'
-import LoginForm from './components/Intro/LoginForm'
-import NotificationModal from './components/NotificationModal'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo } from '../store'
+import { IntroSwiperContainer, LoginFormContainer } from './containers'
+import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
-import ss from './components/StyleSheet'
+import ss from './StyleSheet'
 
 class Root extends React.Component {
   constructor(props) {
@@ -70,7 +69,7 @@ class Root extends React.Component {
     return (
       <View style={ss.invisiContainer}>
         {this.props.firstTime
-        ? <IntroSwiper verifyStorageKey={this.verifyStorageKey} />
+        ? <IntroSwiperContainer verifyStorageKey={this.verifyStorageKey} />
         : <View style={ss.invisiContainer}>
           {this.props.isLoggedIn
           ? <View style={ss.invisiContainer}>
@@ -79,7 +78,7 @@ class Root extends React.Component {
                 hideNotificationModal={this.hideNotificationModal} />
               <MainNav />
             </View>
-          : <LoginForm verifyStorageKey={this.verifyStorageKey} />
+          : <LoginFormContainer verifyStorageKey={this.verifyStorageKey} />
           }
           </View>
         }

@@ -6,7 +6,7 @@ import SignupForm from './SignupForm'
 import SetAlarm from './SetAlarm'
 import ss from '../StyleSheet'
 
-export default class IntroSwiper extends React.Component {
+export default class IntroSwiperContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {

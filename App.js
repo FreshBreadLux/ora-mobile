@@ -2,7 +2,7 @@ import React from 'react'
 import { AppLoading, Asset, Font } from 'expo'
 import { Image } from 'react-native'
 import { Provider } from 'react-redux'
-import Root from './Root'
+import Root from './components/Root'
 import store from './store'
 
 
