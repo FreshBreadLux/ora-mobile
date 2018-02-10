@@ -41,13 +41,13 @@ class Accept extends React.Component {
 
   loadNextPrayer() {
     const { dispatchFetchNextPrayer, userId, views } = this.props
-    dispatchFetchNextPrayer(userId, views).then(this.fadeIn)
+    return dispatchFetchNextPrayer(userId, views)
   }
 
   async animateNextPrayerTransition() {
     try {
       await this.fadeOut()
-      await this.loadNextPrayer()
+      await this.loadNextPrayer().then(this.fadeIn)
     } catch (err) {
       console.error(err)
     }
@@ -125,6 +125,7 @@ class Accept extends React.Component {
                 navigation={this.props.navigation} />
             : <Reflection
                 opacity={this.state.fadeAnim}
+                finishPraying={this.finishPraying}
                 animateNextPrayerTransition={this.animateNextPrayerTransition} />
             }
             </View>

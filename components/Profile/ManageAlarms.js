@@ -3,6 +3,7 @@ import { View, Text, Platform, DatePickerIOS, TimePickerAndroid, TouchableOpacit
 import { connect } from 'react-redux'
 import { fetchUserAlarms } from '../../store'
 import { Notifications } from 'expo'
+import { Ionicons } from '@expo/vector-icons'
 import ss from '../StyleSheet'
 
 class ManageAlarms extends React.Component {
@@ -87,30 +88,35 @@ class ManageAlarms extends React.Component {
             onDateChange={this.setTime} />
         : <TimePickerAndroid />
         }
-        <View style={[ss.padding15, ss.center]}>
-          <TouchableOpacity
-            style={[ss.blackButton, ss.halfWidth]}
-            onPress={this.saveNewAlarm}>
-            <Text style={[ss.subHeader, ss.whiteText]}>save new alarm</Text>
-          </TouchableOpacity>
-        </View>
-        {this.props.alarms.map(alarm => {
-          const time = new Date(alarm.time).toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric'})
-          return (
-            <View key={alarm.reminderId} style={ss.listBottomBorder}>
-              <Text>{time}</Text>
-              <TouchableOpacity
-                onPress={() => this.deleteAlarm(alarm)}>
-                <Text>delete</Text>
-              </TouchableOpacity>
-            </View>
-        )})}
-        <View style={[ss.padding15, ss.center]}>
-          <TouchableOpacity
-            style={[ss.blackButton, ss.halfWidth]}
-            onPress={this.clearAlarms}>
-            <Text style={[ss.subHeader, ss.whiteText]}>clear all alarms</Text>
-          </TouchableOpacity>
+        <View style={[ss.invisiContainer, ss.padding15]}>
+          <View style={[ss.padding15, ss.center]}>
+            <TouchableOpacity
+              style={[ss.blackButton]}
+              onPress={this.saveNewAlarm}>
+              <Text style={[ss.subHeader, ss.whiteText]}>save new alarm</Text>
+            </TouchableOpacity>
+          </View>
+          {this.props.alarms.map(alarm => {
+            const time = new Date(alarm.time).toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric'})
+            return (
+              <View key={alarm.reminderId} style={[ss.row, ss.addViewSpacing, ss.spaceBetween, ss.listBottomBorder]}>
+                <Text style={{fontSize: 28}}>{time}</Text>
+                <TouchableOpacity
+                  onPress={() => this.deleteAlarm(alarm)}>
+                  <Ionicons
+                    name="ios-trash-outline"
+                    size={28}
+                    color="#555" />
+                </TouchableOpacity>
+              </View>
+          )})}
+          <View style={[ss.padding15, ss.center]}>
+            <TouchableOpacity
+              style={[ss.blackButton]}
+              onPress={this.clearAlarms}>
+              <Text style={[ss.subHeader, ss.whiteText]}>clear all alarms</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     )

@@ -60,7 +60,9 @@ class ManageMyPrayer extends React.Component {
   }
 
   deletePrayer() {
-    axios.delete(`${ROOT_URL}/api/prayers/${this.props.navigation.state.params.prayer.id}`)
+    axios.delete(`${ROOT_URL}/api/prayers/${this.props.navigation.state.params.prayer.id}`, {
+      headers: {token: this.props.jwToken
+    }})
     .then(() => {
       this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
@@ -92,6 +94,7 @@ class ManageMyPrayer extends React.Component {
 
 const mapState = state => ({
   userId: state.auth.userId,
+  jwToken: state.auth.jwToken
 })
 
 const mapDispatch = dispatch => ({
