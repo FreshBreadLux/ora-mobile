@@ -1,7 +1,7 @@
 import React from 'react'
 import { AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { notFirstRodeo } from '../../store'
+import { notFirstRodeo } from '../../../store'
 import { Notifications } from 'expo'
 import { SetAlarmPresenter } from '../../presenters'
 

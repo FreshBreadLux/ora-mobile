@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import Modal from 'react-native-modal'
-import ss from './StyleSheet'
+import ss from '../../StyleSheet'
 
 const NotificationModal = ({ notification, hideNotificationModal }) => (
   <Modal
