@@ -1,10 +1,10 @@
 import React from 'react'
 import { SafeAreaView } from 'react-native'
 import Swiper from 'react-native-swiper'
-import Welcome from './Welcome'
-import SignupForm from './SignupForm'
-import SetAlarm from './SetAlarm'
-import ss from '../StyleSheet'
+import WelcomeContainer from './WelcomeContainer'
+import SignupFormContainer from './SignupFormContainer'
+import SetAlarmContainer from './SetAlarmContainer'
+import ss from '../../StyleSheet'
 
 export default class IntroSwiperContainer extends React.Component {
   constructor(props) {
@@ -23,10 +23,10 @@ export default class IntroSwiperContainer extends React.Component {
     return (
       <SafeAreaView style={ss.invisiContainer}>
         <Swiper loop={false}>
-          <Welcome />
+          <WelcomeContainer />
           {this.state.alarmVisible
-          ? <SetAlarm verifyStorageKey={this.props.verifyStorageKey} />
-          : <SignupForm showAlarm={this.showAlarm} />
+          ? <SetAlarmContainer verifyStorageKey={this.props.verifyStorageKey} />
+          : <SignupFormContainer showAlarm={this.showAlarm} />
           }
         </Swiper>
       </SafeAreaView>

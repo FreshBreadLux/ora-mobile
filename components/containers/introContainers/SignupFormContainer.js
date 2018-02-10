@@ -1,8 +1,16 @@
 import React from 'react'
 import axios from 'axios'
 import { AsyncStorage } from 'react-native'
-import { LoginFormPresenter } from '../../presenters'
+import { Permissions, Notifications } from 'expo'
+import { SignupFormPresenter } from '../../presenters'
 import ROOT_URL from '../../../config'
+
+async function registerForPushNotificationsAsync() {
+  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+  if (status !== 'granted') return
+  let token = await Notifications.getExpoPushTokenAsync()
+  return token
+}
 
 async function setAsyncStorage(item, selectedValue) {
   try {
@@ -12,7 +20,7 @@ async function setAsyncStorage(item, selectedValue) {
   }
 }
 
-export default class LoginFormContainer extends React.Component {
+export default class SignupFormContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,22 +28,20 @@ export default class LoginFormContainer extends React.Component {
       password: null,
       error: false,
     }
-    this.userLogin = this.userLogin.bind(this)
-    this.setEmail = this.setEmail.bind(this)
-    this.setPassword = this.setPassword.bind(this)
-    this.referencePassword = this.referencePassword.bind(this)
-    this.focusPassword = this.focusPassword.bind(this)
+    this.userSignup = this.userSignup.bind(this)
   }
 
-  userLogin() {
+  async userSignup() {
     if (this.state.email && this.state.password) {
-      axios.post(`${ROOT_URL}/api/users/sessions`, {
+      let token = await registerForPushNotificationsAsync()
+      axios.post(`${ROOT_URL}/api/users`, {
         email: this.state.email,
         password: this.state.password,
+        pushToken: token,
       })
       .then(response => JSON.stringify(response.data))
       .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
-      .then(() => this.props.verifyStorageKey())
+      .then(() => this.props.showAlarm())
       .catch(error => this.setState({error: error.response.request._response}))
     } else {
       this.setState({ error: 'please provide both an email and a password' })
@@ -60,8 +66,8 @@ export default class LoginFormContainer extends React.Component {
 
   render() {
     return (
-      <LoginFormPresenter
-        userLogin={this.userLogin}
+      <SignupFormPresenter
+        userSignup={this.userSignup}
         setEmail={this.setEmail}
         setPassword={this.setPassword}
         focusPassword={this.focusPassword}

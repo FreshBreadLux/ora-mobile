@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, Animated } from 'react-native'
-import ss from '../StyleSheet'
+import ss from '../../StyleSheet'
 
-export default class Welcome extends React.Component {
+export default class WelcomeContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -22,7 +22,7 @@ export default class Welcome extends React.Component {
   render() {
     return (
       <View style={[ss.whiteContainer, ss.center]}>
-        <Animated.View style={{opacity: this.state.welcomeFade, top: this.state.welcomeTop}}>
+        <Animated.View style={{opacity: this.state.welcomeFade}}>
           <Text style={ss.header}>WELCOME TO ORA</Text>
         </Animated.View>
       </View>
