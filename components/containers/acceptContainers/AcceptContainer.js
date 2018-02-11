@@ -13,7 +13,7 @@ function animate(...options) {
   })
 }
 
-class Accept extends React.Component {
+class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -174,4 +174,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(Accept)
+export default connect(mapState, mapDispatch)(AcceptContainer)

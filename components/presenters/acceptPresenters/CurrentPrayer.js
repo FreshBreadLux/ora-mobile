@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
 import { Feather } from '@expo/vector-icons'
-import { FlagModalContent, AboutModalContent, FollowModalContent } from '../modals'
+import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
 const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
@@ -81,20 +81,20 @@ const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPrayi
       <Modal
         isVisible={visibleModal === 'flag'}
         style={ss.bottomModal}>
-        <FlagModalContent
+        <FlagModal
           hideModal={hideModal}
           flagPrayer={flagPrayer} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'about'}
         style={ss.bottomModal}>
-        <AboutModalContent
+        <AboutModal
           hideModal={hideModal} />
       </Modal>
       <Modal
         isVisible={visibleModal === 'follow'}
         style={ss.bottomModal}>
-        <FollowModalContent
+        <FollowModal
           hideModal={hideModal}
           followPrayer={followPrayer} />
       </Modal>

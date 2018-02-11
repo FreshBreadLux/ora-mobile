@@ -1,6 +1,5 @@
 export { default as Submit } from './Submit/SubmitVerify'
 export { default as ManagePrayerScroll } from './Manage/ManagePrayerScroll'
-export { default as ManageFollowScroll } from './Manage/ManageFollowScroll'
 export { default as ManageMyPrayer } from './Manage/ManageMyPrayer'
 export { default as ManageMyFollow } from './Manage/ManageMyFollow'
 export { default as Profile } from './Profile/Profile'

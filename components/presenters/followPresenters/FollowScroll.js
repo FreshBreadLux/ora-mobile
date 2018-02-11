@@ -1,10 +1,10 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import { connect } from 'react-redux'
-import ss from '../StyleSheet'
+import ss from '../../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const ManageFollowScroll = ({ isLoggedIn, follows, navigation }) => (
+const FollowScroll = ({ isLoggedIn, follows, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -79,4 +79,4 @@ const mapState = state => ({
   isLoggedIn: state.auth.isLoggedIn,
 })
 
-export default connect(mapState)(ManageFollowScroll)
+export default connect(mapState)(FollowScroll)

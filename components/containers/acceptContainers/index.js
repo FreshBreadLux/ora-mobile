@@ -1,1 +1,1 @@
-export { default as Accept } from './Accept'
+export { default as AcceptContainer } from './AcceptContainer'
