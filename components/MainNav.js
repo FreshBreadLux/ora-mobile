@@ -1,15 +1,15 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Submit, ManagePrayerScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
-import { AcceptContainer } from './containers'
-import { FollowScroll } from './presenters'
+import { Submit, Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
+import { AcceptContainer, PrayerContainer, FollowContainer } from './containers'
+import { FollowScrollPresenter, PrayerScrollPresenter } from './presenters'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
-  FollowsScroll: {
-    screen: FollowScroll,
+  FollowScroll: {
+    screen: FollowScrollPresenter,
     navigationOptions: {
-      title: 'Following',
+      title: 'Follows',
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
@@ -20,8 +20,8 @@ const MainTabNav = TabNavigator({
       ),
     },
   },
-  ManagePrayerScroll: {
-    screen: ManagePrayerScroll,
+  PrayerScroll: {
+    screen: PrayerScrollPresenter,
     navigationOptions: {
       title: 'Prayers',
       headerBackTitle: null,
@@ -95,14 +95,14 @@ const MainStackNav = StackNavigator({
       header: null,
     },
   },
-  MyPrayer: {
-    screen: ManageMyPrayer,
+  Prayer: {
+    screen: PrayerContainer,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.prayer.subject}`,
     })
   },
-  MyFollow: {
-    screen: ManageMyFollow,
+  Follow: {
+    screen: FollowContainer,
     navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.follow.subject}`,
     })

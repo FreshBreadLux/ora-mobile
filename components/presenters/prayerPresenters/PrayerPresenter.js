@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal } from '../../store'
+import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
-import { OpenModalContent, CloseModalContent, DeleteModalContent } from './Modals'
-import ss from '../StyleSheet'
+import { OpenModal, CloseModal, DeleteModal } from '../modals'
+import ss from '../../StyleSheet'
 
-const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
+const PrayerPresenter = ({ prayer, toggleEdit, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
     <ScrollView showsVerticalScrollIndicator={false}>
       <Text style={[ss.body, ss.paddingBottom10]}>{`${prayer.body}`}</Text>
@@ -62,21 +62,21 @@ const SinglePrayer = ({ prayer, toggleEdit, togglePrayer, deletePrayer, showModa
     <Modal
       isVisible={visibleModal === 'delete'}
       style={ss.bottomModal}>
-      <DeleteModalContent
+      <DeleteModal
         hideModal={hideModal}
         deletePrayer={deletePrayer} />
     </Modal>
     <Modal
       isVisible={visibleModal === 'open'}
       style={ss.bottomModal}>
-      <OpenModalContent
+      <OpenModal
         hideModal={hideModal}
         togglePrayer={togglePrayer} />
     </Modal>
     <Modal
       isVisible={visibleModal === 'close'}
       style={ss.bottomModal}>
-      <CloseModalContent
+      <CloseModal
         hideModal={hideModal}
         togglePrayer={togglePrayer} />
     </Modal>
@@ -96,4 +96,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(SinglePrayer)
+export default connect(mapState, mapDispatch)(PrayerPresenter)

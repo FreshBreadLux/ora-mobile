@@ -5,7 +5,7 @@ import { logout } from '../../../store'
 import ss from '../../StyleSheet'
 import { Feather } from '@expo/vector-icons'
 
-const PrePrayer = ({ navigation, loadReflection, logUserOut }) => (
+const PrePrayerPresenter = ({ navigation, loadReflection, logUserOut }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
     <View style={[ss.invisiContainer, ss.spaceAround]}>
       <Text style={ss.title}>ORA</Text>
@@ -46,4 +46,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(null, mapDispatch)(PrePrayer)
+export default connect(null, mapDispatch)(PrePrayerPresenter)

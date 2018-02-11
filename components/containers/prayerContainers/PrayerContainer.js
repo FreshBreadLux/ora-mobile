@@ -1,14 +1,14 @@
 import React from 'react'
 import { Keyboard, SafeAreaView } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserPrayers } from '../../store'
-import SinglePrayer from './SinglePrayer'
-import EditPrayer from './EditPrayer'
+import { fetchUserPrayers } from '../../../store'
+import { PrayerPresenter } from '../../presenters'
+import EditPrayerContainer from './EditPrayerContainer'
 import axios from 'axios'
-import ss from '../StyleSheet'
-import ROOT_URL from '../../config'
+import ss from '../../StyleSheet'
+import ROOT_URL from '../../../config'
 
-class ManageMyPrayer extends React.Component {
+class PrayerContainer extends React.Component {
   constructor(props) {
     super(props)
     const prayer = this.props.navigation.state.params.prayer
@@ -42,7 +42,7 @@ class ManageMyPrayer extends React.Component {
       this.setState({
         editMode: false
       })
-      fetchUserPrayers(this.props.userId)
+      this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
     })
     .catch(console.error)
@@ -75,12 +75,12 @@ class ManageMyPrayer extends React.Component {
     return (
       <SafeAreaView style={ss.whiteContainer}>
         {this.state.editMode
-          ? <EditPrayer
+          ? <EditPrayerContainer
               setBody={this.setBody}
               body={this.state.body}
               updatePrayer={this.updatePrayer}
               toggleEdit={this.toggleEdit} />
-          : <SinglePrayer
+          : <PrayerPresenter
               visibleModal={this.state.visibleModal}
               toggleEdit={this.toggleEdit}
               togglePrayer={this.togglePrayer}
@@ -103,4 +103,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(ManageMyPrayer)
+export default connect(mapState, mapDispatch)(PrayerContainer)

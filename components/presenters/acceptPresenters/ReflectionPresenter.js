@@ -3,7 +3,7 @@ import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-nati
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const Reflection = ({ animateNextPrayerTransition, opacity, finishPraying }) => (
+const ReflectionPresenter = ({ animateNextPrayerTransition, opacity, finishPraying }) => (
   <View style={ss.opacityContainer}>
     <SafeAreaView style={ss.invisiContainer}>
       <View style={[ss.invisiContainer, ss.padding15]}>
@@ -33,4 +33,4 @@ const Reflection = ({ animateNextPrayerTransition, opacity, finishPraying }) => 
   </View>
 )
 
-export default Reflection
+export default ReflectionPresenter

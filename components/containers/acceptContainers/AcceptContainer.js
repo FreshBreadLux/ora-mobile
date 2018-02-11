@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection } from '../../../store'
-import { PrePrayer, Reflection, CurrentPrayer } from '../../presenters'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
+import { PrePrayerPresenter, ReflectionPresenter, CurrentPrayerPresenter } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import ss from '../../StyleSheet'
@@ -72,8 +72,7 @@ class AcceptContainer extends React.Component {
         AlertIOS.alert(
           'This prayer has been flagged',
           'The Ora team will look into this and resolve the issue as quickly as possible',
-          () => this.setModal(null)
-        )
+          this.props.dispatchRemoveVisibleModal)
       })
       .catch(console.error)
     } else {
@@ -93,17 +92,17 @@ class AcceptContainer extends React.Component {
         AlertIOS.alert(
           'You are now following this prayer',
           'You can manage the prayers you follow in the Follows section',
-          () => this.setModal(null))
+          this.props.dispatchRemoveVisibleModal)
       })
       .catch(console.error)
     } else if (isLoggedIn && alreadyFollowing) {
       AlertIOS.alert('You are already following this prayer',
       'You can manage the prayers you follow in the Follows section',
-      () => this.setModal(null))
+      this.props.dispatchRemoveVisibleModal)
     } else {
       AlertIOS.alert('You must log in or sign up to follow prayers',
       'Log in or sign up in order to get the most out of Ora',
-      () => this.setModal(null))
+      this.props.dispatchRemoveVisibleModal)
     }
   }
 
@@ -118,17 +117,17 @@ class AcceptContainer extends React.Component {
         {!this.props.currentPrayer.subject
           ? <View style={ss.invisiContainer}>
             {!this.props.reflection
-            ? <PrePrayer
+            ? <PrePrayerPresenter
                 loadReflection={this.loadReflection}
                 navigation={this.props.navigation} />
-            : <Reflection
+            : <ReflectionPresenter
                 opacity={this.state.fadeAnim}
                 finishPraying={this.finishPraying}
                 animateNextPrayerTransition={this.animateNextPrayerTransition} />
             }
             </View>
           : <View style={ss.opacityContainer}>
-              <CurrentPrayer
+              <CurrentPrayerPresenter
                 animateNextPrayerTransition={this.animateNextPrayerTransition}
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
@@ -171,6 +170,9 @@ const mapDispatch = dispatch => ({
   },
   dispatchSetReflection() {
     return dispatch(setReflection())
+  },
+  dispatchRemoveVisibleModal() {
+    return dispatch(removeVisibleModal())
   }
 })
 

@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, Keyboard, Animated } from 'react-native'
-import ss from '../StyleSheet'
+import { Keyboard, Animated } from 'react-native'
+import { EditPrayerPresenter } from '../../presenters'
 
-export default class EditPrayer extends React.Component {
+export default class EditPrayerContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -13,6 +13,7 @@ export default class EditPrayer extends React.Component {
     this.keyboardWillHide = this.keyboardWillHide.bind(this)
     this.handleOnLayout = this.handleOnLayout.bind(this)
     this.focusTextInput = this.focusTextInput.bind(this)
+    this.referenceEditTextInput = this.referenceEditTextInput.bind(this)
   }
 
   componentWillMount () {
@@ -53,35 +54,20 @@ export default class EditPrayer extends React.Component {
     this.editTextInput.focus()
   }
 
+  referenceEditTextInput(ref) {
+    this.editTextInput = ref
+  }
+
   render() {
     return (
-      <View
-        onLayout={this.handleOnLayout}
-        style={[ss.invisiContainer, ss.editPadding]}>
-        <Animated.View
-          style={{height: this.state.animatedHeight ? this.state.animatedHeight : 600 }}>
-          <TextInput
-            ref={ref => { this.editTextInput = ref }}
-            style={[ss.flex1, ss.body, ss.paddingBottom10]}
-            multiline={true}
-            onChangeText={textBody => this.props.setBody(textBody)}
-            value={this.props.body}
-          />
-        <View
-          style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
-          <TouchableOpacity
-            style={ss.cancelButton}
-            onPress={this.props.toggleEdit}>
-            <Text style={[ss.subBody]}>cancel</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={ss.editButton}
-            onPress={this.props.updatePrayer}>
-            <Text style={[ss.subBody, ss.whiteText]}>save edits</Text>
-          </TouchableOpacity>
-        </View>
-        </Animated.View>
-      </View>
+      <EditPrayerPresenter
+        handleOnLayout={this.handleOnLayout}
+        animatedHeight={this.state.animatedHeight}
+        body={this.props.body}
+        toggleEdit={this.props.toggleEdit}
+        updatePrayer={this.props.updatePrayer}
+        setBody={this.props.setBody}
+        referenceEditTextInput={this.referenceEditTextInput} />
     )
   }
 }

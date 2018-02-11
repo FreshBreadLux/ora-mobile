@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import ss from '../../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const FollowScroll = ({ isLoggedIn, follows, navigation }) => (
+const FollowScrollPresenter = ({ isLoggedIn, follows, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
-        source={require('../../assets/images/Rome-Follows.jpg')}
+        source={require('../../../assets/images/Rome-Follows.jpg')}
         style={ss.backgroundImage}
       />
     </View>
@@ -47,7 +47,7 @@ const FollowScroll = ({ isLoggedIn, follows, navigation }) => (
                     style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
                     key={follow.id}
                     onPress={() => {
-                      navigation.navigate('MyFollow', { follow })
+                      navigation.navigate('Follow', { follow })
                     }}>
                     <Text
                       numberOfLines={1}
@@ -79,4 +79,4 @@ const mapState = state => ({
   isLoggedIn: state.auth.isLoggedIn,
 })
 
-export default connect(mapState)(FollowScroll)
+export default connect(mapState)(FollowScrollPresenter)

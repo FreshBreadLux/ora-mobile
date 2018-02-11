@@ -1,3 +1,3 @@
-export { default as PrePrayer } from './PrePrayer'
-export { default as CurrentPrayer } from './CurrentPrayer'
-export { default as Reflection } from './Reflection'
+export { default as PrePrayerPresenter } from './PrePrayerPresenter'
+export { default as CurrentPrayerPresenter } from './CurrentPrayerPresenter'
+export { default as ReflectionPresenter } from './ReflectionPresenter'

@@ -1,2 +1,2 @@
-export { default as FollowScroll } from './FollowScroll'
+export { default as FollowScrollPresenter } from './FollowScrollPresenter'
 export { default as FollowPresenter } from './FollowPresenter'

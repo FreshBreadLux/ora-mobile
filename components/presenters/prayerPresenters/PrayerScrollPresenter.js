@@ -2,14 +2,14 @@ import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
 import { LinearGradient } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers } from '../../store'
-import ss from '../StyleSheet'
+import { fetchUserPrayers } from '../../../store'
+import ss from '../../StyleSheet'
 
-const ManagePrayerScroll = ({ isLoggedIn, userId, prayers, refreshUserPrayers, navigation }) => (
+const PrayerScrollPresenter = ({ isLoggedIn, userId, prayers, refreshUserPrayers, navigation }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
-        source={require('../../assets/images/Rome-Prayers.jpg')}
+        source={require('../../../assets/images/Rome-Prayers.jpg')}
         style={ss.backgroundImage}
       />
     </View>
@@ -49,7 +49,7 @@ const ManagePrayerScroll = ({ isLoggedIn, userId, prayers, refreshUserPrayers, n
                     key={prayer.id}
                     onPress={() => {
                       refreshUserPrayers(userId)
-                      navigation.navigate('MyPrayer', { prayer })
+                      navigation.navigate('Prayer', { prayer })
                     }}>
                     <Text
                       numberOfLines={1}
@@ -89,4 +89,4 @@ const mapDispatch = dispatch => ({
   }
 })
 
-export default connect(mapState, mapDispatch)(ManagePrayerScroll)
+export default connect(mapState, mapDispatch)(PrayerScrollPresenter)

@@ -6,7 +6,7 @@ import { setVisibleModal, removeVisibleModal } from '../../../store'
 import { UnfollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const FollowPresenter = ({ follow, unfollowPrayer}) => (
+const FollowPresenter = ({ follow, unfollowPrayer, showModal, hideModal, visibleModal }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.padding15]}>
       <ScrollView>
@@ -14,16 +14,16 @@ const FollowPresenter = ({ follow, unfollowPrayer}) => (
       </ScrollView>
       <View style={[ss.center, ss.addViewSpacing]}>
         <TouchableOpacity
-          onPress={() => this.props.showModal('unfollow')}
+          onPress={() => showModal('unfollow')}
           style={[ss.blackButton, ss.halfWidth]}>
           <Text style={[ss.buttonText, ss.whiteText]}>Unfollow</Text>
         </TouchableOpacity>
       </View>
       <Modal
-        isVisible={this.props.visibleModal === 'unfollow'}
+        isVisible={visibleModal === 'unfollow'}
         style={ss.bottomModal}>
         <UnfollowModal
-          hideModal={this.props.hideModal}
+          hideModal={hideModal}
           unfollowPrayer={unfollowPrayer} />
       </Modal>
     </View>
