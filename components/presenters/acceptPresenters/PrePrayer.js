@@ -1,8 +1,8 @@
 import React from 'react'
 import { View, Text, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { logout } from '../../store'
-import ss from '../StyleSheet'
+import { logout } from '../../../store'
+import ss from '../../StyleSheet'
 import { Feather } from '@expo/vector-icons'
 
 const PrePrayer = ({ navigation, loadReflection, logUserOut }) => (

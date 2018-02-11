@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import ss from '../StyleSheet'
+import ss from '../../StyleSheet'
 
 const Reflection = ({ animateNextPrayerTransition, opacity, finishPraying }) => (
   <View style={ss.opacityContainer}>

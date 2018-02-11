@@ -1,11 +1,11 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal } from '../../store'
+import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
 import { Feather } from '@expo/vector-icons'
-import { FlagModalContent, AboutModalContent, FollowModalContent } from './Modals'
-import ss from '../StyleSheet'
+import { FlagModalContent, AboutModalContent, FollowModalContent } from '../modals'
+import ss from '../../StyleSheet'
 
 const CurrentPrayer = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>

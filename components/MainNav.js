@@ -1,6 +1,7 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Accept, Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
+import { Submit, ManagePrayerScroll, ManageFollowScroll, ManageMyPrayer, ManageMyFollow, Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
+import { Accept } from './containers'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({

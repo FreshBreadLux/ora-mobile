@@ -1,4 +1,3 @@
-export { default as Accept } from './Accept/Accept'
 export { default as Submit } from './Submit/SubmitVerify'
 export { default as ManagePrayerScroll } from './Manage/ManagePrayerScroll'
 export { default as ManageFollowScroll } from './Manage/ManageFollowScroll'

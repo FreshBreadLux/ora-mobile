@@ -1,13 +1,11 @@
 import React from 'react'
 import { View, Image, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection } from '../../store'
-import PrePrayer from './PrePrayer'
-import Reflection from './Reflection'
-import CurrentPrayer from './CurrentPrayer'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection } from '../../../store'
+import { PrePrayer, Reflection, CurrentPrayer } from '../../presenters'
 import axios from 'axios'
-import ROOT_URL from '../../config'
-import ss from '../StyleSheet'
+import ROOT_URL from '../../../config'
+import ss from '../../StyleSheet'
 
 function animate(...options) {
   return new Promise(res => {
@@ -114,7 +112,7 @@ class Accept extends React.Component {
       <View style={ss.invisiContainer}>
         <View style={ss.backgroundImageFrame}>
           <Image
-            source={require('../../assets/images/Rome.jpg')}
+            source={require('../../../assets/images/Rome.jpg')}
             style={ss.backgroundImage} />
         </View>
         {!this.props.currentPrayer.subject
