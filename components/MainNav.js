@@ -1,12 +1,12 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Submit, Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
-import { AcceptContainer, PrayerContainer, FollowContainer } from './containers'
+import { Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer } from './containers'
 import { FollowScrollPresenter, PrayerScrollPresenter } from './presenters'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
-  FollowScroll: {
+  Follows: {
     screen: FollowScrollPresenter,
     navigationOptions: {
       title: 'Follows',
@@ -20,7 +20,7 @@ const MainTabNav = TabNavigator({
       ),
     },
   },
-  PrayerScroll: {
+  Prayers: {
     screen: PrayerScrollPresenter,
     navigationOptions: {
       title: 'Prayers',
@@ -49,7 +49,7 @@ const MainTabNav = TabNavigator({
     },
   },
   Submit: {
-    screen: Submit,
+    screen: SubmitContainer,
     navigationOptions: {
       title: 'New Prayer',
       headerBackTitle: null,

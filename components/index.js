@@ -1,4 +1,3 @@
-export { default as Submit } from './Submit/SubmitVerify'
 export { default as Profile } from './Profile/Profile'
 export { default as About } from './Profile/About'
 export { default as Donate } from './Profile/Donate'
