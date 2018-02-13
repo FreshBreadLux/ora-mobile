@@ -1,8 +1,8 @@
 import React from 'react'
 import { Text, View, ScrollView, SafeAreaView } from 'react-native'
-import ss from '../StyleSheet'
+import ss from '../../StyleSheet'
 
-const About = () => (
+const AboutPresenter = () => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.horizontalPadding]}>
       <ScrollView
@@ -37,4 +37,4 @@ const About = () => (
   </SafeAreaView>
 )
 
-export default About
+export default AboutPresenter

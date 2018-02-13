@@ -1,8 +1,7 @@
 import React from 'react'
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { Profile, About, Donate, ChoirRank, ManageAlarms } from './index'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer } from './containers'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter } from './presenters'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
@@ -15,8 +14,7 @@ const MainTabNav = TabNavigator({
         <Ionicons
           name="md-heart"
           size={26}
-          style={{ color: tintColor }}
-        />
+          style={{ color: tintColor }} />
       ),
     },
   },
@@ -29,8 +27,7 @@ const MainTabNav = TabNavigator({
         <Ionicons
           name="ios-book"
           size={26}
-          style={{ color: tintColor }}
-        />
+          style={{ color: tintColor }} />
       ),
     },
   },
@@ -43,8 +40,7 @@ const MainTabNav = TabNavigator({
         <Ionicons
           name="ios-home"
           size={26}
-          style={{ color: tintColor }}
-        />
+          style={{ color: tintColor }} />
       ),
     },
   },
@@ -57,13 +53,12 @@ const MainTabNav = TabNavigator({
         <Ionicons
           name="ios-paper-plane"
           size={26}
-          style={{ color: tintColor }}
-        />
+          style={{ color: tintColor }} />
       ),
     },
   },
   Profile: {
-    screen: Profile,
+    screen: ProfileContainer,
     navigationOptions: {
       title: 'Profile',
       headerBackTitle: null,
@@ -71,8 +66,7 @@ const MainTabNav = TabNavigator({
         <Ionicons
           name="ios-person"
           size={26}
-          style={{ color: tintColor }}
-        />
+          style={{ color: tintColor }} />
       ),
     },
   },
@@ -108,25 +102,25 @@ const MainStackNav = StackNavigator({
     })
   },
   ChoirRank: {
-    screen: ChoirRank,
+    screen: ChoirRankPresenter,
     navigationOptions: {
       title: 'The Nine Choirs',
     }
   },
   Donate: {
-    screen: Donate,
+    screen: DonatePresenter,
     navigationOptions: {
       title: 'Donate',
     },
   },
-  ManageAlarms: {
-    screen: ManageAlarms,
+  Alarms: {
+    screen: AlarmContainer,
     navigationOptions: {
       title: 'Alarms',
     },
   },
   About: {
-    screen: About,
+    screen: AboutPresenter,
     navigationOptions: {
       title: 'About',
     },

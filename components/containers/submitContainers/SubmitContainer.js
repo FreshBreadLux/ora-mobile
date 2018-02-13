@@ -71,7 +71,6 @@ class SubmitContainer extends React.Component {
   }
 
   render() {
-    console.log('this.state: ', this.state)
     return (
       <SubmitPresenter
         subject={this.state.subject}

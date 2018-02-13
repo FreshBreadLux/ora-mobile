@@ -1,12 +1,11 @@
 import React from 'react'
-import { View, Text, Platform, DatePickerIOS, TimePickerAndroid, TouchableOpacity, AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserAlarms } from '../../store'
+import { fetchUserAlarms } from '../../../store'
 import { Notifications } from 'expo'
-import { Ionicons } from '@expo/vector-icons'
-import ss from '../StyleSheet'
+import { AlarmPresenter } from '../../presenters'
 
-class ManageAlarms extends React.Component {
+class AlarmContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -80,57 +79,18 @@ class ManageAlarms extends React.Component {
 
   render() {
     return (
-      <View style={[ss.whiteContainer]}>
-        {Platform.OS === 'ios'
-        ? <DatePickerIOS
-            mode="time"
-            date={this.state.chosenTime}
-            onDateChange={this.setTime} />
-        : <TimePickerAndroid />
-        }
-        <View style={[ss.invisiContainer, ss.padding15]}>
-          <View style={[ss.padding15, ss.center]}>
-            <TouchableOpacity
-              style={[ss.blackButton]}
-              onPress={this.saveNewAlarm}>
-              <Text style={[ss.subHeader, ss.whiteText]}>save new alarm</Text>
-            </TouchableOpacity>
-          </View>
-          {this.props.alarms.map(alarm => {
-            const time = new Date(alarm.time).toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric'})
-            return (
-              <View key={alarm.reminderId} style={[ss.row, ss.addViewSpacing, ss.spaceBetween, ss.listBottomBorder]}>
-                <Text style={{fontSize: 28}}>{time}</Text>
-                <TouchableOpacity
-                  onPress={() => this.deleteAlarm(alarm)}>
-                  <Ionicons
-                    name="ios-trash-outline"
-                    size={28}
-                    color="#555" />
-                </TouchableOpacity>
-              </View>
-          )})}
-          <View style={[ss.padding15, ss.center]}>
-            <TouchableOpacity
-              style={[ss.blackButton]}
-              onPress={this.clearAlarms}>
-              <Text style={[ss.subHeader, ss.whiteText]}>clear all alarms</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
+      <AlarmPresenter
+        setTime={this.setTime}
+        saveNewAlarm={this.saveNewAlarm}
+        deleteAlarm={this.deleteAlarm}
+        clearAlarms={this.clearAlarms}
+        chosenTime={this.state.chosenTime} />
     )
   }
 }
 
-const mapState = state => ({
-  alarms: state.alarms
-})
-
 const mapDispatch = dispatch => ({
-  refreshUserAlarms() {
-    return dispatch(fetchUserAlarms())
-  }
+  refreshUserAlarms: () => dispatch(fetchUserAlarms())
 })
 
-export default connect(mapState, mapDispatch)(ManageAlarms)
+export default connect(null, mapDispatch)(AlarmContainer)

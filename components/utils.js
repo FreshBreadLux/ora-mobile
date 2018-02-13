@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Image, ScrollView } from 'react-native'
-import ss from '../StyleSheet'
+import ss from './StyleSheet'
 
 export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
@@ -43,7 +43,7 @@ export const determineChoirText = userTotalPrayers => {
         <View style={ss.invisiContainer}>
           <View style={ss.backgroundImageFrame}>
             <Image
-              source={require('../../assets/images/Choirs.jpg')}
+              source={require('../assets/images/Choirs.jpg')}
               style={ss.backgroundImage}
             />
           </View>
@@ -84,7 +84,7 @@ export const determineChoirText = userTotalPrayers => {
         <View style={ss.invisiContainer}>
           <View style={ss.backgroundImageFrame}>
             <Image
-              source={require('../../assets/images/Choirs.jpg')}
+              source={require('../assets/images/Choirs.jpg')}
               style={ss.backgroundImage}
             />
           </View>
@@ -103,7 +103,7 @@ export const determineChoirText = userTotalPrayers => {
         <View style={ss.invisiContainer}>
         <View style={ss.backgroundImageFrame}>
           <Image
-            source={require('../../assets/images/Choirs.jpg')}
+            source={require('../assets/images/Choirs.jpg')}
             style={ss.backgroundImage}
           />
         </View>
