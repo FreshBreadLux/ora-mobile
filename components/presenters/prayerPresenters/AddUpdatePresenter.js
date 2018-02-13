@@ -2,24 +2,24 @@ import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
 import ss from '../../StyleSheet'
 
-const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, toggleEdit, editPrayer, setBody, referenceEditTextInput }) => (
+const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggleAddUpdate, editPrayer, setUpdateBody, referenceUpdateTextInput }) => (
   <View
     onLayout={handleOnLayout}
     style={[ss.invisiContainer, ss.editPadding]}>
     <Animated.View
       style={{height: animatedHeight ? animatedHeight : 600 }}>
       <TextInput
-        ref={referenceEditTextInput}
+        ref={referenceUpdateTextInput}
         style={[ss.flex1, ss.body, ss.paddingBottom10]}
         multiline={true}
-        onChangeText={textBody => setBody(textBody)}
-        value={body}
+        onChangeText={textBody => setUpdateBody(textBody)}
+        value={updateBody}
       />
     <View
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
         style={ss.cancelButton}
-        onPress={toggleEdit}>
+        onPress={toggleAddUpdate}>
         <Text style={[ss.subBody]}>cancel</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -32,4 +32,4 @@ const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, toggleEdit,
   </View>
 )
 
-export default EditPrayerPresenter
+export default AddUpdatePresenter

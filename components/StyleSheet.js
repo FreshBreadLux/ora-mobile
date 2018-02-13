@@ -50,6 +50,12 @@ const ss = StyleSheet.create({
   paddingBottom10: {
     paddingBottom: 10,
   },
+  paddingTop10: {
+    paddingTop: 10,
+  },
+  paddingLeft7: {
+    paddingLeft: 7,
+  },
   scrollViewPadding: {
     paddingTop: 15,
     paddingLeft: 15,
@@ -153,6 +159,9 @@ const ss = StyleSheet.create({
   },
   centerText: {
     textAlign: 'center',
+  },
+  rightText: {
+    textAlign: 'right',
   },
   whiteText: {
     color: '#fff'
@@ -316,6 +325,9 @@ const ss = StyleSheet.create({
   },
   halfWidth: {
     width: '50%',
+  },
+  oneThirdWidth: {
+    width: '33%',
   },
   fullHeight: {
     height: '100%',

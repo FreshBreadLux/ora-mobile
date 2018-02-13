@@ -7,57 +7,65 @@ import { Ionicons } from '@expo/vector-icons'
 import { OpenModal, CloseModal, DeleteModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const PrayerPresenter = ({ prayer, toggleEdit, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
+const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Text style={[ss.body, ss.paddingBottom10]}>{`${prayer.body}`}</Text>
-    </ScrollView>
-    <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
-      <Text style={[ss.subBody, ss.greyText]}>{`VIEWS: ${prayer.totalViews}`}</Text>
-      <Text style={[ss.subBody, ss.greyText]}>{`FOLLOWS: ${prayer.totalFollows}`}</Text>
+    <View style={ss.invisiContainer}>
+      <View style={[ss.row, ss.paddingBottom10, ss.spaceBetween, ss.bottomBorder]}>
+        <Text style={ss.header}>{prayer.subject}</Text>
+        <View style={[ss.row, ss.center]}>
+          <TouchableOpacity
+            style={ss.paddingLeft7}
+            onPress={() => showModal('delete')}>
+            <Ionicons
+              name="ios-trash-outline"
+              size={20}
+              color="#555" />
+          </TouchableOpacity>
+          {prayer.closed
+          ? <TouchableOpacity
+            style={ss.paddingLeft7}
+              onPress={() => showModal('open')}>
+              <Ionicons
+                name="ios-eye-outline"
+                size={20}
+                color="#555" />
+            </TouchableOpacity>
+          : <TouchableOpacity
+            style={ss.paddingLeft7}
+              onPress={() => showModal('close')}>
+              <Ionicons
+                name="ios-eye-off-outline"
+                size={20}
+                color="#555" />
+            </TouchableOpacity>
+          }
+          <TouchableOpacity
+            style={ss.paddingLeft7}
+            onPress={toggleEdit}>
+            <Ionicons
+              name="ios-create-outline"
+              size={20}
+              color="#555" />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={[ss.body, ss.paddingBottom10, ss.paddingTop10]}>{`${prayer.body}`}</Text>
+      </ScrollView>
     </View>
-    <View style={[ss.row, ss.spaceBetween, ss.fullWidth]}>
+    <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
+      <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth]}>{`VIEWS: ${prayer.totalViews}`}</Text>
       <TouchableOpacity
-        onPress={() => showModal('delete')}
-        style={ss.padding10}>
-        <Ionicons
-          name="ios-trash-outline"
-          size={28}
-          color="#555" />
-      </TouchableOpacity>
-      {prayer.closed
-      ? <TouchableOpacity
-          onPress={() => showModal('open')}
-          style={ss.padding10}>
+        onPress={toggleAddUpdate}>
+        <View style={[ss.row]}>
           <Ionicons
-          name="ios-eye-outline"
-          size={28}
-          color="#555" />
-        </TouchableOpacity>
-      : <TouchableOpacity
-          onPress={() => showModal('close')}
-          style={ss.padding10}>
-          <Ionicons
-          name="ios-eye-off-outline"
-          size={28}
-          color="#555" />
-        </TouchableOpacity>
-      }
-      <TouchableOpacity
-        onPress={toggleEdit}
-        style={ss.padding10}>
-        <Ionicons
-          name="ios-create-outline"
-          size={28}
-          color="#555" />
+            name="ios-add-circle-outline"
+            size={16}
+            color="#555" />
+          <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>UPDATE</Text>
+        </View>
       </TouchableOpacity>
-      <TouchableOpacity
-        style={ss.padding10}>
-        <Ionicons
-          name="ios-share-outline"
-          size={28}
-          color="#555" />
-      </TouchableOpacity>
+      <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth, ss.rightText]}>{`FOLLOWS: ${prayer.totalFollows}`}</Text>
     </View>
     <Modal
       isVisible={visibleModal === 'delete'}

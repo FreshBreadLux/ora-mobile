@@ -14,29 +14,61 @@ class PrayerContainer extends React.Component {
     const prayer = this.props.navigation.state.params.prayer
     this.state = {
       editMode: false,
+      addingUpdate: false,
       subject: prayer.subject,
       body: prayer.body,
+      updateBody: '',
     }
     this.setBody = this.setBody.bind(this)
-    this.updatePrayer = this.updatePrayer.bind(this)
+    this.setUpdateBody = this.setUpdateBody.bind(this)
+    this.editPrayer = this.editPrayer.bind(this)
     this.togglePrayer = this.togglePrayer.bind(this)
     this.deletePrayer = this.deletePrayer.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
+    this.addNewUpdate = this.addNewUpdate.bind(this)
+    this.toggleAddUpdate = this.toggleAddUpdate.bind(this)
   }
 
   setBody(body) {
     this.setState({ body })
   }
 
+  setUpdateBody(updateBody) {
+    this.setState({ updateBody })
+  }
+
   toggleEdit() {
     this.setState({editMode: !this.state.editMode})
   }
 
-  updatePrayer() {
+  toggleAddUpdate() {
+    this.setState({
+      editMode: !this.state.editMode,
+      addingUpdate: !this.state.addingUpdate
+    })
+  }
+
+  editPrayer() {
     Keyboard.dismiss()
-    axios.put(`${ROOT_URL}/api/prayers/update/${this.props.navigation.state.params.prayer.id}`, {
+    axios.put(`${ROOT_URL}/api/prayers/edit/${this.props.navigation.state.params.prayer.id}`, {
       subject: this.state.subject,
       body: this.state.body,
+    })
+    .then(() => {
+      this.setState({
+        editMode: false
+      })
+      this.props.refreshUserPrayers(this.props.userId)
+      this.props.navigation.goBack()
+    })
+    .catch(console.error)
+  }
+
+  addNewUpdate() {
+    Keyboard.dismiss()
+    axios.post(`${ROOT_URL}/api/update/`, {
+      updateBody: this.state.updateBody,
+      prayerId: this.props.navigation.state.params.prayer.id
     })
     .then(() => {
       this.setState({
@@ -77,12 +109,17 @@ class PrayerContainer extends React.Component {
         {this.state.editMode
           ? <EditPrayerContainer
               setBody={this.setBody}
+              setUpdateBody={this.setUpdateBody}
               body={this.state.body}
-              updatePrayer={this.updatePrayer}
-              toggleEdit={this.toggleEdit} />
+              updateBody={this.state.updateBody}
+              addingUpdate={this.state.addingUpdate}
+              editPrayer={this.editPrayer}
+              toggleEdit={this.toggleEdit}
+              toggleAddUpdate={this.toggleAddUpdate} />
           : <PrayerPresenter
               visibleModal={this.state.visibleModal}
               toggleEdit={this.toggleEdit}
+              toggleAddUpdate={this.toggleAddUpdate}
               togglePrayer={this.togglePrayer}
               deletePrayer={this.deletePrayer}
               prayer={prayer} />

@@ -29,6 +29,10 @@ export default class SignupFormContainer extends React.Component {
       error: false,
     }
     this.userSignup = this.userSignup.bind(this)
+    this.setEmail = this.setEmail.bind(this)
+    this.setPassword = this.setPassword.bind(this)
+    this.referencePassword = this.referencePassword.bind(this)
+    this.focusPassword = this.focusPassword.bind(this)
   }
 
   async userSignup() {
