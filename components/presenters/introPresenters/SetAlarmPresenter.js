@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, Platform, DatePickerIOS, TimePickerAndroid, TouchableOpacity } from 'react-native'
+import { TimePickerAndroidContainer } from '../../containers'
 import ss from '../../StyleSheet'
 
 const SetAlarmPresenter = ({ chosenTime, setTime, handleSubmit }) => (
@@ -12,7 +13,7 @@ const SetAlarmPresenter = ({ chosenTime, setTime, handleSubmit }) => (
         mode="time"
         date={chosenTime}
         onDateChange={setTime} />
-    : <TimePickerAndroid />
+    : <TimePickerAndroidContainer setTime={setTime} />
     }
     <View style={[ss.padding15, ss.center]}>
       <TouchableOpacity
