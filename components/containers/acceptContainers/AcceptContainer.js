@@ -173,7 +173,6 @@ const mapDispatch = dispatch => ({
     return dispatch(setReflection())
   },
   dispatchRemoveVisibleModal() {
-    console.log('Made it into dispatchRemoveVisibleModal')
     return dispatch(removeVisibleModal())
   }
 })
