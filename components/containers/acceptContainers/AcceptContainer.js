@@ -61,12 +61,13 @@ class AcceptContainer extends React.Component {
     this.props.dispatchFinishPraying()
   }
 
-  flagPrayer(category) {
+  flagPrayer(flagreasonId) {
     const prayer = this.props.currentPrayer
     if (this.props.isLoggedIn) {
       axios.post(`${ROOT_URL}/api/flags`, {
         flaggerId: this.props.userId,
         flaggedId: prayer.id,
+        flagreasonId
       })
       .then(() => {
         AlertIOS.alert(
@@ -172,6 +173,7 @@ const mapDispatch = dispatch => ({
     return dispatch(setReflection())
   },
   dispatchRemoveVisibleModal() {
+    console.log('Made it into dispatchRemoveVisibleModal')
     return dispatch(removeVisibleModal())
   }
 })

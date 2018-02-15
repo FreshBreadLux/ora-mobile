@@ -9,8 +9,22 @@ import ss from '../../StyleSheet'
 const FollowPresenter = ({ follow, unfollowPrayer, showModal, hideModal, visibleModal }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.padding15]}>
-      <ScrollView>
-        <Text style={[ss.body, ss.paddingBottom10]}>{`${follow.body}`}</Text>
+      <View style={[ss.row, ss.paddingBottom10, ss.bottomBorder]}>
+        <Text style={[ss.subHeader, ss.flex1]}>{follow.subject}</Text>
+      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{`${follow.body}`}</Text>
+        {follow.updates
+          ? follow.updates.map(update => (
+              <View key={update.id}>
+                <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+                  <Text style={ss.subHeader}>update</Text>
+                </View>
+                <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
+              </View>
+            ))
+          : null
+          }
       </ScrollView>
       <View style={[ss.center, ss.addViewSpacing]}>
         <TouchableOpacity

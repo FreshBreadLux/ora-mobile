@@ -1,32 +1,22 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 import ss from '../../StyleSheet'
 
-const FlagModalContent = ({ hideModal, flagPrayer }) => (
+const FlagModalContent = ({ flagReasons, hideModal, flagPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
       <Text style={ss.modalText}>Please select the category that this prayer should be flagged under</Text>
-      <TouchableOpacity
-        style={ss.fullWidth}
-        onPress={() => flagPrayer('spam')}>
-        <View style={ss.modalLineView}>
-          <Text style={[ss.subHeader, ss.redText]}>Spam</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={ss.fullWidth}
-        onPress={() => flagPrayer('dangerous')}>
-        <View style={ss.modalLineView}>
-          <Text style={[ss.subHeader, ss.redText]}>Dangerous</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={ss.fullWidth}
-        onPress={() => flagPrayer('inappropriate')}>
-        <View style={ss.modalLineView}>
-          <Text style={[ss.subHeader, ss.redText]}>Inappropriate</Text>
-        </View>
-      </TouchableOpacity>
+      {flagReasons && flagReasons.map(flagReason => (
+        <TouchableOpacity
+          key={flagReason.id}
+          style={ss.fullWidth}
+          onPress={() => flagPrayer(flagReason.id)}>
+          <View style={ss.modalLineView}>
+            <Text style={[ss.subHeader, ss.redText]}>{flagReason.flagCategory}</Text>
+          </View>
+        </TouchableOpacity>
+      ))}
     </View>
     <TouchableOpacity
       style={ss.fullWidth}
@@ -38,4 +28,8 @@ const FlagModalContent = ({ hideModal, flagPrayer }) => (
   </View>
 )
 
-export default FlagModalContent
+const mapState = state => ({
+  flagReasons: state.flagReasons
+})
+
+export default connect(mapState)(FlagModalContent)

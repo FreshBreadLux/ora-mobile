@@ -50,6 +50,9 @@ const ss = StyleSheet.create({
   paddingBottom10: {
     paddingBottom: 10,
   },
+  paddingBottom30: {
+    paddingBottom: 30,
+  },
   paddingTop10: {
     paddingTop: 10,
   },
@@ -328,6 +331,9 @@ const ss = StyleSheet.create({
   },
   oneThirdWidth: {
     width: '33%',
+  },
+  maxWidth100: {
+    maxWidth: '50%',
   },
   fullHeight: {
     height: '100%',

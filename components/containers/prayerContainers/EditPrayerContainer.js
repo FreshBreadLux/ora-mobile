@@ -44,7 +44,9 @@ export default class EditPrayerContainer extends React.Component {
   }
 
   handleOnLayout(event) {
-    const startHeight = event.nativeEvent.layout.height
+    const startHeight = this.props.addingUpdate
+      ? event.nativeEvent.layout.height - 50
+      : event.nativeEvent.layout.height
     this.setState({
       startHeight: startHeight,
       animatedHeight: new Animated.Value(startHeight)},
@@ -80,6 +82,7 @@ export default class EditPrayerContainer extends React.Component {
             animatedHeight={this.state.animatedHeight}
             updateBody={this.props.updateBody}
             setUpdateBody={this.props.setUpdateBody}
+            addNewUpdate={this.props.addNewUpdate}
             referenceUpdateTextInput={this.referenceUpdateTextInput}
             toggleAddUpdate={this.props.toggleAddUpdate} />
         : <EditPrayerPresenter

@@ -2,10 +2,13 @@ import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
 import ss from '../../StyleSheet'
 
-const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggleAddUpdate, editPrayer, setUpdateBody, referenceUpdateTextInput }) => (
+const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggleAddUpdate, addNewUpdate, setUpdateBody, referenceUpdateTextInput }) => (
   <View
     onLayout={handleOnLayout}
     style={[ss.invisiContainer, ss.editPadding]}>
+    <View style={[ss.paddingBottom10, ss.paddingTop10, ss.bottomBorder]}>
+      <Text style={ss.subHeader}>update</Text>
+    </View>
     <Animated.View
       style={{height: animatedHeight ? animatedHeight : 600 }}>
       <TextInput
@@ -24,8 +27,8 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggle
       </TouchableOpacity>
       <TouchableOpacity
         style={ss.editButton}
-        onPress={editPrayer}>
-        <Text style={[ss.subBody, ss.whiteText]}>save edits</Text>
+        onPress={addNewUpdate}>
+        <Text style={[ss.subBody, ss.whiteText]}>send update</Text>
       </TouchableOpacity>
     </View>
     </Animated.View>

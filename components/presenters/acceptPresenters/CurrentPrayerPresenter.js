@@ -32,6 +32,17 @@ const CurrentPrayerPresenter = ({ currentPrayer, animateNextPrayerTransition, fi
           showsVerticalScrollIndicator={false}
           style={[ss.flex1, { opacity }]}>
           <Text style={[ss.body, ss.paddingBottom15]}>{currentPrayer.body}</Text>
+          {currentPrayer.updates
+          ? currentPrayer.updates.map(update => (
+              <View key={update.id}>
+                <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+                  <Text style={ss.subHeader}>update</Text>
+                </View>
+                <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
+              </View>
+            ))
+          : null
+          }
         </Animated.ScrollView>
       </View>
       {noPrayers

@@ -18,15 +18,18 @@ class PrayerContainer extends React.Component {
       subject: prayer.subject,
       body: prayer.body,
       updateBody: '',
+      updateToDelete: null
     }
     this.setBody = this.setBody.bind(this)
     this.setUpdateBody = this.setUpdateBody.bind(this)
+    this.setUpdateToDelete = this.setUpdateToDelete.bind(this)
     this.editPrayer = this.editPrayer.bind(this)
     this.togglePrayer = this.togglePrayer.bind(this)
     this.deletePrayer = this.deletePrayer.bind(this)
     this.toggleEdit = this.toggleEdit.bind(this)
     this.addNewUpdate = this.addNewUpdate.bind(this)
     this.toggleAddUpdate = this.toggleAddUpdate.bind(this)
+    this.deleteUpdate = this.deleteUpdate.bind(this)
   }
 
   setBody(body) {
@@ -35,6 +38,10 @@ class PrayerContainer extends React.Component {
 
   setUpdateBody(updateBody) {
     this.setState({ updateBody })
+  }
+
+  setUpdateToDelete(updateToDelete) {
+    this.setState({ updateToDelete })
   }
 
   toggleEdit() {
@@ -66,13 +73,14 @@ class PrayerContainer extends React.Component {
 
   addNewUpdate() {
     Keyboard.dismiss()
-    axios.post(`${ROOT_URL}/api/update/`, {
-      updateBody: this.state.updateBody,
+    axios.post(`${ROOT_URL}/api/updates`, {
+      body: this.state.updateBody,
       prayerId: this.props.navigation.state.params.prayer.id
     })
     .then(() => {
       this.setState({
-        editMode: false
+        editMode: false,
+        addingUpdate: false
       })
       this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
@@ -102,6 +110,15 @@ class PrayerContainer extends React.Component {
     .catch(console.error)
   }
 
+  deleteUpdate() {
+    axios.delete(`${ROOT_URL}/api/updates/${this.state.updateToDelete}`)
+    .then(() => {
+      this.props.refreshUserPrayers(this.props.userId)
+      this.setState({ updateToDelete: null })
+      this.props.navigation.goBack()
+    })
+  }
+
   render() {
     const prayer = this.props.navigation.state.params.prayer
     return (
@@ -114,15 +131,18 @@ class PrayerContainer extends React.Component {
               updateBody={this.state.updateBody}
               addingUpdate={this.state.addingUpdate}
               editPrayer={this.editPrayer}
+              addNewUpdate={this.addNewUpdate}
               toggleEdit={this.toggleEdit}
               toggleAddUpdate={this.toggleAddUpdate} />
           : <PrayerPresenter
+              prayer={prayer}
               visibleModal={this.state.visibleModal}
               toggleEdit={this.toggleEdit}
               toggleAddUpdate={this.toggleAddUpdate}
               togglePrayer={this.togglePrayer}
               deletePrayer={this.deletePrayer}
-              prayer={prayer} />
+              deleteUpdate={this.deleteUpdate}
+              setUpdateToDelete={this.setUpdateToDelete} />
         }
       </SafeAreaView>
     )

@@ -4,14 +4,14 @@ import { connect } from 'react-redux'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
-import { OpenModal, CloseModal, DeleteModal } from '../modals'
+import { OpenModal, CloseModal, DeleteModal, DeleteUpdateModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, showModal, hideModal, visibleModal }) => (
+const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, deleteUpdate, showModal, hideModal, visibleModal, setUpdateToDelete }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
     <View style={ss.invisiContainer}>
       <View style={[ss.row, ss.paddingBottom10, ss.spaceBetween, ss.bottomBorder]}>
-        <Text style={ss.header}>{prayer.subject}</Text>
+        <Text style={[ss.subHeader, ss.flex1]}>{prayer.subject}</Text>
         <View style={[ss.row, ss.center]}>
           <TouchableOpacity
             style={ss.paddingLeft7}
@@ -50,7 +50,26 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
         </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={[ss.body, ss.paddingBottom10, ss.paddingTop10]}>{`${prayer.body}`}</Text>
+        <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{prayer.body}</Text>
+        {prayer.updates.map(update => (
+          <View key={update.id}>
+            <View style={[ss.row, ss.paddingBottom10, ss.bottomBorder]}>
+              <Text style={[ss.subHeader, ss.flex1]}>update</Text>
+              <TouchableOpacity
+                style={ss.paddingLeft7}
+                onPress={() => {
+                  setUpdateToDelete(update.id)
+                  showModal('deleteUpdate')
+                }}>
+                <Ionicons
+                  name="ios-trash-outline"
+                  size={20}
+                  color="#555" />
+              </TouchableOpacity>
+            </View>
+            <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
+          </View>
+        ))}
       </ScrollView>
     </View>
     <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
@@ -73,6 +92,14 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
       <DeleteModal
         hideModal={hideModal}
         deletePrayer={deletePrayer} />
+    </Modal>
+    <Modal
+      isVisible={visibleModal === 'deleteUpdate'}
+      style={ss.bottomModal}>
+      <DeleteUpdateModal
+        setUpdateToDelete={setUpdateToDelete}
+        hideModal={hideModal}
+        deleteUpdate={deleteUpdate} />
     </Modal>
     <Modal
       isVisible={visibleModal === 'open'}
