@@ -1,3 +1,4 @@
 export { default as LoginFormPresenter } from './LoginFormPresenter'
-export { default as SetAlarmPresenter } from './SetAlarmPresenter'
 export { default as SignupFormPresenter } from './SignupFormPresenter'
+export { default as IOSSetAlarmPresenter } from './IOSSetAlarmPresenter'
+export { default as AndroidSetAlarmPresenter } from './AndroidSetAlarmPresenter'

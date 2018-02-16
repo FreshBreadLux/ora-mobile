@@ -13,11 +13,13 @@ export default class TimePickerAndroidContainer extends React.Component {
   async showTimePickerAndroid() {
     try {
       const { action, hour, minute } = await TimePickerAndroid.open({
-        mode: 'spinner'
+        mode: 'default'
       })
       if (action !== TimePickerAndroid.dismissedAction) {
         const chosenTime = new Date(YEAR, MONTH, DAY, hour, minute)
         this.props.setTime(chosenTime)
+        this.props.toggleTimeWasSelected()
+        this.props.toggleAndroidPicker()
       }
     } catch ({ code, message }) {
       console.warn('Cannot open time picker: ', message)
