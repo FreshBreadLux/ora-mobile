@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, Image, Animated, AlertIOS } from 'react-native'
+import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
-import { PrePrayerPresenter, ReflectionPresenter, CurrentPrayerPresenter } from '../../presenters'
+import { PrePrayerPresenter, ReflectionPresenter, CurrentPrayerPresenter, BackgroundImage } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import ss from '../../StyleSheet'
@@ -110,11 +110,7 @@ class AcceptContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        <View style={ss.backgroundImageFrame}>
-          <Image
-            source={require('../../../assets/images/Rome.jpg')}
-            style={ss.backgroundImage} />
-        </View>
+        <BackgroundImage componentName="Accept" />
         {!this.props.currentPrayer.subject
           ? <View style={ss.invisiContainer}>
             {!this.props.reflection

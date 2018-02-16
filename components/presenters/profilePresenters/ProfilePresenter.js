@@ -83,7 +83,7 @@ const ProfilePresenter = ({ navigation, userLogout, isLoggedIn, userInfo }) => (
                   <View style={ss.thumbnail}>
                   <Image
                     style={ss.backgroundImage}
-                    source={require('../../../assets/images/Rome.jpg')} />
+                    source={require('../../../assets/images/Rome/Accept.jpg')} />
                   </View>
                   <Text style={[ss.subBody, ss.padding10]}>Rome</Text>
                 </View>

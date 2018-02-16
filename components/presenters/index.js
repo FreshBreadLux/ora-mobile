@@ -1,3 +1,4 @@
+export { default as BackgroundImage } from './BackgroundImage'
 export * from './introPresenters'
 export * from './acceptPresenters'
 export * from './followPresenters'
