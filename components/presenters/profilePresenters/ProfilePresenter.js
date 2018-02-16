@@ -2,17 +2,14 @@ import React from 'react'
 import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { determineChoirTitle, determineChoirName } from '../../utils'
-import ss from '../../StyleSheet'
 import { LinearGradient } from 'expo'
 import { Feather } from '@expo/vector-icons'
+import { BackgroundImage } from '../'
+import ss from '../../StyleSheet'
 
 const ProfilePresenter = ({ navigation, userLogout, isLoggedIn, userInfo }) => (
   <View style={ss.invisiContainer}>
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        source={require('../../../assets/images/Rome-Profile.jpg')}
-        style={ss.backgroundImage} />
-    </View>
+    <BackgroundImage componentName="Profile" />
     {isLoggedIn
     ? <ScrollView
         showsVerticalScrollIndicator={false}>

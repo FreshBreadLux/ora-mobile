@@ -25,10 +25,10 @@ function cacheFonts(fonts) {
 async function _loadAssetsAsync() {
   const imageAssets = cacheImages([
     require('./assets/images/Rome/Accept.jpg'),
-    require('./assets/images/Rome-Submit.jpg'),
-    require('./assets/images/Rome-Profile.jpg'),
-    require('./assets/images/Rome-Prayers.jpg'),
-    require('./assets/images/Rome-Follows.jpg'),
+    require('./assets/images/Rome/Submit.jpg'),
+    require('./assets/images/Rome/Profile.jpg'),
+    require('./assets/images/Rome/Prayers.jpg'),
+    require('./assets/images/Rome/Follows.jpg'),
     require('./assets/images/Adoration.jpg'),
     require('./assets/images/Choirs.jpg'),
     require('./assets/images/Paintings.jpg'),

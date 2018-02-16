@@ -1,17 +1,13 @@
 import React from 'react'
-import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Image } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
 import { connect } from 'react-redux'
+import { BackgroundImage } from '../'
 import ss from '../../StyleSheet'
 import { LinearGradient } from 'expo'
 
 const FollowScrollPresenter = ({ isLoggedIn, follows, navigation }) => (
   <View style={ss.invisiContainer}>
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        source={require('../../../assets/images/Rome-Follows.jpg')}
-        style={ss.backgroundImage}
-      />
-    </View>
+    <BackgroundImage componentName="Follows" />
     {!isLoggedIn
     ? <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.invisiContainer, ss.padding15]}>

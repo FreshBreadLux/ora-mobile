@@ -1,16 +1,13 @@
 import React from 'react'
-import { View, Image, SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { LinearGradient } from 'expo'
+import { BackgroundImage } from '../'
 import ss from '../../StyleSheet'
 
 const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, setBody, focusBody, referenceBody, submitPrayer, handleContentSizeChange }) => (
   <View style={ss.invisiContainer}>
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        source={require('../../../assets/images/Rome-Submit.jpg')}
-        style={ss.backgroundImage} />
-    </View>
+    <BackgroundImage componentName="Submit" />
     <View style={ss.backgroundImageFrame}>
       <LinearGradient
         colors={['#fff', 'transparent']}
