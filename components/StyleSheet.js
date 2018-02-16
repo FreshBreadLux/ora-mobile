@@ -38,6 +38,10 @@ const ss = StyleSheet.create({
     height: 90,
     width: 90,
   },
+  notificationIcon: {
+    height: 15,
+    width: 15,
+  },
   padding15: {
     padding: 15,
   },
@@ -284,6 +288,17 @@ const ss = StyleSheet.create({
   topModal: {
     justifyContent: 'flex-start',
     margin: 0,
+  },
+  notificationModal: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 10,
+    width: '100%',
+    marginTop: 10,
+    shadowColor: '#777',
+    shadowOffset: { width: 0, height: 6 },
+    shadowRadius: 10,
+    shadowOpacity: 0.7
   },
   modalContent: {
     backgroundColor: '#fff',
