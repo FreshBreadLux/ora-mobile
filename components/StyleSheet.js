@@ -150,6 +150,10 @@ const ss = StyleSheet.create({
     fontFamily: 'raleway',
     fontSize: 20,
   },
+  tagLine: {
+    fontFamily: 'raleway',
+    fontSize: 18,
+  },
   body: {
     fontFamily: 'eb',
     fontSize: 20,

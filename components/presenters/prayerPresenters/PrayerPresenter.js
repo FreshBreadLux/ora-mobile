@@ -54,7 +54,7 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
         {prayer.updates.map(update => (
           <View key={update.id}>
             <View style={[ss.row, ss.paddingBottom10, ss.bottomBorder]}>
-              <Text style={[ss.subHeader, ss.flex1]}>update</Text>
+              <Text style={[ss.tagLine, ss.flex1]}>UPDATE</Text>
               <TouchableOpacity
                 style={ss.paddingLeft7}
                 onPress={() => {

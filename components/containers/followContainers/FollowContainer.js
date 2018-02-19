@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { fetchUserFollows } from '../../../store'
+import { fetchUserFollows, addRecentlyPrayedFor, removeRecentlyPrayedFor } from '../../../store'
 import { FollowPresenter } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -9,6 +9,7 @@ class FollowContainer extends React.Component {
   constructor(props) {
     super(props)
     this.unfollowPrayer = this.unfollowPrayer.bind(this)
+    this.notifyAuthor = this.notifyAuthor.bind(this)
   }
 
   unfollowPrayer() {
@@ -21,9 +22,22 @@ class FollowContainer extends React.Component {
     .catch(console.error)
   }
 
+  notifyAuthor() {
+    const { followedId } = this.props.navigation.state.params.follow.follow
+    axios.put(`${ROOT_URL}/api/follows/notify/followedId/${followedId}`)
+    .then(prayer => {
+      this.props.dispatchAddRecentlyPrayedFor(prayer.data.id)
+      setTimeout(() => {
+        this.props.dispatctchRemoveRecentlyPrayedFor(prayer.data.id)
+      }, 10000)
+    })
+    .catch(console.error)
+  }
+
   render() {
     return (
       <FollowPresenter
+        notifyAuthor={this.notifyAuthor}
         unfollowPrayer={this.unfollowPrayer}
         follow={this.props.navigation.state.params.follow} />
     )
@@ -37,6 +51,12 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   refreshUserFollows(userId) {
     return dispatch(fetchUserFollows(userId))
+  },
+  dispatchAddRecentlyPrayedFor(prayerId) {
+    return dispatch(addRecentlyPrayedFor(prayerId))
+  },
+  dispatctchRemoveRecentlyPrayedFor(prayerId) {
+    return dispatch(removeRecentlyPrayedFor(prayerId))
   }
 })
 
