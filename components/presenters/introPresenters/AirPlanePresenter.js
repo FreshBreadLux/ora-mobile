@@ -1,9 +1,9 @@
 import React from 'react'
-import { SafeAreaView, View, Text, Animated, TouchableOpacity } from 'react-native'
+import { SafeAreaView, View, Text, Animated } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const AirPlaneContainer = ({ planeIntro, plane1Fade, plane2Fade, plane2YVal, planeOutro }) => (
+const AirPlanePresenter = ({ planeIntro, plane1Fade, plane2Fade, plane2YVal, planeOutro }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15]}>
       <View style={[ss.flex1, ss.center]}>
@@ -34,4 +34,4 @@ const AirPlaneContainer = ({ planeIntro, plane1Fade, plane2Fade, plane2YVal, pla
   </SafeAreaView>
 )
 
-export default AirPlaneContainer
+export default AirPlanePresenter

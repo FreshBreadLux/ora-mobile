@@ -3,7 +3,7 @@ import { View, SafeAreaView, Animated } from 'react-native'
 import { LinearGradient } from 'expo'
 import Swiper from 'react-native-swiper'
 import WelcomeContainer from './WelcomeContainer'
-import AirPlaneContainer from './AirPlaneContainer'
+import { AirPlanePresenter } from '../../presenters'
 import SignupFormContainer from './SignupFormContainer'
 import SetAlarmContainer from './SetAlarmContainer'
 import ss from '../../StyleSheet'
@@ -66,7 +66,7 @@ export default class IntroSwiperContainer extends React.Component {
             dotStyle={{backgroundColor: 'rgba(255, 255, 255, 0.3)'}}
             activeDotStyle={{backgroundColor: '#fff', borderColor: '#fff'}}>
             <WelcomeContainer />
-            <AirPlaneContainer
+            <AirPlanePresenter
               planeIntro={this.state.planeIntro}
               plane1Fade={this.state.plane1Fade}
               plane2Fade={this.state.plane2Fade}
