@@ -5,6 +5,8 @@ import { FollowPresenter } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 
+const ONE_HALF_HOUR = 1000 * 60 * 30
+
 class FollowContainer extends React.Component {
   constructor(props) {
     super(props)
@@ -29,7 +31,7 @@ class FollowContainer extends React.Component {
       this.props.dispatchAddRecentlyPrayedFor(prayer.data.id)
       setTimeout(() => {
         this.props.dispatctchRemoveRecentlyPrayedFor(prayer.data.id)
-      }, 10000)
+      }, ONE_HALF_HOUR)
     })
     .catch(console.error)
   }

@@ -36,19 +36,24 @@ export default class SignupFormContainer extends React.Component {
   }
 
   async userSignup() {
-    if (this.state.email && this.state.password) {
-      let token = await registerForPushNotificationsAsync()
-      axios.post(`${ROOT_URL}/api/users`, {
-        email: this.state.email,
-        password: this.state.password,
-        pushToken: token,
-      })
-      .then(response => JSON.stringify(response.data))
-      .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
-      .then(() => this.props.showAlarm())
-      .catch(error => this.setState({error: error.response.request._response}))
-    } else {
-      this.setState({ error: 'please provide both an email and a password' })
+    try {
+      if (this.state.email && this.state.password) {
+        let token = await registerForPushNotificationsAsync()
+        axios.post(`${ROOT_URL}/api/users`, {
+          email: this.state.email,
+          password: this.state.password,
+          pushToken: token,
+        })
+        .then(response => JSON.stringify(response.data))
+        .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+        .then(() => this.props.showAlarm())
+        .catch(console.error)
+      } else {
+        this.setState({ error: 'please provide both an email and a password' })
+      }
+    } catch (error) {
+      console.error(error)
+      this.setState({error: error.response.request._response})
     }
   }
 

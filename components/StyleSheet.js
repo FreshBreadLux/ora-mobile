@@ -142,6 +142,11 @@ const ss = StyleSheet.create({
     fontSize: 70,
     color: '#fff',
   },
+  welcomeText: {
+    fontFamily: 'raleway',
+    fontSize: 30,
+    color: '#fff',
+  },
   header: {
     fontFamily: 'raleway',
     fontSize: 24,
@@ -342,7 +347,7 @@ const ss = StyleSheet.create({
   fullWidth: {
     width: '100%',
   },
-  threeQuarterWidth: {
+  threeQuartersWidth: {
     width: '75%',
   },
   halfWidth: {
