@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, SafeAreaView, Animated as Ad } from 'react-native'
+import { View, Animated as Ad } from 'react-native'
 import { LinearGradient } from 'expo'
 import Swiper from 'react-native-swiper'
 import WelcomeContainer from './WelcomeContainer'
-import { AirPlanePresenter, HeartPresenter } from '../../presenters'
+import { AirPlanePresenter, HeartPresenter, CommitPresenter } from '../../presenters'
 import SignupFormContainer from './SignupFormContainer'
 import SetAlarmContainer from './SetAlarmContainer'
 import ss from '../../StyleSheet'
@@ -28,11 +28,14 @@ export default class IntroSwiperContainer extends React.Component {
       heart3Fade: new Ad.Value(0),
       heart4Fade: new Ad.Value(0),
       heartOutro: new Ad.Value(0),
+      commitIntro: new Ad.Value(0),
+      commitOutro: new Ad.Value(0),
       alarmVisible: false
     }
     this.handleSwipe = this.handleSwipe.bind(this)
     this.fadeInPlane = this.fadeInPlane.bind(this)
     this.fadeInHeart = this.fadeInHeart.bind(this)
+    this.fadeInCommit = this.fadeInCommit.bind(this)
     this.showAlarm = this.showAlarm.bind(this)
   }
 
@@ -43,6 +46,9 @@ export default class IntroSwiperContainer extends React.Component {
         break
       case 2:
         this.fadeInHeart()
+        break
+      case 3:
+        this.fadeInCommit()
         break
       default:
         break
@@ -81,6 +87,14 @@ export default class IntroSwiperContainer extends React.Component {
     ]).start()
   }
 
+  fadeInCommit() {
+    const state = this.state
+    Ad.sequence([
+      Ad.timing(state.commitIntro, { toValue: 1, duration: 1000 }),
+      Ad.timing(state.commitOutro, { toValue: 1, duration: 1000 }),
+    ]).start()
+  }
+
   showAlarm() {
     this.setState({ alarmVisible: true })
   }
@@ -94,7 +108,7 @@ export default class IntroSwiperContainer extends React.Component {
             start={[0.5, 0]}
             style={ss.flex1} />
         </View>
-        <SafeAreaView style={ss.invisiContainer}>
+        <View style={ss.invisiContainer}>
           <Swiper
             loop={false}
             onIndexChanged={this.handleSwipe}
@@ -119,12 +133,15 @@ export default class IntroSwiperContainer extends React.Component {
               heart3Fade={this.state.heart3Fade}
               heart4Fade={this.state.heart4Fade}
               heartOutro={this.state.heartOutro} />
+            <CommitPresenter
+              commitIntro={this.state.commitIntro}
+              commitOutro={this.state.commitOutro} />
             {this.state.alarmVisible
             ? <SetAlarmContainer verifyStorageKey={this.props.verifyStorageKey} />
             : <SignupFormContainer showAlarm={this.showAlarm} />
             }
           </Swiper>
-        </SafeAreaView>
+        </View>
       </View>
     )
   }
