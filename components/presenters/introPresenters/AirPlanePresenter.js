@@ -8,7 +8,7 @@ const AirPlanePresenter = ({ planeIntro, plane1Fade, plane1YVal, plane2Fade, pla
     <View style={[ss.invisiContainer, ss.padding15]}>
       <View style={[ss.flex1, ss.center]}>
         <Animated.View style={{opacity: planeIntro}}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>When you need prayer, you can enter requests anonymously.</Text>
+          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>When you need prayer, you can enter requests anonymously</Text>
         </Animated.View>
       </View>
       <View style={[ss.flex1, ss.center]}>
@@ -39,7 +39,7 @@ const AirPlanePresenter = ({ planeIntro, plane1Fade, plane1YVal, plane2Fade, pla
       </View>
       <View style={[ss.flex1, ss.center, ss.addViewSpacing]}>
         <Animated.View style={{opacity: planeOutro}}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>Ora will show those requests to other users, and you will receive notifications when they are praying for you.</Text>
+          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>Ora will show those requests to other users, and you will receive notifications when they are praying for you</Text>
         </Animated.View>
       </View>
     </View>
