@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
 import Modal from 'react-native-modal'
 import { connect } from 'react-redux'
+import { Ionicons } from '@expo/vector-icons'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import { UnfollowModal } from '../modals'
 import ss from '../../StyleSheet'
@@ -33,29 +34,37 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
         : null
         }
       </ScrollView>
-      <View style={[ss.center, ss.addViewSpacing]}>
-        <TouchableOpacity
-          onPress={() => showModal('unfollow')}
-          style={[ss.blackButton, ss.halfWidth]}>
-          <Text style={[ss.buttonText, ss.whiteText]}>Unfollow</Text>
-        </TouchableOpacity>
+      <View style={[ss.row, ss.spaceAround]}>
+        <View style={[ss.center, ss.flex1]}>
+          <TouchableOpacity
+            onPress={() => showModal('unfollow')}>
+            <View style={ss.row}>
+              <Ionicons
+                name="ios-remove-circle-outline"
+                size={16}
+                color="#555" />
+              <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>UNFOLLOW</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+        {inRecentlyPrayedFor(recentlyPrayedFor, follow.id)
+        ? <View style={[ss.center, ss.flex1]}>
+            <Text style={[ss.subBody, ss.pinkText]}>SENT!</Text>
+          </View>
+        : <View style={[ss.center, ss.flex1]}>
+            <TouchableOpacity
+              onPress={notifyAuthor}>
+              <View style={ss.row}>
+                <Ionicons
+                  name="md-heart"
+                  size={16}
+                  color="#FF4081" />
+                <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        }
       </View>
-      {inRecentlyPrayedFor(recentlyPrayedFor, follow.id)
-      ? <View style={[ss.center, ss.addViewSpacing]}>
-          <TouchableOpacity
-            onPress={() => console.log('Check')}
-            style={[ss.blackButton, ss.halfWidth]}>
-            <Text style={[ss.buttonText, ss.whiteText]}>Check</Text>
-          </TouchableOpacity>
-        </View>
-      : <View style={[ss.center, ss.addViewSpacing]}>
-          <TouchableOpacity
-            onPress={notifyAuthor}
-            style={[ss.blackButton, ss.halfWidth]}>
-            <Text style={[ss.buttonText, ss.whiteText]}>Send Notification</Text>
-          </TouchableOpacity>
-        </View>
-      }
       <Modal
         isVisible={visibleModal === 'unfollow'}
         style={ss.bottomModal}>

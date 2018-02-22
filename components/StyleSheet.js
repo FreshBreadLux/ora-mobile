@@ -165,7 +165,7 @@ const ss = StyleSheet.create({
   },
   subBody: {
     fontFamily: 'raleway',
-    fontSize: 14,
+    fontSize: 15,
   },
   reflectionPrayer: {
     fontFamily: 'eb',
@@ -191,6 +191,9 @@ const ss = StyleSheet.create({
   greyText: {
     color: '#555'
   },
+  pinkText: {
+    color: '#FF4081',
+  },
   blackTextShadow: {
     fontWeight: 'bold',
     textShadowColor: '#000',
@@ -207,8 +210,8 @@ const ss = StyleSheet.create({
       height: 1,
     },
   },
-  box: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  textInput: {
+    backgroundColor: 'rgba(255, 255, 255, 0.65)',
     padding: 7,
     borderRadius: 7,
   },

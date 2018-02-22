@@ -104,7 +104,7 @@ const ProfilePresenter = ({ navigation, userLogout, isLoggedIn, userInfo }) => (
             </View>
           </LinearGradient>
           <View style={[ss.editHeight, ss.center]}>
-            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.</Text>
+            <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.</Text>
             <Text style={[ss.body, ss.blackTextShadow, ss.whiteText]}>- Revelation 8:4</Text>
           </View>
           <View style={[ss.addLargeViewSpacing, ss.whiteContainer, ss.center]}>

@@ -10,12 +10,15 @@ const MainTabNav = TabNavigator({
     navigationOptions: {
       title: 'Follows',
       headerBackTitle: null,
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons
-          name="md-heart"
-          size={26}
-          style={{ color: tintColor }} />
-      ),
+      tabBarIcon: ({ focused, tintColor }) => {
+        let color = focused ? '#FF4081' : tintColor
+        return (
+          <Ionicons
+            name="md-heart"
+            size={26}
+            style={{ color }} />
+        )
+      },
     },
   },
   Prayers: {
@@ -110,7 +113,15 @@ const MainStackNav = StackNavigator({
   Donate: {
     screen: DonatePresenter,
     navigationOptions: {
-      title: 'Donate',
+      title: 'DONATE',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     },
   },
   Alarms: {
@@ -125,6 +136,8 @@ const MainStackNav = StackNavigator({
       title: 'About',
     },
   },
+}, {
+  headerMode: 'screen'
 })
 
 const MainNav = ({ screenProps, navigation }) => (

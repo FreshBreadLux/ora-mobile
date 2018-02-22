@@ -1,23 +1,22 @@
 import React from 'react'
 import { View, Text, Animated, Image } from 'react-native'
 import { LinearGradient } from 'expo'
-import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const CommitPresenter = ({ commitIntro, commitOutro }) => (
+const CommitPresenter = ({ commitIntro, commitImage, commitOutro }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
-      <Image
+      <Animated.Image
         source={require('../../../assets/images/Rome/Submit.jpg')}
-        style={ss.backgroundImage} />
+        style={[ss.backgroundImage, {opacity: commitImage}]} />
     </View>
-    <View style={ss.backgroundImageFrame}>
+    <Animated.View style={[ss.backgroundImageFrame, {opacity: commitImage}]}>
       <LinearGradient
-        colors={['#0c2461', 'transparent']}
+        colors={['#1e3799', 'transparent']}
         start={[0.5, 0]}
         end={[0.5, 1]}
         style={ss.flex1} />
-    </View>
+    </Animated.View>
     <View style={[ss.invisiContainer, ss.padding15]}>
       <View style={[ss.flex1, ss.center]}>
         <Animated.View style={{opacity: commitIntro}}>
@@ -26,7 +25,7 @@ const CommitPresenter = ({ commitIntro, commitOutro }) => (
       </View>
       <View style={[ss.flex1, ss.center]}>
         <Animated.View style={{opacity: commitOutro}}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>The author will be notified as soon as you tap accept</Text>
+          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>The author will be notified as soon as you start reading their prayer</Text>
         </Animated.View>
       </View>
     </View>

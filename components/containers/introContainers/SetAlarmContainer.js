@@ -60,7 +60,7 @@ class SetAlarmContainer extends React.Component {
 
   render() {
     return (
-      <View style={ss.whiteContainer}>
+      <View style={ss.invisiContainer}>
         {Platform.OS === 'ios'
         ? <IOSSetAlarmPresenter
             setTime={this.setTime}

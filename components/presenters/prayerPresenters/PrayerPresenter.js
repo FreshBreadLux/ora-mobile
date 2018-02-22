@@ -79,9 +79,9 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
         <View style={[ss.row]}>
           <Ionicons
             name="ios-add-circle-outline"
-            size={16}
-            color="#555" />
-          <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>UPDATE</Text>
+            size={17}
+            color="#1e3799" />
+          <Text style={[ss.subBody, {color: '#1e3799'}, ss.paddingLeft7]}>UPDATE</Text>
         </View>
       </TouchableOpacity>
       <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth, ss.rightText]}>{`FOLLOWS: ${prayer.totalFollows}`}</Text>

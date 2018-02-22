@@ -29,6 +29,7 @@ export default class IntroSwiperContainer extends React.Component {
       heart4Fade: new Ad.Value(0),
       heartOutro: new Ad.Value(0),
       commitIntro: new Ad.Value(0),
+      commitImage: new Ad.Value(0),
       commitOutro: new Ad.Value(0),
       alarmVisible: false
     }
@@ -91,6 +92,7 @@ export default class IntroSwiperContainer extends React.Component {
     const state = this.state
     Ad.sequence([
       Ad.timing(state.commitIntro, { toValue: 1, duration: 1000 }),
+      Ad.timing(state.commitImage, { toValue: 1, duration: 1000 }),
       Ad.timing(state.commitOutro, { toValue: 1, duration: 1000 }),
     ]).start()
   }
@@ -135,6 +137,7 @@ export default class IntroSwiperContainer extends React.Component {
               heartOutro={this.state.heartOutro} />
             <CommitPresenter
               commitIntro={this.state.commitIntro}
+              commitImage={this.state.commitImage}
               commitOutro={this.state.commitOutro} />
             {this.state.alarmVisible
             ? <SetAlarmContainer verifyStorageKey={this.props.verifyStorageKey} />
