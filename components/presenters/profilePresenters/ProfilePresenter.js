@@ -56,7 +56,7 @@ const ProfilePresenter = ({ navigation, userLogout, isLoggedIn, userInfo }) => (
                 <TouchableOpacity
                   style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                   onPress={() => navigation.navigate('Alarms')}>
-                  <Text style={ss.buttonText}>manage your alarms</Text>
+                  <Text style={ss.buttonText}>manage your reminders</Text>
                   <Feather
                     name="chevron-right"
                     size={26} />

@@ -5,10 +5,11 @@ import ss from '../../StyleSheet'
 const AboutPresenter = () => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.horizontalPadding]}>
+      <View style={[ss.paddingBottom15, ss.bottomBorder]} />
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={ss.flex1}>
-        <View style={[ss.addViewSpacing, ss.fullWidth]}>
+        <View style={[ss.paddingTop20, ss.paddingBottom10]}>
           <Text style={[ss.header, ss.centerText]}>ORA</Text>
         </View>
         <View style={ss.addViewSpacing}>
@@ -29,7 +30,7 @@ const AboutPresenter = () => (
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>REPORTING CONTENT</Text>
         </View>
-        <View style={ss.addViewSpacing}>
+        <View style={[ss.paddingTop10, ss.paddingBottom20]}>
           <Text style={ss.body}>If you come across a request that shouldn't be in our prayer network, use the flag icon to bring it to our attention.</Text>
         </View>
       </ScrollView>

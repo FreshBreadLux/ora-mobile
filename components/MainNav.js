@@ -95,13 +95,29 @@ const MainStackNav = StackNavigator({
   Prayer: {
     screen: PrayerContainer,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.prayer.subject}`,
+      title: '',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     })
   },
   Follow: {
     screen: FollowContainer,
     navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.follow.subject}`,
+      title: '',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     })
   },
   ChoirRank: {
@@ -127,13 +143,29 @@ const MainStackNav = StackNavigator({
   Alarms: {
     screen: AlarmContainer,
     navigationOptions: {
-      title: 'Alarms',
+      title: 'REMINDERS',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     },
   },
   About: {
     screen: AboutPresenter,
     navigationOptions: {
-      title: 'About',
+      title: 'ABOUT',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     },
   },
 }, {

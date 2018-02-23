@@ -17,10 +17,16 @@ class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      titleButtonFade: new Animated.Value(1),
+      reflectionFade: new Animated.Value(0),
       fadeAnim: new Animated.Value(0)
     }
     this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
+    this.titleButtonFadeIn = this.titleButtonFadeIn.bind(this)
+    this.titleButtonFadeOut = this.titleButtonFadeOut.bind(this)
+    this.reflectionFadeIn = this.reflectionFadeIn.bind(this)
+    this.reflectionFadeOut = this.reflectionFadeOut.bind(this)
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
@@ -37,6 +43,22 @@ class AcceptContainer extends React.Component {
     return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
   }
 
+  titleButtonFadeIn() {
+    return animate(this.state.titleButtonFade, { toValue: 1, duration: 500 })
+  }
+
+  titleButtonFadeOut() {
+    return animate(this.state.titleButtonFade, { toValue: 0, duration: 500 })
+  }
+
+  reflectionFadeIn() {
+    return animate(this.state.reflectionFade, { toValue: 1, duration: 500 })
+  }
+
+  reflectionFadeOut() {
+    return animate(this.state.reflectionFade, { toValue: 0, duration: 500 })
+  }
+
   loadNextPrayer() {
     const { dispatchFetchNextPrayer, userId, views } = this.props
     return dispatchFetchNextPrayer(userId, views)
@@ -51,13 +73,19 @@ class AcceptContainer extends React.Component {
     }
   }
 
-  loadReflection() {
+  async loadReflection() {
+    await this.titleButtonFadeOut()
     this.props.dispatchSetReflection()
+    await this.reflectionFadeIn()
     this.fadeIn()
   }
 
   finishPraying() {
-    this.setState({ fadeAnim: new Animated.Value(0) })
+    this.setState({
+      fadeAnim: new Animated.Value(0),
+      reflectionFade: new Animated.Value(0),
+      titleButtonFade: new Animated.Value(1)
+    })
     this.props.dispatchFinishPraying()
   }
 
@@ -115,11 +143,14 @@ class AcceptContainer extends React.Component {
           ? <View style={ss.invisiContainer}>
             {!this.props.reflection
             ? <PrePrayerPresenter
+                titleButtonFade={this.state.titleButtonFade}
                 loadReflection={this.loadReflection}
                 navigation={this.props.navigation} />
             : <ReflectionPresenter
                 opacity={this.state.fadeAnim}
                 finishPraying={this.finishPraying}
+                reflectionFade={this.state.reflectionFade}
+                reflectionFadeOut={this.reflectionFadeOut}
                 animateNextPrayerTransition={this.animateNextPrayerTransition} />
             }
             </View>

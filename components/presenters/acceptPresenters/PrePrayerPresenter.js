@@ -1,20 +1,20 @@
 import React from 'react'
-import { View, Text, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native'
+import { View, Text, SafeAreaView, TouchableOpacity, Animated, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store'
 import ss from '../../StyleSheet'
 import { Feather } from '@expo/vector-icons'
 
-const PrePrayerPresenter = ({ navigation, loadReflection, logUserOut }) => (
+const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUserOut }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
-    <View style={[ss.invisiContainer, ss.spaceAround]}>
+    <Animated.View style={[ss.invisiContainer, ss.spaceAround, {opacity: titleButtonFade}]}>
       <Text style={ss.title}>ORA</Text>
       <TouchableOpacity
         style={[ss.button, ss.halfWidth]}
         onPress={loadReflection}>
         <Text style={[ss.buttonText]}>start praying</Text>
       </TouchableOpacity>
-    </View>
+    </Animated.View>
     <View style={[ss.addViewSpacing]}>
       <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
