@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, TouchableOpacity, Animated, AsyncStorage } fr
 import { connect } from 'react-redux'
 import { logout } from '../../../store'
 import ss from '../../StyleSheet'
-import { Feather } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 
 const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUserOut }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
@@ -23,16 +23,16 @@ const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUs
           logUserOut()
           await AsyncStorage.setItem('seenIntro', 'false')
         }}>
-        <Feather
-          name="log-out"
+        <Ionicons
+          name="ios-log-out"
           size={24}
           color="#fff" />
       </TouchableOpacity>
       <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={() => navigation.navigate('About')}>
-        <Feather
-          name="help-circle"
+        <Ionicons
+          name="ios-help-circle-outline"
           size={24}
           color="#fff" />
       </TouchableOpacity>

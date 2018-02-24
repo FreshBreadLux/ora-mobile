@@ -29,9 +29,13 @@ async function _loadAssetsAsync() {
     require('./assets/images/Rome/Profile.jpg'),
     require('./assets/images/Rome/Prayers.jpg'),
     require('./assets/images/Rome/Follows.jpg'),
+    require('./assets/images/Mountains/Accept.jpg'),
+    require('./assets/images/Mountains/Submit.jpg'),
+    require('./assets/images/Mountains/Profile.jpg'),
+    require('./assets/images/Mountains/Prayers.jpg'),
+    require('./assets/images/Mountains/Follows.jpg'),
     require('./assets/images/Adoration.jpg'),
     require('./assets/images/Choirs.jpg'),
-    require('./assets/images/Paintings.jpg'),
   ])
   const fontAssets = cacheFonts([{
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),

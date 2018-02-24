@@ -1,13 +1,13 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal } from '../../../store'
+import { setVisibleModal, removeVisibleModal, setEditMode } from '../../../store'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
 import { OpenModal, CloseModal, DeleteModal, DeleteUpdateModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, deleteUpdate, showModal, hideModal, visibleModal, setUpdateToDelete }) => (
+const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, deleteUpdate, showModal, hideModal, visibleModal, setUpdateToDelete, dispatchSetEditMode }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
     <View style={ss.invisiContainer}>
       <View style={[ss.row, ss.paddingBottom10, ss.spaceBetween, ss.bottomBorder]}>
@@ -75,11 +75,14 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
     <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth]}>{`VIEWS: ${prayer.totalViews}`}</Text>
       <TouchableOpacity
-        onPress={toggleAddUpdate}>
+        onPress={() => {
+          dispatchSetEditMode()
+          toggleAddUpdate()
+        }}>
         <View style={ss.row}>
           <Ionicons
             name="ios-add-circle-outline"
-            size={17}
+            size={18}
             color="#1e3799" />
           <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>UPDATE</Text>
         </View>
@@ -124,7 +127,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   showModal: (visibleModal) => dispatch(setVisibleModal(visibleModal)),
-  hideModal: () => dispatch(removeVisibleModal())
+  hideModal: () => dispatch(removeVisibleModal()),
+  dispatchSetEditMode: () => dispatch(setEditMode())
 })
 
 export default connect(mapState, mapDispatch)(PrayerPresenter)

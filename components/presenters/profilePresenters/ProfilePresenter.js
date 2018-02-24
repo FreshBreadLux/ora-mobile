@@ -95,10 +95,10 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                   <View style={ss.thumbnail}>
                     <Image
                       style={ss.backgroundImage}
-                      source={require('../../../assets/images/Adoration.jpg')} />
+                      source={require('../../../assets/images/Mountains/Accept.jpg')} />
                   </View>
                 </TouchableOpacity>
-                <Text style={[ss.subBody, ss.padding10]}>Adoration</Text>
+                <Text style={[ss.subBody, ss.padding10]}>Mountains</Text>
               </View>
             </View>
           </View>

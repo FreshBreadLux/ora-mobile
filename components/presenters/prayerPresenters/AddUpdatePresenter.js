@@ -1,13 +1,16 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
+import { connect } from 'react-redux'
+import { removeEditMode } from '../../../store'
+import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggleAddUpdate, addNewUpdate, setUpdateBody, referenceUpdateTextInput }) => (
+const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispatchRemoveEditMode, toggleAddUpdate, addNewUpdate, setUpdateBody, referenceUpdateTextInput }) => (
   <View
     onLayout={handleOnLayout}
     style={[ss.invisiContainer, ss.editPadding]}>
     <View style={[ss.paddingBottom10, ss.paddingTop10, ss.bottomBorder]}>
-      <Text style={ss.subHeader}>update</Text>
+      <Text style={ss.tagLine}>UPDATE</Text>
     </View>
     <Animated.View
       style={{height: animatedHeight ? animatedHeight : 600 }}>
@@ -21,18 +24,35 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, toggle
     <View
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
-        style={ss.cancelButton}
-        onPress={toggleAddUpdate}>
-        <Text style={[ss.subBody]}>cancel</Text>
+        onPress={() => {
+          dispatchRemoveEditMode()
+          toggleAddUpdate()
+        }}>
+        <View style={ss.row}>
+          <Ionicons
+            name="ios-close-circle-outline"
+            size={18}
+            color="#555" />
+          <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>CANCEL</Text>
+        </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={ss.editButton}
         onPress={addNewUpdate}>
-        <Text style={[ss.subBody, ss.whiteText]}>send update</Text>
+        <View style={ss.row}>
+          <Ionicons
+            name="ios-paper-plane-outline"
+            size={18}
+            color="#1e3799" />
+          <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>SEND UPDATE</Text>
+        </View>
       </TouchableOpacity>
     </View>
     </Animated.View>
   </View>
 )
 
-export default AddUpdatePresenter
+const mapDispatch = dispatch => ({
+  dispatchRemoveEditMode: dispatch(removeEditMode())
+})
+
+export default connect(null, mapDispatch)(AddUpdatePresenter)

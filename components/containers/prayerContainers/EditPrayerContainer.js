@@ -89,7 +89,6 @@ export default class EditPrayerContainer extends React.Component {
             handleOnLayout={this.handleOnLayout}
             animatedHeight={this.state.animatedHeight}
             body={this.props.body}
-            toggleEdit={this.props.toggleEdit}
             editPrayer={this.props.editPrayer}
             setBody={this.props.setBody}
             referenceEditTextInput={this.referenceEditTextInput} />

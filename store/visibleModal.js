@@ -15,7 +15,7 @@ const defaultVisibleModal = null
  * ACTION CREATORS
  */
 export const setVisibleModal = visibleModal => ({ type: SET_VISIBLE_MODAL, visibleModal })
-export const removeVisibleModal = () => ({ type: REMOVE_VISIBLE_MODAL})
+export const removeVisibleModal = () => ({ type: REMOVE_VISIBLE_MODAL })
 
 
 /**

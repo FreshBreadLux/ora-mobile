@@ -15,6 +15,16 @@ const determineURL = (componentName, theme) => {
       return require('../../assets/images/Rome/Submit.jpg')
     case ((theme === 'Rome') && (componentName === 'Profile')):
       return require('../../assets/images/Rome/Profile.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Accept')):
+      return require('../../assets/images/Mountains/Accept.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Follows')):
+      return require('../../assets/images/Mountains/Follows.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Prayers')):
+      return require('../../assets/images/Mountains/Prayers.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Submit')):
+      return require('../../assets/images/Mountains/Submit.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Profile')):
+      return require('../../assets/images/Mountains/Profile.jpg')
     default:
       return null
   }

@@ -34,14 +34,14 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
         : null
         }
       </ScrollView>
-      <View style={[ss.row, ss.spaceAround]}>
+      <View style={[ss.row, ss.spaceAround, ss.paddingTop10]}>
         <View style={[ss.center, ss.flex1]}>
           <TouchableOpacity
             onPress={() => showModal('unfollow')}>
             <View style={ss.row}>
               <Ionicons
                 name="ios-remove-circle-outline"
-                size={16}
+                size={18}
                 color="#555" />
               <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>UNFOLLOW</Text>
             </View>
@@ -57,7 +57,7 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
               <View style={ss.row}>
                 <Ionicons
                   name="md-heart"
-                  size={16}
+                  size={18}
                   color="#FF4081" />
                 <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
               </View>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter } from './presenters'
 import { Ionicons } from '@expo/vector-icons'
 
 const MainTabNav = TabNavigator({
@@ -106,6 +106,7 @@ const MainStackNav = StackNavigator({
         backgroundColor: 'white',
         borderBottomWidth: 0,
       },
+      headerRight: <PrayerHeaderPresenter prayer={navigation.state.params.prayer} />
     })
   },
   Follow: {

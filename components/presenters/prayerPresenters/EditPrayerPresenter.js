@@ -1,8 +1,10 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
+import { connect } from 'react-redux'
+import { removeEditMode } from '../../../store'
 import ss from '../../StyleSheet'
 
-const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, toggleEdit, editPrayer, setBody, referenceEditTextInput }) => (
+const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, dispatchRemoveEditMode, editPrayer, setBody, referenceEditTextInput }) => (
   <View
     onLayout={handleOnLayout}
     style={[ss.invisiContainer, ss.editPadding]}>
@@ -19,7 +21,7 @@ const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, toggleEdit,
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
         style={ss.cancelButton}
-        onPress={toggleEdit}>
+        onPress={dispatchRemoveEditMode}>
         <Text style={[ss.subBody]}>cancel</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -32,4 +34,8 @@ const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, toggleEdit,
   </View>
 )
 
-export default EditPrayerPresenter
+const mapDispatch = dispatch => ({
+  dispatchRemoveEditMode: () => dispatch(removeEditMode())
+})
+
+export default connect(null, mapDispatch)(EditPrayerPresenter)
