@@ -158,6 +158,11 @@ const ss = StyleSheet.create({
     fontSize: 70,
     color: '#fff',
   },
+  consecutiveNumber: {
+    fontFamily: 'raleway',
+    fontSize: 40,
+    color: '#000'
+  },
   welcomeText: {
     fontFamily: 'raleway',
     fontSize: 30,
