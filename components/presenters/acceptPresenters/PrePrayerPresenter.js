@@ -5,7 +5,7 @@ import { logout } from '../../../store'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
 
-const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUserOut }) => (
+const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUserOut, isAdmin }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
     <Animated.View style={[ss.invisiContainer, ss.spaceAround, {opacity: titleButtonFade}]}>
       <Text style={ss.title}>ORA</Text>
@@ -16,7 +16,8 @@ const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUs
       </TouchableOpacity>
     </Animated.View>
     <View style={[ss.addViewSpacing]}>
-      <TouchableOpacity
+      {isAdmin
+      ? <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={async function(){
           await AsyncStorage.removeItem('oraAuth')
@@ -28,6 +29,8 @@ const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUs
           size={24}
           color="#fff" />
       </TouchableOpacity>
+      : null
+      }
       <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={() => navigation.navigate('About')}>
@@ -40,10 +43,14 @@ const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUs
   </SafeAreaView>
 )
 
+const mapState = state => ({
+  isAdmin: state.userInfo.isAdmin
+})
+
 const mapDispatch = dispatch => ({
   logUserOut() {
     dispatch(logout())
   }
 })
 
-export default connect(null, mapDispatch)(PrePrayerPresenter)
+export default connect(mapState, mapDispatch)(PrePrayerPresenter)
