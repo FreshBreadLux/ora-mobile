@@ -126,7 +126,15 @@ const MainStackNav = StackNavigator({
   ChoirRank: {
     screen: ChoirRankPresenter,
     navigationOptions: {
-      title: 'The Nine Choirs',
+      title: 'NINE CHOIRS',
+      headerTitleStyle: {
+        fontFamily: 'raleway',
+        fontSize: 24
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 0,
+      },
     }
   },
   Donate: {

@@ -1,4 +1,4 @@
-const IP_ADDRESS = '10.0.0.10'
+const IP_ADDRESS = '10.0.1.145'
 // 6572 Hoffman: '192.168.1.110'
 // Fullstack 11: '172.16.18.20'
 // Fullstack 25: '172.16.27.225'

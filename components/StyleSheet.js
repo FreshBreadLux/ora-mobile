@@ -69,6 +69,9 @@ const ss = StyleSheet.create({
   paddingTop20: {
     paddingTop: 20
   },
+  paddingTop30: {
+    paddingTop: 30
+  },
   paddingLeft7: {
     paddingLeft: 7,
   },
@@ -281,27 +284,6 @@ const ss = StyleSheet.create({
   buttonText: {
     fontFamily: 'raleway',
     fontSize: 16,
-  },
-  editButton: {
-    backgroundColor: '#000',
-    borderRadius: 6,
-    padding: 8,
-    width: '49%',
-    alignItems: 'center',
-  },
-  smallButton: {
-    backgroundColor: '#000',
-    borderRadius: 6,
-    padding: 8,
-    width: '24%',
-    alignItems: 'center',
-  },
-  cancelButton: {
-    backgroundColor: '#ccc',
-    borderRadius: 6,
-    padding: 8,
-    width: '49%',
-    alignItems: 'center',
   },
   blackButton: {
     backgroundColor: '#000',

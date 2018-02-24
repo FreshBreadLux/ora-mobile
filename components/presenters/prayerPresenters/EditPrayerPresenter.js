@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { removeEditMode } from '../../../store'
+import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
 const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, dispatchRemoveEditMode, editPrayer, setBody, referenceEditTextInput }) => (
@@ -20,14 +21,24 @@ const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, dispatchRem
     <View
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
-        style={ss.cancelButton}
         onPress={dispatchRemoveEditMode}>
-        <Text style={[ss.subBody]}>cancel</Text>
+        <View style={ss.row}>
+          <Ionicons
+            name="ios-close-circle-outline"
+            size={18}
+            color="#555" />
+          <Text style={[ss.subBody, ss.greyText, ss.paddingLeft7]}>CANCEL</Text>
+        </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={ss.editButton}
         onPress={editPrayer}>
-        <Text style={[ss.subBody, ss.whiteText]}>save edits</Text>
+        <View style={ss.row}>
+          <Ionicons
+            name="ios-checkmark-circle-outline"
+            size={18}
+            color="#1e3799" />
+          <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>SAVE EDITS</Text>
+        </View>
       </TouchableOpacity>
     </View>
     </Animated.View>
