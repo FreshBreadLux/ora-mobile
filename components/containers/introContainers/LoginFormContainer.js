@@ -1,7 +1,9 @@
 import React from 'react'
 import axios from 'axios'
-import { AsyncStorage } from 'react-native'
+import { View, AsyncStorage } from 'react-native'
 import { LoginFormPresenter } from '../../presenters'
+import ForgotPasswordContainer from './ForgotPasswordContainer'
+import ss from '../../StyleSheet'
 import ROOT_URL from '../../../config'
 
 async function setAsyncStorage(item, selectedValue) {
@@ -19,12 +21,15 @@ export default class LoginFormContainer extends React.Component {
       email: null,
       password: null,
       error: false,
+      forgotPasswordMode: false,
     }
     this.userLogin = this.userLogin.bind(this)
     this.setEmail = this.setEmail.bind(this)
     this.setPassword = this.setPassword.bind(this)
     this.referencePassword = this.referencePassword.bind(this)
     this.focusPassword = this.focusPassword.bind(this)
+    this.setForgotPasswordMode = this.setForgotPasswordMode.bind(this)
+    this.setLoginFormError = this.setLoginFormError.bind(this)
   }
 
   userLogin() {
@@ -58,17 +63,33 @@ export default class LoginFormContainer extends React.Component {
     this.password.focus()
   }
 
+  setForgotPasswordMode(bool) {
+    this.setState({ forgotPasswordMode: bool })
+  }
+
+  setLoginFormError(message) {
+    this.setState({error: message})
+  }
+
   render() {
     return (
-      <LoginFormPresenter
-        userLogin={this.userLogin}
-        setEmail={this.setEmail}
-        setPassword={this.setPassword}
-        focusPassword={this.focusPassword}
-        referencePassword={this.referencePassword}
-        error={this.state.error}
-        email={this.state.email}
-        password={this.state.password} />
+      <View style={ss.invisiContainer}>
+      {this.state.forgotPasswordMode
+      ? <ForgotPasswordContainer
+          setLoginFormError={this.setLoginFormError}
+          setForgotPasswordMode={this.setForgotPasswordMode} />
+      : <LoginFormPresenter
+          userLogin={this.userLogin}
+          setEmail={this.setEmail}
+          setPassword={this.setPassword}
+          focusPassword={this.focusPassword}
+          setForgotPasswordMode={this.setForgotPasswordMode}
+          referencePassword={this.referencePassword}
+          error={this.state.error}
+          email={this.state.email}
+          password={this.state.password} />
+      }
+      </View>
     )
   }
 }

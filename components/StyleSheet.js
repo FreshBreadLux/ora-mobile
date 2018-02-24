@@ -36,7 +36,7 @@ const ss = StyleSheet.create({
   },
   thumbnail: {
     height: 90,
-    width: 90,
+    width: '100%'
   },
   notificationIcon: {
     height: 15,
@@ -193,6 +193,9 @@ const ss = StyleSheet.create({
   },
   blueText: {
     color: 'rgb(69, 119, 238)',
+  },
+  darkBlueText: {
+    color: '#1e3799'
   },
   redText: {
     color: 'red',

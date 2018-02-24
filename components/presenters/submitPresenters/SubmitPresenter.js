@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import { BackgroundImage } from '../'
 import ss from '../../StyleSheet'
@@ -16,18 +17,23 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
     </View>
     <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.flex1, ss.padding15]}>
-          { errorMessage
+          {errorMessage
           ? <View style={[ss.center, ss.paddingBottom10]}>
               <Text style={[ss.header]}>{errorMessage}</Text>
             </View>
           : <View>
-            { prayerSent
-            ? <View style={[ss.center, ss.paddingBottom10]}>
-                <Text style={[ss.header]}>prayer successfully submitted</Text>
+            {prayerSent
+            ? <View style={[ss.row, ss.center, ss.paddingBottom10]}>
+                <Ionicons
+                  name="ios-checkmark-circle-outline"
+                  size={24}
+                  color="#1e3799" />
+                <Text style={[ss.header, ss.darkBlueText, ss.paddingLeft7]}>SUBMITTED</Text>
               </View>
             : <View style={[ss.center, ss.paddingBottom10]}>
                 <Text style={[ss.header]}>SUBMIT A PRAYER</Text>
-              </View> }
+              </View>
+            }
             </View>
           }
           <KeyboardAwareScrollView
@@ -35,6 +41,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
             <View style={[ss.addViewSpacing, ss.darkBottomBorder]}>
               <TextInput
                 style={[ss.fullWidth, ss.subHeader, ss.paddingBottom10]}
+                underlineColorAndroid="transparent"
                 placeholder="Enter prayer subject"
                 placeholderTextColor="#555"
                 keyboardType="default"
@@ -47,6 +54,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
               <TextInput
                 ref={referenceBody}
                 style={[ss.fullWidth, ss.fullHeight, ss.body, ss.paddingBottom10]}
+                underlineColorAndroid="transparent"
                 placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
                 placeholderTextColor="#555"
                 keyboardType="default"

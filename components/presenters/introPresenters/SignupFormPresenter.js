@@ -30,6 +30,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
           <View style={[ss.addViewSpacing, ss.center]}>
             <TextInput
               style={[ss.fullWidth, ss.subHeader, ss.textInput]}
+              underlineColorAndroid="transparent"
               placeholder="Email"
               placeholderTextColor="#555"
               keyboardType="email-address"
@@ -44,6 +45,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
             <TextInput
               ref={referencePassword}
               style={[ss.fullWidth, ss.subHeader, ss.textInput]}
+              underlineColorAndroid="transparent"
               placeholder="Password"
               placeholderTextColor="#555"
               secureTextEntry={true}

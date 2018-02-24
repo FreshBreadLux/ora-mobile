@@ -7,8 +7,11 @@
     "sdkVersion": "23.0.0",
     "version": "1.0.0",
     "orientation": "portrait",
-    "primaryColor": "#cccccc",
+    "primaryColor": "#1e3799",
     "icon": "./assets/images/icon.png",
+    "notification": {
+      "color": "#1e3799"
+    },
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "cover",

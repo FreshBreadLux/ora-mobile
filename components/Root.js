@@ -39,8 +39,8 @@ class Root extends React.Component {
     const oraAuth = await AsyncStorage.getItem('oraAuth')
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
+      await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
-      this.props.loadInitialData(oraAuthJson.userId)
     }
   }
 

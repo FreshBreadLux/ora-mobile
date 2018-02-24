@@ -22,11 +22,11 @@ const ReflectionPresenter = ({ reflectionFade, reflectionFadeOut, animateNextPra
             size={20}
             color="#fff" />
         </TouchableOpacity>
-        <Animated.View style={[ss.flex2, ss.justifyCenter, {opacity}]}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.threeQuartersWidth]}>Lord, I know that you are here, that you see me, that you hear me. I adore you with profound reverence, and I ask pardon for my sins and the grace to make this time of prayer fruitful.</Text>
+        <Animated.View style={[ss.flex2, ss.center, {opacity}]}>
+          <Text style={[ss.subHeader, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>Lord, I know that You are here, that You see me, that You hear me. Pour out Your grace into my heart, and give me a spirit of true empathy.</Text>
         </Animated.View>
-        <Animated.View style={[ss.flex1, ss.justifyCenter, {opacity}]}>
-          <Text style={[ss.subBody, ss.whiteText, ss.threeQuartersWidth]}>As soon as you are given a new prayer, the author will be notified that someone is praying for them. It is then your responsibility to pray for the intention. Don't be hasty.</Text>
+        <Animated.View style={[ss.flex1, ss.center, {opacity}]}>
+          <Text style={[ss.subBody, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>As soon as you are given a new prayer, the author will be notified that someone is praying for them. Don't be hasty.</Text>
         </Animated.View>
         <Animated.View style={[ss.padding10, ss.center, {opacity}]}>
           <TouchableOpacity
