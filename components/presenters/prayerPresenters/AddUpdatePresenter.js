@@ -5,7 +5,7 @@ import { removeEditMode } from '../../../store'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispatchRemoveEditMode, toggleAddUpdate, addNewUpdate, setUpdateBody, referenceUpdateTextInput }) => (
+const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispatchRemoveEditMode, addNewUpdate, setUpdateBody, referenceUpdateTextInput }) => (
   <View
     onLayout={handleOnLayout}
     style={[ss.invisiContainer, ss.editPadding]}>
@@ -24,10 +24,7 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispat
     <View
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
-        onPress={() => {
-          dispatchRemoveEditMode()
-          toggleAddUpdate()
-        }}>
+        onPress={dispatchRemoveEditMode}>
         <View style={ss.row}>
           <Ionicons
             name="ios-close-circle-outline"
@@ -52,7 +49,7 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispat
 )
 
 const mapDispatch = dispatch => ({
-  dispatchRemoveEditMode: dispatch(removeEditMode())
+  dispatchRemoveEditMode: () => dispatch(removeEditMode())
 })
 
 export default connect(null, mapDispatch)(AddUpdatePresenter)

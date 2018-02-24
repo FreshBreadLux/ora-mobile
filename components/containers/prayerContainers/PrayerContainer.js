@@ -13,7 +13,6 @@ class PrayerContainer extends React.Component {
     super(props)
     const prayer = this.props.navigation.state.params.prayer
     this.state = {
-      addingUpdate: false,
       subject: prayer.subject,
       body: prayer.body,
       updateBody: '',
@@ -26,7 +25,6 @@ class PrayerContainer extends React.Component {
     this.togglePrayer = this.togglePrayer.bind(this)
     this.deletePrayer = this.deletePrayer.bind(this)
     this.addNewUpdate = this.addNewUpdate.bind(this)
-    this.toggleAddUpdate = this.toggleAddUpdate.bind(this)
     this.deleteUpdate = this.deleteUpdate.bind(this)
   }
 
@@ -40,12 +38,6 @@ class PrayerContainer extends React.Component {
 
   setUpdateToDelete(updateToDelete) {
     this.setState({ updateToDelete })
-  }
-
-  toggleAddUpdate() {
-    this.setState({
-      addingUpdate: !this.state.addingUpdate
-    })
   }
 
   editPrayer() {
@@ -70,9 +62,6 @@ class PrayerContainer extends React.Component {
     })
     .then(() => {
       this.props.dispatchRemoveEditMode()
-      this.setState({
-        addingUpdate: false
-      })
       this.props.refreshUserPrayers(this.props.userId)
       this.props.navigation.goBack()
     })
@@ -114,20 +103,17 @@ class PrayerContainer extends React.Component {
     const prayer = this.props.navigation.state.params.prayer
     return (
       <SafeAreaView style={ss.whiteContainer}>
-        {this.props.editMode
+        {this.props.editMode.makingEdit
           ? <EditPrayerContainer
               setBody={this.setBody}
               setUpdateBody={this.setUpdateBody}
               body={this.state.body}
               updateBody={this.state.updateBody}
-              addingUpdate={this.state.addingUpdate}
               editPrayer={this.editPrayer}
-              addNewUpdate={this.addNewUpdate}
-              toggleAddUpdate={this.toggleAddUpdate} />
+              addNewUpdate={this.addNewUpdate} />
           : <PrayerPresenter
               prayer={prayer}
               visibleModal={this.state.visibleModal}
-              toggleAddUpdate={this.toggleAddUpdate}
               togglePrayer={this.togglePrayer}
               deletePrayer={this.deletePrayer}
               deleteUpdate={this.deleteUpdate}

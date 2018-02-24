@@ -1,53 +1,17 @@
 import React from 'react'
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal, setEditMode } from '../../../store'
+import { setVisibleModal, removeVisibleModal, setAddingUpdate } from '../../../store'
 import Modal from 'react-native-modal'
 import { Ionicons } from '@expo/vector-icons'
 import { OpenModal, CloseModal, DeleteModal, DeleteUpdateModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, deletePrayer, deleteUpdate, showModal, hideModal, visibleModal, setUpdateToDelete, dispatchSetEditMode }) => (
+const PrayerPresenter = ({ prayer, dispatchSetAddingUpdate, togglePrayer, deletePrayer, deleteUpdate, showModal, hideModal, visibleModal, setUpdateToDelete }) => (
   <View style={[ss.invisiContainer, ss.padding15]}>
     <View style={ss.invisiContainer}>
       <View style={[ss.row, ss.paddingBottom10, ss.spaceBetween, ss.bottomBorder]}>
         <Text style={[ss.subHeader, ss.flex1]}>{prayer.subject}</Text>
-        <View style={[ss.row, ss.center]}>
-          <TouchableOpacity
-            style={ss.paddingLeft7}
-            onPress={() => showModal('delete')}>
-            <Ionicons
-              name="ios-trash-outline"
-              size={20}
-              color="#555" />
-          </TouchableOpacity>
-          {prayer.closed
-          ? <TouchableOpacity
-            style={ss.paddingLeft7}
-              onPress={() => showModal('open')}>
-              <Ionicons
-                name="ios-eye-outline"
-                size={20}
-                color="#555" />
-            </TouchableOpacity>
-          : <TouchableOpacity
-            style={ss.paddingLeft7}
-              onPress={() => showModal('close')}>
-              <Ionicons
-                name="ios-eye-off-outline"
-                size={20}
-                color="#555" />
-            </TouchableOpacity>
-          }
-          <TouchableOpacity
-            style={ss.paddingLeft7}
-            onPress={toggleEdit}>
-            <Ionicons
-              name="ios-create-outline"
-              size={20}
-              color="#555" />
-          </TouchableOpacity>
-        </View>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{prayer.body}</Text>
@@ -75,10 +39,7 @@ const PrayerPresenter = ({ prayer, toggleEdit, toggleAddUpdate, togglePrayer, de
     <View style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth]}>{`VIEWS: ${prayer.totalViews}`}</Text>
       <TouchableOpacity
-        onPress={() => {
-          dispatchSetEditMode()
-          toggleAddUpdate()
-        }}>
+        onPress={dispatchSetAddingUpdate}>
         <View style={ss.row}>
           <Ionicons
             name="ios-add-circle-outline"
@@ -128,7 +89,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   showModal: (visibleModal) => dispatch(setVisibleModal(visibleModal)),
   hideModal: () => dispatch(removeVisibleModal()),
-  dispatchSetEditMode: () => dispatch(setEditMode())
+  dispatchSetAddingUpdate: () => dispatch(setAddingUpdate())
 })
 
 export default connect(mapState, mapDispatch)(PrayerPresenter)

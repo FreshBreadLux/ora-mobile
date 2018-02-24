@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Keyboard, Animated } from 'react-native'
+import { connect } from 'react-redux'
 import { AddUpdatePresenter, EditPrayerPresenter } from '../../presenters'
 import ss from '../../StyleSheet'
 
-export default class EditPrayerContainer extends React.Component {
+class EditPrayerContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,7 +52,7 @@ export default class EditPrayerContainer extends React.Component {
       startHeight: startHeight,
       animatedHeight: new Animated.Value(startHeight)},
       () => {
-        if (this.props.addingUpdate) this.focusUpdateTextInput()
+        if (this.props.editMode.addingUpdate) this.focusUpdateTextInput()
         else this.focusEditTextInput()
       }
     )
@@ -76,15 +77,14 @@ export default class EditPrayerContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        {this.props.addingUpdate
+        {this.props.editMode.addingUpdate
         ? <AddUpdatePresenter
             handleOnLayout={this.handleOnLayout}
             animatedHeight={this.state.animatedHeight}
             updateBody={this.props.updateBody}
             setUpdateBody={this.props.setUpdateBody}
             addNewUpdate={this.props.addNewUpdate}
-            referenceUpdateTextInput={this.referenceUpdateTextInput}
-            toggleAddUpdate={this.props.toggleAddUpdate} />
+            referenceUpdateTextInput={this.referenceUpdateTextInput} />
         : <EditPrayerPresenter
             handleOnLayout={this.handleOnLayout}
             animatedHeight={this.state.animatedHeight}
@@ -97,3 +97,9 @@ export default class EditPrayerContainer extends React.Component {
     )
   }
 }
+
+const mapState = state => ({
+  editMode: state.editMode
+})
+
+export default connect(mapState)(EditPrayerContainer)
