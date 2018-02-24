@@ -6,7 +6,6 @@
     "expo": "^23.0.6",
     "react": "16.0.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz",
-    "react-native-emoji": "^1.2.0",
     "react-native-keyboard-aware-scroll-view": "^0.4.2",
     "react-native-modal": "^4.1.1",
     "react-native-swiper": "^1.5.13",
