@@ -2,13 +2,13 @@ import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
 import { LinearGradient } from 'expo'
 import { connect } from 'react-redux'
-import { BackgroundImage } from '../'
+import { BackgroundImageContainer } from '../'
 import { fetchUserPrayers } from '../../../store'
 import ss from '../../StyleSheet'
 
 const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation }) => (
   <View style={ss.invisiContainer}>
-    <BackgroundImage componentName="Prayers" />
+    <BackgroundImageContainer componentName="Prayers" />
     <SafeAreaView style={ss.invisiContainer}>
       <View style={ss.backgroundImageFrame}>
         <LinearGradient

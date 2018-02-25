@@ -3,12 +3,12 @@ import { View, SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-nat
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
-import { BackgroundImage } from '../'
+import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
 
 const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, setBody, focusBody, referenceBody, submitPrayer, handleContentSizeChange }) => (
   <View style={ss.invisiContainer}>
-    <BackgroundImage componentName="Submit" />
+    <BackgroundImageContainer componentName="Submit" />
     <View style={ss.backgroundImageFrame}>
       <LinearGradient
         colors={['#fff', 'transparent']}

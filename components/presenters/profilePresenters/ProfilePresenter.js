@@ -4,13 +4,13 @@ import { connect } from 'react-redux'
 import { determineChoirTitle, determineChoirName } from '../../utils'
 import { LinearGradient } from 'expo'
 import { Feather, Ionicons } from '@expo/vector-icons'
-import { BackgroundImage } from '../'
+import { BackgroundImageContainer } from '../'
 import { updateUserTheme } from '../../../store'
 import ss from '../../StyleSheet'
 
 const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUserTheme }) => (
   <View style={ss.invisiContainer}>
-    <BackgroundImage componentName="Profile" />
+    <BackgroundImageContainer componentName="Profile" />
     <ScrollView
       showsVerticalScrollIndicator={false}>
       <SafeAreaView style={ss.invisiContainer}>

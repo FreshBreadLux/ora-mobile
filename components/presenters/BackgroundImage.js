@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Image } from 'react-native'
-import { connect } from 'react-redux'
+import { View, Image, Animated } from 'react-native'
+import { LinearGradient } from 'expo'
 import ss from '../StyleSheet'
 
 const determineURL = (componentName, theme) => {
@@ -30,19 +30,34 @@ const determineURL = (componentName, theme) => {
   }
 }
 
-const BackgroundImage = ({ componentName, theme }) => {
-  const URL = determineURL(componentName, theme)
-  return (
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        source={URL}
-        style={ss.backgroundImage} />
-    </View>
-  )
+export default class BackgroundImage extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      fadeAnim: new Animated.Value(0)
+    }
+  }
+
+  componentDidMount() {
+    Animated.timing(this.state.fadeAnim, { toValue: 1, duration: 1000 }).start()
+  }
+
+  render() {
+    const URL = determineURL(this.props.componentName, this.props.theme)
+    return (
+      <View style={ss.backgroundImageFrame}>
+        <View style={ss.backgroundImageFrame}>
+          <LinearGradient
+            colors={['#1e3799', '#0c2461']}
+            start={[0.5, 0]}
+            style={ss.flex1} />
+        </View>
+        <Animated.View style={[ss.backgroundImageFrame, {opacity: this.state.fadeAnim}]}>
+          <Image
+            source={URL}
+            style={ss.backgroundImage} />
+        </Animated.View>
+      </View>
+    )
+  }
 }
-
-const mapState = state => ({
-  theme: state.userInfo.theme
-})
-
-export default connect(mapState)(BackgroundImage)
