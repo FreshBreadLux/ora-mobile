@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native'
+import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { determineChoirTitle, determineChoirName } from '../../utils'
 import { LinearGradient } from 'expo'
@@ -79,7 +79,10 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <View style={[ss.center, ss.fullWidth, ss.paddingBottom20]}>
                 <TouchableOpacity
                   style={ss.fullWidth}
-                  onPress={() => dispatchUpdateUserTheme(userInfo.id, 'Rome')}>
+                  onPress={() => {
+                    AsyncStorage.setItem('oraTheme', 'Rome')
+                    dispatchUpdateUserTheme(userInfo.id, 'Rome')
+                  }}>
                   <View style={ss.thumbnail}>
                     <Image
                       style={ss.backgroundImage}
@@ -91,7 +94,10 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <View style={[ss.center, ss.fullWidth]}>
                 <TouchableOpacity
                   style={ss.fullWidth}
-                  onPress={() => dispatchUpdateUserTheme(userInfo.id, 'Mountains')}>
+                  onPress={() => {
+                    AsyncStorage.setItem('oraTheme', 'Mountains')
+                    dispatchUpdateUserTheme(userInfo.id, 'Mountains')
+                  }}>
                   <View style={ss.thumbnail}>
                     <Image
                       style={ss.backgroundImage}

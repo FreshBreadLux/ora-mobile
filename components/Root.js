@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -39,6 +39,8 @@ class Root extends React.Component {
     const oraAuth = await AsyncStorage.getItem('oraAuth')
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
+      const theme = await AsyncStorage.getItem('oraTheme')
+      this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
     }
@@ -113,6 +115,9 @@ const mapDispatch = dispatch => ({
   },
   noIntroNeeded() {
     return dispatch(notFirstRodeo())
+  },
+  dispatchUpdateUserTheme(userId, theme) {
+    return dispatch(updateUserTheme(userId, theme))
   }
 })
 
