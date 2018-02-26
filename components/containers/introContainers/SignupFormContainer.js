@@ -51,6 +51,9 @@ export default class SignupFormContainer extends React.Component {
           if (error.response && error.response.status === 405) {
             this.setState({error: 'Please submit a valid email address'})
           }
+          if (error.response && error.response.status === 406) {
+            this.setState({error: 'That email already exists in our database'})
+          }
         })
       } else {
         this.setState({ error: 'Please provide both an email and a password' })

@@ -23,7 +23,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
         contentContainerStyle={ss.flex1}>
         <View style={[ss.flex3, ss.padding15]}>
           <View style={[ss.flex1, ss.center, ss.padding15]}>
-            <Text style={[ss.subHeader, ss.centerText]}>
+            <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>
               {error ? `${error}` : null}
             </Text>
           </View>
