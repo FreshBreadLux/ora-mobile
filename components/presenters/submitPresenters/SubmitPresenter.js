@@ -19,7 +19,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
         <View style={[ss.flex1, ss.padding15]}>
           {errorMessage
           ? <View style={[ss.center, ss.paddingBottom10]}>
-              <Text style={[ss.header]}>{errorMessage}</Text>
+              <Text style={[ss.header, ss.centerText]}>{errorMessage}</Text>
             </View>
           : <View>
             {prayerSent

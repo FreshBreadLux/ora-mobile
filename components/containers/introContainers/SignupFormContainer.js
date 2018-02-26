@@ -47,9 +47,13 @@ export default class SignupFormContainer extends React.Component {
         .then(response => JSON.stringify(response.data))
         .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
         .then(() => this.props.showAlarm())
-        .catch(console.error)
+        .catch(error => {
+          if (error.response && error.response.status === 405) {
+            this.setState({error: 'Please submit a valid email address'})
+          }
+        })
       } else {
-        this.setState({ error: 'please provide both an email and a password' })
+        this.setState({ error: 'Please provide both an email and a password' })
       }
     } catch (error) {
       console.error(error)

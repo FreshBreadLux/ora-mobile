@@ -46,7 +46,7 @@ class SubmitContainer extends React.Component {
       })
       .catch(console.error)
     } else {
-      this.setState({ errorMessage: 'your prayer needs both a subject and a body'})
+      this.setState({ errorMessage: 'Your prayer needs both a subject and a body'})
     }
   }
 

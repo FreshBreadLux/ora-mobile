@@ -43,7 +43,7 @@ export default class LoginFormContainer extends React.Component {
       .then(() => this.props.verifyStorageKey())
       .catch(error => this.setState({error: error.response.request._response}))
     } else {
-      this.setState({ error: 'please provide both an email and a password' })
+      this.setState({ error: 'Please provide both an email and a password' })
     }
   }
 

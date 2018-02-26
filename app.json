@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "ora-frontend",
-    "description": "An empty new project",
+    "description": "Ora connects Christians around the world through prayer",
     "slug": "ora-frontend",
     "privacy": "public",
     "sdkVersion": "23.0.0",
@@ -18,7 +18,7 @@
       "backgroundColor": "#1e3799"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false
     }
   }
 }
