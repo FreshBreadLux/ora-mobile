@@ -50,7 +50,7 @@ const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, r
           <TouchableOpacity
             style={[ss.button, ss.halfWidth]}
             onPress={userLogin}>
-            <Text style={[ss.buttonText]}>login</Text>
+            <Text style={[ss.buttonText]}>LOGIN</Text>
           </TouchableOpacity>
         </View>
       </View>
