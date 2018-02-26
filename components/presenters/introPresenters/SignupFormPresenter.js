@@ -57,12 +57,12 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
             <TouchableOpacity
               style={[ss.button, ss.halfWidth]}
               onPress={userSignup}>
-              <Text style={ss.buttonText}>sign up</Text>
+              <Text style={ss.buttonText}>SIGN UP</Text>
             </TouchableOpacity>
           </View>
         </View>
         <View style={[ss.flex2, ss.center, ss.padding15]}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

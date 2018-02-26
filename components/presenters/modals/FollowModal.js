@@ -5,7 +5,7 @@ import ss from '../../StyleSheet'
 const FollowModalContent = ({ hideModal, followPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
-      <Text style={ss.modalText}>Following prayers is a sign of support and engagement, and will keep you updated on the status of the prayer request</Text>
+      <Text style={ss.modalText}>Following prayers is a sign of support and tells the author that you will continue to pray for their request.</Text>
       <TouchableOpacity
         style={ss.fullWidth}
         onPress={followPrayer}>

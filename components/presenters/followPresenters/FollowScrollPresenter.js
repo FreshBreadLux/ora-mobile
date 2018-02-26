@@ -47,7 +47,7 @@ const FollowScrollPresenter = ({ follows, navigation }) => (
               <TouchableOpacity
                 style={[ss.button, ss.fullWidth]}
                 onPress={() => navigation.navigate('Accept')}>
-                <Text style={[ss.buttonText, ss.centerText]}>when you follow prayers, they will be listed here</Text>
+                <Text style={[ss.buttonText, ss.centerText]}>When you follow prayers, they will be listed here</Text>
               </TouchableOpacity>
             </View>
           }

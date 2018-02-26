@@ -50,7 +50,7 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
               <TouchableOpacity
                 style={[ss.button, ss.fullWidth]}
                 onPress={() => navigation.navigate('Submit')}>
-                <Text style={[ss.buttonText, ss.centerText]}>when you submit prayers, they will be listed here</Text>
+                <Text style={[ss.buttonText, ss.centerText]}>When you submit prayers, they will be listed here</Text>
               </TouchableOpacity>
             </View>
           }

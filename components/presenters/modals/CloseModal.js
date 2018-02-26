@@ -5,7 +5,7 @@ import ss from '../../StyleSheet'
 const CloseModal = ({ hideModal, togglePrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
-      <Text style={ss.modalText}>Closing this prayer will remove it from the Ora prayer network. You will stop receiving notifications regarding this prayer. You and the people that are following the prayer will still be able to see it.</Text>
+      <Text style={ss.modalText}>Closing this prayer means it will not be displayed to new users. You and the people that are following the prayer will still be able to see it.</Text>
       <TouchableOpacity
         style={ss.fullWidth}
         onPress={() => {

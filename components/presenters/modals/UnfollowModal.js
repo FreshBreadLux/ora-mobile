@@ -5,7 +5,7 @@ import ss from '../../StyleSheet'
 const UnfollowModal = ({ hideModal, unfollowPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
-      <Text style={ss.modalText}>If you unfollow this prayer, it will no longer show up in your Follows section and you will not receive any updates about the prayer request.</Text>
+      <Text style={ss.modalText}>Are you sure you want to Unfollow? This action cannot be undone.</Text>
       <TouchableOpacity
         style={ss.fullWidth}
         onPress={() => {

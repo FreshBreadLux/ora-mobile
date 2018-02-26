@@ -12,7 +12,7 @@ const PrePrayerPresenter = ({ titleButtonFade, navigation, loadReflection, logUs
       <TouchableOpacity
         style={[ss.button, ss.halfWidth]}
         onPress={loadReflection}>
-        <Text style={[ss.buttonText]}>start praying</Text>
+        <Text style={[ss.buttonText]}>START PRAYING</Text>
       </TouchableOpacity>
     </Animated.View>
     <View style={[ss.addViewSpacing]}>

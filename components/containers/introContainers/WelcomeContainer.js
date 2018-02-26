@@ -46,7 +46,7 @@ export default class WelcomeContainer extends React.Component {
             </Animated.View>
           </View>
           <Animated.View style={[ss.flex2, ss.center, {opacity: this.state.connectFade}]}>
-            <Text style={[ss.subHeader, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>Ora connects christians around the world through prayer</Text>
+            <Text style={[ss.subHeader, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>Ora connects Christians around the world through prayer</Text>
           </Animated.View>
         </View>
       </SafeAreaView>

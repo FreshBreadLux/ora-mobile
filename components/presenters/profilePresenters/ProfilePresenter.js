@@ -46,7 +46,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <TouchableOpacity
                 style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('Donate')}>
-                <Text style={ss.buttonText}>donate</Text>
+                <Text style={ss.buttonText}>Donate</Text>
                 <Feather
                   name="chevron-right"
                   size={26} />
@@ -56,7 +56,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <TouchableOpacity
                 style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('Alarms')}>
-                <Text style={ss.buttonText}>manage your reminders</Text>
+                <Text style={ss.buttonText}>Manage your reminders</Text>
                 <Feather
                   name="chevron-right"
                   size={26} />
@@ -66,7 +66,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <TouchableOpacity
                 style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('About')}>
-                <Text style={ss.buttonText}>learn more about Ora</Text>
+                <Text style={ss.buttonText}>Learn more about Ora</Text>
                 <Feather
                   name="chevron-right"
                   size={26} />
@@ -89,7 +89,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                       source={require('../../../assets/images/Rome/Accept.jpg')} />
                   </View>
                 </TouchableOpacity>
-                <Text style={[ss.subBody, ss.padding10]}>Rome</Text>
+                <Text style={[ss.subBody, ss.padding10]}>ROME</Text>
               </View>
               <View style={[ss.center, ss.fullWidth]}>
                 <TouchableOpacity
@@ -104,7 +104,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                       source={require('../../../assets/images/Mountains/Accept.jpg')} />
                   </View>
                 </TouchableOpacity>
-                <Text style={[ss.subBody, ss.padding10]}>Mountains</Text>
+                <Text style={[ss.subBody, ss.padding10]}>MOUNTAINS</Text>
               </View>
             </View>
           </View>

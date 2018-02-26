@@ -6,7 +6,7 @@ import ss from '../../StyleSheet'
 const FlagModalContent = ({ flagReasons, hideModal, flagPrayer }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
-      <Text style={ss.modalText}>Please select the category that this prayer should be flagged under</Text>
+      <Text style={ss.modalText}>How would you like to flag this prayer?</Text>
       {flagReasons && flagReasons.map(flagReason => (
         <TouchableOpacity
           key={flagReason.id}

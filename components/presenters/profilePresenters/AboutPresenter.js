@@ -19,13 +19,13 @@ const AboutPresenter = () => (
           <Text style={[ss.header, ss.centerText]}>USING THE APP</Text>
         </View>
         <View style={ss.addViewSpacing}>
-          <Text style={ss.body}>When you accept a prayer, you will be given an anonymous request and the author will receive a push notification that someone is praying for them. It is then your responsibility to spend time praying for the intention.</Text>
+          <Text style={ss.body}>When you accept a prayer, you will be given an anonymous request and the author will receive a notification that someone is praying for them. It is then your responsibility to spend time praying for the intention.</Text>
         </View>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>FOLLOWING PRAYERS</Text>
         </View>
         <View style={ss.addViewSpacing}>
-          <Text style={ss.body}>While all prayers are submitted and viewed anonymously, we hope to use connections between users to illustrate the power of prayer. You can follow prayers by tapping the heart icon, and you will receive notifications anytime the author provides updates to their prayer request.{'\n'}Note: Once you move on to a new prayer, you will not be able to return to the previous one, so please be sure to Follow any prayer requests you would like to receive updates about before accepting another.</Text>
+          <Text style={ss.body}>While all prayers are submitted and viewed anonymously, we hope to use connections between users to illustrate the power of prayer. You can follow prayers by tapping the heart icon, and you will receive notifications anytime the author provides updates to their prayer request.{'\n\n'}Note: Once you move on to a new prayer, you will not be able to return to the previous one, so please be sure to Follow any prayer requests you would like to receive updates about before accepting another.</Text>
         </View>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>REPORTING CONTENT</Text>

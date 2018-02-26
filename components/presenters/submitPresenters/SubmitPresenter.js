@@ -70,7 +70,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
                 onPress={submitPrayer}
                 style={[ss.button, ss.halfWidth]}
               >
-                <Text style={[ss.buttonText]}>send</Text>
+                <Text style={[ss.buttonText]}>SEND</Text>
               </TouchableOpacity>
             </View>
           </KeyboardAwareScrollView>

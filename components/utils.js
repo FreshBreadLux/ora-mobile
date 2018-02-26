@@ -6,15 +6,15 @@ export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
     case userTotalPrayers > 32:
     return (
-      <Text style={ss.buttonText}>ninth choir</Text>
+      <Text style={ss.buttonText}>NINTH CHOIR</Text>
     )
   case userTotalPrayers < 33:
     return (
-      <Text style={ss.buttonText}>welcome</Text>
+      <Text style={ss.buttonText}>WELCOME</Text>
     )
   default:
     return (
-      <Text style={ss.buttonText}>welcome</Text>
+      <Text style={ss.buttonText}>WELCOME</Text>
     )
   }
 }
@@ -93,7 +93,7 @@ export const determineChoirText = userTotalPrayers => {
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app. To make the levels educational as well as motivational, we've named each of them after one of the Nine Choirs of Angels that we read about in scripture. As you accept more prayers, your level will increase and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>
@@ -112,7 +112,7 @@ export const determineChoirText = userTotalPrayers => {
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app. To make the levels educational as well as motivational, we've named each of them after one of the Nine Choirs of Angels that we read about in scripture. As you accept more prayers, your level will increase and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>

@@ -11,7 +11,7 @@ const IOSSetAlarmPresenter = ({ chosenTime, setTime, handleSubmit }) => (
     </View>
     <SafeAreaView style={ss.invisiContainer}>
       <View style={[ss.flex1, ss.padding15]}>
-        <Text style={[ss.subHeader, ss.centerText]}>To get started, set a daily prayer reminder</Text>
+        <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>To get started, set a daily prayer reminder</Text>
       </View>
       <View style={{backgroundColor: 'rgba(255, 255, 255, 0.8)'}}>
         <DatePickerIOS
@@ -23,7 +23,7 @@ const IOSSetAlarmPresenter = ({ chosenTime, setTime, handleSubmit }) => (
         <TouchableOpacity
           style={[ss.button, ss.halfWidth]}
           onPress={handleSubmit}>
-          <Text style={ss.buttonText}>get started</Text>
+          <Text style={ss.buttonText}>GET STARTED</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
