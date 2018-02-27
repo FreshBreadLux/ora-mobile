@@ -18,8 +18,12 @@
       "backgroundColor": "#1e3799"
     },
     "ios": {
+      "bundleIndentifier": "com.oraprayernetwork.ora",
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false
+    },
+    "android": {
+      "package": "com.oraprayernetwork.ora"
     }
   }
 }
