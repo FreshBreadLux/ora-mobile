@@ -19,6 +19,7 @@
     },
     "ios": {
       "bundleIndentifier": "com.oraprayernetwork.ora",
+      "buildNumber": "1.0.0",
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false
     },
