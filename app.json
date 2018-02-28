@@ -18,7 +18,7 @@
       "backgroundColor": "#1e3799"
     },
     "ios": {
-      "bundleIndentifier": "com.oraprayernetwork.ora",
+      "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.0.0",
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false
