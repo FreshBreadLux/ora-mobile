@@ -67,7 +67,7 @@ class ForgotPasswordContainer extends React.Component {
         { email: this.state.email },
         { headers: { token: this.props.jwToken }
       })
-      .then(() => this.setState({ codeSent: true }))
+      .then(() => this.setState({ codeSent: true, error: null }))
       .catch(error => this.setState({ error: error.response.request._response }))
     } else {
       this.setState({ error: 'please provide an email' })
