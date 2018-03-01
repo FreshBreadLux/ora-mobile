@@ -25,7 +25,7 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispat
       style={[ss.row, ss.spaceBetween, ss.viewTopBorder]}>
       <TouchableOpacity
         onPress={dispatchRemoveEditMode}>
-        <View style={ss.row}>
+        <View style={[ss.row, ss.paddingBottom4, ss.paddingTop4]}>
           <Ionicons
             name="ios-close-circle-outline"
             size={18}
@@ -35,7 +35,7 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispat
       </TouchableOpacity>
       <TouchableOpacity
         onPress={addNewUpdate}>
-        <View style={ss.row}>
+        <View style={[ss.row, ss.paddingBottom4, ss.paddingTop4]}>
           <Ionicons
             name="ios-paper-plane-outline"
             size={18}

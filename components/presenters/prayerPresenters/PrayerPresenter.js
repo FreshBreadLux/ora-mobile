@@ -40,7 +40,7 @@ const PrayerPresenter = ({ prayer, dispatchSetAddingUpdate, togglePrayer, delete
       <Text style={[ss.subBody, ss.greyText, ss.oneThirdWidth]}>{`VIEWS: ${prayer.totalViews}`}</Text>
       <TouchableOpacity
         onPress={dispatchSetAddingUpdate}>
-        <View style={ss.row}>
+        <View style={[ss.row, ss.padding4]}>
           <Ionicons
             name="ios-add-circle-outline"
             size={18}

@@ -42,11 +42,17 @@ const ss = StyleSheet.create({
     height: 15,
     width: 15,
   },
+  padding4: {
+    padding: 4,
+  },
   padding10: {
     padding: 10,
   },
   padding15: {
     padding: 15,
+  },
+  paddingBottom4: {
+    paddingBottom: 4
   },
   paddingBottom10: {
     paddingBottom: 10,
@@ -59,6 +65,9 @@ const ss = StyleSheet.create({
   },
   paddingBottom30: {
     paddingBottom: 30,
+  },
+  paddingTop4: {
+    paddingTop: 4
   },
   paddingTop10: {
     paddingTop: 10,
