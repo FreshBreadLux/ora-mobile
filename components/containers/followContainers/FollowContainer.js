@@ -51,15 +51,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshUserFollows(userId) {
-    return dispatch(fetchUserFollows(userId))
-  },
-  dispatchAddRecentlyPrayedFor(prayerId) {
-    return dispatch(addRecentlyPrayedFor(prayerId))
-  },
-  dispatctchRemoveRecentlyPrayedFor(prayerId) {
-    return dispatch(removeRecentlyPrayedFor(prayerId))
-  }
+  refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
+  dispatchAddRecentlyPrayedFor: prayerId => dispatch(addRecentlyPrayedFor(prayerId)),
+  dispatctchRemoveRecentlyPrayedFor: prayerId => dispatch(removeRecentlyPrayedFor(prayerId))
 })
 
 export default connect(mapState, mapDispatch)(FollowContainer)

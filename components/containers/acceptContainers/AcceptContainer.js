@@ -178,30 +178,14 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshUserFollows(userId) {
-    return dispatch(fetchUserFollows(userId))
-  },
-  dispatchAddView(viewedId) {
-    return dispatch(addView(viewedId))
-  },
-  refreshUserInfo(userId) {
-    return dispatch(fetchUserInfo(userId))
-  },
-  dispatchSetUserInfo(userInfo) {
-    return dispatch(setUserInfo(userInfo))
-  },
-  dispatchFetchNextPrayer(userId, views) {
-    return dispatch(fetchNextPrayer(userId, views))
-  },
-  dispatchFinishPraying() {
-    return dispatch(finishPraying())
-  },
-  dispatchSetReflection() {
-    return dispatch(setReflection())
-  },
-  dispatchRemoveVisibleModal() {
-    return dispatch(removeVisibleModal())
-  }
+  refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
+  dispatchAddView: viewedId => dispatch(addView(viewedId)),
+  refreshUserInfo: userId => dispatch(fetchUserInfo(userId)),
+  dispatchSetUserInfo: userInfo => dispatch(setUserInfo(userInfo)),
+  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
+  dispatchFinishPraying: () => dispatch(finishPraying()),
+  dispatchSetReflection: () => dispatch(setReflection()),
+  dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
 })
 
 export default connect(mapState, mapDispatch)(AcceptContainer)

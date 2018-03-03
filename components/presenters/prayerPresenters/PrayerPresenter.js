@@ -87,7 +87,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  showModal: (visibleModal) => dispatch(setVisibleModal(visibleModal)),
+  showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
   hideModal: () => dispatch(removeVisibleModal()),
   dispatchSetAddingUpdate: () => dispatch(setAddingUpdate())
 })

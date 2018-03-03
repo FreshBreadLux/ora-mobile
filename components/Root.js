@@ -96,7 +96,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  loadInitialData(userId) {
+  loadInitialData: userId => {
     dispatch(fetchUserPrayers(userId))
     dispatch(fetchUserFollows(userId))
     dispatch(fetchUserViews(userId))
@@ -104,21 +104,11 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserAlarms())
     dispatch(fetchFlagReasons())
   },
-  logUserIn(oraAuthJson) {
-    return dispatch(login(oraAuthJson))
-  },
-  refreshUserPrayers(userId) {
-    return dispatch(fetchUserPrayers(userId))
-  },
-  refreshUserFollows(userId) {
-    return dispatch(fetchUserFollows(userId))
-  },
-  noIntroNeeded() {
-    return dispatch(notFirstRodeo())
-  },
-  dispatchUpdateUserTheme(userId, theme) {
-    return dispatch(updateUserTheme(userId, theme))
-  }
+  logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
+  refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
+  refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
+  noIntroNeeded: () => dispatch(notFirstRodeo()),
+  dispatchUpdateUserTheme: (userId, theme) => dispatch(updateUserTheme(userId, theme))
 })
 
 export default connect(mapState, mapDispatch)(Root)

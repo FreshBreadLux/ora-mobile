@@ -131,12 +131,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshUserPrayers(userId) {
-    return dispatch(fetchUserPrayers(userId))
-  },
-  dispatchRemoveEditMode() {
-    return dispatch(removeEditMode())
-  }
+  refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
+  dispatchRemoveEditMode: () => dispatch(removeEditMode())
 })
 
 export default connect(mapState, mapDispatch)(PrayerContainer)

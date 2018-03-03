@@ -80,9 +80,7 @@ class SetAlarmContainer extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  noIntroNeeded() {
-    return dispatch(notFirstRodeo())
-  }
+  noIntroNeeded: () => dispatch(notFirstRodeo())
 })
 
 export default connect(null, mapDispatch)(SetAlarmContainer)

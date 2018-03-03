@@ -94,9 +94,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshUserPrayers(userId) {
-    dispatch(fetchUserPrayers(userId))
-  }
+  refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId))
 })
 
 export default connect(mapState, mapDispatch)(SubmitContainer)
