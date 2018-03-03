@@ -121,12 +121,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  showModal(visibleModal) {
-    return dispatch(setVisibleModal(visibleModal))
-  },
-  hideModal() {
-    return dispatch(removeVisibleModal())
-  }
+  showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
+  hideModal: () => dispatch(removeVisibleModal())
 })
 
 export default connect(mapState, mapDispatch)(CurrentPrayerPresenter)

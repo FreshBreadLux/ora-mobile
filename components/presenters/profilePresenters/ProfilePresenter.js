@@ -135,9 +135,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  dispatchUpdateUserTheme(userId, theme) {
-    return dispatch(updateUserTheme(userId, theme))
-  }
+  dispatchUpdateUserTheme: (userId, theme) => dispatch(updateUserTheme(userId, theme))
 })
 
 export default connect(mapState, mapDispatch)(ProfilePresenter)

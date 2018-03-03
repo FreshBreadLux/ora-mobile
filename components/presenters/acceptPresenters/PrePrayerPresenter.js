@@ -38,9 +38,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  logUserOut() {
-    dispatch(logout())
-  }
+  logUserOut: () => dispatch(logout())
 })
 
 export default connect(mapState, mapDispatch)(PrePrayerPresenter)
