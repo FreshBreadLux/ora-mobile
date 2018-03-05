@@ -94,8 +94,6 @@ const ss = StyleSheet.create({
     paddingRight: 15,
   },
   horizontalPadding: {
-    flex: 1,
-    justifyContent: 'center',
     paddingLeft: 15,
     paddingRight: 15,
   },

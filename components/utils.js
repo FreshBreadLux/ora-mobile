@@ -4,40 +4,76 @@ import ss from './StyleSheet'
 
 export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 99:
+      return <Text style={ss.buttonText}>EIGHTH CHOIR</Text>
     case userTotalPrayers > 32:
-    return (
-      <Text style={ss.buttonText}>NINTH CHOIR</Text>
-    )
-  case userTotalPrayers < 33:
-    return (
-      <Text style={ss.buttonText}>WELCOME</Text>
-    )
-  default:
-    return (
-      <Text style={ss.buttonText}>WELCOME</Text>
-    )
+      return <Text style={ss.buttonText}>NINTH CHOIR</Text>
+    case userTotalPrayers < 33:
+      return <Text style={ss.buttonText}>WELCOME</Text>
+    default:
+      return <Text style={ss.buttonText}>WELCOME</Text>
   }
 }
 
 export const determineChoirName = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 99:
+      return <Text style={ss.choirName}>Archangel</Text>
     case userTotalPrayers > 32:
-    return (
-      <Text style={ss.choirName}>Angel</Text>
-    )
-  case userTotalPrayers < 33:
-    return (
-      <Text style={ss.choirName}>New Member</Text>
-    )
-  default:
-    return (
-      <Text style={ss.choirName}>New Member</Text>
-    )
+      return <Text style={ss.choirName}>Angel</Text>
+    case userTotalPrayers < 33:
+      return <Text style={ss.choirName}>New Member</Text>
+    default:
+      return <Text style={ss.choirName}>New Member</Text>
   }
 }
 
 export const determineChoirText = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 99:
+      return (
+        <View style={ss.invisiContainer}>
+          <View style={ss.backgroundImageFrame}>
+            <Image
+              source={require('../assets/images/Choirs.jpg')}
+              style={ss.backgroundImage}
+            />
+          </View>
+          <ScrollView>
+            <View style={[ss.center, ss.addViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.subHeader, ss.padding15]}>EIGHTH CHOIR</Text>
+              <Text style={ss.tagLine}>ARCHANGELS</Text>
+            </View>
+            <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.body}>Christians believe that God has organized the entirety of creation in a hierarchical fashion. This belief in a hierarchy extends to the realm of angels, and for the past two thousand years theologians have speculated about the nature and structure of the hierarchy of angels. Our understanding comes from references to angels in Sacred Scripture, the teachings of the early Church Fathers, and guidance of Sacred Tradition.</Text>
+            </View>
+            <View style={[ss.editHeight, ss.center]}>
+              <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>“The scheme is not official dogma, but it is a beautiful work of art, a reasonable work of philosophical speculation, an inspiring work of faith, and an enduring work of tradition”{'\n'}- Dr. Peter Kreeft</Text>
+            </View>
+            <View style={[ss.center, ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.header}>ARCHANGELS</Text>
+            </View>
+            <View style={[ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.body}>Sacred Scripture tells us that there are seven archangels, and references three of them by name: St. Michael, St. Gabriel, and St. Raphael. God has given these angels prominent roles in salvation history.</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>Then war broke out in heaven; Michael and his angels battled against the dragon. The dragon and its angels fought back, but they did not prevail and there was no longer any place for them in heaven. The huge dragon, the ancient serpent, who is called the Devil and Satan, who deceived the whole world, was thrown down to earth, and its angels were thrown down with it.{'\n'}- Revelation 12:7-9</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>Yet the archangel Michael, when he argued with the devil in dispute over the body of Moses, did not venture to pronounce a reviling judgement upon him but said, "May the Lord rebuke you!"{'\n'}- Jude 1:9</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>"I was sent to put you to the test. At the same time, however, God sent me to heal you and your daughter-in-law Sarah. I am Raphael, one of the seven angels who stand and serve before the Glory of the Lord." Greatly shaken, the two of them fell prostrate in fear. But Raphael said to them: "Do not fear; peace be with you! Bless God now and forever."{'\n'}- Tobit 12:14-17</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>In the sixth month, the angel Gabriel was sent from God to a town of Galilee called Nazareth, to a virgin betrothed to a man named Jospeph, of the house of David, and the virgin's name was Mary. And coming to her, he said "Hail, favored one! The Lord is with you."{'\n'}- Luke 1:26-28</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>For the Lord Himself, with a word of command, with the voice of an archangel and with the trumpet of God, will come down from heaven, and the dead in Christ will rise first.{'\n'}- 1 Thessalonians 4:16</Text>
+            </View>
+          </ScrollView>
+        </View>
+      )
     case userTotalPrayers > 32:
       return (
         <View style={ss.invisiContainer}>
@@ -88,12 +124,15 @@ export const determineChoirText = userTotalPrayers => {
               style={ss.backgroundImage}
             />
           </View>
+          <View style={[ss.whiteBackground, ss.horizontalPadding]}>
+            <View style={[ss.paddingBottom15, ss.bottomBorder]} />
+          </View>
           <ScrollView>
             <View style={[ss.center, ss.whiteBackground, ss.padding15]}>
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>
@@ -107,12 +146,15 @@ export const determineChoirText = userTotalPrayers => {
               style={ss.backgroundImage}
             />
           </View>
+          <View style={[ss.whiteBackground, ss.horizontalPadding]}>
+            <View style={[ss.paddingBottom15, ss.bottomBorder]} />
+          </View>
           <ScrollView>
             <View style={[ss.center, ss.whiteBackground, ss.padding15]}>
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "Level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>
