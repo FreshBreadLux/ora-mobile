@@ -5,7 +5,7 @@
     "slug": "ora-frontend",
     "privacy": "public",
     "sdkVersion": "23.0.0",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "primaryColor": "#1e3799",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
-      "buildNumber": "1.0.0",
+      "buildNumber": "1.0.1",
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false
     },
