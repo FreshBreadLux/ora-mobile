@@ -40,6 +40,7 @@ async function _loadAssetsAsync() {
   const fontAssets = cacheFonts([{
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     raleway: require('./assets/fonts/Raleway-Regular.ttf'),
+    ralewayExtraBold: require('./assets/fonts/Raleway-ExtraBold.ttf'),
     eb: require('./assets/fonts/EBGaramond-Regular.ttf'),
   }])
   await Promise.all([...imageAssets, ...fontAssets])

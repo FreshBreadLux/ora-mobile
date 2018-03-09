@@ -144,10 +144,10 @@ const MainStackNav = StackNavigator({
     navigationOptions: () => {
       const headerTitleStyle = Platform.OS === 'ios'
         ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
       const headerStyle = Platform.OS === 'ios'
         ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
         title: 'DONATE',
         headerTitleStyle,
