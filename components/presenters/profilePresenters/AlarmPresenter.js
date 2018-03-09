@@ -1,10 +1,11 @@
 import React from 'react'
-import { View, Text, Platform, DatePickerIOS, TimePickerAndroid, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, Platform, DatePickerIOS, TouchableOpacity, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
+import { TimePickerAndroidContainer } from '../../containers'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm, clearAlarms }) => (
+const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm, clearAlarms, androidPickerVisible, toggleAndroidPicker, toggleTimeWasSelected, timeWasSelected }) => (
   <View style={[ss.whiteContainer, ss.padding15]}>
     <View style={[ss.paddingTop15, ss.topBorder, ss.center]}>
       <Text style={[ss.subHeader, ss.centerText]}>Add a New Daily Reminder</Text>
@@ -14,7 +15,32 @@ const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm
         mode="time"
         date={chosenTime}
         onDateChange={setTime} />
-    : <TimePickerAndroid />
+    : <View style={[ss.androidReminderHeight, ss.center]}>
+        {androidPickerVisible
+        ? <TimePickerAndroidContainer
+            setTime={setTime}
+            toggleAndroidPicker={toggleAndroidPicker}
+            toggleTimeWasSelected={toggleTimeWasSelected} />
+        : null
+        }
+        {timeWasSelected
+        ? <View style={[ss.padding15, ss.center]}>
+            <Text style={[ss.subHeader, ss.darkBlueText]}>TIME SELECTED!</Text>
+          </View>
+        : <View style={[ss.padding15, ss.center]}>
+            <TouchableOpacity
+              onPress={toggleAndroidPicker}>
+              <View style={[ss.row, ss.center]}>
+                <Ionicons
+                  name="ios-alarm"
+                  size={24}
+                  color="#1e3799" />
+                <Text style={[ss.subHeader, ss.darkBlueText, ss.paddingLeft7]}>SELECT A TIME</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        }
+      </View>
     }
     <View style={[ss.paddingBottom15, ss.center]}>
       <TouchableOpacity
@@ -24,7 +50,7 @@ const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm
             name="ios-add-circle-outline"
             size={17}
             color="#1e3799" />
-          <Text style={[ss.subBody, {color: '#1e3799'}, ss.paddingLeft7]}>SAVE</Text>
+          <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>SAVE</Text>
         </View>
       </TouchableOpacity>
     </View>

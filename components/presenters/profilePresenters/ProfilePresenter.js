@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage } from 'react-native'
+import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { determineChoirTitle, determineChoirName } from '../../utils'
 import { LinearGradient } from 'expo'
@@ -19,7 +19,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
           start={[0.5, 0.2]}
           end={[0.5, 0.75]}
           style={ss.flex1}>
-          <View style={ss.padding15}>
+          <View style={Platform.OS === 'ios' ? ss.padding15 : ss.androidPadding}>
             <View style={ss.proflileHeader}>
               <Text style={ss.header}>PROFILE</Text>
             </View>

@@ -9,9 +9,13 @@ class AlarmContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      chosenTime: new Date()
+      chosenTime: new Date(),
+      androidPickerVisible: false,
+      timeWasSelected: false
     }
     this.setTime = this.setTime.bind(this)
+    this.toggleAndroidPicker = this.toggleAndroidPicker.bind(this)
+    this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
     this.deleteAlarm = this.deleteAlarm.bind(this)
     this.clearAlarms = this.clearAlarms.bind(this)
@@ -19,6 +23,14 @@ class AlarmContainer extends React.Component {
 
   setTime(newTime) {
     this.setState({ chosenTime: newTime })
+  }
+
+  toggleAndroidPicker() {
+    this.setState({ androidPickerVisible: !this.state.androidPickerVisible })
+  }
+
+  toggleTimeWasSelected() {
+    this.setState({ timeWasSelected: !this.state.timeWasSelected })
   }
 
   async saveNewAlarm() {
@@ -81,9 +93,13 @@ class AlarmContainer extends React.Component {
     return (
       <AlarmPresenter
         setTime={this.setTime}
+        toggleAndroidPicker={this.toggleAndroidPicker}
+        toggleTimeWasSelected={this.toggleTimeWasSelected}
         saveNewAlarm={this.saveNewAlarm}
         deleteAlarm={this.deleteAlarm}
         clearAlarms={this.clearAlarms}
+        timeWasSelected={this.state.timeWasSelected}
+        androidPickerVisible={this.state.androidPickerVisible}
         chosenTime={this.state.chosenTime} />
     )
   }

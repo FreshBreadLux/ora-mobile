@@ -104,6 +104,12 @@ const ss = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
+  androidPadding: {
+    paddingTop: 30,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingBottom: 15
+  },
   addViewSpacing: {
     paddingTop: 10,
     paddingBottom: 10,
@@ -386,6 +392,9 @@ const ss = StyleSheet.create({
   },
   editHeight: {
     height: 320,
+  },
+  androidReminderHeight: {
+    height: 100,
   },
   marginTop: {
     marginTop: 10,

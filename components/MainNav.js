@@ -98,46 +98,52 @@ const MainStackNav = StackNavigator({
   },
   Prayer: {
     screen: PrayerContainer,
-    navigationOptions: ({ navigation }) => ({
-      title: '',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0
-      },
-      headerRight: <PrayerHeaderPresenter prayer={navigation.state.params.prayer} />
-    })
+    navigationOptions: ({ navigation }) => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: '',
+        headerRight: <PrayerHeaderPresenter prayer={navigation.state.params.prayer} />,
+        headerTitleStyle,
+        headerStyle,
+      }
+    }
   },
   Follow: {
     screen: FollowContainer,
-    navigationOptions: ({ navigation }) => ({
-      title: '',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      },
-    })
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: '',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
   },
   ChoirRank: {
     screen: ChoirRankPresenter,
-    navigationOptions: {
-      title: 'NINE CHOIRS',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      },
-    }
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'NINE CHOIRS',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
   },
   Donate: {
     screen: DonatePresenter,
@@ -157,30 +163,34 @@ const MainStackNav = StackNavigator({
   },
   Alarms: {
     screen: AlarmContainer,
-    navigationOptions: {
-      title: 'REMINDERS',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      },
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'REMINDERS',
+        headerTitleStyle,
+        headerStyle,
+      }
     },
   },
   About: {
     screen: AboutPresenter,
-    navigationOptions: {
-      title: 'ABOUT',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0,
-      },
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'ABOUT',
+        headerTitleStyle,
+        headerStyle,
+      }
     },
   },
 }, {
