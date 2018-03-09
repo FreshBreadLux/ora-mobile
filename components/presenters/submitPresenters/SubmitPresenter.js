@@ -23,7 +23,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
         </View>
     }
     <SafeAreaView style={ss.invisiContainer}>
-      <View style={[ss.flex1, ss.padding15]}>
+      <View style={Platform.OS === 'ios' ? ss.iosFlexPadding : ss.androidFlexPadding}>
         {errorMessage
         ? <View style={[ss.center, ss.paddingBottom10]}>
             <Text style={[ss.header, ss.centerText]}>{errorMessage}</Text>

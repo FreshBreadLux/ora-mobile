@@ -45,6 +45,17 @@ const ss = StyleSheet.create({
     height: 15,
     width: 15,
   },
+  iosFlexPadding: {
+    flex: 1,
+    padding: 15,
+  },
+  androidFlexPadding: {
+    flex: 1,
+    paddingTop: 30,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingBottom: 15
+  },
   padding4: {
     padding: 4,
   },
@@ -235,7 +246,6 @@ const ss = StyleSheet.create({
     color: '#FF4081',
   },
   blackTextShadow: {
-    fontWeight: 'bold',
     textShadowColor: '#000',
     textShadowOffset: {
       width: 1,
