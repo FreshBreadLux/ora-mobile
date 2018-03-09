@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, SafeAreaView, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, TouchableOpacity, Platform } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
@@ -9,12 +9,19 @@ import ss from '../../StyleSheet'
 const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, setBody, focusBody, referenceBody, submitPrayer, handleContentSizeChange }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Submit" />
-    <View style={ss.backgroundImageFrame}>
-      <LinearGradient
-        colors={['#fff', 'transparent']}
-        start={[0.5, 0.35]}
-        style={ss.flex1} />
-    </View>
+    {Platform.OS === 'ios'
+      ? <View style={ss.backgroundImageFrame}>
+          <LinearGradient
+            colors={['#fff', 'transparent']}
+            start={[0.5, 0.35]}
+            style={ss.flex1} />
+        </View>
+      : <View style={ss.backgroundImageFrame}>
+          <LinearGradient
+            colors={['#fff', 'transparent']}
+            style={ss.flex1} />
+        </View>
+    }
     <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.flex1, ss.padding15]}>
           {errorMessage
