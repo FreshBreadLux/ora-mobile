@@ -23,66 +23,65 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
         </View>
     }
     <SafeAreaView style={ss.invisiContainer}>
-        <View style={[ss.flex1, ss.padding15]}>
-          {errorMessage
-          ? <View style={[ss.center, ss.paddingBottom10]}>
-              <Text style={[ss.header, ss.centerText]}>{errorMessage}</Text>
+      <View style={[ss.flex1, ss.padding15]}>
+        {errorMessage
+        ? <View style={[ss.center, ss.paddingBottom10]}>
+            <Text style={[ss.header, ss.centerText]}>{errorMessage}</Text>
+          </View>
+        : <View>
+          {prayerSent
+          ? <View style={[ss.row, ss.center, ss.paddingBottom10]}>
+              <Ionicons
+                name="ios-checkmark-circle-outline"
+                size={24}
+                color="#1e3799" />
+              <Text style={[ss.header, ss.darkBlueText, ss.paddingLeft7]}>SUBMITTED</Text>
             </View>
-          : <View>
-            {prayerSent
-            ? <View style={[ss.row, ss.center, ss.paddingBottom10]}>
-                <Ionicons
-                  name="ios-checkmark-circle-outline"
-                  size={24}
-                  color="#1e3799" />
-                <Text style={[ss.header, ss.darkBlueText, ss.paddingLeft7]}>SUBMITTED</Text>
-              </View>
-            : <View style={[ss.center, ss.paddingBottom10]}>
-                <Text style={[ss.header]}>SUBMIT A PRAYER</Text>
-              </View>
-            }
+          : <View style={[ss.center, ss.paddingBottom10]}>
+              <Text style={[ss.header]}>SUBMIT A PRAYER</Text>
             </View>
           }
-          <KeyboardAwareScrollView
-            keyboardShouldPersistTaps="handled">
-            <View style={[ss.addViewSpacing, ss.darkBottomBorder]}>
-              <TextInput
-                style={[ss.fullWidth, ss.subHeader, ss.paddingBottom10]}
-                underlineColorAndroid="transparent"
-                placeholder="Enter prayer subject"
-                placeholderTextColor="#555"
-                keyboardType="default"
-                onChangeText={setSubject}
-                onSubmitEditing={focusBody}
-                value={subject}
-              />
-            </View>
-            <View style={[ss.addViewSpacing, ss.submitHeight]}>
-              <TextInput
-                ref={referenceBody}
-                style={[ss.fullWidth, ss.fullHeight, ss.body, ss.paddingBottom10]}
-                underlineColorAndroid="transparent"
-                placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
-                placeholderTextColor="#555"
-                keyboardType="default"
-                multiline={true}
-                onChangeText={setBody}
-                onContentSizeChange={handleContentSizeChange}
-                value={body}
-                numberOfLines={4}
-              />
-            </View>
-            <View style={[ss.center, ss.addViewSpacing, ss.fullWidth]}>
-              <TouchableOpacity
-                onPress={submitPrayer}
-                style={[ss.button, ss.halfWidth]}
-              >
-                <Text style={[ss.buttonText]}>SEND</Text>
-              </TouchableOpacity>
-            </View>
-          </KeyboardAwareScrollView>
-        </View>
-      </SafeAreaView>
+          </View>
+        }
+        <KeyboardAwareScrollView
+          keyboardShouldPersistTaps="handled">
+          <View style={[ss.addViewSpacing, ss.darkBottomBorder]}>
+            <TextInput
+              style={[ss.fullWidth, ss.subHeader, ss.paddingBottom10]}
+              underlineColorAndroid="transparent"
+              placeholder="Enter prayer subject"
+              placeholderTextColor="#555"
+              keyboardType="default"
+              onChangeText={setSubject}
+              onSubmitEditing={focusBody}
+              value={subject}
+            />
+          </View>
+          <View style={[ss.addViewSpacing, ss.submitHeight]}>
+            <TextInput
+              ref={referenceBody}
+              style={[ss.fullWidth, ss.fullHeight, ss.body, ss.paddingBottom10, ss.topAlignAndroidTextInput]}
+              underlineColorAndroid="transparent"
+              placeholder="Describe your prayer request here. We recommend including as much detail as you are comfortable with. There is no character limit."
+              placeholderTextColor="#555"
+              keyboardType="default"
+              multiline={true}
+              onChangeText={setBody}
+              onContentSizeChange={handleContentSizeChange}
+              value={body}
+            />
+          </View>
+          <View style={[ss.center, ss.addViewSpacing, ss.fullWidth]}>
+            <TouchableOpacity
+              onPress={submitPrayer}
+              style={[ss.button, ss.halfWidth]}
+            >
+              <Text style={[ss.buttonText]}>SEND</Text>
+            </TouchableOpacity>
+          </View>
+        </KeyboardAwareScrollView>
+      </View>
+    </SafeAreaView>
   </View>
 )
 

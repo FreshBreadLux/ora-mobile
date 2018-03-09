@@ -249,6 +249,9 @@ const ss = StyleSheet.create({
     padding: 7,
     borderRadius: 7,
   },
+  topAlignAndroidTextInput: {
+    textAlignVertical: 'top'
+  },
   boxBorder: {
     borderWidth: 1,
     borderColor: '#ccc',
