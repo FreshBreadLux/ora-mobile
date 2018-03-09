@@ -1,4 +1,5 @@
 import React from 'react'
+import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer } from './containers'
 import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter } from './presenters'
@@ -140,16 +141,18 @@ const MainStackNav = StackNavigator({
   },
   Donate: {
     screen: DonatePresenter,
-    navigationOptions: {
-      title: 'DONATE',
-      headerTitleStyle: {
-        fontFamily: 'raleway',
-        fontSize: 24
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 0
-      },
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'raleway', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight }
+      return {
+        title: 'DONATE',
+        headerTitleStyle,
+        headerStyle,
+      }
     },
   },
   Alarms: {

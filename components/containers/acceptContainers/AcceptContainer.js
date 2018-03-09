@@ -136,7 +136,6 @@ class AcceptContainer extends React.Component {
   }
 
   render() {
-    console.log('this.props: ', this.props)
     return (
       <View style={ss.invisiContainer}>
         <BackgroundImageContainer componentName="Accept" />
