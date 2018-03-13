@@ -43,7 +43,7 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-home"
+          name="ios-globe"
           size={26}
           style={{ color: tintColor }} />
       ),
@@ -69,7 +69,7 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-person"
+          name="ios-information-circle"
           size={26}
           style={{ color: tintColor }} />
       ),
