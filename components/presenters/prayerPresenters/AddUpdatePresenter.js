@@ -16,7 +16,7 @@ const AddUpdatePresenter = ({ handleOnLayout, animatedHeight, updateBody, dispat
       style={{height: animatedHeight ? animatedHeight : 600 }}>
       <TextInput
         ref={referenceUpdateTextInput}
-        style={[ss.flex1, ss.body, ss.paddingBottom10]}
+        style={[ss.flex1, ss.body, ss.paddingBottom10, ss.topAlignAndroidTextInput]}
         multiline={true}
         onChangeText={textBody => setUpdateBody(textBody)}
         value={updateBody}

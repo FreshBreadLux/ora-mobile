@@ -107,6 +107,18 @@ const ss = StyleSheet.create({
     paddingLeft: 15,
     paddingRight: 15,
   },
+  iosFlexScrollPadding: {
+    flex: 1,
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
+  androidFlexScrollPadding: {
+    flex: 1,
+    paddingTop: 30,
+    paddingLeft: 15,
+    paddingRight: 15,
+  },
   horizontalPadding: {
     paddingLeft: 15,
     paddingRight: 15,

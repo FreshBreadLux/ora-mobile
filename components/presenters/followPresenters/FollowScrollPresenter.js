@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, View, Text, TouchableOpacity, SafeAreaView } from 'react-native'
+import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Platform } from 'react-native'
 import { connect } from 'react-redux'
 import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
@@ -9,14 +9,21 @@ const FollowScrollPresenter = ({ follows, navigation }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Follows" />
     <SafeAreaView style={ss.invisiContainer}>
-      <View style={ss.backgroundImageFrame}>
-        <LinearGradient
-          colors={['#fff', 'transparent']}
-          start={[0.5, 0]}
-          end={[0.5, 0.5]}
-          style={ss.flex1} />
-      </View>
-      <View style={[ss.invisiContainer, ss.scrollViewPadding]}>
+    {Platform.OS === 'ios'
+      ? <View style={ss.backgroundImageFrame}>
+          <LinearGradient
+            colors={['#fff', 'transparent']}
+            start={[0.5, 0]}
+            end={[0.5, 0.5]}
+            style={ss.flex1} />
+        </View>
+      : <View style={ss.backgroundImageFrame}>
+          <LinearGradient
+            colors={['#fff', 'transparent']}
+            style={ss.flex1} />
+        </View>
+      }
+      <View style={Platform.OS === 'ios' ? ss.iosFlexScrollPadding : ss.androidFlexScrollPadding}>
         <View style={ss.invisiContainer}>
           <View style={[ss.center, ss.titleBottomBorderWhite]}>
             <Text style={[ss.header]}>FOLLOWS</Text>

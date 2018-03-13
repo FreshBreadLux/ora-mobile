@@ -12,6 +12,7 @@ class EditPrayerContainer extends React.Component {
       animatedHeight: null,
     }
     this.keyboardWillShow = this.keyboardWillShow.bind(this)
+    this.keyboardDidShow = this.keyboardDidShow.bind(this)
     this.keyboardWillHide = this.keyboardWillHide.bind(this)
     this.handleOnLayout = this.handleOnLayout.bind(this)
     this.focusEditTextInput = this.focusEditTextInput.bind(this)
@@ -21,13 +22,17 @@ class EditPrayerContainer extends React.Component {
   }
 
   componentWillMount () {
-    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow);
-    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide);
+    this.keyboardWillShowSub = Keyboard.addListener('keyboardWillShow', this.keyboardWillShow)
+    this.keyboardDidShowSub = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow)
+    this.keyboardWillHideSub = Keyboard.addListener('keyboardWillHide', this.keyboardWillHide)
+    this.keyboardDidHideSub = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide)
   }
 
   componentWillUnmount() {
-    this.keyboardWillShowSub.remove();
-    this.keyboardWillHideSub.remove();
+    this.keyboardWillShowSub.remove()
+    this.keyboardDidShowSub.remove()
+    this.keyboardWillHideSub.remove()
+    this.keyboardDidHideSub.remove()
   }
 
   keyboardWillShow(event) {
@@ -37,7 +42,21 @@ class EditPrayerContainer extends React.Component {
     }).start()
   }
 
+  keyboardDidShow(event) {
+    Animated.timing(this.state.animatedHeight, {
+      duration: 100,
+      toValue: this.state.startHeight - event.endCoordinates.height,
+    }).start()
+  }
+
   keyboardWillHide(event) {
+    Animated.timing(this.state.animatedHeight, {
+      duration: event.duration,
+      toValue: 0,
+    }).start()
+  }
+
+  keyboardDidlHide(event) {
     Animated.timing(this.state.animatedHeight, {
       duration: event.duration,
       toValue: 0,

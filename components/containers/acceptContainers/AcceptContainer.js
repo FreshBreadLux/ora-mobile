@@ -157,6 +157,7 @@ class AcceptContainer extends React.Component {
           : <View style={ss.opacityContainer}>
               <CurrentPrayerPresenter
                 animateNextPrayerTransition={this.animateNextPrayerTransition}
+                navigation={this.props.navigation}
                 finishPraying={this.finishPraying}
                 flagPrayer={this.flagPrayer}
                 followPrayer={this.followPrayer}

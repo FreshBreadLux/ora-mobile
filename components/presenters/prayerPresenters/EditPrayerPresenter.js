@@ -13,7 +13,7 @@ const EditPrayerPresenter = ({ handleOnLayout, animatedHeight, body, dispatchRem
       style={{height: animatedHeight ? animatedHeight : 600 }}>
       <TextInput
         ref={referenceEditTextInput}
-        style={[ss.flex1, ss.body, ss.paddingBottom10]}
+        style={[ss.flex1, ss.body, ss.paddingBottom10, ss.topAlignAndroidTextInput]}
         multiline={true}
         onChangeText={textBody => setBody(textBody)}
         value={body}

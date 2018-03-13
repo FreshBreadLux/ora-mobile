@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <TouchableOpacity
@@ -100,6 +100,7 @@ const CurrentPrayerPresenter = ({ currentPrayer, animateNextPrayerTransition, fi
         isVisible={visibleModal === 'about'}
         style={ss.bottomModal}>
         <AboutModal
+          navigation={navigation}
           hideModal={hideModal} />
       </Modal>
       <Modal
