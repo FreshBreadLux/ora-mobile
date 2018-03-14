@@ -4,6 +4,8 @@ import ss from './StyleSheet'
 
 export const determineChoirTitle = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 299:
+      return <Text style={ss.buttonText}>SEVENTH CHOIR</Text>
     case userTotalPrayers > 99:
       return <Text style={ss.buttonText}>EIGHTH CHOIR</Text>
     case userTotalPrayers > 32:
@@ -17,6 +19,8 @@ export const determineChoirTitle = userTotalPrayers => {
 
 export const determineChoirName = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 299:
+      return <Text style={ss.choirName}>Principalities</Text>
     case userTotalPrayers > 99:
       return <Text style={ss.choirName}>Archangel</Text>
     case userTotalPrayers > 32:
@@ -30,6 +34,53 @@ export const determineChoirName = userTotalPrayers => {
 
 export const determineChoirText = userTotalPrayers => {
   switch (true) {
+    case userTotalPrayers > 299:
+      return (
+        <View style={ss.invisiContainer}>
+          <View style={ss.backgroundImageFrame}>
+            <Image
+              source={require('../assets/images/Choirs.jpg')}
+              style={ss.backgroundImage}
+            />
+          </View>
+          <ScrollView>
+            <View style={[ss.center, ss.addViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.subHeader, ss.padding15]}>SEVENTH CHOIR</Text>
+              <Text style={ss.tagLine}>PRINCIPALITIES</Text>
+            </View>
+            <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.body}>Christians believe that God has organized the entirety of creation in a hierarchical fashion. This belief in a hierarchy extends to the realm of angels, and for the past two thousand years theologians have speculated about the nature and structure of the hierarchy of angels. Our understanding comes from references to angels in Sacred Scripture, the teachings of the early Church Fathers, and guidance of Sacred Tradition.</Text>
+            </View>
+            <View style={[ss.editHeight, ss.center]}>
+              <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuarterWidth]}>“The scheme is not official dogma, but it is a beautiful work of art, a reasonable work of philosophical speculation, an inspiring work of faith, and an enduring work of tradition”{'\n'}- Dr. Peter Kreeft</Text>
+            </View>
+            <View style={[ss.center, ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.header}>PRINCIPALITIES</Text>
+            </View>
+            <View style={[ss.whiteBackground, ss.padding15]}>
+              <Text style={ss.body}>Both the Old and New Testaments reference a level of created beings called Principalities, or Princes. In the Book of Daniel, Daniel recounts a vision of an angel that must contend with a fallen Principality. The angel in Daniel's vision is . The New Testament letters reference Principalities numerous times, usually in the context of Christ's reign over all of creation, including created beings in the heavens.</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>To me, the very least of all the holy ones, this grace was given, to preach to the Gentiles the inscrutable riches of Christ, and to bring to light what is the plan of the mystery hidden from ages past in God who created all things, so that the manifold wisdom of God might now be made known through the Church to the principalities and authorities in the heavens.{'\n'}- Ephesians 3:8-10</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>May the eyes of your hearts be enlightened, that you may know what is the hope that belongs to His call, what are the riches of glory in His inheritance among the holy ones, and what is the surpassing greatness of His power for us who believe, in accord with the exercise of His great might, which He worked in Christ, raising Him from the dead and seating Him at His right hand in the heavens, far above every principality, authority, power, and dominion, and every name that is named not only in this age but also in the one to come.{'\n'}- Ephesians 1:18-21</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>Put on the armor of God so that you may be able to stand firm against the tactics of the devil. For our struggle is not with flesh and blood but with the principalities, with the powers, with the world rulers of this present darkness, with the evil spirits in the heavens.{'\n'}- Ephesians 6:11-12</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>For in Him were created all things in heaven and on earth, the visible and the invisible, whether thrones or dominions or principalities or powers; all things were created through Him and for Him.{'\n'}- Colossians 1:18</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>For I am convinced that neither death, nor life, nor angels, nor principalities, nor present things, nor future things, nor powers, nor height, nor depth, nor any other creature will be able to separate us from the love of God in Christ Jesus our Lord.{'\n'}- Romans 8:38-39</Text>
+            </View>
+            <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
+              <Text style={[ss.body, ss.centerText]}>On the twenty-fourth day of the first month I was on the bank of the great river, the Tigris. As I looked up, I saw a man dressed in linen with a belt of fine gold around his waist. His body was like chrysolite, his face shone like lightning, his eyes were like fiery torches, his arms and feet looked like burnished bronze, and the sound of his voice was like the roar of a multitude. I alone, Daniel, saw the vision; but great fear seized those who were with me; they fled and hid themselves, although they did not see the vision. So I was left alone to see this great vision. No strength remained in me; I turned the color of death and was powerless. When I heard the sound of his voice, I fell face forward unconscious. But then a hand touched me, raising me to my hands and knees. “Daniel, beloved,” he said to me, “understand the words which I am speaking to you; stand up, for my mission now is to you.” When he said this to me, I stood up trembling. “Do not fear, Daniel,” he continued; “from the first day you made up your mind to acquire understanding and humble yourself before God, your prayer was heard. Because of it I started out, but the prince of the kingdom of Persia stood in my way for twenty-one days, until finally Michael, one of the chief princes, came to help me. I left him there with the prince of the kingdom of Persia, and came to make you understand what shall happen to your people in the last days; for there is yet a vision concerning those days.”{'\n'}- Daniel 10:4-14</Text>
+            </View>
+          </ScrollView>
+        </View>
+      )
     case userTotalPrayers > 99:
       return (
         <View style={ss.invisiContainer}>
