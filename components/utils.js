@@ -20,7 +20,7 @@ export const determineChoirTitle = userTotalPrayers => {
 export const determineChoirName = userTotalPrayers => {
   switch (true) {
     case userTotalPrayers > 299:
-      return <Text style={ss.choirName}>Principalities</Text>
+      return <Text style={ss.choirName}>Principality</Text>
     case userTotalPrayers > 99:
       return <Text style={ss.choirName}>Archangel</Text>
     case userTotalPrayers > 32:
