@@ -3,7 +3,7 @@ import { View, SafeAreaView, Text, TouchableOpacity, TextInput, ScrollView, Imag
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword, referencePassword, error, email, password }) => (
+const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword, referencePassword, error, email, password, checkEmail, userExists, checkEmailReturned, userLogin }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -38,6 +38,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
               autoCapitalize="none"
               onChangeText={setEmail}
               onSubmitEditing={focusPassword}
+              onBlur={checkEmail}
               value={email}
             />
           </View>
@@ -54,11 +55,19 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
             />
           </View>
           <View style={[ss.flex1, ss.center]}>
-            <TouchableOpacity
-              style={[ss.button, ss.halfWidth]}
-              onPress={userSignup}>
-              <Text style={ss.buttonText}>SIGN UP</Text>
-            </TouchableOpacity>
+            {checkEmailReturned && userExists
+            ? <TouchableOpacity
+                style={[ss.button, ss.halfWidth]}
+                onPress={userLogin}>
+                <Text style={ss.buttonText}>LOGIN</Text>
+              </TouchableOpacity>
+            : <TouchableOpacity
+                disabled={checkEmailReturned}
+                style={[ss.button, ss.halfWidth]}
+                onPress={userSignup}>
+                <Text style={ss.buttonText}>SIGN UP</Text>
+              </TouchableOpacity>
+            }
           </View>
         </View>
         <View style={[ss.flex2, ss.center, ss.padding15]}>

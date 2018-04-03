@@ -27,12 +27,15 @@ export default class SignupFormContainer extends React.Component {
       email: null,
       password: null,
       error: false,
+      userExists: false,
+      checkEmailReturned: false,
     }
-    this.userSignup = this.userSignup.bind(this)
     this.setEmail = this.setEmail.bind(this)
+    this.userSignup = this.userSignup.bind(this)
+    this.checkEmail = this.checkEmail.bind(this)
     this.setPassword = this.setPassword.bind(this)
-    this.referencePassword = this.referencePassword.bind(this)
     this.focusPassword = this.focusPassword.bind(this)
+    this.referencePassword = this.referencePassword.bind(this)
   }
 
   async userSignup() {
@@ -64,6 +67,40 @@ export default class SignupFormContainer extends React.Component {
     }
   }
 
+  checkEmail() {
+    axios.get(`${ROOT_URL}/api/users/byEmail/${this.state.email}`)
+    .then(response => {
+      if (response.data.id && response.data.stripeCustomerId) {
+        this.setState({ checkEmailReturned: true, userExists: true })
+      } else {
+        this.setState({ checkEmailReturned: true, userExists: false })
+      }
+    })
+    .catch(console.error)
+  }
+
+  async userLogin() {
+    try {
+      if (this.state.email && this.state.password) {
+        let token = await registerForPushNotificationsAsync()
+        axios.post(`${ROOT_URL}/api/users/loginDonor`, {
+          email: this.state.email,
+          password: this.state.password,
+          pushToken: token,
+        })
+        .then(response => JSON.stringify(response.data))
+        .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+        .then(() => this.props.showAlarm())
+        .catch(console.error)
+      } else {
+        this.setState({ error: 'Please provide both an email and a password' })
+      }
+    } catch (error) {
+      console.error(error)
+      this.setState({error: error.response.request._response})
+    }
+  }
+
   setEmail(email) {
     this.setState({email})
   }
@@ -83,14 +120,17 @@ export default class SignupFormContainer extends React.Component {
   render() {
     return (
       <SignupFormPresenter
-        userSignup={this.userSignup}
         setEmail={this.setEmail}
-        setPassword={this.setPassword}
-        focusPassword={this.focusPassword}
-        referencePassword={this.referencePassword}
         error={this.state.error}
         email={this.state.email}
-        password={this.state.password} />
+        checkEmail={this.checkEmail}
+        userSignup={this.userSignup}
+        setPassword={this.setPassword}
+        password={this.state.password}
+        userExists={this.state.userExists}
+        focusPassword={this.focusPassword}
+        referencePassword={this.referencePassword}
+        checkEmailReturned={this.state.checkEmailReturned} />
     )
   }
 }
