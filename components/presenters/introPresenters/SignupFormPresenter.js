@@ -42,6 +42,14 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
               value={email}
             />
           </View>
+          {checkEmailReturned && userExists
+          ? <View>
+              <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>
+                Welcome! Looks like you already have a profile. Please login with the password you created on our website.
+              </Text>
+            </View>
+          : null
+          }
           <View style={[ss.addViewSpacing, ss.center]}>
             <TextInput
               ref={referencePassword}
