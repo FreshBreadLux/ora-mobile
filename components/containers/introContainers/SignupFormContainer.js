@@ -31,6 +31,7 @@ export default class SignupFormContainer extends React.Component {
       checkEmailReturned: false,
     }
     this.setEmail = this.setEmail.bind(this)
+    this.userLogin = this.userLogin.bind(this)
     this.userSignup = this.userSignup.bind(this)
     this.checkEmail = this.checkEmail.bind(this)
     this.setPassword = this.setPassword.bind(this)
@@ -69,7 +70,7 @@ export default class SignupFormContainer extends React.Component {
 
   checkEmail() {
     if (this.state.email) {
-      axios.get(`${ROOT_URL}/api/users/byEmail/${this.state.email}`)
+      axios.get(`${ROOT_URL}/api/users/?email=${this.state.email}`)
       .then(response => {
         if (response.data.id && response.data.stripeCustomerId) {
           this.setState({ checkEmailReturned: true, userExists: true })
@@ -85,12 +86,17 @@ export default class SignupFormContainer extends React.Component {
     try {
       if (this.state.email && this.state.password) {
         let token = await registerForPushNotificationsAsync()
-        axios.post(`${ROOT_URL}/api/users/loginDonor`, {
+        axios.post(`${ROOT_URL}/api/users/sessions`, {
           email: this.state.email,
-          password: this.state.password,
-          pushToken: token,
+          password: this.state.password
         })
-        .then(response => JSON.stringify(response.data))
+        .then(response => {
+          return axios.put(`${ROOT_URL}/api/users/${response.data.userId}`, {
+            pushToken: token
+          })
+          .then(() => response)
+        })
+        .then(result => JSON.stringify(result.data))
         .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
         .then(() => this.props.showAlarm())
         .catch(console.error)
@@ -125,6 +131,7 @@ export default class SignupFormContainer extends React.Component {
         setEmail={this.setEmail}
         error={this.state.error}
         email={this.state.email}
+        userLogin={this.userLogin}
         checkEmail={this.checkEmail}
         userSignup={this.userSignup}
         setPassword={this.setPassword}
