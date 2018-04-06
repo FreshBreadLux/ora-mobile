@@ -32,7 +32,12 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               </TouchableOpacity>
             </View>
             <View style={ss.addLargeViewSpacing}>
-              <Text style={[ss.subHeader, ss.whiteText]}>{`${userInfo.email}`}</Text>
+              <Text style={[ss.subHeader, ss.whiteText]}>
+                {userInfo.firstName
+                ? `${userInfo.firstName} ${userInfo.lastName}`
+                : `${userInfo.email}`
+                }
+              </Text>
             </View>
             <View style={ss.consecutiveDays}>
               <Text style={ss.subHeader}>Consecutive{'\n'}Days Praying</Text>
