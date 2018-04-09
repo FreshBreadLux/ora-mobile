@@ -40,9 +40,9 @@ class SetAlarmContainer extends React.Component {
     }
     try {
       const reminderId = await Notifications.scheduleLocalNotificationAsync({
-        title: 'Strengthen Your Faith',
-        body: 'Time to pray',
-        data: { body: 'Time to pray' },
+        title: 'Cultivate a Life of Devotion',
+        body: 'Take time to pray',
+        data: { body: 'Take time to pray' },
         sound: true
       }, {
         time: chosenTime,
