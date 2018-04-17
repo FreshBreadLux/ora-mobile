@@ -14,6 +14,7 @@ class EditPrayerContainer extends React.Component {
     this.keyboardWillShow = this.keyboardWillShow.bind(this)
     this.keyboardDidShow = this.keyboardDidShow.bind(this)
     this.keyboardWillHide = this.keyboardWillHide.bind(this)
+    this.keyboardDidHide = this.keyboardDidHide.bind(this)
     this.handleOnLayout = this.handleOnLayout.bind(this)
     this.focusEditTextInput = this.focusEditTextInput.bind(this)
     this.focusUpdateTextInput = this.focusUpdateTextInput.bind(this)
@@ -56,7 +57,7 @@ class EditPrayerContainer extends React.Component {
     }).start()
   }
 
-  keyboardDidlHide(event) {
+  keyboardDidHide(event) {
     Animated.timing(this.state.animatedHeight, {
       duration: event.duration,
       toValue: 0,
