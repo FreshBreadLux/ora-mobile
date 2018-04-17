@@ -98,6 +98,9 @@ const ss = StyleSheet.create({
   paddingLeft7: {
     paddingLeft: 7,
   },
+  paddingRight7: {
+    paddingRight: 7
+  },
   paddingSides10: {
     paddingLeft: 10,
     paddingRight: 10
