@@ -70,7 +70,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
                 <Text style={ss.buttonText}>LOGIN</Text>
               </TouchableOpacity>
             : <TouchableOpacity
-                disabled={checkEmailReturned}
+                disabled={!checkEmailReturned}
                 style={[ss.button, ss.halfWidth]}
                 onPress={userSignup}>
                 <Text style={ss.buttonText}>SIGN UP</Text>

@@ -3,7 +3,7 @@ import axios from 'axios'
 import { AsyncStorage } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import { SignupFormPresenter } from '../../presenters'
-import { ROOT_URL, SENDINBLUE_API_KEY_V3 } from '../../../config'
+import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
 
 async function registerForPushNotificationsAsync() {
   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
