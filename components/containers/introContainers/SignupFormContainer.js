@@ -51,7 +51,7 @@ export default class SignupFormContainer extends React.Component {
         .then(response => JSON.stringify(response.data))
         .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
         .then(() => {
-          Promise.all([
+          return Promise.all([
             axios.post('https://api.sendinblue.com/v3/contacts', {
               email: this.state.email
             }, {
