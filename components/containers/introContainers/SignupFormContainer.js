@@ -3,7 +3,7 @@ import axios from 'axios'
 import { AsyncStorage } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import { SignupFormPresenter } from '../../presenters'
-import ROOT_URL from '../../../config'
+import { ROOT_URL, SENDINBLUE_API_KEY_V3 } from '../../../config'
 
 async function registerForPushNotificationsAsync() {
   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
@@ -50,6 +50,13 @@ export default class SignupFormContainer extends React.Component {
         })
         .then(response => JSON.stringify(response.data))
         .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+        .then(() => {
+          return axios.post('https://api.sendinblue.com/v3/smtp/templates/2/send', {
+            emailTo: [this.state.email],
+          }, {
+            headers: {'api-key': SENDINBLUE_API_KEY_V3 }
+          })
+        })
         .then(() => this.props.showAlarm())
         .catch(error => {
           if (error.response && error.response.status === 405) {
