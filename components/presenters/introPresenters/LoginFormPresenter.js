@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native'
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, referencePassword, error, email, password, setForgotPasswordMode }) => (
+const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, referencePassword, error, email, password, setForgotPasswordMode, failed, sending }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <LinearGradient
@@ -50,7 +50,15 @@ const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, r
           <TouchableOpacity
             style={[ss.button, ss.halfWidth]}
             onPress={userLogin}>
-            <Text style={[ss.buttonText]}>LOGIN</Text>
+            {failed
+            ? <Text style={[ss.buttonText]}>LOGIN FAILED</Text>
+            : <View>
+                {sending
+                ? <ActivityIndicator size="small" color="1e3799" />
+                : <Text style={[ss.buttonText]}>LOGIN</Text>
+                }
+              </View>
+            }
           </TouchableOpacity>
         </View>
       </View>

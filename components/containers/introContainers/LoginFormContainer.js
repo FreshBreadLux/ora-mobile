@@ -22,6 +22,8 @@ export default class LoginFormContainer extends React.Component {
       password: null,
       error: false,
       forgotPasswordMode: false,
+      sending: false,
+      failed: false,
     }
     this.userLogin = this.userLogin.bind(this)
     this.setEmail = this.setEmail.bind(this)
@@ -34,6 +36,7 @@ export default class LoginFormContainer extends React.Component {
 
   userLogin() {
     if (this.state.email && this.state.password) {
+      this.setState({ sending: true })
       axios.post(`${ROOT_URL}/api/users/sessions`, {
         email: this.state.email,
         password: this.state.password,
@@ -41,7 +44,11 @@ export default class LoginFormContainer extends React.Component {
       .then(response => JSON.stringify(response.data))
       .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
       .then(() => this.props.verifyStorageKey())
-      .catch(error => this.setState({error: error.response.request._response}))
+      .catch(error => {
+        console.log(error)
+        this.setState({ sending: false, failed: true })
+        setTimeout(() => this.setState({failed: false}), 10000)
+      })
     } else {
       this.setState({ error: 'Please provide both an email and a password' })
     }
@@ -87,6 +94,8 @@ export default class LoginFormContainer extends React.Component {
           referencePassword={this.referencePassword}
           error={this.state.error}
           email={this.state.email}
+          failed={this.state.failed}
+          sending={this.state.sending}
           password={this.state.password} />
       }
       </View>
