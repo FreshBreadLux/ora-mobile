@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, SafeAreaView, Text, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, TextInput, ScrollView, Image, ActivityIndicator } from 'react-native'
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword, referencePassword, error, email, password, checkEmail, userExists, checkEmailReturned, userLogin }) => (
+const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword, referencePassword, error, email, password, checkEmail, userExists, checkEmailReturned, userLogin, failed, sending }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
@@ -67,13 +67,29 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
             ? <TouchableOpacity
                 style={[ss.button, ss.halfWidth]}
                 onPress={userLogin}>
-                <Text style={ss.buttonText}>LOGIN</Text>
+                {failed
+                ? <Text style={ss.buttonText}>LOGIN FAILED</Text>
+                : <View>
+                    {sending
+                    ? <ActivityIndicator size="small" color="#1e3799" />
+                    : <Text style={ss.buttonText}>LOGIN</Text>
+                    }
+                  </View>
+                }
               </TouchableOpacity>
             : <TouchableOpacity
                 disabled={!checkEmailReturned}
                 style={[ss.button, ss.halfWidth]}
                 onPress={userSignup}>
-                <Text style={ss.buttonText}>SIGN UP</Text>
+                {failed
+                ? <Text style={ss.buttonText}>SIGNUP FAILED</Text>
+                : <View>
+                    {sending
+                    ? <ActivityIndicator size="small" color="#1e3799" />
+                    : <Text style={ss.buttonText}>SIGN UP</Text>
+                    }
+                  </View>
+                }
               </TouchableOpacity>
             }
           </View>

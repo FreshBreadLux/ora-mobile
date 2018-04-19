@@ -29,6 +29,8 @@ export default class SignupFormContainer extends React.Component {
       error: false,
       userExists: false,
       checkEmailReturned: false,
+      sending: false,
+      failed: false,
     }
     this.setEmail = this.setEmail.bind(this)
     this.userLogin = this.userLogin.bind(this)
@@ -42,6 +44,7 @@ export default class SignupFormContainer extends React.Component {
   async userSignup() {
     try {
       if (this.state.email && this.state.password) {
+        this.setState({ sending: true })
         let token = await registerForPushNotificationsAsync()
         axios.post(`${ROOT_URL}/api/users`, {
           email: this.state.email,
@@ -72,13 +75,20 @@ export default class SignupFormContainer extends React.Component {
           if (error.response && error.response.status === 406) {
             this.setState({error: 'That email already exists in our database'})
           }
+          this.setState({ sending: false, failed: true })
+          setTimeout(() => this.setState({failed: false}), 10000)
         })
       } else {
         this.setState({ error: 'Please provide both an email and a password' })
       }
     } catch (error) {
-      console.error(error)
-      this.setState({error: error.response.request._response})
+      console.log(error)
+      this.setState({
+        error: error.response.request._response,
+        sending: false,
+        failed: true,
+      })
+      setTimeout(() => this.setState({failed: false}), 10000)
     }
   }
 
@@ -99,6 +109,7 @@ export default class SignupFormContainer extends React.Component {
   async userLogin() {
     try {
       if (this.state.email && this.state.password) {
+        this.setState({ sending: true })
         let token = await registerForPushNotificationsAsync()
         axios.post(`${ROOT_URL}/api/users/sessions`, {
           email: this.state.email,
@@ -113,13 +124,21 @@ export default class SignupFormContainer extends React.Component {
         .then(result => JSON.stringify(result.data))
         .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
         .then(() => this.props.showAlarm())
-        .catch(console.error)
+        .catch(() => {
+          this.setState({ sending: false, failed: true })
+          setTimeout(() => this.setState({failed: false}), 10000)
+        })
       } else {
         this.setState({ error: 'Please provide both an email and a password' })
       }
     } catch (error) {
-      console.error(error)
-      this.setState({error: error.response.request._response})
+      console.log(error)
+      this.setState({
+        error: error.response.request._response,
+        sending: false,
+        failed: true,
+      })
+      setTimeout(() => this.setState({failed: false}), 10000)
     }
   }
 
@@ -146,6 +165,8 @@ export default class SignupFormContainer extends React.Component {
         error={this.state.error}
         email={this.state.email}
         userLogin={this.userLogin}
+        failed={this.state.failed}
+        sending={this.state.sending}
         checkEmail={this.checkEmail}
         userSignup={this.userSignup}
         setPassword={this.setPassword}
