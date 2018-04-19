@@ -85,7 +85,7 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
                 ? <Text style={ss.buttonText}>SIGNUP FAILED</Text>
                 : <View>
                     {sending
-                    ? <ActivityIndicator size="small" color="#1e3799" />
+                    ? <ActivityIndicator size="small" color="#0c2461" />
                     : <Text style={ss.buttonText}>SIGN UP</Text>
                     }
                   </View>

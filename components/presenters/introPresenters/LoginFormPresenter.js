@@ -54,7 +54,7 @@ const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, r
             ? <Text style={[ss.buttonText]}>LOGIN FAILED</Text>
             : <View>
                 {sending
-                ? <ActivityIndicator size="small" color="1e3799" />
+                ? <ActivityIndicator size="small" color="#0c2461" />
                 : <Text style={[ss.buttonText]}>LOGIN</Text>
                 }
               </View>

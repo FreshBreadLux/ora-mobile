@@ -79,7 +79,7 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
               ? <Text style={ss.buttonText}>SEND FAILED</Text>
               : <View>
                   {sending
-                  ? <ActivityIndicator size="small" color="#1e3799" />
+                  ? <ActivityIndicator size="small" color="#0c2461" />
                   : <Text style={ss.buttonText}>SEND</Text>
                   }
                 </View>
