@@ -98,15 +98,13 @@ class AcceptContainer extends React.Component {
         flagreasonId
       })
       .then(() => {
-        this.props.dispatchRemoveVisibleModal()
         AlertIOS.alert(
           'This prayer has been flagged',
-          'The Ora team will look into this and resolve the issue as quickly as possible')
+          'The Ora team will look into this and resolve the issue as quickly as possible', this.props.dispatchRemoveVisibleModal)
       })
       .catch(console.error)
     } else {
-      this.props.dispatchRemoveVisibleModal()
-      AlertIOS.alert('You must be logged in to flag prayers')
+      AlertIOS.alert('You must be logged in to flag prayers', this.props.dispatchRemoveVisibleModal)
     }
   }
 
@@ -119,20 +117,14 @@ class AcceptContainer extends React.Component {
       axios.post(`${ROOT_URL}/api/follows`, { userId, currentPrayer })
       .then(() => {
         refreshUserFollows(userId)
-        this.props.dispatchRemoveVisibleModal()
         AlertIOS.alert(
           'You are now following this prayer',
-          'You can manage the prayers you follow in the Follows section')
+          'You can manage the prayers you follow in the Follows section', this.props.dispatchRemoveVisibleModal)
       })
       .catch(console.error)
     } else if (isLoggedIn && alreadyFollowing) {
-      this.props.dispatchRemoveVisibleModal()
       AlertIOS.alert('You are already following this prayer',
-      'You can manage the prayers you follow in the Follows section')
-    } else {
-      this.props.dispatchRemoveVisibleModal()
-      AlertIOS.alert('You must log in or sign up to follow prayers',
-      'Log in or sign up in order to get the most out of Ora')
+      'You can manage the prayers you follow in the Follows section', this.props.dispatchRemoveVisibleModal)
     }
   }
 
