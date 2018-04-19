@@ -15,8 +15,11 @@ class SubmitContainer extends React.Component {
       prayerSent: false,
       bodyHeight: null,
       errorMessage: null,
+      sending: false,
+      failed: false,
     }
     this.submitPrayer = this.submitPrayer.bind(this)
+    this.handleError = this.handleError.bind(this)
     this.setSubject = this.setSubject.bind(this)
     this.setBody = this.setBody.bind(this)
     this.referenceBody = this.referenceBody.bind(this)
@@ -27,6 +30,7 @@ class SubmitContainer extends React.Component {
   submitPrayer() {
     if (this.state.subject && this.state.body) {
       Keyboard.dismiss()
+      this.setState({ sending: true })
       axios.post(`${ROOT_URL}/api/prayers`, {
         userId: this.props.userId,
         subject: this.state.subject,
@@ -40,14 +44,26 @@ class SubmitContainer extends React.Component {
           body: null,
           prayerSent: true,
           errorMessage: null,
+          sending: false,
         })
         this.props.refreshUserPrayers(this.props.userId)
         setTimeout(() => this.setState({prayerSent: false}), 10000)
       })
-      .catch(console.error)
+      .catch(error => {
+        console.log(error)
+        this.handleError()
+      })
     } else {
       this.setState({ errorMessage: 'Your prayer needs both a subject and a body'})
     }
+  }
+
+  handleError() {
+    this.setState({
+      failed: true,
+      sending: false,
+    })
+    setTimeout(() => this.setState({failed: false}), 10000)
   }
 
   setSubject(subject) {
@@ -75,6 +91,8 @@ class SubmitContainer extends React.Component {
       <SubmitPresenter
         subject={this.state.subject}
         body={this.state.body}
+        failed={this.state.failed}
+        sending={this.state.sending}
         prayerSent={this.state.prayerSent}
         bodyHeight={this.state.bodyHeight}
         errorMessage={this.state.errorMessage}

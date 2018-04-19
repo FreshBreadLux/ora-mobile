@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, SafeAreaView, Text, TextInput, TouchableOpacity, Platform } from 'react-native'
+import { View, SafeAreaView, Text, TextInput, TouchableOpacity, Platform, ActivityIndicator } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
 
-const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, setBody, focusBody, referenceBody, submitPrayer, handleContentSizeChange }) => (
+const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, setBody, focusBody, referenceBody, submitPrayer, handleContentSizeChange, failed, sending }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Submit" />
     {Platform.OS === 'ios'
@@ -74,9 +74,16 @@ const SubmitPresenter = ({ errorMessage, prayerSent, subject, body, setSubject, 
           <View style={[ss.center, ss.addViewSpacing, ss.fullWidth]}>
             <TouchableOpacity
               onPress={submitPrayer}
-              style={[ss.button, ss.halfWidth]}
-            >
-              <Text style={[ss.buttonText]}>SEND</Text>
+              style={[ss.button, ss.halfWidth]}>
+              {failed
+              ? <Text style={ss.buttonText}>SEND FAILED</Text>
+              : <View>
+                  {sending
+                  ? <ActivityIndicator size="small" color="#1e3799" />
+                  : <Text style={ss.buttonText}>SEND</Text>
+                  }
+                </View>
+              }
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
