@@ -89,7 +89,7 @@ const MainTabNav = TabNavigator({
   tabBarPosition: 'bottom',
 })
 
-const MainStackNav = StackNavigator({
+const CardStackNav = StackNavigator({
   Root: {
     screen: MainTabNav,
     navigationOptions: {
@@ -208,13 +208,44 @@ const MainStackNav = StackNavigator({
         headerStyle,
       }
     },
-  }
+  },
 }, {
   headerMode: 'screen'
 })
 
+const ModalStackNav = StackNavigator({
+  Modal: {
+    screen: CardStackNav,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Traditional: {
+    screen: TraditionalPrayersPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'PRAYERS',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  },
+}, {
+  mode: 'modal',
+  headerMode: 'screen'
+})
+
+// IMPORTANT: ALLOWS MODALSTACKNAV TO MANAGE THE STATE
+ModalStackNav.router = CardStackNav.router
+
 const MainNav = () => (
-  <MainStackNav />
+  <ModalStackNav />
 )
 
 export default MainNav

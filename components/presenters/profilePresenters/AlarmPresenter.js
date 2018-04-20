@@ -42,19 +42,20 @@ const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm
         }
       </View>
     }
-    <View style={[ss.paddingBottom15, ss.center]}>
+    <View style={[ss.addLargeViewSpacing, ss.center]}>
       <TouchableOpacity
+        style={ss.padding10}
         onPress={saveNewAlarm}>
         <View style={ss.row}>
           <Ionicons
             name="ios-add-circle-outline"
             size={17}
             color="#1e3799" />
-          <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>SAVE</Text>
+          <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>SAVE REMINDER</Text>
         </View>
       </TouchableOpacity>
     </View>
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
       <View style={[ss.addLargeViewSpacing, ss.center]}>
         <Text style={[ss.subHeader, ss.centerText]}>My Reminders</Text>
       </View>
@@ -64,6 +65,7 @@ const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm
           <View key={alarm.reminderId} style={[ss.row, ss.addViewSpacing, ss.spaceBetween, ss.listBottomBorder]}>
             <Text style={{fontSize: 24}}>{time}</Text>
             <TouchableOpacity
+              style={ss.padding4}
               onPress={() => deleteAlarm(alarm)}>
               <Ionicons
                 name="ios-trash-outline"

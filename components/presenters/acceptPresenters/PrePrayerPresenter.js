@@ -5,13 +5,18 @@ import { logout } from '../../../store'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
 
-const PrePrayerPresenter = ({ titleButtonFade, loadReflection, logUserOut, isAdmin }) => (
+const PrePrayerPresenter = ({ titleButtonFade, loadReflection, logUserOut, isAdmin, navigation }) => (
   <SafeAreaView style={[ss.invisiContainer]}>
     <Animated.View style={[ss.invisiContainer, ss.spaceAround, {opacity: titleButtonFade}]}>
       <Text style={[ss.title, {bottom: 30}]}>ORA</Text>
       <TouchableOpacity
         style={[ss.button, ss.halfWidth]}
         onPress={loadReflection}>
+        <Text style={[ss.buttonText]}>START PRAYING</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={[ss.button, ss.halfWidth]}
+        onPress={() => navigation.navigate('Traditional')}>
         <Text style={[ss.buttonText]}>START PRAYING</Text>
       </TouchableOpacity>
     </Animated.View>
