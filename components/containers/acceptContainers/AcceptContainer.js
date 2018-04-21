@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
-import { PrePrayerPresenter, ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
+import { ReflectionPresenter, CurrentPrayerPresenter } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import ss from '../../StyleSheet'
@@ -33,6 +33,10 @@ class AcceptContainer extends React.Component {
     this.finishPraying = this.finishPraying.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
     this.followPrayer = this.followPrayer.bind(this)
+  }
+
+  componentDidMount() {
+    this.loadReflection()
   }
 
   fadeOut() {
@@ -131,32 +135,25 @@ class AcceptContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        <BackgroundImageContainer componentName="Accept" />
-        {!this.props.currentPrayer.subject
-          ? <View style={ss.invisiContainer}>
-            {!this.props.reflection
-            ? <PrePrayerPresenter
-                titleButtonFade={this.state.titleButtonFade}
-                loadReflection={this.loadReflection}
-                navigation={this.props.navigation} />
-            : <ReflectionPresenter
-                opacity={this.state.fadeAnim}
-                finishPraying={this.finishPraying}
-                reflectionFade={this.state.reflectionFade}
-                reflectionFadeOut={this.reflectionFadeOut}
-                animateNextPrayerTransition={this.animateNextPrayerTransition} />
-            }
-            </View>
-          : <View style={ss.opacityContainer}>
-              <CurrentPrayerPresenter
-                animateNextPrayerTransition={this.animateNextPrayerTransition}
-                navigation={this.props.navigation}
-                finishPraying={this.finishPraying}
-                flagPrayer={this.flagPrayer}
-                followPrayer={this.followPrayer}
-                opacity={this.state.fadeAnim} />
-            </View>
-        }
+      {!this.props.currentPrayer.subject
+        ? <View style={ss.invisiContainer}>
+            <ReflectionPresenter
+              opacity={this.state.fadeAnim}
+              finishPraying={this.finishPraying}
+              reflectionFade={this.state.reflectionFade}
+              reflectionFadeOut={this.reflectionFadeOut}
+              animateNextPrayerTransition={this.animateNextPrayerTransition} />
+          </View>
+        : <View style={ss.opacityContainer}>
+            <CurrentPrayerPresenter
+              animateNextPrayerTransition={this.animateNextPrayerTransition}
+              navigation={this.props.navigation}
+              finishPraying={this.finishPraying}
+              flagPrayer={this.flagPrayer}
+              followPrayer={this.followPrayer}
+              opacity={this.state.fadeAnim} />
+          </View>
+      }
       </View>
     )
   }

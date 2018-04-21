@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter, AcceptHeaderLeftPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -36,8 +36,8 @@ const MainTabNav = TabNavigator({
       ),
     },
   },
-  Accept: {
-    screen: AcceptContainer,
+  Home: {
+    screen: HomePresenter,
     navigationOptions: {
       title: 'Home',
       headerBackTitle: null,
@@ -77,7 +77,7 @@ const MainTabNav = TabNavigator({
   },
 }, {
   swipeEnabled: true,
-  initialRouteName: 'Accept',
+  initialRouteName: 'Home',
   tabBarOptions: {
     showLabel: false,
     inactiveTintColor: '#000',
@@ -220,9 +220,9 @@ const ModalStackNav = StackNavigator({
       header: null,
     },
   },
-  Traditional: {
-    screen: TraditionalPrayersPresenter,
-    navigationOptions: () => {
+  AcceptContainer: {
+    screen: AcceptContainer,
+    navigationOptions: ({ navigation }) => {
       const headerTitleStyle = Platform.OS === 'ios'
         ? { fontFamily: 'raleway', fontSize: 24 }
         : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
@@ -230,7 +230,8 @@ const ModalStackNav = StackNavigator({
         ? { backgroundColor: 'white', borderBottomWidth: 0 }
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
-        title: 'PRAYERS',
+        title: '',
+        headerLeft: <AcceptHeaderLeftPresenter navigation={navigation} />,
         headerTitleStyle,
         headerStyle,
       }
