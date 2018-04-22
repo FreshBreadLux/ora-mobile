@@ -193,22 +193,6 @@ const CardStackNav = StackNavigator({
       }
     },
   },
-  TraditionalPrayers: {
-    screen: TraditionalPrayersPresenter,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'PRAYERS',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
-  },
 }, {
   headerMode: 'screen'
 })
@@ -224,6 +208,22 @@ const ModalStackNav = StackNavigator({
     screen: AcceptContainer,
     navigationOptions: {
       header: null,
+    },
+  },
+  TraditionalPrayers: {
+    screen: TraditionalPrayersPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'PRAYERS',
+        headerTitleStyle,
+        headerStyle,
+      }
     },
   },
 }, {
