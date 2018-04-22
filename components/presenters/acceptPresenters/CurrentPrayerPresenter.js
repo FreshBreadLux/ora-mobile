@@ -7,11 +7,11 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, followPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <TouchableOpacity
-        style={[ss.padding10, ss.alignFlexEnd]}
+        style={[ss.padding10, ss.alignFlexStart]}
         onPress={finishPraying}>
         <Feather
           name="x-circle"
@@ -47,12 +47,12 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
       </View>
       {noPrayers
       ? null
-      : <View style={[ss.fullWidth]}>
+      : <View style={ss.fullWidth}>
           <View style={[
             ss.row,
             ss.spaceAround,
             ss.fullWidth,
-            ss.topBorder]}>
+            ss.darkTopBorder]}>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
               onPress={() => showModal('flag')}>
@@ -108,7 +108,8 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
         style={ss.bottomModal}>
         <FollowModal
           hideModal={hideModal}
-          followPrayer={followPrayer} />
+          alreadyFollowing={follows && follows.find(follow => follow.id === currentPrayer.id)}
+          toggleFollowPrayer={toggleFollowPrayer} />
       </Modal>
     </View>
   </SafeAreaView>

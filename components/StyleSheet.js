@@ -158,6 +158,9 @@ const ss = StyleSheet.create({
   alignFlexEnd: {
     alignSelf: 'flex-end'
   },
+  alignFlexStart: {
+    alignSelf: 'flex-start'
+  },
   spaceAround: {
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -298,6 +301,10 @@ const ss = StyleSheet.create({
   topBorder: {
     borderTopWidth: 1,
     borderTopColor: '#ccc',
+  },
+  darkTopBorder: {
+    borderTopWidth: 1,
+    borderTopColor: '#555',
   },
   viewTopBorder: {
     paddingTop: 10,

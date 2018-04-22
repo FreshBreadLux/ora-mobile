@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
-import { ReflectionPresenter, CurrentPrayerPresenter } from '../../presenters'
+import { ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import ss from '../../StyleSheet'
@@ -32,7 +32,7 @@ class AcceptContainer extends React.Component {
     this.loadReflection = this.loadReflection.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
-    this.followPrayer = this.followPrayer.bind(this)
+    this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
   }
 
   componentDidMount() {
@@ -85,75 +85,68 @@ class AcceptContainer extends React.Component {
   }
 
   finishPraying() {
-    this.setState({
-      fadeAnim: new Animated.Value(0),
-      reflectionFade: new Animated.Value(0),
-      titleButtonFade: new Animated.Value(1)
-    })
     this.props.dispatchFinishPraying()
+    this.props.navigation.goBack()
   }
 
   flagPrayer(flagreasonId) {
     const prayer = this.props.currentPrayer
-    if (this.props.isLoggedIn) {
-      axios.post(`${ROOT_URL}/api/flags`, {
-        flaggerId: this.props.userId,
-        flaggedId: prayer.id,
-        flagreasonId
-      })
-      .then(() => {
-        AlertIOS.alert(
-          'This prayer has been flagged',
-          'The Ora team will look into this and resolve the issue as quickly as possible', this.props.dispatchRemoveVisibleModal)
-      })
-      .catch(console.error)
-    } else {
-      AlertIOS.alert('You must be logged in to flag prayers', this.props.dispatchRemoveVisibleModal)
-    }
+    axios.post(`${ROOT_URL}/api/flags`, {
+      flaggerId: this.props.userId,
+      flaggedId: prayer.id,
+      flagreasonId
+    })
+    .then(() => {
+      AlertIOS.alert(
+        'This prayer has been flagged',
+        'The Ora team will look into this and resolve the issue as quickly as possible', this.props.navigation.goBack)
+    })
+    .catch(console.error)
   }
 
-  followPrayer() {
-    const { isLoggedIn, userId, follows, refreshUserFollows, currentPrayer } = this.props
+  toggleFollowPrayer() {
+    const { userId, follows, refreshUserFollows, currentPrayer } = this.props
     const alreadyFollowing = follows
-    ? follows.find(follow => follow.prayerId === currentPrayer.id)
+    ? follows.find(follow => follow.id === currentPrayer.id)
     : null
-    if (isLoggedIn && !alreadyFollowing) {
+    if (!alreadyFollowing) {
       axios.post(`${ROOT_URL}/api/follows`, { userId, currentPrayer })
       .then(() => {
         refreshUserFollows(userId)
-        AlertIOS.alert(
-          'You are now following this prayer',
-          'You can manage the prayers you follow in the Follows section', this.props.dispatchRemoveVisibleModal)
+        this.props.dispatchRemoveVisibleModal()
       })
       .catch(console.error)
-    } else if (isLoggedIn && alreadyFollowing) {
-      AlertIOS.alert('You are already following this prayer',
-      'You can manage the prayers you follow in the Follows section', this.props.dispatchRemoveVisibleModal)
+    } else {
+      axios.delete(`${ROOT_URL}/api/follows/followedId/${currentPrayer.id}/followerId/${userId}`)
+      .then(() => {
+        refreshUserFollows(userId)
+        this.props.dispatchRemoveVisibleModal()
+      })
+      .catch(console.error)
     }
   }
 
   render() {
     return (
       <View style={ss.invisiContainer}>
-      {!this.props.currentPrayer.subject
-        ? <View style={ss.invisiContainer}>
-            <ReflectionPresenter
+        <BackgroundImageContainer componentName="Accept" />
+        {!this.props.currentPrayer.subject
+          ? <ReflectionPresenter
               opacity={this.state.fadeAnim}
               finishPraying={this.finishPraying}
               reflectionFade={this.state.reflectionFade}
               reflectionFadeOut={this.reflectionFadeOut}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
-          </View>
-        : <View style={ss.opacityContainer}>
-            <CurrentPrayerPresenter
-              animateNextPrayerTransition={this.animateNextPrayerTransition}
-              navigation={this.props.navigation}
-              finishPraying={this.finishPraying}
-              flagPrayer={this.flagPrayer}
-              followPrayer={this.followPrayer}
-              opacity={this.state.fadeAnim} />
-          </View>
-      }
+          : <View style={ss.opacityContainer}>
+              <CurrentPrayerPresenter
+                animateNextPrayerTransition={this.animateNextPrayerTransition}
+                navigation={this.props.navigation}
+                finishPraying={this.finishPraying}
+                flagPrayer={this.flagPrayer}
+                toggleFollowPrayer={this.toggleFollowPrayer}
+                opacity={this.state.fadeAnim} />
+            </View>
+        }
       </View>
     )
   }
