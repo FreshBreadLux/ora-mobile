@@ -200,7 +200,7 @@ const ss = StyleSheet.create({
   },
   choirName: {
     fontFamily: 'raleway',
-    fontSize: 70,
+    fontSize: 45,
     color: '#fff',
   },
   consecutiveNumber: {

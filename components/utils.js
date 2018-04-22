@@ -58,7 +58,7 @@ export const determineChoirText = userTotalPrayers => {
               <Text style={ss.header}>PRINCIPALITIES</Text>
             </View>
             <View style={[ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>Both the Old and New Testaments reference a level of created beings called Principalities, or Princes. In the Book of Daniel, Daniel recounts a vision of an angel that must contend with a fallen Principality. The angel in Daniel's vision is . The New Testament letters reference Principalities numerous times, usually in the context of Christ's reign over all of creation, including created beings in the heavens.</Text>
+              <Text style={ss.body}>Both the Old and New Testaments reference a level of created beings called Principalities, or Princes. In the Book of Daniel, Daniel recounts a vision of an angel that must contend with a fallen Principality. The New Testament letters reference Principalities numerous times, usually in the context of Christ's reign over all of creation, including created beings in the heavens.</Text>
             </View>
             <View style={[ss.center, ss.addMedViewSpacing, ss.whiteBackground, ss.padding15]}>
               <Text style={[ss.body, ss.centerText]}>To me, the very least of all the holy ones, this grace was given, to preach to the Gentiles the inscrutable riches of Christ, and to bring to light what is the plan of the mystery hidden from ages past in God who created all things, so that the manifold wisdom of God might now be made known through the Church to the principalities and authorities in the heavens.{'\n'}- Ephesians 3:8-10</Text>
