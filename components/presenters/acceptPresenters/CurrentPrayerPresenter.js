@@ -31,7 +31,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
           style={[ss.flex1, { opacity }]}>
-          <Text style={[ss.body, ss.paddingBottom15]}>{currentPrayer.body}</Text>
+          <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
           {currentPrayer.updates
           ? currentPrayer.updates.map(update => (
               <View key={update.id}>
