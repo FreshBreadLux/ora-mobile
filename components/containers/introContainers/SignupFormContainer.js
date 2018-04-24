@@ -97,7 +97,6 @@ export default class SignupFormContainer extends React.Component {
     if (this.state.email) {
       axios.get(`${ROOT_URL}/api/users/?email=${this.state.email}`)
       .then(response => {
-        console.log('response.data: ', response.data)
         if (response.data.id) {
           this.setState({ checkEmailReturned: true, userExists: true })
         } else {
