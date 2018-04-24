@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter, AcceptHeaderLeftPresenter, AcceptHeaderRightPresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer } from './containers'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -140,6 +140,22 @@ const CardStackNav = StackNavigator({
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
         title: 'NINE CHOIRS',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  },
+  ShareOra: {
+    screen: ShareOraContainer,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'SHARE ORA',
         headerTitleStyle,
         headerStyle,
       }

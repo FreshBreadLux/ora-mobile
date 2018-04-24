@@ -18,19 +18,27 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation }) => (
           <Text style={[ss.buttonText]}>START PRAYING</Text>
         </TouchableOpacity>
       </View>
-      {isAdmin
-      ? <TouchableOpacity
-        style={[ss.padding10, {alignSelf: 'flex-end'}]}
-        onPress={async function(){
-          await AsyncStorage.removeItem('oraAuth_v1.1.0')
-          logUserOut()
-          await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
-        }}>
+      <TouchableOpacity
+        style={[ss.padding10, {alignSelf: 'center'}]}
+        onPress={() => navigation.navigate('ShareOra')}>
         <Ionicons
-          name="ios-log-out"
-          size={24}
+          name="ios-share"
+          size={30}
           color="#fff" />
       </TouchableOpacity>
+      {isAdmin
+      ? <TouchableOpacity
+          style={[ss.padding10, {alignSelf: 'flex-end'}]}
+          onPress={async function(){
+            await AsyncStorage.removeItem('oraAuth_v1.1.0')
+            logUserOut()
+            await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
+          }}>
+          <Ionicons
+            name="ios-log-out"
+            size={24}
+            color="#fff" />
+        </TouchableOpacity>
       : null
       }
     </SafeAreaView>
