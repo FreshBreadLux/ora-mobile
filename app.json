@@ -17,6 +17,7 @@
       "resizeMode": "cover",
       "backgroundColor": "#1e3799"
     },
+    "scheme": "ora",
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.1.0",
