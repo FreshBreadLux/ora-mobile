@@ -21,6 +21,11 @@
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.1.0",
+      "config": {
+        "branch": {
+          "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
+        }
+      },
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false
     },
