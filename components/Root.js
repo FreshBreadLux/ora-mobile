@@ -43,6 +43,10 @@ class Root extends React.Component {
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
+      .then(reduxAction => {
+        console.log('reduxAction?: ', reduxAction)
+        console.log('this.props.userInfo: ', this.props.userInfo)
+      })
     }
   }
 
@@ -92,7 +96,8 @@ class Root extends React.Component {
 const mapState = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   userId: state.auth.userId,
-  firstTime: state.auth.firstTime
+  firstTime: state.auth.firstTime,
+  userInfo: state.userInfo
 })
 
 const mapDispatch = dispatch => ({
