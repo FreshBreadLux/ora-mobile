@@ -56,7 +56,8 @@ export default class SignupFormContainer extends React.Component {
         .then(() => {
           return Promise.all([
             axios.post('https://api.sendinblue.com/v3/contacts', {
-              email: this.state.email
+              email: this.state.email,
+              updateEnabled: true
             }, {
               headers: {'api-key': SENDINBLUE_API_KEY_V3 }
             }),
