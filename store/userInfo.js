@@ -27,9 +27,7 @@ export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
 export const fetchUserInfo = userId =>
   dispatch =>
     axios.get(`${ROOT_URL}/api/users/${userId}`)
-      .then(res => {
-        dispatch(setUserInfo(res.data || defaultUserInfo))
-      })
+      .then(res => dispatch(setUserInfo(res.data || defaultUserInfo)))
       .catch(err => console.log(err))
 
 export const updateUserTheme = (userId, theme) =>

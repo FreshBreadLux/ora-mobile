@@ -41,12 +41,11 @@ class Root extends React.Component {
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
-      await this.props.loadInitialData(oraAuthJson.userId)
-      this.props.logUserIn(oraAuthJson)
-      .then(reduxAction => {
-        console.log('reduxAction?: ', reduxAction)
-        console.log('this.props.userInfo: ', this.props.userInfo)
-      })
+      await this.props.loadInitialData(oraAuthJson.userId).then(res => console.log('res: ', res))
+      const reduxAction = await this.props.logUserIn(oraAuthJson)
+      console.log('reduxAction?: ', reduxAction)
+      console.log('this.props.userInfo: ', this.props.userInfo)
+      console.log('this.props.userInfo.email: ', this.props.userInfo.email)
     }
   }
 
@@ -105,9 +104,9 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserPrayers(userId))
     dispatch(fetchUserFollows(userId))
     dispatch(fetchUserViews(userId))
-    dispatch(fetchUserInfo(userId))
     dispatch(fetchUserAlarms())
     dispatch(fetchFlagReasons())
+    return dispatch(fetchUserInfo(userId))
   },
   logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
   refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
