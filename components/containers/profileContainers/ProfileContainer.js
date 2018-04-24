@@ -12,7 +12,7 @@ class ProfileContainer extends React.Component {
 
   async userLogout() {
     try {
-      await AsyncStorage.removeItem('oraAuth')
+      await AsyncStorage.removeItem('oraAuth_v1.1.0')
       this.props.logUserOut()
       AlertIOS.alert('Logout Successful')
     } catch (error) {

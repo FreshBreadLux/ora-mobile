@@ -88,7 +88,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                 <TouchableOpacity
                   style={ss.fullWidth}
                   onPress={() => {
-                    AsyncStorage.setItem('oraTheme', 'Rome')
+                    AsyncStorage.setItem('oraTheme_v1.1.0', 'Rome')
                     dispatchUpdateUserTheme(userInfo.id, 'Rome')
                   }}>
                   <View style={ss.thumbnail}>
@@ -103,7 +103,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                 <TouchableOpacity
                   style={ss.fullWidth}
                   onPress={() => {
-                    AsyncStorage.setItem('oraTheme', 'Mountains')
+                    AsyncStorage.setItem('oraTheme_v1.1.0', 'Mountains')
                     dispatchUpdateUserTheme(userInfo.id, 'Mountains')
                   }}>
                   <View style={ss.thumbnail}>

@@ -52,7 +52,7 @@ export default class SignupFormContainer extends React.Component {
           pushToken: token,
         })
         .then(response => JSON.stringify(response.data))
-        .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+        .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
         .then(() => {
           return Promise.all([
             axios.post('https://api.sendinblue.com/v3/contacts', {
@@ -123,7 +123,7 @@ export default class SignupFormContainer extends React.Component {
           .then(() => response)
         })
         .then(result => JSON.stringify(result.data))
-        .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+        .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
         .then(() => this.props.showAlarm())
         .catch(() => {
           this.setState({ sending: false, failed: true })

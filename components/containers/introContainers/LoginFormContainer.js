@@ -42,7 +42,7 @@ export default class LoginFormContainer extends React.Component {
         password: this.state.password,
       })
       .then(response => JSON.stringify(response.data))
-      .then(oraAuth => setAsyncStorage('oraAuth', oraAuth))
+      .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
       .then(() => this.props.verifyStorageKey())
       .catch(error => {
         console.log(error)

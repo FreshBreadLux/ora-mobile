@@ -22,9 +22,9 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation }) => (
       ? <TouchableOpacity
         style={[ss.padding10, {alignSelf: 'flex-end'}]}
         onPress={async function(){
-          await AsyncStorage.removeItem('oraAuth')
+          await AsyncStorage.removeItem('oraAuth_v1.1.0')
           logUserOut()
-          await AsyncStorage.setItem('seenIntro', 'false')
+          await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
         }}>
         <Ionicons
           name="ios-log-out"

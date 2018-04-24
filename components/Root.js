@@ -28,7 +28,7 @@ class Root extends React.Component {
   }
 
   async checkFirstTime() {
-    const seenIntro = await AsyncStorage.getItem('seenIntro')
+    const seenIntro = await AsyncStorage.getItem('seenOraIntro_v1.1.0')
     if (seenIntro === 'true') {
       this.props.noIntroNeeded()
       this.verifyStorageKey()
@@ -36,10 +36,10 @@ class Root extends React.Component {
   }
 
   async verifyStorageKey() {
-    const oraAuth = await AsyncStorage.getItem('oraAuth')
+    const oraAuth = await AsyncStorage.getItem('oraAuth_v1.1.0')
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
-      const theme = await AsyncStorage.getItem('oraTheme')
+      const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
