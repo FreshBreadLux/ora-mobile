@@ -65,7 +65,7 @@ const ResetPasswordPresenter = ({ setResetCode, resetCode, setPassword, password
             <TouchableOpacity
               style={[ss.button, ss.halfWidth]}
               onPress={setNewPassword}>
-              <Text style={[ss.buttonText]}>reset password</Text>
+              <Text style={[ss.buttonText]}>RESET PASSWORD</Text>
             </TouchableOpacity>
           </View>
           <View style={[ss.flex2, ss.center, ss.padding15]}>

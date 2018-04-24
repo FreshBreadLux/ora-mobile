@@ -44,7 +44,7 @@ const SendCodePresenter = ({ sendCode, setEmail, error, email, setForgotPassword
             <TouchableOpacity
               style={[ss.button, ss.halfWidth]}
               onPress={sendCode}>
-              <Text style={[ss.buttonText]}>send code</Text>
+              <Text style={[ss.buttonText]}>SEND CODE</Text>
             </TouchableOpacity>
           </View>
           <View style={[ss.flex1, ss.center, ss.padding15]}>
