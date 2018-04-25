@@ -46,7 +46,6 @@ class Root extends React.Component {
       this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
       const reduxAction = await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
-      console.log('reduxAction.userInfo.email: ', reduxAction.userInfo.email)
       Branch.setIdentity(reduxAction.userInfo.email)
     }
   }
