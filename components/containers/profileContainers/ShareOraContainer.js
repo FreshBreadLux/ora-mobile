@@ -34,6 +34,7 @@ class ShareOraContainer extends React.Component {
       feature: 'share',
       channel: 'App'
     }
+    console.log('calling showShareSheet on ', this.branchUniversalObject)
     await this.branchUniversalObject.showShareSheet(shareOptions, linkProperties)
     console.log('log after showShareSheet')
   }

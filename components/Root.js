@@ -1,12 +1,14 @@
 import React from 'react'
 import { View, AsyncStorage, AppState } from 'react-native'
-import { Notifications } from 'expo'
+import { Notifications, DangerZone } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
 import ss from './StyleSheet'
+
+const { Branch } = DangerZone
 
 class Root extends React.Component {
   constructor(props) {
@@ -41,11 +43,11 @@ class Root extends React.Component {
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
-      await this.props.loadInitialData(oraAuthJson.userId).then(res => console.log('res: ', res))
-      const reduxAction = await this.props.logUserIn(oraAuthJson)
-      console.log('reduxAction?: ', reduxAction)
-      console.log('this.props.userInfo: ', this.props.userInfo)
-      console.log('this.props.userInfo.email: ', this.props.userInfo.email)
+      this.props.loadInitialData(oraAuthJson.userId)
+      this.props.logUserIn(oraAuthJson)
+      const reduxAction = await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
+      console.log('reduxAction.userInfo.email: ', reduxAction.userInfo.email)
+      Branch.setIdentity(reduxAction.userInfo.email)
     }
   }
 
@@ -106,8 +108,8 @@ const mapDispatch = dispatch => ({
     dispatch(fetchUserViews(userId))
     dispatch(fetchUserAlarms())
     dispatch(fetchFlagReasons())
-    return dispatch(fetchUserInfo(userId))
   },
+  dispatchFetchUserInfo: userId => dispatch(fetchUserInfo(userId)),
   logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
   refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
