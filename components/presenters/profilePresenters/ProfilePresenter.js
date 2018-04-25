@@ -50,9 +50,9 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>
               <Text style={ss.choirName}>{userInfo.totalPrayers}</Text>
             </View>
-            <View style={[ss.addViewSpacing]}>
+            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
               <TouchableOpacity
-                style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
+                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('ShareOra')}>
                 <Text style={ss.buttonText}>Share Ora</Text>
                 <Feather
@@ -60,9 +60,9 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                   size={26} />
               </TouchableOpacity>
             </View>
-            <View style={[ss.addViewSpacing]}>
+            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
               <TouchableOpacity
-                style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
+                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('Donate')}>
                 <Text style={ss.buttonText}>Donate</Text>
                 <Feather
@@ -70,9 +70,9 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                   size={26} />
               </TouchableOpacity>
             </View>
-            <View style={[ss.addViewSpacing]}>
+            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
               <TouchableOpacity
-                style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
+                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('Alarms')}>
                 <Text style={ss.buttonText}>Manage your reminders</Text>
                 <Feather
@@ -80,9 +80,9 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
                   size={26} />
               </TouchableOpacity>
             </View>
-            <View style={[ss.addViewSpacing, ss.paddingBottom30]}>
+            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center, ss.paddingBottom30]}>
               <TouchableOpacity
-                style={[ss.button, ss.fullWidth, ss.row, ss.spaceBetween]}
+                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('About')}>
                 <Text style={ss.buttonText}>Learn more about Ora</Text>
                 <Feather
