@@ -27,6 +27,13 @@ class Root extends React.Component {
     this.checkFirstTime()
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
+    Branch.subscribe(({ error, params }) => {
+      if (error) {
+        console.log('Branch subscription error: ', error)
+        return
+      }
+      console.log('Branch subscription params: ', params)
+    })
   }
 
   async checkFirstTime() {
