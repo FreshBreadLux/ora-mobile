@@ -1,6 +1,9 @@
 import React from 'react'
-import { ShareOraPresenter } from '../../presenters'
+import { View } from 'react-native'
+import { connect } from 'react-redux'
+import { ShareOraPresenter, OraMissionaryPresenter } from '../../presenters'
 import { DangerZone } from 'expo'
+import ss from '../../StyleSheet'
 
 const { Branch } = DangerZone
 
@@ -40,10 +43,22 @@ class ShareOraContainer extends React.Component {
   }
 
   render() {
+    console.log('this.props.oraMissionary: ', this.props.oraMissionary)
     return (
-      <ShareOraPresenter onShareLinkPress={this.onShareLinkPress} />
+      <View style={ss.invisiContainer}>
+        {this.props.oraMissionary
+        ? <OraMissionaryPresenter onShareLinkPress={this.onShareLinkPress} />
+        : <ShareOraPresenter
+            navigation={this.props.navigation}
+            onShareLinkPress={this.onShareLinkPress} />
+        }
+      </View>
     )
   }
 }
 
-export default ShareOraContainer
+const mapState = state => ({
+  oraMissionary: state.userInfo.oraMissionary
+})
+
+export default connect(mapState)(ShareOraContainer)
