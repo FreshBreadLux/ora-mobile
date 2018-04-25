@@ -9,31 +9,45 @@ class RegisterOraMissionaryContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: this.props.firstName,
-      lastName: this.props.lastName,
-      address: this.props.address,
-      city: this.props.city,
-      state: this.props.state,
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      state: '',
       gender: '',
       age: '',
       loading: false,
       failed: false,
       error: false,
     }
+    // this.setAge = this.setAge.bind(this)
+    // this.setCity = this.setCity.bind(this)
+    // this.setGender = this.setGender.bind(this)
+    // this.setAddress = this.setAddress.bind(this)
     this.focusInput = this.focusInput.bind(this)
+    // this.setStateVal = this.setStateVal.bind(this)
     this.setInputRef = this.setInputRef.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    // this.setLastName = this.setLastName.bind(this)
+    // this.setFirstName = this.setFirstName.bind(this)
     this.setStateField = this.setStateField.bind(this)
+    this.registerMissionary = this.registerMissionary.bind(this)
   }
 
-  handleSubmit() {
+  registerMissionary() {
     const { firstName, lastName, city, state, gender, age, address } = this.state
+    console.log('this.state: ', this.state)
     if (firstName && lastName && city && state && gender && age && address) {
       this.setState({ loading: true })
       axios.put(`${ROOT_URL}/api/users/${this.props.userId}`, {
         firstName, lastName, city, state, gender, age, address, oraMissionary: true
       })
       .then(res => this.props.dispatchSetUserInfo(res.data))
+      .then(() => this.props.navigation.goBack())
+      .catch(error => {
+        console.log(error)
+        this.setState({ loading: false, failed: true })
+        setTimeout(() => this.setState({failed: false}), 10000)
+      })
     } else {
       this.setState({ error: 'Please fill out all form fields' })
     }
@@ -42,14 +56,34 @@ class RegisterOraMissionaryContainer extends React.Component {
   setInputRef(name, ref) {
     this[name] = ref
   }
-
+  focusInput(name) {
+    this[name].focus()
+  }
   setStateField(name, value) {
     this.setState({ [name]: value })
   }
 
-  focusInput(name) {
-    this[name].focus()
-  }
+  // setFirstName(firstName) {
+  //   this.setState({firstName})
+  // }
+  // setLastName(lastName) {
+  //   this.setState({lastName})
+  // }
+  // setAddress(address) {
+  //   this.setState({address})
+  // }
+  // setCity(city) {
+  //   this.setState({city})
+  // }
+  // setStateVal(state) {
+  //   this.setState({state})
+  // }
+  // setGender(gender) {
+  //   this.setState({gender})
+  // }
+  // setAge(age) {
+  //   this.setState({age})
+  // }
 
   render() {
     return (
@@ -65,20 +99,14 @@ class RegisterOraMissionaryContainer extends React.Component {
         focusInput={this.focusInput}
         lastName={this.state.lastName}
         setInputRef={this.setInputRef}
-        handleSubmit={this.handleSubmit}
         firstName={this.state.firstName}
-        setStateField={this.setStateField} />
+        registerMissionary={this.registerMissionary} />
     )
   }
 }
 
 const mapState = state => ({
   userId: state.auth.userId,
-  firstName: state.userInfo.firstName,
-  lastName: state.userInfo.lastName,
-  address: state.userInfo.address,
-  city: state.userInfo.city,
-  state: state.userInfo.state,
 })
 
 const mapDispatch = dispatch => ({
@@ -86,3 +114,13 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(RegisterOraMissionaryContainer)
+
+/*
+setAge={this.setAge}
+setCity={this.setCity}
+setGender={this.setGender}
+setAddress={this.setAddress}
+setLastName={this.setLastName}
+setStateVal={this.setStateVal}
+setFirstName={this.setFirstName}
+*/

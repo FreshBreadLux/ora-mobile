@@ -21,21 +21,24 @@ const ShareOraPresenter = ({ onShareLinkPress, navigation }) => (
             </View>
           </TouchableOpacity>
         </View>
-        <View style={[ss.center, ss.addMedViewSpacing]}>
-          <TouchableOpacity
-            onPress={onShareLinkPress}>
-            <View style={[ss.row, ss.padding4]}>
-              <Text style={[ss.subBody, ss.darkBlueText, ss.paddingRight7]}>SHARE ORA</Text>
-              <Ionicons
-                name="ios-arrow-forward"
-                size={18}
-                color="#1e3799" />
-            </View>
-          </TouchableOpacity>
-        </View>
       </View>
     </View>
   </SafeAreaView>
 )
 
 export default ShareOraPresenter
+
+/*
+<View style={[ss.center, ss.addMedViewSpacing]}>
+  <TouchableOpacity
+    onPress={onShareLinkPress}>
+    <View style={[ss.row, ss.padding4]}>
+      <Text style={[ss.subBody, ss.darkBlueText, ss.paddingRight7]}>SHARE ORA</Text>
+      <Ionicons
+        name="ios-arrow-forward"
+        size={18}
+        color="#1e3799" />
+    </View>
+  </TouchableOpacity>
+</View>
+*/

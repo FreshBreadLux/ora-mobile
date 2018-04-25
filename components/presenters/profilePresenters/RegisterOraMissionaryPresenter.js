@@ -3,12 +3,12 @@ import { View, Text, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Acti
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, firstName, setInputRef, setStateField, focusInput, handleSubmit, loading, failed, error }) => (
+const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, firstName, address, setInputRef, focusInput, loading, failed, error, setStateField, registerMissionary }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.whiteContainer, ss.padding15]}>
       <View style={[ss.addMedViewSpacing, ss.topBorder, ss.whiteContainer]}>
         {error
-        ? <Text style={[ss.body, ss.paddingBottom20]}>{error}</Text>
+        ? <Text style={[ss.subBody, ss.paddingBottom20, ss.redText, ss.centerText]}>{error}</Text>
         : <Text style={[ss.body, ss.paddingBottom20]}>Please fill out the quick form below. We like to know a bit about our Ora Missionaries so that we can better serve (and pamper) them.</Text>
         }
         <ScrollView
@@ -34,7 +34,6 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                 placeholderTextColor="#555"
                 keyboardType="default"
                 onChangeText={value => setStateField('lastName', value)}
-                onSubmitEditing={() => focusInput('address')}
                 value={lastName} />
             </View>
             <View style={[ss.addViewSpacing, ss.center]}>
@@ -47,7 +46,7 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                 keyboardType="default"
                 onChangeText={value => setStateField('address', value)}
                 onSubmitEditing={() => focusInput('city')}
-                value={city} />
+                value={address} />
             </View>
             <View style={[ss.addViewSpacing, ss.center, ss.row]}>
               <TextInput
@@ -58,10 +57,10 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                 placeholderTextColor="#555"
                 keyboardType="default"
                 onChangeText={value => setStateField('city', value)}
-                onSubmitEditing={() => focusInput('state')}
+                onSubmitEditing={() => focusInput('stateRef')}
                 value={city} />
               <TextInput
-                ref={ref => setInputRef('state', ref)}
+                ref={ref => setInputRef('stateRef', ref)}
                 style={[ss.paddingTop4, ss.paddingBottom4, ss.halfWidth, ss.subBody, ss.darkBottomBorder]}
                 underlineColorAndroid="transparent"
                 placeholder="State"
@@ -95,7 +94,7 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
             <View style={[ss.flex1, ss.center]}>
               <TouchableOpacity
                 style={ss.padding10}
-                onPress={handleSubmit}>
+                onPress={registerMissionary}>
                 {failed
                 ? <Text style={[ss.subBody, ss.darkBlueText]}>REGISTRATION FAILED</Text>
                 : <View>
@@ -103,7 +102,7 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                     ? <ActivityIndicator size="small" color="#0c2461" />
                     : <View style={ss.row}>
                         <Ionicons
-                          name="ios-people"
+                          name="ios-add-circle-outline"
                           size={18}
                           color="#1e3799" />
                         <Text style={[ss.subBody, ss.darkBlueText, ss.paddingLeft7]}>REGISTER</Text>
@@ -115,7 +114,7 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
             </View>
           </View>
           <View style={[ss.flex2, ss.center, ss.padding15]}>
-            <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
+            <Text style={[ss.subHeader, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone.</Text>
           </View>
         </ScrollView>
       </View>

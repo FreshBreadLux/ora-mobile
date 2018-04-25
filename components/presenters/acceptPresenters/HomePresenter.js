@@ -18,14 +18,6 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation }) => (
           <Text style={[ss.buttonText]}>START PRAYING</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity
-        style={[ss.padding10, {alignSelf: 'center'}]}
-        onPress={() => navigation.navigate('ShareOra')}>
-        <Ionicons
-          name="ios-share"
-          size={30}
-          color="#fff" />
-      </TouchableOpacity>
       {isAdmin
       ? <TouchableOpacity
           style={[ss.padding10, {alignSelf: 'flex-end'}]}
