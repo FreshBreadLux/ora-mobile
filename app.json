@@ -18,11 +18,6 @@
       "backgroundColor": "#1e3799"
     },
     "scheme": "ora",
-    "updates": {
-      "enabled": true,
-      "checkAutomatically": "ON_LOAD",
-      "fallbackToCacheTimeout": 0
-    },
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.1.2",
@@ -31,6 +26,7 @@
           "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
         }
       },
+      "loadJSInBackgroundExperimental": true,
       "supportsTablet": false,
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Ora uses data only for its member referral system and doesn't share your information with anyone"
