@@ -3,7 +3,7 @@ import { Text, View, SafeAreaView, TouchableOpacity } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const ShareOraPresenter = ({ onShareLinkPress, navigation }) => (
+const ShareOraPresenter = ({ navigation }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.whiteContainer, ss.padding15]}>
       <View style={[ss.addMedViewSpacing, ss.topBorder]}>

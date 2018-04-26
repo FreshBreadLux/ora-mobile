@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const OraMissionaryPresenter = ({ onShareLinkPress, userInfo }) => (
+const OraMissionaryPresenter = ({ userInfo }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.whiteContainer, ss.padding15]}>
       <View style={[ss.addMedViewSpacing, ss.topBorder]}>

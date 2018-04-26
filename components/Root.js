@@ -1,14 +1,12 @@
 import React from 'react'
 import { View, AsyncStorage, AppState } from 'react-native'
-import { Notifications, DangerZone } from 'expo'
+import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
 import ss from './StyleSheet'
-
-const { Branch } = DangerZone
 
 class Root extends React.Component {
   constructor(props) {
@@ -27,13 +25,6 @@ class Root extends React.Component {
     this.checkFirstTime()
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
-    Branch.subscribe(({ error, params }) => {
-      if (error) {
-        console.log('Branch subscription error: ', error)
-        return
-      }
-      console.log('Branch subscription params: ', params)
-    })
   }
 
   async checkFirstTime() {
@@ -52,8 +43,7 @@ class Root extends React.Component {
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
       this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
-      const reduxAction = await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
-      Branch.setIdentity(reduxAction.userInfo.email)
+      await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
     }
   }
 

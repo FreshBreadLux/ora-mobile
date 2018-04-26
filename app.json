@@ -5,7 +5,7 @@
     "slug": "ora-frontend",
     "privacy": "public",
     "sdkVersion": "23.0.0",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "orientation": "portrait",
     "primaryColor": "#1e3799",
     "icon": "./assets/images/icon.png",
@@ -20,12 +20,7 @@
     "scheme": "ora",
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
-      "buildNumber": "1.1.2",
-      "config": {
-        "branch": {
-          "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
-        }
-      },
+      "buildNumber": "1.1.3",
       "loadJSInBackgroundExperimental": true,
       "supportsTablet": false,
       "infoPlist": {
@@ -34,12 +29,7 @@
     },
     "android": {
       "package": "com.oraprayernetwork.ora",
-      "versionCode": 1,
-      "config": {
-        "branch": {
-          "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
-        }
-      }
+      "versionCode": 2
     }
   }
 }
