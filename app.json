@@ -18,6 +18,11 @@
       "backgroundColor": "#1e3799"
     },
     "scheme": "ora",
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.1.2",
