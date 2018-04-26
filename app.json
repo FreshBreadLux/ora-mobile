@@ -26,7 +26,6 @@
           "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
         }
       },
-      "loadJSInBackgroundExperimental": true,
       "supportsTablet": false,
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Ora uses data only for its member referral system and doesn't share your information with anyone"
