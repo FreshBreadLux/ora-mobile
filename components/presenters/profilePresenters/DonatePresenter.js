@@ -12,7 +12,7 @@ const DonatePresenter = ({ investmentTotal, firstName, lastName }) => (
         {!investmentTotal
         ? <View>
             <Text style={ss.body}>Ora is a non-profit app, and it will always be free. This means that we rely on donations from our community to meet all operating expenses, from keeping the servers running to funding future projects. We hope to continue making tools for faith in a technology age that has other priorities, and we're inviting you to be a part of it.{'\n\n'}If you'd like to become a part of our team you can use the link below to sign up as a donor on our website.</Text>
-            <View style={[ss.center, ss.addMedViewSpacing]}>
+            <View style={[ss.center, ss.addLargeViewSpacing]}>
               <TouchableOpacity
                 onPress={() => WebBrowser.openBrowserAsync('https://www.oraprayernetwork.com/donor-signup')}>
                 <View style={[ss.row, ss.padding4]}>
@@ -26,7 +26,7 @@ const DonatePresenter = ({ investmentTotal, firstName, lastName }) => (
             </View>
           </View>
         : <View>
-            <Text style={ss.body}>Welcome back, {`${firstName}`}, and thank you so much for your continued support of Ora. We're luck to have you on the team. Please remember that you can reach out at any time at support@oraprayernetwork.com. We love hearing from you!</Text>
+            <Text style={ss.body}>Welcome back, {`${firstName}`}, and thank you so much for your continued support of Ora. We're lucky to have you on the team. Please remember that you can reach out at any time at support@oraprayernetwork.com. We love hearing from you!</Text>
             <View style={[ss.row, ss.addLargeViewSpacing, ss.spaceBetween]}>
               <View>
                 <Text style={ss.subHeader}>{`${firstName} ${lastName}`}</Text>

@@ -183,7 +183,7 @@ export const determineChoirText = userTotalPrayers => {
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={[ss.body, ss.paddingBottom20]}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>
@@ -205,7 +205,7 @@ export const determineChoirText = userTotalPrayers => {
               <Text style={[ss.subHeader, ss.padding15, ss.paddingTop30]}>WELCOME TO ORA</Text>
             </View>
             <View style={[ss.addLargeViewSpacing, ss.whiteBackground, ss.padding15]}>
-              <Text style={ss.body}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
+              <Text style={[ss.body, ss.paddingBottom20]}>At Ora, we care about strengthening people's faith and devotional lives. To encourage users to pray more consistently, we've incorporated a "level" system within the app, with each level named after one of the Nine Choirs of Angels that we read about in scripture. Your level will increase as you accept more prayers, and you can check back here to learn more about each of the choirs of angels.</Text>
             </View>
           </ScrollView>
         </View>
