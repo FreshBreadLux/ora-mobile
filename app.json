@@ -27,7 +27,10 @@
         }
       },
       "loadJSInBackgroundExperimental": true,
-      "supportsTablet": false
+      "supportsTablet": false,
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription": "Ora uses data only for its member referral system and doesn't share your information with anyone"
+      }
     },
     "android": {
       "package": "com.oraprayernetwork.ora"
