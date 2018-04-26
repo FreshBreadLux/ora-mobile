@@ -37,7 +37,13 @@
       }
     },
     "android": {
-      "package": "com.oraprayernetwork.ora"
+      "package": "com.oraprayernetwork.ora",
+      "versionCode": 1,
+      "config": {
+        "branch": {
+          "apiKey": "key_live_eoz9cQ7szl3pXcvwPrMHAgffBtb4id8P"
+        }
+      }
     }
   }
 }
