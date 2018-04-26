@@ -413,6 +413,9 @@ const ss = StyleSheet.create({
   oneThirdWidth: {
     width: '33%',
   },
+  oneQuarterWidth: {
+    width: '25%'
+  },
   maxWidth100: {
     maxWidth: '50%',
   },

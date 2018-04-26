@@ -16,19 +16,13 @@ class RegisterOraMissionaryContainer extends React.Component {
       state: '',
       gender: '',
       age: '',
+      zip: '',
       loading: false,
       failed: false,
       error: false,
     }
-    // this.setAge = this.setAge.bind(this)
-    // this.setCity = this.setCity.bind(this)
-    // this.setGender = this.setGender.bind(this)
-    // this.setAddress = this.setAddress.bind(this)
     this.focusInput = this.focusInput.bind(this)
-    // this.setStateVal = this.setStateVal.bind(this)
     this.setInputRef = this.setInputRef.bind(this)
-    // this.setLastName = this.setLastName.bind(this)
-    // this.setFirstName = this.setFirstName.bind(this)
     this.setStateField = this.setStateField.bind(this)
     this.registerMissionary = this.registerMissionary.bind(this)
   }
@@ -63,32 +57,11 @@ class RegisterOraMissionaryContainer extends React.Component {
     this.setState({ [name]: value })
   }
 
-  // setFirstName(firstName) {
-  //   this.setState({firstName})
-  // }
-  // setLastName(lastName) {
-  //   this.setState({lastName})
-  // }
-  // setAddress(address) {
-  //   this.setState({address})
-  // }
-  // setCity(city) {
-  //   this.setState({city})
-  // }
-  // setStateVal(state) {
-  //   this.setState({state})
-  // }
-  // setGender(gender) {
-  //   this.setState({gender})
-  // }
-  // setAge(age) {
-  //   this.setState({age})
-  // }
-
   render() {
     return (
       <RegisterOraMissionaryPresenter
         age={this.state.age}
+        zip={this.state.zip}
         city={this.state.city}
         state={this.state.state}
         error={this.state.error}
@@ -100,6 +73,7 @@ class RegisterOraMissionaryContainer extends React.Component {
         lastName={this.state.lastName}
         setInputRef={this.setInputRef}
         firstName={this.state.firstName}
+        setStateField={this.setStateField}
         registerMissionary={this.registerMissionary} />
     )
   }
@@ -115,12 +89,4 @@ const mapDispatch = dispatch => ({
 
 export default connect(mapState, mapDispatch)(RegisterOraMissionaryContainer)
 
-/*
-setAge={this.setAge}
-setCity={this.setCity}
-setGender={this.setGender}
-setAddress={this.setAddress}
-setLastName={this.setLastName}
-setStateVal={this.setStateVal}
-setFirstName={this.setFirstName}
-*/
+// const STATES = ['AK', 'AL', 'AR', 'AS', 'AZ', 'CA', 'CO', 'CT', 'DC', 'DE', 'FL', 'GA', 'GU', 'HI', 'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MH', 'MI', 'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 'NY', 'OH', 'OK', 'OR', 'PA', 'PR', 'PW', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VI', 'VT', 'WA', 'WI', 'WV', 'WY']

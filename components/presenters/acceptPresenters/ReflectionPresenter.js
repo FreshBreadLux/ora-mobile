@@ -34,8 +34,8 @@ const ReflectionPresenter = ({ reflectionFade, reflectionFadeOut, animateNextPra
               await reflectionFadeOut()
               animateNextPrayerTransition()
             }}
-            style={[ss.button, ss.fullWidth]}>
-            <Text style={ss.buttonText}>ACCEPT A NEW PRAYER</Text>
+            style={[ss.button, ss.threeQuartersWidth]}>
+            <Text style={ss.buttonText}>ACCEPT NEW PRAYER</Text>
           </TouchableOpacity>
         </Animated.View>
       </Animated.View>

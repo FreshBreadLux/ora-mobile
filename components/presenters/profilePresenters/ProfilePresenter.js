@@ -53,16 +53,6 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
             <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
               <TouchableOpacity
                 style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
-                onPress={() => navigation.navigate('ShareOra')}>
-                <Text style={ss.buttonText}>Share Ora</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
-              </TouchableOpacity>
-            </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
-              <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
                 onPress={() => navigation.navigate('Donate')}>
                 <Text style={ss.buttonText}>Donate</Text>
                 <Feather
@@ -157,3 +147,16 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(ProfilePresenter)
+
+/*
+<View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
+  <TouchableOpacity
+    style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
+    onPress={() => navigation.navigate('ShareOra')}>
+    <Text style={ss.buttonText}>Share Ora</Text>
+    <Feather
+      name="chevron-right"
+      size={26} />
+  </TouchableOpacity>
+</View>
+*/

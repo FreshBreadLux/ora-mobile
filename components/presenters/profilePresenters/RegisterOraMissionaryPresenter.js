@@ -3,7 +3,7 @@ import { View, Text, TextInput, SafeAreaView, TouchableOpacity, ScrollView, Acti
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, firstName, address, setInputRef, focusInput, loading, failed, error, setStateField, registerMissionary }) => (
+const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, firstName, address, zip, setInputRef, focusInput, loading, failed, error, setStateField, registerMissionary }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.whiteContainer, ss.padding15]}>
       <View style={[ss.addMedViewSpacing, ss.topBorder, ss.whiteContainer]}>
@@ -61,14 +61,26 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                 value={city} />
               <TextInput
                 ref={ref => setInputRef('stateRef', ref)}
-                style={[ss.paddingTop4, ss.paddingBottom4, ss.halfWidth, ss.subBody, ss.darkBottomBorder]}
+                style={[ss.paddingTop4, ss.paddingBottom4, ss.oneQuarterWidth, ss.subBody, ss.darkBottomBorder]}
                 underlineColorAndroid="transparent"
                 placeholder="State"
                 placeholderTextColor="#555"
                 keyboardType="default"
+                maxLength={2}
                 onChangeText={value => setStateField('state', value)}
-                onSubmitEditing={() => focusInput('gender')}
+                onSubmitEditing={() => focusInput('zip')}
                 value={state} />
+              <TextInput
+                ref={ref => setInputRef('zip', ref)}
+                style={[ss.paddingTop4, ss.paddingBottom4, ss.oneQuarterWidth, ss.subBody, ss.darkBottomBorder]}
+                underlineColorAndroid="transparent"
+                placeholder="Zip"
+                placeholderTextColor="#555"
+                keyboardType="numeric"
+                maxLength={5}
+                onChangeText={value => setStateField('zip', value)}
+                onSubmitEditing={() => focusInput('gender')}
+                value={zip} />
             </View>
             <View style={[ss.addViewSpacing, ss.center, ss.row]}>
               <TextInput
@@ -88,6 +100,7 @@ const RegisterOraMissionaryPresenter = ({ age, city, state, gender, lastName, fi
                 placeholder="Age"
                 placeholderTextColor="#555"
                 keyboardType="numeric"
+                maxLength={3}
                 onChangeText={value => setStateField('age', value)}
                 value={age} />
             </View>
