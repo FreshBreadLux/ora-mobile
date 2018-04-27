@@ -22,10 +22,7 @@
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.1.3",
       "loadJSInBackgroundExperimental": true,
-      "supportsTablet": false,
-      "infoPlist": {
-        "NSLocationAlwaysUsageDescription": "Ora uses data only for its member referral system and doesn't share your information with anyone"
-      }
+      "supportsTablet": false
     },
     "android": {
       "package": "com.oraprayernetwork.ora",
