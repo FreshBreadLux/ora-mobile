@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AsyncStorage, AppState } from 'react-native'
+import { View, AsyncStorage, AppState, StatusBar } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
@@ -76,6 +76,7 @@ class Root extends React.Component {
         : <View style={ss.invisiContainer}>
           {this.props.isLoggedIn
           ? <View style={ss.invisiContainer}>
+              <StatusBar barStyle="dark-content" />
               <NotificationModal
                 notification={this.state.notification}
                 hideNotificationModal={this.hideNotificationModal} />
