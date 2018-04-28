@@ -77,6 +77,7 @@ const MainTabNav = TabNavigator({
   },
 }, {
   swipeEnabled: true,
+  lazy: false,
   initialRouteName: 'Home',
   tabBarOptions: {
     showLabel: false,
