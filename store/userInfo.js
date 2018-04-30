@@ -31,12 +31,16 @@ export const fetchUserInfo = userId =>
       .catch(err => console.log(err))
 
 export const updateUserTheme = (userId, theme = 'Rome') =>
-  dispatch =>
-    axios.put(`${ROOT_URL}/api/users/${userId}`, {theme})
+  dispatch => {
+    if (theme === null) {
+      theme = 'Rome'
+    }
+    return axios.put(`${ROOT_URL}/api/users/${userId}`, {theme})
       .then(res => {
         dispatch(setTheme(res.data.theme))
       })
       .catch(err => console.log(err))
+  }
 
 /**
  * REDUCER
