@@ -30,7 +30,7 @@ export const fetchUserInfo = userId =>
       .then(res => dispatch(setUserInfo(res.data || defaultUserInfo)))
       .catch(err => console.log(err))
 
-export const updateUserTheme = (userId, theme) =>
+export const updateUserTheme = (userId, theme = 'Rome') =>
   dispatch =>
     axios.put(`${ROOT_URL}/api/users/${userId}`, {theme})
       .then(res => {
