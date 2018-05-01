@@ -40,11 +40,11 @@ class Root extends React.Component {
     const oraAuth = await AsyncStorage.getItem('oraAuth_v1.1.0')
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
+      console.log('INSIDE THE IF STATEMENT IN VERIFY STORAGE KEY')
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
-      this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
-      this.props.loadInitialData(oraAuthJson.userId)
+      await this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
+      await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
-      await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
     }
   }
 
@@ -59,7 +59,9 @@ class Root extends React.Component {
   handleAppStateChange(nextAppState) {
     const { userId, refreshUserPrayers, refreshUserFollows } = this.props
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+      console.log('firing refresh user prayers with userid: ', userId)
       refreshUserPrayers(userId)
+      console.log('firing refresh user follows with userid: ', userId)
       refreshUserFollows(userId)
     }
     this.setState({ appState: nextAppState })
@@ -101,13 +103,15 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   loadInitialData: userId => {
-    dispatch(fetchUserPrayers(userId))
-    dispatch(fetchUserFollows(userId))
-    dispatch(fetchUserViews(userId))
-    dispatch(fetchUserAlarms())
-    dispatch(fetchFlagReasons())
+    return Promise.all([
+      dispatch(fetchUserPrayers(userId)),
+      dispatch(fetchUserFollows(userId)),
+      dispatch(fetchUserViews(userId)),
+      dispatch(fetchUserInfo(userId)),
+      dispatch(fetchUserAlarms()),
+      dispatch(fetchFlagReasons())
+    ])
   },
-  dispatchFetchUserInfo: userId => dispatch(fetchUserInfo(userId)),
   logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
   refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
