@@ -5,7 +5,11 @@ import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
 import { LinearGradient } from 'expo'
 
-const FollowScrollPresenter = ({ follows, navigation }) => (
+const FollowScrollPresenter = ({ follows, navigation }) => {
+  console.log('follows: ', follows)
+  console.log('follows === null: ', follows === null)
+  console.log('follows === (the string) null: ', follows === 'null')
+  return (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Follows" />
     <SafeAreaView style={ss.invisiContainer}>
@@ -62,7 +66,7 @@ const FollowScrollPresenter = ({ follows, navigation }) => (
       </View>
     </SafeAreaView>
   </View>
-)
+)}
 
 const mapState = state => ({
   follows: state.follows

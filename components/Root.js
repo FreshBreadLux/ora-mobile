@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, upda, LOGOUTteUserTheme } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -40,9 +40,13 @@ class Root extends React.Component {
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
+      console.log('dispatching update user theme...')
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
+      console.log('dispatching load initial data...')
       this.props.loadInitialData(oraAuthJson.userId)
+      console.log('logging user in...')
       this.props.logUserIn(oraAuthJson)
+      console.log('dispatching fetch user info...')
       await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
     }
   }

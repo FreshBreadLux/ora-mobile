@@ -66,7 +66,11 @@ export default class SignupFormContainer extends React.Component {
             headers: {'api-key': SENDINBLUE_API_KEY_V3 }
           })
         })
-        .then(() => this.props.showAlarm())
+        .then(() => {
+          console.log('SHOWING ALARM')
+          this.props.showAlarm()
+          console.log('DOES THIS CONSOLE.LOG FIRE?')
+        })
         .catch(error => {
           if (error.response && error.response.status === 405) {
             this.setState({error: 'Please submit a valid email address'})

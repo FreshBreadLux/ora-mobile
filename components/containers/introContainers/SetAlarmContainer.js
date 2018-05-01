@@ -50,8 +50,11 @@ class SetAlarmContainer extends React.Component {
       })
       const userAlarms = await JSON.stringify([{time: chosenTime, reminderId}])
       await AsyncStorage.setItem('userAlarms', userAlarms)
+      console.log('verifying storage key...')
       this.props.verifyStorageKey()
+      console.log('storage key verified')
       await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'true')
+      console.log('about to set noIntroNeeded')
       this.props.noIntroNeeded()
     } catch (error) {
       console.error(error)
