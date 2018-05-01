@@ -23,6 +23,7 @@ class Root extends React.Component {
 
   componentDidMount() {
     this.checkFirstTime()
+    .catch(console.error.bind(console))
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
   }
@@ -40,13 +41,9 @@ class Root extends React.Component {
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
-      console.log('dispatching update user theme...')
       this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
-      console.log('dispatching load initial data...')
       this.props.loadInitialData(oraAuthJson.userId)
-      console.log('logging user in...')
       this.props.logUserIn(oraAuthJson)
-      console.log('dispatching fetch user info...')
       await this.props.dispatchFetchUserInfo(oraAuthJson.userId)
     }
   }

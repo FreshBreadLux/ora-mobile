@@ -12,12 +12,8 @@ async function registerForPushNotificationsAsync() {
   return token
 }
 
-async function setAsyncStorage(item, selectedValue) {
-  try {
-    await AsyncStorage.setItem(item, selectedValue)
-  } catch (error) {
-    console.error('AsyncStorage error: ' + error.message)
-  }
+function setAsyncStorage(item, selectedValue) {
+  return AsyncStorage.setItem(item, selectedValue)
 }
 
 export default class SignupFormContainer extends React.Component {

@@ -43,12 +43,12 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
             />
           </View>
           {checkEmailReturned && userExists
-          ? <View>
+            ? <View>
               <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>
                 Welcome! Looks like you already have a profile. Please login with the password you created on our website.
               </Text>
             </View>
-          : null
+            : null
           }
           <View style={[ss.addViewSpacing, ss.center]}>
             <TextInput
@@ -64,29 +64,29 @@ const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword,
           </View>
           <View style={[ss.flex1, ss.center]}>
             {checkEmailReturned && userExists
-            ? <TouchableOpacity
+              ? <TouchableOpacity
                 style={[ss.button, ss.halfWidth]}
                 onPress={userLogin}>
                 {failed
-                ? <Text style={ss.buttonText}>LOGIN FAILED</Text>
-                : <View>
+                  ? <Text style={ss.buttonText}>LOGIN FAILED</Text>
+                  : <View>
                     {sending
-                    ? <ActivityIndicator size="small" color="#1e3799" />
-                    : <Text style={ss.buttonText}>LOGIN</Text>
+                      ? <ActivityIndicator size="small" color="#1e3799" />
+                      : <Text style={ss.buttonText}>LOGIN</Text>
                     }
                   </View>
                 }
               </TouchableOpacity>
-            : <TouchableOpacity
+              : <TouchableOpacity
                 disabled={!checkEmailReturned}
                 style={[ss.button, ss.halfWidth]}
                 onPress={userSignup}>
                 {failed
-                ? <Text style={ss.buttonText}>SIGNUP FAILED</Text>
-                : <View>
+                  ? <Text style={ss.buttonText}>SIGNUP FAILED</Text>
+                  : <View>
                     {sending
-                    ? <ActivityIndicator size="small" color="#0c2461" />
-                    : <Text style={ss.buttonText}>SIGN UP</Text>
+                      ? <ActivityIndicator size="small" color="#0c2461" />
+                      : <Text style={ss.buttonText}>SIGN UP</Text>
                     }
                   </View>
                 }
