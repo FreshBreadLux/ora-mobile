@@ -40,15 +40,10 @@ class Root extends React.Component {
     const oraAuth = await AsyncStorage.getItem('oraAuth_v1.1.0')
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
-      console.log('INSIDE THE IF STATEMENT IN VERIFY STORAGE KEY')
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       await this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
-      console.log('ABOUT TO LOAD INITIAL DATA; USERINFO IS : ', this.props.userInfo)
       await this.props.loadInitialData(oraAuthJson.userId)
-      console.log('LOADED INITIAL DATA; USERINFO IS : ', this.props.userInfo)
-      console.log('ABOUT TO LOG USER IN; USERID IS : ', this.props.userId)
       this.props.logUserIn(oraAuthJson)
-      console.log('LOGGED USER IN; USERID IS : ', this.props.userId)
     }
   }
 

@@ -6,12 +6,8 @@ import ForgotPasswordContainer from './ForgotPasswordContainer'
 import ss from '../../StyleSheet'
 import ROOT_URL from '../../../config'
 
-async function setAsyncStorage(item, selectedValue) {
-  try {
-    await AsyncStorage.setItem(item, selectedValue)
-  } catch (error) {
-    console.error('AsyncStorage error: ' + error.message)
-  }
+function setAsyncStorage(item, selectedValue) {
+  return AsyncStorage.setItem(item, selectedValue)
 }
 
 export default class LoginFormContainer extends React.Component {

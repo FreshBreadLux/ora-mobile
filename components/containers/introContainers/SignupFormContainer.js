@@ -63,7 +63,6 @@ export default class SignupFormContainer extends React.Component {
           })
         })
         .then(() => {
-          console.log('SHOWING ALARM')
           this.props.showAlarm()
         })
         .catch(error => {
