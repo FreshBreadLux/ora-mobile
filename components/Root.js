@@ -43,8 +43,12 @@ class Root extends React.Component {
       console.log('INSIDE THE IF STATEMENT IN VERIFY STORAGE KEY')
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       await this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
+      console.log('ABOUT TO LOAD INITIAL DATA; USERINFO IS : ', this.props.userInfo)
       await this.props.loadInitialData(oraAuthJson.userId)
+      console.log('LOADED INITIAL DATA; USERINFO IS : ', this.props.userInfo)
+      console.log('ABOUT TO LOG USER IN; USERID IS : ', this.props.userId)
       this.props.logUserIn(oraAuthJson)
+      console.log('LOGGED USER IN; USERID IS : ', this.props.userId)
     }
   }
 
@@ -59,9 +63,7 @@ class Root extends React.Component {
   handleAppStateChange(nextAppState) {
     const { userId, refreshUserPrayers, refreshUserFollows } = this.props
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
-      console.log('firing refresh user prayers with userid: ', userId)
       refreshUserPrayers(userId)
-      console.log('firing refresh user follows with userid: ', userId)
       refreshUserFollows(userId)
     }
     this.setState({ appState: nextAppState })
