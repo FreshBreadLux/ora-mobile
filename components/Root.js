@@ -57,7 +57,7 @@ class Root extends React.Component {
 
   handleAppStateChange(nextAppState) {
     const { userId, refreshUserPrayers, refreshUserFollows } = this.props
-    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+    if (this.state.appState.match(/inactive|background/) && nextAppState === 'active' && userId) {
       refreshUserPrayers(userId)
       refreshUserFollows(userId)
     }
