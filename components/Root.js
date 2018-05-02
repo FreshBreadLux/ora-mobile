@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, updateUserTheme } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -41,7 +41,7 @@ class Root extends React.Component {
     const oraAuthJson = JSON.parse(oraAuth)
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
-      await this.props.dispatchUpdateUserTheme(oraAuthJson.userId, theme)
+      this.props.dispatchSetTheme(theme)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
     }
@@ -113,7 +113,7 @@ const mapDispatch = dispatch => ({
   refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
   noIntroNeeded: () => dispatch(notFirstRodeo()),
-  dispatchUpdateUserTheme: (userId, theme) => dispatch(updateUserTheme(userId, theme))
+  dispatchSetTheme: theme => dispatch(setTheme(theme))
 })
 
 export default connect(mapState, mapDispatch)(Root)
