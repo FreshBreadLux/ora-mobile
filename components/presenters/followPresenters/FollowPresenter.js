@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native'
+import { View, Text, ScrollView, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native'
 import Modal from 'react-native-modal'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
@@ -14,7 +14,7 @@ const inRecentlyPrayedFor = (recentlyPrayedFor, prayerId) => (
   }, false)
 )
 
-const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPrayer, showModal, hideModal, visibleModal }) => (
+const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPrayer, showModal, hideModal, visibleModal, sendingLove }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.padding15]}>
       <View style={[ss.row, ss.paddingBottom10, ss.bottomBorder]}>
@@ -54,13 +54,16 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
         : <View style={[ss.center, ss.flex1]}>
             <TouchableOpacity
               onPress={notifyAuthor}>
-              <View style={ss.row}>
-                <Ionicons
-                  name="md-heart"
-                  size={18}
-                  color="#FF4081" />
-                <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
-              </View>
+              {sendingLove
+              ? <ActivityIndicator size="small" color="#FF4081" />
+              : <View style={ss.row}>
+                  <Ionicons
+                    name="md-heart"
+                    size={18}
+                    color="#FF4081" />
+                  <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
+                </View>
+              }
             </TouchableOpacity>
           </View>
         }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AsyncStorage, AppState, StatusBar } from 'react-native'
+import { View, AsyncStorage, AppState, StatusBar, Image } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme } from '../store'
@@ -13,7 +13,8 @@ class Root extends React.Component {
     super(props)
     this.state = {
       notification: null,
-      appState: AppState.currentState
+      appState: AppState.currentState,
+      loading: true,
     }
     this.handleNotification = this.handleNotification.bind(this)
     this.handleAppStateChange = this.handleAppStateChange.bind(this)
@@ -33,6 +34,8 @@ class Root extends React.Component {
     if (seenIntro === 'true') {
       this.props.noIntroNeeded()
       this.verifyStorageKey()
+    } else {
+      this.setState({ loading: false })
     }
   }
 
@@ -44,6 +47,9 @@ class Root extends React.Component {
       this.props.dispatchSetTheme(theme)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
+      this.setState({ loading: false })
+    } else {
+      this.setState({ loading: false })
     }
   }
 
@@ -71,18 +77,27 @@ class Root extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        {this.props.firstTime
-        ? <IntroSwiperContainer verifyStorageKey={this.verifyStorageKey} />
+        {this.state.loading
+        ? <View style={ss.backgroundImageFrame}>
+            <Image
+              source={require('../assets/images/splash.png')}
+              style={ss.backgroundImage} />
+          </View>
         : <View style={ss.invisiContainer}>
-          {this.props.isLoggedIn
-          ? <View style={ss.invisiContainer}>
-              <StatusBar barStyle="dark-content" />
-              <NotificationModal
-                notification={this.state.notification}
-                hideNotificationModal={this.hideNotificationModal} />
-              <MainNav />
+          {this.props.firstTime
+          ? <IntroSwiperContainer verifyStorageKey={this.verifyStorageKey} />
+          : <View style={ss.invisiContainer}>
+            {this.props.isLoggedIn
+            ? <View style={ss.invisiContainer}>
+                <StatusBar barStyle="dark-content" />
+                <NotificationModal
+                  notification={this.state.notification}
+                  hideNotificationModal={this.hideNotificationModal} />
+                <MainNav />
+              </View>
+            : <LoginFormContainer verifyStorageKey={this.verifyStorageKey} />
+            }
             </View>
-          : <LoginFormContainer verifyStorageKey={this.verifyStorageKey} />
           }
           </View>
         }
