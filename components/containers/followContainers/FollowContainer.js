@@ -10,6 +10,9 @@ const ONE_HALF_HOUR = 1000 * 60 * 30
 class FollowContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      sendingLove: false
+    }
     this.unfollowPrayer = this.unfollowPrayer.bind(this)
     this.notifyAuthor = this.notifyAuthor.bind(this)
   }
@@ -25,10 +28,12 @@ class FollowContainer extends React.Component {
   }
 
   notifyAuthor() {
+    this.setState({ sendingLove: true })
     const { followedId } = this.props.navigation.state.params.follow.follow
     axios.put(`${ROOT_URL}/api/follows/notify/followedId/${followedId}`)
     .then(prayer => {
       this.props.dispatchAddRecentlyPrayedFor(prayer.data.id)
+      this.setState({ sendingLove: false })
       setTimeout(() => {
         this.props.dispatctchRemoveRecentlyPrayedFor(prayer.data.id)
       }, ONE_HALF_HOUR)
