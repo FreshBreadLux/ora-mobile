@@ -6,9 +6,13 @@ import { SignupFormPresenter } from '../../presenters'
 import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
 
 async function registerForPushNotificationsAsync() {
+  console.log('PROMPTING USER')
   let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+  console.log('STATUS RESOLVED:', status)
   if (status !== 'granted') return
+  console.log('GETTING EXPO PUSH TOKEN')
   let token = await Notifications.getExpoPushTokenAsync()
+  console.log('TOKEN RETRIEVED:', token)
   return token
 }
 
@@ -41,7 +45,9 @@ export default class SignupFormContainer extends React.Component {
     try {
       if (this.state.email && this.state.password) {
         this.setState({ sending: true })
+        console.log('REGISTERING FOR PUSH NOTIFICATIONS')
         let token = await registerForPushNotificationsAsync()
+        console.log('TOKEN RESOLVED TO:', token)
         axios.post(`${ROOT_URL}/api/users`, {
           email: this.state.email,
           password: this.state.password,
