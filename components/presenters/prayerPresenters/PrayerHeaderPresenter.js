@@ -1,18 +1,17 @@
 import React from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { Header } from 'react-navigation'
 import { setVisibleModal, setEditMode } from '../../../store'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModal }) => {
-  console.log('Ionicons: ', Ionicons)
-  return (
-  <View style={[ss.invisiContainer, ss.padding15, ss.boxBorder]}>
+const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModal }) => (
+  <View style={[ss.invisiContainer, ss.padding15]}>
     {editMode.makingEdit
     ? null
-    : <View style={[ss.invisiContainer, ss.row, ss.paddingBottom10, ss.spaceBetween, ss.boxBorder]}>
-        <View style={[ss.invisiContainer, ss.row, ss.center]}>
+    : <View style={[ss.invisiContainer, ss.row, ss.center]}>
+        <View style={[ss.invisiContainer, ss.row, ss.spaceBetween, {height: Header.HEIGHT}]}>
           <TouchableOpacity
             style={ss.paddingSides10}
             onPress={() => showModal('delete')}>
@@ -51,7 +50,7 @@ const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModa
       </View>
     }
   </View>
-)}
+)
 
 const mapState = state => ({
   editMode: state.editMode
