@@ -5,12 +5,14 @@ import { setVisibleModal, setEditMode } from '../../../store'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModal }) => (
-  <View style={[ss.invisiContainer, ss.padding15]}>
+const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModal }) => {
+  console.log('Ionicons: ', Ionicons)
+  return (
+  <View style={[ss.invisiContainer, ss.padding15, ss.boxBorder]}>
     {editMode.makingEdit
     ? null
-    : <View style={[ss.row, ss.paddingBottom10, ss.spaceBetween]}>
-        <View style={[ss.row, ss.center]}>
+    : <View style={[ss.invisiContainer, ss.row, ss.paddingBottom10, ss.spaceBetween, ss.boxBorder]}>
+        <View style={[ss.invisiContainer, ss.row, ss.center]}>
           <TouchableOpacity
             style={ss.paddingSides10}
             onPress={() => showModal('delete')}>
@@ -49,7 +51,7 @@ const PrayerHeaderPresenter = ({ prayer, editMode, dispatchSetEditMode, showModa
       </View>
     }
   </View>
-)
+)}
 
 const mapState = state => ({
   editMode: state.editMode
