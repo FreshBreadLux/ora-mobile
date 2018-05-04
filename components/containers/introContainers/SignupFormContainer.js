@@ -7,9 +7,9 @@ import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
 
 async function registerForPushNotificationsAsync() {
   console.log('PROMPTING USER')
-  let { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-  console.log('STATUS RESOLVED:', status)
-  if (status !== 'granted') return
+  let permissionsResult = await Permissions.askAsync(Permissions.NOTIFICATIONS)
+  console.log('STATUS RESOLVED:', permissionsResult)
+  if (permissionsResult.status !== 'granted') return
   console.log('GETTING EXPO PUSH TOKEN')
   let token = await Notifications.getExpoPushTokenAsync()
   console.log('TOKEN RETRIEVED:', token)
@@ -97,6 +97,7 @@ export default class SignupFormContainer extends React.Component {
 
   checkEmail() {
     if (this.state.email) {
+      console.log('QUERYING WITH EMAIL:', this.state.email)
       axios.get(`${ROOT_URL}/api/users/?email=${this.state.email}`)
       .then(response => {
         if (response.data.id) {
