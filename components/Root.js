@@ -24,7 +24,7 @@ class Root extends React.Component {
 
   componentDidMount() {
     this.checkFirstTime()
-    .catch(console.error.bind(console))
+    .catch(console.error)
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
   }
