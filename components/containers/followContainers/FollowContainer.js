@@ -49,6 +49,7 @@ class FollowContainer extends React.Component {
       <FollowPresenter
         notifyAuthor={this.notifyAuthor}
         unfollowPrayer={this.unfollowPrayer}
+        sendingLove={this.state.sendingLove}
         follow={this.props.navigation.state.params.follow} />
     )
   }
