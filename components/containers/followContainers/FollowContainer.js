@@ -31,7 +31,7 @@ class FollowContainer extends React.Component {
     this.setState({ sendingLove: true })
     const { followedId, followerId } = this.props.navigation.state.params.follow.follow
     console.log('followerId:', followerId)
-    axios.put(`${ROOT_URL}/api/follows/notify/followedId/${followedId}`)
+    axios.put(`${ROOT_URL}/api/follows/notify/followedId/${followedId}`, {followerId})
     .then(prayer => {
       this.props.dispatchAddRecentlyPrayedFor(prayer.data.id)
       this.setState({ sendingLove: false })
