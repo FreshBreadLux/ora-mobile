@@ -39,7 +39,10 @@ class FollowContainer extends React.Component {
         this.props.dispatctchRemoveRecentlyPrayedFor(prayer.data.id)
       }, ONE_HALF_HOUR)
     })
-    .catch(console.error)
+    .catch(error => {
+      console.log(error)
+      this.setState({ sendingLove: false })
+    })
   }
 
   render() {
