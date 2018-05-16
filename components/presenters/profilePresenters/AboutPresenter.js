@@ -16,6 +16,12 @@ const AboutPresenter = () => (
           <Text style={ss.body}>Ora is a nonprofit dedicated to illustrating the beauty of the One, Holy, Catholic, and Apostolic Church, and helping Christians cultivate a stronger prayer life and relationship with God. The app has two primary goals: to give support and encouragement to people with burdens, and to encourage people to actively participate in the Body of Christ by taking time out of their day to pray for their brothers and sisters in need. Ora will always be free, and relies on donations from users in order to operate.</Text>
         </View>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
+          <Text style={[ss.header, ss.centerText]}>THE NAME</Text>
+        </View>
+        <View style={ss.addViewSpacing}>
+          <Text style={ss.body}>"Ora" is the Latin imperative for "pray". The name was inspired by a line from the Ave Maria: "Ora pro nobis peccatoribus", which means "pray for us sinners".</Text>
+        </View>
+        <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>USING THE APP</Text>
         </View>
         <View style={ss.addViewSpacing}>
