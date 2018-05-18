@@ -43,7 +43,7 @@ const AboutPresenter = () => (
           <Text style={[ss.header, ss.centerText]}>RELIGIOUS AFFILIATION</Text>
         </View>
         <View style={[ss.paddingTop10, ss.paddingBottom20]}>
-          <Text style={ss.body}>The Ora Prayer Network is a Catholic nonprofit that is open to all Christians. Prayer is something that we share with all of our Christian brothers and sisters, and we're excited for the ecumenical potential that Ora brings. If you aren't Christian and you want to learn more about the faith, please feel free to reach out to us. If you already have a relationship with Jesus and you'd like to ask questions about the Catholic Church, we would love to hear from you.</Text>
+          <Text style={ss.body}>The Ora Prayer Network is a Catholic nonprofit created to serve all Christians. Prayer unites all of our brothers and sisters in Christ, of all denominations, and we're excited for the ecumenical potential that Ora brings. If you aren't a Christian and you want to learn more about our faith in Jesus, please reach out to us. If you already have a relationship with Jesus and you'd like to ask questions about the Catholic Church, we would love to hear from you.</Text>
         </View>
       </ScrollView>
     </View>
