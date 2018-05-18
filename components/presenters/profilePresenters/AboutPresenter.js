@@ -36,8 +36,14 @@ const AboutPresenter = () => (
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>REPORTING CONTENT</Text>
         </View>
-        <View style={[ss.paddingTop10, ss.paddingBottom20]}>
+        <View style={ss.addViewSpacing}>
           <Text style={ss.body}>If you come across a request that shouldn't be in our prayer network, use the flag icon to bring it to our attention.</Text>
+        </View>
+        <View style={[ss.addViewSpacing, ss.fullWidth]}>
+          <Text style={[ss.header, ss.centerText]}>RELIGIOUS AFFILIATION</Text>
+        </View>
+        <View style={[ss.paddingTop10, ss.paddingBottom20]}>
+          <Text style={ss.body}>The Ora Prayer Network is a Catholic nonprofit that is open to all Christians. Prayer is something that we share with all of our Christian brothers and sisters, and we're excited for the ecumenical potential that Ora brings. If you aren't Christian and you want to learn more about the faith, please feel free to reach out to us. If you already have a relationship with Jesus and you'd like to ask questions about the Catholic Church, we would love to hear from you.</Text>
         </View>
       </ScrollView>
     </View>
