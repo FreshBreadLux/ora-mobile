@@ -30,7 +30,7 @@
     },
     "android": {
       "package": "com.oraprayernetwork.ora",
-      "versionCode": 3
+      "versionCode": 4
     }
   }
 }
