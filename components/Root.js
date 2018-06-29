@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AsyncStorage, AppState, StatusBar, Image } from 'react-native'
+import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme } from '../store'
@@ -27,6 +27,33 @@ class Root extends React.Component {
     .catch(console.error)
     Notifications.addListener(this.handleNotification)
     AppState.addEventListener('change', this.handleAppStateChange)
+    if (Platform.OS === 'android') {
+      Notifications.createChannelAndroidAsync('reminders', {
+        name: 'Reminders',
+        priority: max,
+        sound: true
+      })
+      Notifications.createChannelAndroidAsync('general-prayer', {
+        name: 'General Prayer',
+        priority: max,
+        sound: true
+      })
+      Notifications.createChannelAndroidAsync('new-follow', {
+        name: 'New Follow',
+        priority: max,
+        sound: true
+      })
+      Notifications.createChannelAndroidAsync('follower-prayer', {
+        name: 'Follower Prayer',
+        priority: max,
+        sound: true
+      })
+      Notifications.createChannelAndroidAsync('follow-update', {
+        name: 'Follow Update',
+        priority: max,
+        sound: true
+      })
+    }
   }
 
   async checkFirstTime() {
