@@ -84,7 +84,7 @@ class Root extends React.Component {
     this.setState({ notification })
     const { userId, refreshUserPrayers, refreshUserFollows } = this.props
     if (notification.data.type === 'new-follow') refreshUserPrayers(userId)
-    if (notification.data.type === 'new-view') refreshUserPrayers(userId)
+    if (notification.data.type === 'general-prayer') refreshUserPrayers(userId)
     if (notification.data.type === 'follow-update') refreshUserFollows(userId)
   }
 
