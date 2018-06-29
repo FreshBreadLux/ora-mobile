@@ -19,7 +19,7 @@ const AboutPresenter = () => (
           <Text style={[ss.header, ss.centerText]}>THE NAME</Text>
         </View>
         <View style={ss.addViewSpacing}>
-          <Text style={ss.body}>"Ora" is the Latin imperative for "pray". The name was inspired by a line from the Ave Maria: "Ora pro nobis peccatoribus", which means "pray for us sinners".</Text>
+          <Text style={ss.body}>"Ora" is the Latin imperative for "pray". The name was inspired by a line from the Ave Maria: "Ora pro nobis peccatoribus", which means "Pray for us sinners".</Text>
         </View>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>USING THE APP</Text>
@@ -31,7 +31,7 @@ const AboutPresenter = () => (
           <Text style={[ss.header, ss.centerText]}>FOLLOWING PRAYERS</Text>
         </View>
         <View style={ss.addViewSpacing}>
-          <Text style={ss.body}>While all prayers are submitted and viewed anonymously, we hope to use connections between users to illustrate the power of prayer. You can follow prayers by tapping the heart icon, and you will receive notifications anytime the author provides updates to their prayer request.{'\n\n'}Note: Once you move on to a new prayer, you will not be able to return to the previous one, so please be sure to Follow any prayer requests you would like to receive updates about before accepting another.</Text>
+          <Text style={ss.body}>While all prayers are submitted and viewed anonymously, we hope to use connections between users to illustrate the power of prayer. You can follow prayers by tapping the heart icon, and you will receive notifications anytime the author provides updates to their prayer request. You can also revisit the prayer and continue to send the author notifications by pressing Send Love.{'\n\n'}Note: Once you move on to a new prayer, you will not be able to return to the previous one, so please be sure to Follow any prayer requests you would like to revisit before accepting another.</Text>
         </View>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           <Text style={[ss.header, ss.centerText]}>REPORTING CONTENT</Text>
