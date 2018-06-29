@@ -43,7 +43,10 @@ class SetAlarmContainer extends React.Component {
         title: 'Cultivate a Life of Devotion',
         body: 'Take time to pray',
         data: { body: 'Take time to pray' },
-        sound: true
+        sound: true,
+        android: {
+          channelId: 'reminders'
+        }
       }, {
         time: chosenTime,
         repeat: 'day'

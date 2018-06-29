@@ -99,7 +99,9 @@ class AcceptContainer extends React.Component {
     .then(() => {
       AlertIOS.alert(
         'This prayer has been flagged',
-        'The Ora team will look into this and resolve the issue as quickly as possible', this.props.navigation.goBack)
+        'The Ora team will look into this and resolve the issue as quickly as possible',
+        this.finishPraying
+      )
     })
     .catch(console.error)
   }
