@@ -31,6 +31,18 @@
     "android": {
       "package": "com.oraprayernetwork.ora",
       "versionCode": 5
+    },
+    "hooks": {
+      "postPublish": [
+        {
+          "file": "sentry-expo/upload-sourcemaps",
+          "config": {
+            "organization": "ora-prayer-network",
+            "project": "ora-prayer-network",
+            "authToken": "6305010f094b42a8b3a555a30f4dbeb2a87650fb104144c984fbe32b5e2fdd1c"
+          }
+        }
+      ]
     }
   }
 }
