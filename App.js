@@ -6,11 +6,7 @@ import Root from './components/Root'
 import store from './store'
 import Sentry from 'sentry-expo'
 
-// Remove this once Sentry is correctly setup.
-Sentry.enableInExpoDevelopment = true
-
 Sentry.config('https://912d6f61ddf242e6a1cc008fbfb92369@sentry.io/1236350').install()
-
 
 /** ASYNC FUNCTIONS FOR LOADING ASSETS ONTO THE PHONE **/
 function cacheImages(images) {
