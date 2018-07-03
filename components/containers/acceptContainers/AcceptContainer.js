@@ -5,6 +5,7 @@ import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView,
 import { ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
+import { ampEvents, ampLogEvent } from '../../analytics'
 import ss from '../../StyleSheet'
 
 function animate(...options) {
@@ -72,6 +73,7 @@ class AcceptContainer extends React.Component {
     try {
       await this.fadeOut()
       await this.loadNextPrayer().then(this.fadeIn)
+      ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
     } catch (err) {
       console.error(err)
     }
@@ -82,6 +84,7 @@ class AcceptContainer extends React.Component {
     this.props.dispatchSetReflection()
     await this.reflectionFadeIn()
     this.fadeIn()
+    ampLogEvent(ampEvents.START_REFLECTION)
   }
 
   finishPraying() {
@@ -116,6 +119,7 @@ class AcceptContainer extends React.Component {
       .then(() => {
         refreshUserFollows(userId)
         this.props.dispatchRemoveVisibleModal()
+        ampLogEvent(ampEvents.FOLLOW_PRAYER)
       })
       .catch(console.error)
     } else {
