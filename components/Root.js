@@ -6,6 +6,7 @@ import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetc
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
+import { ampEvents, ampInitialize, ampIdentify } from './analytics'
 import ss from './StyleSheet'
 
 class Root extends React.Component {
@@ -23,6 +24,7 @@ class Root extends React.Component {
   }
 
   componentDidMount() {
+    ampInitialize()
     this.checkFirstTime()
     .catch(console.error)
     Notifications.addListener(this.handleNotification)

@@ -2,6 +2,7 @@ import { Amplitude } from 'expo'
 import { AMPLITUDE_TEST_API_KEY } from '../config'
 
 export const ampEvents = {
+  USER_VERIFIED: 'USER_VERIFIED',
   START_REFLECTION: 'START_REFLECTION',
   LOAD_NEXT_PRAYER: 'LOAD_NEXT_PRAYER',
   FOLLOW_PRAYER: 'FOLLOW_PRAYER',
