@@ -15,7 +15,7 @@ export const ampInitialize = () => {
 
 export const ampIdentify = (id, userProperties) => {
   if (id) {
-    Amplitude.setUserId(id)
+    Amplitude.setUserId(id.toString())
     if (userProperties) {
       Amplitude.setUserProperties(userProperties)
     }
