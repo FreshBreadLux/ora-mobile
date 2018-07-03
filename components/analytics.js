@@ -9,10 +9,14 @@ export const ampEvents = {
   SEND_LOVE: 'SEND_LOVE'
 }
 
-export const ampInitialize = () => Amplitude.initialize(AMPLITUDE_TEST_API_KEY)
+export const ampInitialize = () => {
+  console.log('Initializing Amplitude')
+  Amplitude.initialize(AMPLITUDE_TEST_API_KEY)
+}
 
 export const ampIdentify = (id, userProperties) => {
   if (id) {
+    console.log('Setting Amplitude userId:', id)
     Amplitude.setUserId(id)
     if (userProperties) {
       Amplitude.setUserProperties(userProperties)
@@ -26,6 +30,7 @@ export const ampLogEvent = (event, eventProperties) => {
   if (eventProperties) {
     Amplitude.logEventWithProperties(event, eventProperties)
   } else {
+    console.log('Logging event to Amplitude:', event)
     Amplitude.logEvent(event)
   }
 }
