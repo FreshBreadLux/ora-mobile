@@ -74,6 +74,7 @@ class Root extends React.Component {
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchSetTheme(theme)
+      ampIdentify(oraAuthJson.userId)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
       this.setState({ loading: false })
