@@ -1,5 +1,5 @@
 import { Amplitude } from 'expo'
-import { AMPLITUDE_TEST_API_KEY } from '../config'
+import { AMPLITUDE_API_KEY } from '../config'
 
 export const ampEvents = {
   USER_VERIFIED: 'USER_VERIFIED',
@@ -10,7 +10,7 @@ export const ampEvents = {
 }
 
 export const ampInitialize = () => {
-  Amplitude.initialize(AMPLITUDE_TEST_API_KEY)
+  Amplitude.initialize(AMPLITUDE_API_KEY)
 }
 
 export const ampIdentify = (id, userProperties) => {
