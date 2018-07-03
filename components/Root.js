@@ -6,7 +6,7 @@ import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetc
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
-import { ampEvents, ampInitialize, ampIdentify } from './analytics'
+import { ampEvents, ampInitialize, ampIdentify, ampLogEvent } from './analytics'
 import ss from './StyleSheet'
 
 class Root extends React.Component {
@@ -77,6 +77,7 @@ class Root extends React.Component {
       ampIdentify(oraAuthJson.userId)
       await this.props.loadInitialData(oraAuthJson.userId)
       this.props.logUserIn(oraAuthJson)
+      ampLogEvent(ampEvents.USER_VERIFIED)
       this.setState({ loading: false })
     } else {
       this.setState({ loading: false })
