@@ -32,27 +32,27 @@ class Root extends React.Component {
     if (Platform.OS === 'android') {
       Notifications.createChannelAndroidAsync('reminders', {
         name: 'Reminders',
-        priority: max,
+        priority: 'max',
         sound: true
       })
       Notifications.createChannelAndroidAsync('general-prayer', {
         name: 'General Prayer',
-        priority: max,
+        priority: 'max',
         sound: true
       })
       Notifications.createChannelAndroidAsync('new-follow', {
         name: 'New Follow',
-        priority: max,
+        priority: 'max',
         sound: true
       })
       Notifications.createChannelAndroidAsync('follower-prayer', {
         name: 'Follower Prayer',
-        priority: max,
+        priority: 'max',
         sound: true
       })
       Notifications.createChannelAndroidAsync('follow-update', {
         name: 'Follow Update',
-        priority: max,
+        priority: 'max',
         sound: true
       })
     }
