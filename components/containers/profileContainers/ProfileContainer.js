@@ -3,7 +3,7 @@ import { AsyncStorage, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store'
 import { ProfilePresenter } from '../../presenters'
-import { Sentry } from 'expo'
+import Sentry from 'sentry-expo'
 
 class ProfileContainer extends React.Component {
   constructor(props) {
@@ -18,7 +18,10 @@ class ProfileContainer extends React.Component {
 
   setSentryUserContext() {
     console.log('User info:', this.props.userInfo)
-    Sentry.setUserContext({})
+    Sentry.setUserContext({
+      id: this.props.userInfo.id,
+      email: this.props.userInfo.email
+    })
   }
 
   async userLogout() {
