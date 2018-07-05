@@ -3,11 +3,22 @@ import { AsyncStorage, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { logout } from '../../../store'
 import { ProfilePresenter } from '../../presenters'
+import { Sentry } from 'expo'
 
 class ProfileContainer extends React.Component {
   constructor(props) {
     super(props)
     this.userLogout = this.userLogout.bind(this)
+    this.setSentryUserContext = this.setSentryUserContext.bind(this)
+  }
+
+  componentDidMount() {
+    this.setSentryUserContext()
+  }
+
+  setSentryUserContext() {
+    console.log('User info:', this.props.userInfo)
+    Sentry.setUserContext({})
   }
 
   async userLogout() {
@@ -29,8 +40,12 @@ class ProfileContainer extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userInfo: state.userInfo
+})
+
 const mapDispatch = dispatch => ({
   logUserOut: () => dispatch(logout())
 })
 
-export default connect(null, mapDispatch)(ProfileContainer)
+export default connect(mapState, mapDispatch)(ProfileContainer)
