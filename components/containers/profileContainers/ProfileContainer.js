@@ -17,13 +17,10 @@ class ProfileContainer extends React.Component {
   }
 
   setSentryUserContext() {
-    console.log('User info:', this.props.userInfo)
     Sentry.setUserContext({
       id: this.props.userInfo.id,
       email: this.props.userInfo.email
     })
-    console.log('Firing Sentry.captureMessage with test message')
-    Sentry.captureMessage('Test message')
   }
 
   async userLogout() {
