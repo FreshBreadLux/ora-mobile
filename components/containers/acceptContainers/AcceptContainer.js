@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeReflection, removeVisibleModal } from '../../../store'
 import { ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -18,10 +18,12 @@ class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      fadeAnim: new Animated.Value(0)
+      fadeAnim: new Animated.Value(0),
+      reflectionBackgroundOpacity: new Animated.Value(1)
     }
     this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
+    this.fadeOutReflectionBackground = this.fadeOutReflectionBackground.bind(this)
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
@@ -40,6 +42,10 @@ class AcceptContainer extends React.Component {
 
   fadeIn() {
     return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
+  }
+
+  fadeOutReflectionBackground() {
+    return animate(this.state.reflectionBackgroundOpacity, { toValue: 0, duration: 500 })
   }
 
   loadNextPrayer() {
@@ -62,6 +68,12 @@ class AcceptContainer extends React.Component {
     this.props.dispatchSetReflection()
     this.fadeIn()
     ampLogEvent(ampEvents.START_REFLECTION)
+  }
+
+  async finishReflection() {
+    await this.fadeOut()
+    await this.fadeOutReflectionBackground()
+    this.props.dispatchRemoveReflection()
   }
 
   finishPraying() {
@@ -113,10 +125,12 @@ class AcceptContainer extends React.Component {
     return (
       <View style={ss.invisiContainer}>
         <BackgroundImageContainer componentName="Accept" />
-        {!this.props.currentPrayer.subject
+        {this.props.reflection
           ? <ReflectionPresenter
-              opacity={this.state.fadeAnim}
+              reflectionTextOpacity={this.state.fadeAnim}
+              reflectionBackgroundOpacity={this.state.reflectionBackgroundOpacity}
               finishPraying={this.finishPraying}
+              finishReflection={this.finishReflection}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
           : <View style={ss.opacityContainer}>
               <CurrentPrayerPresenter
@@ -150,6 +164,7 @@ const mapDispatch = dispatch => ({
   dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
   dispatchFinishPraying: () => dispatch(finishPraying()),
   dispatchSetReflection: () => dispatch(setReflection()),
+  dispatchRemoveReflection: () => dispatch(removeReflection()),
   dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
 })
 
