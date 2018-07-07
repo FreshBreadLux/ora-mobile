@@ -1,19 +1,18 @@
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
+import { Text, View, SafeAreaView, TouchableOpacity, Animated, Image } from 'react-native'
 import { Feather } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const ReflectionPresenter = ({ reflectionFade, reflectionFadeOut, animateNextPrayerTransition, opacity, finishPraying }) => (
+const ReflectionPresenter = ({ reflectionFadeOut, animateNextPrayerTransition, opacity, finishPraying }) => (
   <View style={ss.whiteContainer}>
-    <Animated.View style={[ss.backgroundImageFrame, {opacity: reflectionFade}]}>
-      <LinearGradient
-        colors={['#1e3799', '#0c2461']}
-        start={[0.5, 0]}
-        style={ss.flex1} />
-    </Animated.View>
+    <View style={ss.backgroundImageFrame}>
+      <Image
+        source={require('../../../assets/images/rose-lock-screen.png')}
+        style={ss.backgroundImage} />
+    </View>
     <SafeAreaView style={ss.invisiContainer}>
-      <Animated.View style={[ss.invisiContainer, ss.padding15, {opacity: reflectionFade}]}>
+      <View style={[ss.invisiContainer, ss.padding15]}>
         <TouchableOpacity
           style={ss.padding10}
           onPress={finishPraying}>
@@ -38,7 +37,7 @@ const ReflectionPresenter = ({ reflectionFade, reflectionFadeOut, animateNextPra
             <Text style={ss.buttonText}>ACCEPT NEW PRAYER</Text>
           </TouchableOpacity>
         </Animated.View>
-      </Animated.View>
+      </View>
     </SafeAreaView>
   </View>
 )
