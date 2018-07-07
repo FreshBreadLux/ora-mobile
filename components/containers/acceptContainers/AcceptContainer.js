@@ -18,14 +18,11 @@ class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      titleButtonFade: new Animated.Value(1),
       reflectionFade: new Animated.Value(0),
       fadeAnim: new Animated.Value(0)
     }
     this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
-    this.titleButtonFadeIn = this.titleButtonFadeIn.bind(this)
-    this.titleButtonFadeOut = this.titleButtonFadeOut.bind(this)
     this.reflectionFadeIn = this.reflectionFadeIn.bind(this)
     this.reflectionFadeOut = this.reflectionFadeOut.bind(this)
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
@@ -46,14 +43,6 @@ class AcceptContainer extends React.Component {
 
   fadeIn() {
     return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
-  }
-
-  titleButtonFadeIn() {
-    return animate(this.state.titleButtonFade, { toValue: 1, duration: 500 })
-  }
-
-  titleButtonFadeOut() {
-    return animate(this.state.titleButtonFade, { toValue: 0, duration: 500 })
   }
 
   reflectionFadeIn() {
@@ -80,8 +69,6 @@ class AcceptContainer extends React.Component {
   }
 
   async loadReflection() {
-    // vv this doesn't seem to do anything...
-    await this.titleButtonFadeOut()
     // vv this doesn't seem to do anything...
     this.props.dispatchSetReflection()
     await this.reflectionFadeIn()
