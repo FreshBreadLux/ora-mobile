@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const ReflectionPresenter = ({ reflectionFadeOut, animateNextPrayerTransition, opacity, finishPraying }) => (
+const ReflectionPresenter = ({ animateNextPrayerTransition, opacity, finishPraying }) => (
   <View style={ss.whiteContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
