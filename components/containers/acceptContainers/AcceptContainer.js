@@ -80,7 +80,9 @@ class AcceptContainer extends React.Component {
   }
 
   async loadReflection() {
+    // vv this doesn't seem to do anything...
     await this.titleButtonFadeOut()
+    // vv this doesn't seem to do anything...
     this.props.dispatchSetReflection()
     await this.reflectionFadeIn()
     this.fadeIn()
