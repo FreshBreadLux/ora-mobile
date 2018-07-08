@@ -7,20 +7,22 @@ import ss from '../../StyleSheet'
 const ReflectionPresenter = ({ finishReflection, animateNextPrayerTransition, reflectionTextOpacity, reflectionBackgroundOpacity, finishPraying }) => (
   <View style={ss.whiteContainer}>
     <View style={ss.backgroundImageFrame}>
-      <Image
+      <Animated.Image
         source={require('../../../assets/images/rose-lock-screen.png')}
         style={[ss.backgroundImage, {opacity: reflectionBackgroundOpacity}]} />
     </View>
     <SafeAreaView style={ss.invisiContainer}>
       <View style={[ss.invisiContainer, ss.padding15]}>
-        <TouchableOpacity
-          style={[ss.padding10, {opacity: reflectionTextOpacity}]}
-          onPress={finishPraying}>
-          <Feather
-            name="x-circle"
-            size={20}
-            color="#fff" />
-        </TouchableOpacity>
+        <Animated.View style={{opacity: reflectionTextOpacity}}>
+          <TouchableOpacity
+            style={ss.padding10}
+            onPress={finishPraying}>
+            <Feather
+              name="x-circle"
+              size={20}
+              color="#fff" />
+          </TouchableOpacity>
+        </Animated.View>
         <Animated.View style={[ss.flex2, ss.center, {opacity: reflectionTextOpacity}]}>
           <Text style={[ss.subHeader, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>Lord, I know that You are here, that You see me, that You hear me. Pour out Your grace into my heart, and give me a spirit of true empathy.</Text>
         </Animated.View>
@@ -30,7 +32,7 @@ const ReflectionPresenter = ({ finishReflection, animateNextPrayerTransition, re
         <Animated.View style={[ss.padding10, ss.center, {opacity: reflectionTextOpacity}]}>
           <TouchableOpacity
             onPress={async () => {
-              finishReflection()
+              await finishReflection()
               animateNextPrayerTransition()
             }}
             style={[ss.button, ss.threeQuartersWidth]}>

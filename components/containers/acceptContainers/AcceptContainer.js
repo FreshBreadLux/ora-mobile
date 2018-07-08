@@ -28,6 +28,7 @@ class AcceptContainer extends React.Component {
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
+    this.finishReflection = this.finishReflection.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
   }
@@ -41,7 +42,7 @@ class AcceptContainer extends React.Component {
   }
 
   fadeIn() {
-    return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
+    return animate(this.state.fadeAnim, { toValue: 1, duration: 1000 })
   }
 
   fadeOutReflectionBackground() {
