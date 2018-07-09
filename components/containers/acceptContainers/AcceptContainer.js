@@ -19,18 +19,20 @@ class AcceptContainer extends React.Component {
     super(props)
     this.state = {
       fadeAnim: new Animated.Value(0),
-      reflectionBackgroundOpacity: new Animated.Value(1)
+      reflectionBackgroundOpacity: new Animated.Value(1),
+      currentPrayerContainerOpacity: new Animated.Value(0)
     }
-    this.fadeOut = this.fadeOut.bind(this)
     this.fadeIn = this.fadeIn.bind(this)
-    this.fadeOutReflectionBackground = this.fadeOutReflectionBackground.bind(this)
-    this.loadNextPrayer = this.loadNextPrayer.bind(this)
-    this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
-    this.loadReflection = this.loadReflection.bind(this)
-    this.finishPraying = this.finishPraying.bind(this)
-    this.finishReflection = this.finishReflection.bind(this)
+    this.fadeOut = this.fadeOut.bind(this)
     this.flagPrayer = this.flagPrayer.bind(this)
+    this.finishPraying = this.finishPraying.bind(this)
+    this.loadNextPrayer = this.loadNextPrayer.bind(this)
+    this.loadReflection = this.loadReflection.bind(this)
+    this.finishReflection = this.finishReflection.bind(this)
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
+    this.revealCurrentPrayer = this.revealCurrentPrayer.bind(this)
+    this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
+    this.fadeOutReflectionBackground = this.fadeOutReflectionBackground.bind(this)
   }
 
   componentDidMount() {
@@ -47,6 +49,10 @@ class AcceptContainer extends React.Component {
 
   fadeOutReflectionBackground() {
     return animate(this.state.reflectionBackgroundOpacity, { toValue: 0, duration: 500 })
+  }
+
+  revealCurrentPrayer() {
+    return animate(this.state.currentPrayerContainerOpacity, { toValue: 1, duration: 500 })
   }
 
   loadNextPrayer() {
@@ -74,6 +80,7 @@ class AcceptContainer extends React.Component {
     await this.fadeOut()
     await this.fadeOutReflectionBackground()
     this.props.dispatchRemoveReflection()
+    await this.revealCurrentPrayer()
   }
 
   finishPraying() {
@@ -124,7 +131,6 @@ class AcceptContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        <BackgroundImageContainer componentName="Accept" />
         {this.props.reflection
           ? <ReflectionPresenter
               reflectionTextOpacity={this.state.fadeAnim}
@@ -132,15 +138,18 @@ class AcceptContainer extends React.Component {
               finishPraying={this.finishPraying}
               finishReflection={this.finishReflection}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
-          : <View style={ss.opacityContainer}>
-              <CurrentPrayerPresenter
-                animateNextPrayerTransition={this.animateNextPrayerTransition}
-                navigation={this.props.navigation}
-                finishPraying={this.finishPraying}
-                flagPrayer={this.flagPrayer}
-                toggleFollowPrayer={this.toggleFollowPrayer}
-                opacity={this.state.fadeAnim} />
-            </View>
+          : <Animated.View style={[ss.opacityContainer, {opacity: this.state.currentPrayerContainerOpacity}]}>
+              <BackgroundImageContainer componentName="Accept" />
+              <View style={ss.opacityContainer}>
+                <CurrentPrayerPresenter
+                  animateNextPrayerTransition={this.animateNextPrayerTransition}
+                  navigation={this.props.navigation}
+                  finishPraying={this.finishPraying}
+                  flagPrayer={this.flagPrayer}
+                  toggleFollowPrayer={this.toggleFollowPrayer}
+                  opacity={this.state.fadeAnim} />
+              </View>
+            </Animated.View>
         }
       </View>
     )
