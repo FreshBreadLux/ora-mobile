@@ -72,7 +72,6 @@ class AcceptContainer extends React.Component {
 
   async loadReflection() {
     this.props.dispatchSetReflection()
-    this.fadeIn()
     ampLogEvent(ampEvents.START_REFLECTION)
   }
 
