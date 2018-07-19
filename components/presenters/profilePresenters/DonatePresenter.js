@@ -7,17 +7,17 @@ import ss from '../../StyleSheet'
 
 const DonatePresenter = ({ investmentTotal, firstName, lastName }) => (
   <SafeAreaView style={ss.whiteContainer}>
-    <View style={[ss.whiteContainer, ss.padding15]}>
-      <View style={[ss.addMedViewSpacing, ss.topBorder]}>
+    <View style={[ss.invisiContainer, ss.horizontalPadding]}>
+      <View style={[ss.paddingBottom15, ss.bottomBorder]} />
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={ss.flex1}>
         {!investmentTotal
         ? <View>
             <Text style={ss.body}>Ora is a non-profit app, and it will always be free. This means that we rely on donations from our community to meet all operating expenses, from keeping the servers running to funding future projects. We hope to continue making tools for faith in a technology age that has other priorities, and we're inviting you to be a part of it.{'\n\n'}If you'd like to become a part of our team you can use the link below to sign up as a donor on our website.</Text>
             <View style={[ss.center, ss.addLargeViewSpacing]}>
               <TouchableOpacity
-                onPress={() => {
-                  console.log('firing Linking.openURL:', Linking.openURL)
-                  Linking.openURL('https://www.oraprayernetwork.com/donor-signup')
-                }}>
+                onPress={() => Linking.openURL('https://www.oraprayernetwork.com/donor-signup')}>
                 <View style={[ss.row, ss.padding4]}>
                   <Text style={[ss.subBody, ss.darkBlueText, ss.paddingRight7]}>DONOR SIGNUP</Text>
                   <Ionicons
@@ -54,7 +54,7 @@ const DonatePresenter = ({ investmentTotal, firstName, lastName }) => (
             </View>
           </View>
         }
-      </View>
+      </ScrollView>
     </View>
   </SafeAreaView>
 )
