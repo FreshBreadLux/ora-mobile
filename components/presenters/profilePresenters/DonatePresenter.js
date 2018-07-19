@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Text, View, SafeAreaView, TouchableOpacity, Linking } from 'react-native'
+import { Text, View, SafeAreaView, TouchableOpacity, Linking, ScrollView } from 'react-native'
 import { WebBrowser } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
