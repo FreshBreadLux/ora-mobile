@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Platform } from 'react-native'
 import { Permissions, Notifications } from 'expo'
 import { SignupFormPresenter } from '../../presenters'
 import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
@@ -114,7 +114,10 @@ export default class SignupFormContainer extends React.Component {
     try {
       if (this.state.email && this.state.password) {
         this.setState({ sending: true })
-        let token = await registerForPushNotificationsAsync()
+        let token
+        if (!(Platform.OS === 'android' && __DEV__)) {
+          token = await registerForPushNotificationsAsync()
+        }
         axios.post(`${ROOT_URL}/api/users/sessions`, {
           email: this.state.email,
           password: this.state.password
