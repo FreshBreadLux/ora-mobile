@@ -37,7 +37,6 @@ class AcceptContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ROOT_URL:', ROOT_URL)
     this.loadReflection()
   }
 
