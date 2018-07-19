@@ -113,6 +113,7 @@ export default class SignupFormContainer extends React.Component {
   async userLogin() {
     try {
       if (this.state.email && this.state.password) {
+        this.setState({ sending: true })
         let token
         if (!(Platform.OS === 'android' && __DEV__)) {
           token = await registerForPushNotificationsAsync()
