@@ -21,7 +21,11 @@ class ReflectionContainer extends React.Component {
     this.fadeInCopy = this.fadeInCopy.bind(this)
     this.fadeInVerse = this.fadeInVerse.bind(this)
     this.fadeInBackground = this.fadeInBackground.bind(this)
+    this.fadeOutCopy = this.fadeOutCopy.bind(this)
+    this.fadeOutVerse = this.fadeOutVerse.bind(this)
+    this.fadeOutBackground = this.fadeOutBackground.bind(this)
     this.fadeInReflection = this.fadeInReflection.bind(this)
+    this.finishReflection = this.finishReflection.bind(this)
   }
 
   componentDidMount() {
@@ -38,14 +42,30 @@ class ReflectionContainer extends React.Component {
     }
   }
 
+  async finishReflection() {
+    this.fadeOutVerse()
+    this.fadeOutCopy()
+    await this.fadeOutBackground()
+    this.props.dispatchRemoveReflection()
+  }
+
   fadeInBackground() {
-    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 1500 })
+    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 1000 })
   }
   fadeInCopy() {
-    return animate(this.state.copyOpacity, { toValue: 1, duration: 1500 })
+    return animate(this.state.copyOpacity, { toValue: 1, duration: 1000 })
   }
   fadeInVerse() {
-    return animate(this.state.verseOpacity, { toValue: 1, duration: 1500 })
+    return animate(this.state.verseOpacity, { toValue: 1, duration: 1000 })
+  }
+  fadeOutBackground() {
+    return animate(this.state.backgroundOpacity, { toValue: 0, duration: 1000 })
+  }
+  fadeOutCopy() {
+    return animate(this.state.copyOpacity, { toValue: 0, duration: 1000 })
+  }
+  fadeOutVerse() {
+    return animate(this.state.verseOpacity, { toValue: 0, duration: 1000 })
   }
 
   render() {
@@ -54,7 +74,7 @@ class ReflectionContainer extends React.Component {
         copyOpacity={this.state.copyOpacity}
         verseOpacity={this.state.verseOpacity}
         finishPraying={this.props.finishPraying}
-        finishReflection={this.props.finishReflection}
+        finishReflection={this.finishReflection}
         backgroundOpacity={this.state.backgroundOpacity} />
     )
   }

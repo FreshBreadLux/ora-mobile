@@ -21,7 +21,10 @@ class CurrentPrayerContainer extends React.Component {
 
   render() {
     return(
-      <CurrentPrayerPresenter />
+      <CurrentPrayerPresenter
+        buttonOpacity={this.state.buttonOpacity}
+        prayerTextOpacity={this.state.prayerTextOpacity}
+        backgroundOpacity={this.state.backgroundOpacity} />
     )
   }
 }

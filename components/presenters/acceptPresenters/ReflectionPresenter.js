@@ -4,7 +4,7 @@ import { Feather } from '@expo/vector-icons'
 import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
-const ReflectionPresenter = ({ finishReflection, animateNextPrayerTransition, copyOpacity, backgroundOpacity, finishPraying }) => (
+const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying }) => (
   <View style={ss.whiteContainer}>
     <View style={ss.backgroundImageFrame}>
       <Animated.Image
@@ -31,10 +31,7 @@ const ReflectionPresenter = ({ finishReflection, animateNextPrayerTransition, co
         </Animated.View>
         <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
           <TouchableOpacity
-            onPress={async () => {
-              await finishReflection()
-              animateNextPrayerTransition()
-            }}
+            onPress={finishReflection}
             style={[ss.button, ss.threeQuartersWidth]}>
             <Text style={ss.buttonText}>ACCEPT NEW PRAYER</Text>
           </TouchableOpacity>
