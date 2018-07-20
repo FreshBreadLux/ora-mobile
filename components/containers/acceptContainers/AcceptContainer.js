@@ -2,7 +2,8 @@ import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeReflection, removeVisibleModal } from '../../../store'
-import { ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
+import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
+import { ReflectionContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import { ampEvents, ampLogEvent } from '../../analytics'
@@ -19,7 +20,6 @@ class AcceptContainer extends React.Component {
     super(props)
     this.state = {
       fadeAnim: new Animated.Value(0),
-      reflectionBackgroundOpacity: new Animated.Value(1),
       currentPrayerContainerOpacity: new Animated.Value(0)
     }
     this.fadeIn = this.fadeIn.bind(this)
@@ -32,7 +32,6 @@ class AcceptContainer extends React.Component {
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
     this.revealCurrentPrayer = this.revealCurrentPrayer.bind(this)
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
-    this.fadeOutReflectionBackground = this.fadeOutReflectionBackground.bind(this)
   }
 
   componentDidMount() {
@@ -45,10 +44,6 @@ class AcceptContainer extends React.Component {
 
   fadeIn() {
     return animate(this.state.fadeAnim, { toValue: 1, duration: 1000 })
-  }
-
-  fadeOutReflectionBackground() {
-    return animate(this.state.reflectionBackgroundOpacity, { toValue: 0, duration: 500 })
   }
 
   revealCurrentPrayer() {
@@ -131,9 +126,7 @@ class AcceptContainer extends React.Component {
     return (
       <View style={ss.invisiContainer}>
         {this.props.reflection
-          ? <ReflectionPresenter
-              reflectionTextOpacity={this.state.fadeAnim}
-              reflectionBackgroundOpacity={this.state.reflectionBackgroundOpacity}
+          ? <ReflectionContainer
               finishPraying={this.finishPraying}
               finishReflection={this.finishReflection}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />

@@ -39,13 +39,13 @@ class ReflectionContainer extends React.Component {
   }
 
   fadeInBackground() {
-    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 500 })
+    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 1500 })
   }
   fadeInCopy() {
-    return animate(this.state.copyOpacity, { toValue: 1, duration: 500 })
+    return animate(this.state.copyOpacity, { toValue: 1, duration: 1500 })
   }
   fadeInVerse() {
-    return animate(this.state.verseOpacity, { toValue: 1, duration: 500 })
+    return animate(this.state.verseOpacity, { toValue: 1, duration: 1500 })
   }
 
   render() {
@@ -53,6 +53,8 @@ class ReflectionContainer extends React.Component {
       <ReflectionPresenter
         copyOpacity={this.state.copyOpacity}
         verseOpacity={this.state.verseOpacity}
+        finishPraying={this.props.finishPraying}
+        finishReflection={this.props.finishReflection}
         backgroundOpacity={this.state.backgroundOpacity} />
     )
   }
