@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeReflection, removeVisibleModal } from '../../../store'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
 import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import { ReflectionContainer } from '../'
 import axios from 'axios'
@@ -70,13 +70,6 @@ class AcceptContainer extends React.Component {
     ampLogEvent(ampEvents.START_REFLECTION)
   }
 
-  async finishReflection() {
-    await this.fadeOut()
-    await this.fadeOutReflectionBackground()
-    this.props.dispatchRemoveReflection()
-    await this.revealCurrentPrayer()
-  }
-
   finishPraying() {
     this.props.dispatchFinishPraying()
     this.props.navigation.goBack()
@@ -128,7 +121,6 @@ class AcceptContainer extends React.Component {
         {this.props.reflection
           ? <ReflectionContainer
               finishPraying={this.finishPraying}
-              finishReflection={this.finishReflection}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
           : <Animated.View style={[ss.opacityContainer, {opacity: this.state.currentPrayerContainerOpacity}]}>
               <BackgroundImageContainer componentName="Accept" />
@@ -165,7 +157,6 @@ const mapDispatch = dispatch => ({
   dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
   dispatchFinishPraying: () => dispatch(finishPraying()),
   dispatchSetReflection: () => dispatch(setReflection()),
-  dispatchRemoveReflection: () => dispatch(removeReflection()),
   dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
 })
 
