@@ -9,7 +9,7 @@ import ss from '../../StyleSheet'
 
 const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
-    <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
+    <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
         style={[ss.padding10, ss.alignFlexStart]}
         onPress={finishPraying}>
@@ -111,7 +111,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
           alreadyFollowing={follows && follows.find(follow => follow.id === currentPrayer.id)}
           toggleFollowPrayer={toggleFollowPrayer} />
       </Modal>
-    </View>
+    </Animated.View>
   </SafeAreaView>
 )
 

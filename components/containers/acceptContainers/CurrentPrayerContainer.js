@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { CurrentPrayerPresenter } from '../../presenters'
+import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 
 function animate(...options) {

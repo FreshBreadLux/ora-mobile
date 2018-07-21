@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated, Image } from 'react-native'
 import { Feather } from '@expo/vector-icons'
-import { LinearGradient } from 'expo'
 import ss from '../../StyleSheet'
 
 const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying }) => (
