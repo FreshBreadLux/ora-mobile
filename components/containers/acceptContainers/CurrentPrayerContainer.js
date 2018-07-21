@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated } from 'react-native'
+import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { CurrentPrayerPresenter } from '../../presenters'
 import ss from '../../StyleSheet'
