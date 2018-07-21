@@ -3,7 +3,7 @@ import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
 import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
-import { ReflectionContainer } from '../'
+import { ReflectionContainer, CurrentPrayerContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import { ampEvents, ampLogEvent } from '../../analytics'
@@ -122,18 +122,9 @@ class AcceptContainer extends React.Component {
           ? <ReflectionContainer
               finishPraying={this.finishPraying}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
-          : <Animated.View style={[ss.opacityContainer, {opacity: this.state.currentPrayerContainerOpacity}]}>
-              <BackgroundImageContainer componentName="Accept" />
-              <View style={ss.opacityContainer}>
-                <CurrentPrayerPresenter
-                  animateNextPrayerTransition={this.animateNextPrayerTransition}
-                  navigation={this.props.navigation}
-                  finishPraying={this.finishPraying}
-                  flagPrayer={this.flagPrayer}
-                  toggleFollowPrayer={this.toggleFollowPrayer}
-                  opacity={this.state.fadeAnim} />
-              </View>
-            </Animated.View>
+          : <CurrentPrayerContainer
+              navigation={this.props.navigation}
+              finishPraying={this.finishPraying} />
         }
       </View>
     )
