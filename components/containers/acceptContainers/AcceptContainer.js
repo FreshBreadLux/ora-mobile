@@ -8,12 +8,6 @@ import ROOT_URL from '../../../config'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import ss from '../../StyleSheet'
 
-function animate(...options) {
-  return new Promise(res => {
-    Animated.timing(...options).start(res)
-  })
-}
-
 class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
