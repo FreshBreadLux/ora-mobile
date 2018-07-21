@@ -29,6 +29,7 @@ class ReflectionContainer extends React.Component {
   }
 
   componentDidMount() {
+    console.log('ReflectionContainer is mounting')
     this.fadeInReflection()
   }
 
@@ -46,6 +47,7 @@ class ReflectionContainer extends React.Component {
     this.fadeOutVerse()
     this.fadeOutCopy()
     await this.fadeOutBackground()
+    console.log('dispatching remove reflection')
     this.props.dispatchRemoveReflection()
   }
 
