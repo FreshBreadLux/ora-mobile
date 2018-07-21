@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, opacity, visibleModal, showModal, hideModal, noPrayers }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <View style={[ss.invisiContainer, ss.padding15, ss.spaceAround]}>
       <TouchableOpacity
@@ -19,7 +19,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
           color="#888" />
       </TouchableOpacity>
       <View style={ss.flex1}>
-        <Animated.View style={[ss.flex1, ss.center, { opacity }]}>
+        <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
           <Text
             numberOfLines={3}
             style={[ss.header, ss.centerText]}>
@@ -30,7 +30,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
       <View style={[ss.flex4, ss.fullWidth]}>
         <Animated.ScrollView
           showsVerticalScrollIndicator={false}
-          style={[ss.flex1, { opacity }]}>
+          style={[ss.flex1, { opacity: prayerTextOpacity }]}>
           <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
           {currentPrayer.updates
           ? currentPrayer.updates.map(update => (
