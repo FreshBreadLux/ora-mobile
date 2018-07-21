@@ -18,7 +18,7 @@ const REMOVE_REFLECTION = 'REMOVE_REFLECTION'
  */
 const defaultAcceptPrayer = {
   currentPrayer: {},
-  reflection: false,
+  reflection: true,
   noPrayers: false
 }
 

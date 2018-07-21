@@ -18,6 +18,10 @@ class CurrentPrayerContainer extends React.Component {
       prayerTextOpacity: new Animated.Value(0),
       backgroundCoverOpacity: new Animated.Value(1),
     }
+    this.fadeInButtons = this.fadeInButtons.bind(this)
+    this.fadeInPrayerText = this.fadeInPrayerText.bind(this)
+    this.fadeInBackground = this.fadeInBackground.bind(this)
+    this.fadeInCurrentPrayer = this.fadeInCurrentPrayer.bind(this)
   }
 
   componentDidMount() {
