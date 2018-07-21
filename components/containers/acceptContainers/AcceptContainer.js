@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Animated, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
-import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import { ReflectionContainer, CurrentPrayerContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -18,36 +17,17 @@ function animate(...options) {
 class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      fadeAnim: new Animated.Value(0),
-      currentPrayerContainerOpacity: new Animated.Value(0)
-    }
-    this.fadeIn = this.fadeIn.bind(this)
-    this.fadeOut = this.fadeOut.bind(this)
+
     this.flagPrayer = this.flagPrayer.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
-    this.finishReflection = this.finishReflection.bind(this)
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
-    this.revealCurrentPrayer = this.revealCurrentPrayer.bind(this)
     this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
   }
 
   componentDidMount() {
     this.loadReflection()
-  }
-
-  fadeOut() {
-    return animate(this.state.fadeAnim, { toValue: 0, duration: 500 })
-  }
-
-  fadeIn() {
-    return animate(this.state.fadeAnim, { toValue: 1, duration: 1000 })
-  }
-
-  revealCurrentPrayer() {
-    return animate(this.state.currentPrayerContainerOpacity, { toValue: 1, duration: 500 })
   }
 
   loadNextPrayer() {
