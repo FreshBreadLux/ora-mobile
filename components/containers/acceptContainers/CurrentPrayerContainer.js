@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchNextPrayer } from '../../../store'
+import { fetchNextPrayer, setPrayerActivityIndicator } from '../../../store'
 import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 
@@ -29,6 +29,7 @@ class CurrentPrayerContainer extends React.Component {
   componentDidMount() {
     console.log('CurrentPrayerContainer is mounting')
     this.loadNextPrayer()
+    this.props.setPrayerActivityIndicator()
     this.handleFirstPrayer()
   }
 
@@ -74,7 +75,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views))
+  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
+  dispatchSetPrayerActivityIndicator: () => dispatch(setPrayerActivityIndicator())
 })
 
 export default connect(mapState, mapDispatch)(CurrentPrayerContainer)

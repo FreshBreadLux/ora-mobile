@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, Animated } from 'react-native'
+import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
@@ -31,22 +31,25 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
         }
       </View>
       <View style={[ss.flex4, ss.fullWidth]}>
-        <Animated.ScrollView
-          showsVerticalScrollIndicator={false}
-          style={[ss.flex1, { opacity: prayerTextOpacity }]}>
-          <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
-          {currentPrayer.updates
-          ? currentPrayer.updates.map(update => (
-              <View key={update.id}>
-                <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
-                  <Text style={ss.subHeader}>update</Text>
+        {nextPrayerIsLoading
+        ? <ActivityIndicator size="small" color="#ccc" />
+        : <Animated.ScrollView
+            showsVerticalScrollIndicator={false}
+            style={[ss.flex1, { opacity: prayerTextOpacity }]}>
+            <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
+            {currentPrayer.updates
+            ? currentPrayer.updates.map(update => (
+                <View key={update.id}>
+                  <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+                    <Text style={ss.subHeader}>update</Text>
+                  </View>
+                  <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
                 </View>
-                <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
-              </View>
-            ))
-          : null
-          }
-        </Animated.ScrollView>
+              ))
+            : null
+            }
+          </Animated.ScrollView>
+        }
       </View>
       {noPrayers
       ? null
