@@ -41,7 +41,6 @@ export const fetchNextPrayer = (userId, views) =>
     .then(obj => {
       dispatch(addView(obj.newView[0][0].viewedId))
       dispatch(setCurrentPrayer(obj.updatedPrayer))
-      dispatch(removeReflection())
       dispatch(setUserInfo(obj.scrubbedUser))
     })
     .catch(err => {
