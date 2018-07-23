@@ -25,6 +25,7 @@ class CurrentPrayerContainer extends React.Component {
     this.fadeInPrayerText = this.fadeInPrayerText.bind(this)
     this.fadeInBackground = this.fadeInBackground.bind(this)
     this.handleFirstPrayer = this.handleFirstPrayer.bind(this)
+    this.showNetworkErrorMessage = this.showNetworkErrorMessage.bind(this)
   }
 
   componentDidMount() {

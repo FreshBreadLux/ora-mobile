@@ -58,7 +58,7 @@ export const fetchNextPrayer = (userId, views, cancelTimeoutID) =>
           body: 'There are currently no new prayers in the Ora Prayer Network. Please take some time to pray for the intentions that you have followed, and check back later to accept new prayer requests.'
         }))
       } else {
-        console.error(err)
+        console.warn(err)
       }
     })
 
