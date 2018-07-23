@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers, nextPrayerIsLoading, networkError }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
@@ -20,43 +20,44 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
       </TouchableOpacity>
       <View style={ss.flex1}>
         {networkError
-        ? <View style={[ss.flex1, ss.center]}>
+        ? <Animated.View style={[ss.flex1, ss.center, { opacity: networkErrorMessageOpacity }]}>
             <Text style={[ss.centerText, ss.subHeader]}>There appears to be a network error</Text>
-          </View>
+          </Animated.View>
         : <View style={ss.flex1}>
-            <View style={ss.flex1}>
-              {nextPrayerIsLoading
-              ? null
-              : <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
-                  <Text
-                    numberOfLines={3}
-                    style={[ss.header, ss.centerText]}>
-                    {currentPrayer.subject}
-                  </Text>
-                </Animated.View>
-              }
-            </View>
-            <View style={[ss.flex4, ss.fullWidth]}>
-              {nextPrayerIsLoading
-              ? <ActivityIndicator size="small" color="#ccc" />
-              : <Animated.ScrollView
-                  showsVerticalScrollIndicator={false}
-                  style={[ss.flex1, { opacity: prayerTextOpacity }]}>
-                  <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
-                  {currentPrayer.updates
-                  ? currentPrayer.updates.map(update => (
-                      <View key={update.id}>
-                        <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
-                          <Text style={ss.subHeader}>update</Text>
+            {requestEnRoute
+            ? <Animated.View style={[ss.flex1, ss.center, { opacity: activityIndicatorOpacity }]}>
+                <ActivityIndicator size="small" color="#ccc" />
+              </Animated.View>
+            : <View style={ss.flex1}>
+                <View style={ss.flex1}>
+                  <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
+                    <Text
+                      numberOfLines={3}
+                      style={[ss.header, ss.centerText]}>
+                      {currentPrayer.subject}
+                    </Text>
+                  </Animated.View>
+                </View>
+                <View style={[ss.flex4, ss.fullWidth]}>
+                  <Animated.ScrollView
+                    showsVerticalScrollIndicator={false}
+                    style={[ss.flex1, { opacity: prayerTextOpacity }]}>
+                    <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
+                    {currentPrayer.updates
+                    ? currentPrayer.updates.map(update => (
+                        <View key={update.id}>
+                          <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+                            <Text style={ss.subHeader}>update</Text>
+                          </View>
+                          <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
                         </View>
-                        <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
-                      </View>
-                    ))
-                  : null
-                  }
-                </Animated.ScrollView>
-              }
-            </View>
+                      ))
+                    : null
+                    }
+                  </Animated.ScrollView>
+                </View>
+              </View>
+            }
           </View>
         }
       </View>
@@ -133,7 +134,6 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
 const mapState = state => ({
   follows: state.follows,
   currentPrayer: state.acceptPrayer.currentPrayer,
-  nextPrayerIsLoading: state.acceptPrayer.nextPrayerIsLoading,
   noPrayers: state.acceptPrayer.noPrayers,
   visibleModal: state.visibleModal
 })

@@ -34,7 +34,7 @@ export const removeReflection = () => ({ type: REMOVE_REFLECTION })
 /**
  * THUNK CREATORS
  */
-export const fetchNextPrayer = (userId, views, cancelTimeoutID) =>
+export const fetchNextPrayer = (userId, views, cancelTimeoutID, successHandler) =>
   dispatch =>
     axios.put(`${ROOT_URL}/api/prayers/next`, { userId, views })
     .then(res => res.data)
@@ -43,6 +43,7 @@ export const fetchNextPrayer = (userId, views, cancelTimeoutID) =>
       dispatch(addView(obj.newView[0][0].viewedId))
       dispatch(setCurrentPrayer(obj.updatedPrayer))
       dispatch(setUserInfo(obj.scrubbedUser))
+      successHandler()
     })
     .catch(err => {
       if (err.response && err.response.status === 404) {
