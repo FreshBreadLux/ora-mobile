@@ -21,7 +21,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
       <View style={ss.flex1}>
         {networkError
         ? <View style={[ss.flex1, ss.center]}>
-            <Text style={[ss.centerText, ss.header]}>There appears to be a network error</Text>
+            <Text style={[ss.centerText, ss.subHeader]}>There appears to be a network error</Text>
           </View>
         : <View style={ss.flex1}>
             <View style={ss.flex1}>

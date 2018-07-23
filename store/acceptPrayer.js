@@ -12,8 +12,6 @@ const SET_REFLECTION = 'SET_REFLECTION'
 const SET_THANK_YOU = 'SET_THANK_YOU'
 const FINISH_PRAYING = 'FINISH_PRAYING'
 const REMOVE_REFLECTION = 'REMOVE_REFLECTION'
-const SET_PRAYER_ACTIVITY_INDICATOR = 'SET_PRAYER_ACTIVITY_INDICATOR'
-const REMOVE_PRAYER_ACTIVITY_INDICATOR = 'REMOVE_PRAYER_ACTIVITY_INDICATOR'
 
 /**
  * INITIAL STATE
@@ -21,8 +19,7 @@ const REMOVE_PRAYER_ACTIVITY_INDICATOR = 'REMOVE_PRAYER_ACTIVITY_INDICATOR'
 const defaultAcceptPrayer = {
   currentPrayer: {},
   reflection: true,
-  noPrayers: false,
-  nextPrayerIsLoading: false
+  noPrayers: false
 }
 
 /**
@@ -33,8 +30,6 @@ export const setReflection = () => ({ type: SET_REFLECTION })
 export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const removeReflection = () => ({ type: REMOVE_REFLECTION })
-export const setPrayerActivityIndicator = () => ({ type: SET_PRAYER_ACTIVITY_INDICATOR })
-export const removePrayerActivityIndicator = () => ({ type: REMOVE_PRAYER_ACTIVITY_INDICATOR })
 
 /**
  * THUNK CREATORS
@@ -47,7 +42,6 @@ export const fetchNextPrayer = (userId, views, cancelTimeoutID) =>
       clearTimeout(cancelTimeoutID)
       dispatch(addView(obj.newView[0][0].viewedId))
       dispatch(setCurrentPrayer(obj.updatedPrayer))
-      dispatch(removePrayerActivityIndicator())
       dispatch(setUserInfo(obj.scrubbedUser))
     })
     .catch(err => {
@@ -75,10 +69,6 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, noPrayers: true }
     case REMOVE_REFLECTION:
       return { ...state, reflection: false }
-    case SET_PRAYER_ACTIVITY_INDICATOR:
-      return { ...state, nextPrayerIsLoading: true }
-    case REMOVE_PRAYER_ACTIVITY_INDICATOR:
-      return { ...state, nextPrayerIsLoading: false }
     case FINISH_PRAYING:
       return defaultAcceptPrayer
     case LOGOUT:
