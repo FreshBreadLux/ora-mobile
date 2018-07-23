@@ -45,7 +45,7 @@ class CurrentPrayerContainer extends React.Component {
 
   render() {
     return(
-      <View>
+      <View style={ss.invisiContainer}>
         <BackgroundImageContainer componentName="Accept" />
         <Animated.View style={[ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]}>
           <CurrentPrayerPresenter
