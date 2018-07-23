@@ -15,6 +15,7 @@ class CurrentPrayerContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      networkError: false,
       buttonOpacity: new Animated.Value(0),
       prayerTextOpacity: new Animated.Value(0),
       backgroundCoverOpacity: new Animated.Value(1),
@@ -28,20 +29,25 @@ class CurrentPrayerContainer extends React.Component {
 
   componentDidMount() {
     console.log('CurrentPrayerContainer is mounting')
-    this.loadNextPrayer()
-    this.props.setPrayerActivityIndicator()
     this.handleFirstPrayer()
   }
 
-  loadNextPrayer() {
+  loadNextPrayer(cancelTimeoutID) {
     const { dispatchFetchNextPrayer, userId, views } = this.props
-    return dispatchFetchNextPrayer(userId, views)
+    return dispatchFetchNextPrayer(userId, views, cancelTimeoutID)
   }
 
   async handleFirstPrayer() {
+    const networkTimeoutID = setTimeout(this.showNetworkErrorMessage, 8000)
+    this.loadNextPrayer(networkTimeoutID)
+    this.props.dispatchSetPrayerActivityIndicator()
     await this.fadeInBackground()
     await this.fadeInButtons()
     this.fadeInPrayerText()
+  }
+
+  showNetworkErrorMessage() {
+    this.setState({ networkError: true })
   }
 
   fadeInBackground() {
@@ -60,6 +66,7 @@ class CurrentPrayerContainer extends React.Component {
         <BackgroundImageContainer componentName="Accept" />
         <Animated.View style={[ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]}>
           <CurrentPrayerPresenter
+            networkError={this.state.networkError}
             finishPraying={this.props.finishPraying}
             buttonOpacity={this.state.buttonOpacity}
             prayerTextOpacity={this.state.prayerTextOpacity} />
@@ -75,7 +82,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
+  dispatchFetchNextPrayer: (userId, views, cancelTimeoutID) => dispatch(fetchNextPrayer(userId, views, cancelTimeoutID)),
   dispatchSetPrayerActivityIndicator: () => dispatch(setPrayerActivityIndicator())
 })
 
