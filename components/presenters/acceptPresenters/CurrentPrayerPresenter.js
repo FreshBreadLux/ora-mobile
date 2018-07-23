@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers, nextPrayerIsLoading }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers, nextPrayerIsLoading, networkError }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
@@ -19,36 +19,45 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
           color="#888" />
       </TouchableOpacity>
       <View style={ss.flex1}>
-        {nextPrayerIsLoading
-        ? null
-        : <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
-            <Text
-              numberOfLines={3}
-              style={[ss.header, ss.centerText]}>
-              {currentPrayer.subject}
-            </Text>
-          </Animated.View>
-        }
-      </View>
-      <View style={[ss.flex4, ss.fullWidth]}>
-        {nextPrayerIsLoading
-        ? <ActivityIndicator size="small" color="#ccc" />
-        : <Animated.ScrollView
-            showsVerticalScrollIndicator={false}
-            style={[ss.flex1, { opacity: prayerTextOpacity }]}>
-            <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
-            {currentPrayer.updates
-            ? currentPrayer.updates.map(update => (
-                <View key={update.id}>
-                  <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
-                    <Text style={ss.subHeader}>update</Text>
-                  </View>
-                  <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
-                </View>
-              ))
-            : null
-            }
-          </Animated.ScrollView>
+        {networkError
+        ? <View style={[ss.flex1, ss.center]}>
+            <Text style={[ss.centerText, ss.header]}>There appears to be a network error</Text>
+          </View>
+        : <View style={ss.flex1}>
+            <View style={ss.flex1}>
+              {nextPrayerIsLoading
+              ? null
+              : <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
+                  <Text
+                    numberOfLines={3}
+                    style={[ss.header, ss.centerText]}>
+                    {currentPrayer.subject}
+                  </Text>
+                </Animated.View>
+              }
+            </View>
+            <View style={[ss.flex4, ss.fullWidth]}>
+              {nextPrayerIsLoading
+              ? <ActivityIndicator size="small" color="#ccc" />
+              : <Animated.ScrollView
+                  showsVerticalScrollIndicator={false}
+                  style={[ss.flex1, { opacity: prayerTextOpacity }]}>
+                  <Text style={[ss.body, ss.paddingBottom30]}>{currentPrayer.body}</Text>
+                  {currentPrayer.updates
+                  ? currentPrayer.updates.map(update => (
+                      <View key={update.id}>
+                        <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+                          <Text style={ss.subHeader}>update</Text>
+                        </View>
+                        <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
+                      </View>
+                    ))
+                  : null
+                  }
+                </Animated.ScrollView>
+              }
+            </View>
+          </View>
         }
       </View>
       {noPrayers

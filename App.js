@@ -59,15 +59,15 @@ export default class App extends React.Component {
 
   // ONCE ASSETS ARE LOADED, RENDER THE APP
   render() {
-    if (!this.state.isReady) {
-      return (
-        <AppLoading
-          startAsync={_loadAssetsAsync}
-          onFinish={() => this.setState({ isReady: true })}
-          onError={console.warn}
-        />
-      )
-    }
+    // if (!this.state.isReady) {
+    //   return (
+    //     <AppLoading
+    //       startAsync={_loadAssetsAsync}
+    //       onFinish={() => this.setState({ isReady: true })}
+    //       onError={console.warn}
+    //     />
+    //   )
+    // }
     return (
       <Provider store={store}>
         <Root />
