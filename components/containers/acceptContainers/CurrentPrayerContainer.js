@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
+import { fetchNextPrayer } from '../../../store'
 import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 
@@ -19,6 +20,7 @@ class CurrentPrayerContainer extends React.Component {
       backgroundCoverOpacity: new Animated.Value(1),
     }
     this.fadeInButtons = this.fadeInButtons.bind(this)
+    this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.fadeInPrayerText = this.fadeInPrayerText.bind(this)
     this.fadeInBackground = this.fadeInBackground.bind(this)
     this.fadeInCurrentPrayer = this.fadeInCurrentPrayer.bind(this)
@@ -26,11 +28,18 @@ class CurrentPrayerContainer extends React.Component {
 
   componentDidMount() {
     console.log('CurrentPrayerContainer is mounting')
+    this.loadNextPrayer()
     this.fadeInCurrentPrayer()
+  }
+
+  loadNextPrayer() {
+    const { dispatchFetchNextPrayer, userId, views } = this.props
+    return dispatchFetchNextPrayer(userId, views)
   }
 
   async fadeInCurrentPrayer() {
     await this.fadeInBackground()
+    await this.fadeInButtons()
   }
 
   fadeInBackground() {
@@ -57,4 +66,13 @@ class CurrentPrayerContainer extends React.Component {
   }
 }
 
-export default connect()(CurrentPrayerContainer)
+const mapState = state => ({
+  views: state.views,
+  userId: state.auth.userId
+})
+
+const mapDispatch = dispatch => ({
+  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views))
+})
+
+export default connect(mapState, mapDispatch)(CurrentPrayerContainer)
