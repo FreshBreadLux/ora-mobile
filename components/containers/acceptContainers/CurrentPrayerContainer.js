@@ -40,6 +40,8 @@ class CurrentPrayerContainer extends React.Component {
   async fadeInCurrentPrayer() {
     await this.fadeInBackground()
     await this.fadeInButtons()
+    await this.loadNextPrayer()
+    this.fadeInPrayerText()
   }
 
   fadeInBackground() {
@@ -58,6 +60,7 @@ class CurrentPrayerContainer extends React.Component {
         <BackgroundImageContainer componentName="Accept" />
         <Animated.View style={[ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]}>
           <CurrentPrayerPresenter
+            finishPraying={this.props.finishPraying}
             buttonOpacity={this.state.buttonOpacity}
             prayerTextOpacity={this.state.prayerTextOpacity} />
         </Animated.View>
