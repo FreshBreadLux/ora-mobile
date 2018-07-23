@@ -21,12 +21,13 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
       <View style={ss.flex1}>
         {networkError
         ? <Animated.View style={[ss.flex1, ss.center, { opacity: networkErrorMessageOpacity }]}>
-            <Text style={[ss.centerText, ss.subHeader]}>There appears to be a network error</Text>
+            <Text style={[ss.centerText, ss.subBody]}>There appears to be a network error.</Text>
+            <Text style={[ss.centerText, ss.subBody]}>We recommend a good old fashioned rosary when the network is acting up.</Text>
           </Animated.View>
         : <View style={ss.flex1}>
             {requestEnRoute
             ? <Animated.View style={[ss.flex1, ss.center, { opacity: activityIndicatorOpacity }]}>
-                <ActivityIndicator size="small" color="#ccc" />
+                <ActivityIndicator size="small" color="#aaa" />
               </Animated.View>
             : <View style={ss.flex1}>
                 <View style={ss.flex1}>
