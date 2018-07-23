@@ -15,7 +15,7 @@ class Root extends React.Component {
     this.state = {
       notification: null,
       appState: AppState.currentState,
-      loading: true,
+      loading: false,
     }
     this.handleNotification = this.handleNotification.bind(this)
     this.handleAppStateChange = this.handleAppStateChange.bind(this)
