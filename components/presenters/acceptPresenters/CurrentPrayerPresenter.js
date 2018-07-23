@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, visibleModal, showModal, hideModal, noPrayers, nextPrayerIsLoading }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
@@ -19,13 +19,16 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
           color="#888" />
       </TouchableOpacity>
       <View style={ss.flex1}>
-        <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
-          <Text
-            numberOfLines={3}
-            style={[ss.header, ss.centerText]}>
-            {currentPrayer.subject}
-          </Text>
-        </Animated.View>
+        {nextPrayerIsLoading
+        ? null
+        : <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
+            <Text
+              numberOfLines={3}
+              style={[ss.header, ss.centerText]}>
+              {currentPrayer.subject}
+            </Text>
+          </Animated.View>
+        }
       </View>
       <View style={[ss.flex4, ss.fullWidth]}>
         <Animated.ScrollView
@@ -118,6 +121,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
 const mapState = state => ({
   follows: state.follows,
   currentPrayer: state.acceptPrayer.currentPrayer,
+  nextPrayerIsLoading: state.acceptPrayer.nextPrayerIsLoading,
   noPrayers: state.acceptPrayer.noPrayers,
   visibleModal: state.visibleModal
 })

@@ -23,13 +23,13 @@ class CurrentPrayerContainer extends React.Component {
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.fadeInPrayerText = this.fadeInPrayerText.bind(this)
     this.fadeInBackground = this.fadeInBackground.bind(this)
-    this.fadeInCurrentPrayer = this.fadeInCurrentPrayer.bind(this)
+    this.handleFirstPrayer = this.handleFirstPrayer.bind(this)
   }
 
   componentDidMount() {
     console.log('CurrentPrayerContainer is mounting')
     this.loadNextPrayer()
-    this.fadeInCurrentPrayer()
+    this.handleFirstPrayer()
   }
 
   loadNextPrayer() {
@@ -37,10 +37,9 @@ class CurrentPrayerContainer extends React.Component {
     return dispatchFetchNextPrayer(userId, views)
   }
 
-  async fadeInCurrentPrayer() {
+  async handleFirstPrayer() {
     await this.fadeInBackground()
     await this.fadeInButtons()
-    await this.loadNextPrayer()
     this.fadeInPrayerText()
   }
 

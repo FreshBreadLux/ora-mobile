@@ -12,6 +12,8 @@ const SET_REFLECTION = 'SET_REFLECTION'
 const SET_THANK_YOU = 'SET_THANK_YOU'
 const FINISH_PRAYING = 'FINISH_PRAYING'
 const REMOVE_REFLECTION = 'REMOVE_REFLECTION'
+const SET_ACTIVITY_INDICATOR = 'SET_ACTIVITY_INDICATOR'
+const REMOVE_ACTIVITY_INDICATOR = 'REMOVE_ACTIVITY_INDICATOR'
 
 /**
  * INITIAL STATE
@@ -19,7 +21,8 @@ const REMOVE_REFLECTION = 'REMOVE_REFLECTION'
 const defaultAcceptPrayer = {
   currentPrayer: {},
   reflection: true,
-  noPrayers: false
+  noPrayers: false,
+  nextPrayerIsLoading: false
 }
 
 /**
@@ -29,7 +32,9 @@ export const setCurrentPrayer = prayer => ({ type: SET_CURRENT_PRAYER, prayer })
 export const setReflection = () => ({ type: SET_REFLECTION })
 export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
-export const removeReflection = () => ({ type: REMOVE_REFLECTION})
+export const removeReflection = () => ({ type: REMOVE_REFLECTION })
+export const setActivityIndicator = () => ({ type: SET_ACTIVITY_INDICATOR })
+export const removeActivityIndicator = () => ({ type: REMOVE_ACTIVITY_INDICATOR })
 
 /**
  * THUNK CREATORS
@@ -68,6 +73,10 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, noPrayers: true }
     case REMOVE_REFLECTION:
       return { ...state, reflection: false }
+    case SET_ACTIVITY_INDICATOR:
+      return { ...state, nextPrayerIsLoading: true }
+    case REMOVE_ACTIVITY_INDICATOR:
+      return { ...state, nextPrayerIsLoading: false }
     case FINISH_PRAYING:
       return defaultAcceptPrayer
     case LOGOUT:
