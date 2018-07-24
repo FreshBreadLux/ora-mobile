@@ -33,13 +33,6 @@ const determineURL = (componentName, theme) => {
 export default class BackgroundImage extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      fadeAnim: new Animated.Value(0)
-    }
-  }
-
-  componentDidMount() {
-    Animated.timing(this.state.fadeAnim, { toValue: 1, duration: 1000 }).start()
   }
 
   render() {
@@ -52,7 +45,7 @@ export default class BackgroundImage extends React.Component {
             start={[0.5, 0]}
             style={ss.flex1} />
         </View>
-        <Animated.View style={[ss.backgroundImageFrame, {opacity: this.state.fadeAnim}]}>
+        <Animated.View style={ss.backgroundImageFrame}>
           <Image
             source={URL}
             style={ss.backgroundImage} />

@@ -75,9 +75,12 @@ class Root extends React.Component {
 
   async verifyStorageKey() {
     const oraAuth = await AsyncStorage.getItem('oraAuth_v1.1.0')
+    console.log('verifyStorageKey oraAuth:', oraAuth)
     const oraAuthJson = JSON.parse(oraAuth)
+    console.log('verifyStorageKey oraAuthJson:', oraAuthJson)
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
+      console.log('verifyStorageKey theme:', theme)
       this.props.dispatchSetTheme(theme)
       ampIdentify(oraAuthJson.userId)
       const today = getDateString()

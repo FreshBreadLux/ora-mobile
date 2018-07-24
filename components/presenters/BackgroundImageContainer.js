@@ -6,6 +6,7 @@ import BackgroundImage from './BackgroundImage'
 import ss from '../StyleSheet'
 
 const BackgroundImageContainer = ({ componentName, theme }) => {
+  console.log('BackgroundImageContainer theme:', theme)
   if (theme) {
     return <BackgroundImage componentName={componentName} theme={theme} />
   }
