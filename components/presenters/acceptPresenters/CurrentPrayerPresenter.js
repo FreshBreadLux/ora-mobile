@@ -27,7 +27,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
         : <View style={ss.flex1}>
             {requestEnRoute
             ? <Animated.View style={[ss.flex1, ss.center, { opacity: activityIndicatorOpacity }]}>
-                <ActivityIndicator size="small" color="#aaa" />
+                <ActivityIndicator size="large" color="#555" />
               </Animated.View>
             : <View style={ss.flex1}>
                 <View style={ss.flex1}>

@@ -84,8 +84,8 @@ class Root extends React.Component {
       this.props.dispatchSetTheme(theme)
       ampIdentify(oraAuthJson.userId)
       const today = getDateString()
+      this.props.loadInitialData(oraAuthJson.userId, today)
       this.props.logUserIn(oraAuthJson)
-      await this.props.loadInitialData(oraAuthJson.userId, today)
       ampLogEvent(ampEvents.USER_VERIFIED)
       this.setState({ loading: false })
     } else {
