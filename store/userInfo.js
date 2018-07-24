@@ -18,8 +18,10 @@ const defaultUserInfo = {}
  * ACTION CREATORS
  */
 export const setUserInfo = userInfo => ({ type: SET_USER_INFO, userInfo })
-export const setTheme = theme => {
-  console.log('setTheme:', theme)
+export const setTheme = (theme = 'Rome') => {
+  if (theme === null) {
+    theme = 'Rome'
+  }
   return { type: SET_THEME, theme }
 }
 export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
