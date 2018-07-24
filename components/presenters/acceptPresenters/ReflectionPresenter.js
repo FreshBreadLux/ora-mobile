@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated, Image } from 'react-native'
+import { connect } from 'react-redux'
 import { BackgroundImageContainer } from '../../presenters'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
@@ -39,4 +40,8 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
   </View>
 )
 
-export default ReflectionPresenter
+const mapState = state => ({
+  dailyReflection: state.dailyReflection
+})
+
+export default connect(mapState)(ReflectionPresenter)

@@ -80,6 +80,8 @@ class Root extends React.Component {
     It uses the userId from the oraAuth item to identify the user for Amplitude.
     Using the date and userId, it loads all initial data for the user and then logs them in.
     Finally, it logs an Amplitude event and sets state to remove the loading screen.
+    If the user doesn't have an oraAuth item, it will remove the loading screen without
+    logging them in, revealing the login screen.
   */
   async verifyStorageKey() {
     const oraAuth = await AsyncStorage.getItem('oraAuth_v1.1.0')
