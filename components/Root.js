@@ -151,7 +151,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  loadInitialData: userId => {
+  loadInitialData: (userId, today) => {
     return Promise.all([
       dispatch(fetchUserPrayers(userId)),
       dispatch(fetchUserFollows(userId)),
@@ -159,7 +159,7 @@ const mapDispatch = dispatch => ({
       dispatch(fetchUserInfo(userId)),
       dispatch(fetchUserAlarms()),
       dispatch(fetchFlagReasons()),
-      dispatch(fetchDailyReflection())
+      dispatch(fetchDailyReflection(today))
     ])
   },
   logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
