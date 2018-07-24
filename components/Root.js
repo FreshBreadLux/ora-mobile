@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -152,7 +152,8 @@ const mapDispatch = dispatch => ({
       dispatch(fetchUserViews(userId)),
       dispatch(fetchUserInfo(userId)),
       dispatch(fetchUserAlarms()),
-      dispatch(fetchFlagReasons())
+      dispatch(fetchFlagReasons()),
+      dispatch(fetchDailyReflection())
     ])
   },
   logUserIn: oraAuthJson => dispatch(login(oraAuthJson)),
