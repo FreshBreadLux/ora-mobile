@@ -25,7 +25,7 @@ export const fetchDailyReflection = date =>
     axios.get(`${ROOT_URL}/api/reflections/date=?${date}`)
     .then(res => res.data)
     .then(dailyReflection => {
-      dispatch(setCurrentPrayer(dailyReflection))
+      dispatch(setDailyReflection(dailyReflection))
     })
     .catch(err => {
       console.warn(err)

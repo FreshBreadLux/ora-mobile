@@ -29,25 +29,19 @@ class ReflectionContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log('ReflectionContainer is mounting')
     this.fadeInReflection()
   }
 
   async fadeInReflection() {
-    try {
-      await this.fadeInBackground()
-      await this.fadeInCopy()
-      await this.fadeInVerse()
-    } catch (error) {
-      console.error(error)
-    }
+    await this.fadeInBackground()
+    await this.fadeInCopy()
+    await this.fadeInVerse()
   }
 
   async finishReflection() {
     this.fadeOutVerse()
     this.fadeOutCopy()
     await this.fadeOutBackground()
-    console.log('dispatching remove reflection')
     this.props.dispatchRemoveReflection()
   }
 

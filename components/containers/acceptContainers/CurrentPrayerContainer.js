@@ -36,7 +36,6 @@ class CurrentPrayerContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log('CurrentPrayerContainer is mounting')
     this.handleFirstPrayer()
   }
 
