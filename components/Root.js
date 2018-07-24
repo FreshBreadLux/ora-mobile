@@ -9,6 +9,11 @@ import MainNav from './MainNav'
 import { ampEvents, ampInitialize, ampIdentify, ampLogEvent } from './analytics'
 import ss from './StyleSheet'
 
+function getDateString() {
+  let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
+  return new Date(date).toISOString().slice(0, 10)
+}
+
 class Root extends React.Component {
   constructor(props) {
     super(props)
@@ -75,8 +80,9 @@ class Root extends React.Component {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchSetTheme(theme)
       ampIdentify(oraAuthJson.userId)
+      const today = getDateString()
       this.props.logUserIn(oraAuthJson)
-      await this.props.loadInitialData(oraAuthJson.userId)
+      await this.props.loadInitialData(oraAuthJson.userId, today)
       ampLogEvent(ampEvents.USER_VERIFIED)
       this.setState({ loading: false })
     } else {
