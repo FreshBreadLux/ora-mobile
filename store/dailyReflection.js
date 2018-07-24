@@ -15,16 +15,17 @@ const defaultDailyReflection = {}
 /**
  * ACTION CREATORS
  */
-export const setDailyReflection = reflection => ({ type: SET_DAILY_REFLECTION, reflection })
+export const setDailyReflection = dailyReflection => ({ type: SET_DAILY_REFLECTION, dailyReflection })
 
 /**
  * THUNK CREATORS
  */
 export const fetchDailyReflection = date =>
   dispatch =>
-    axios.get(`${ROOT_URL}/api/reflections/date=?${date}`)
+    axios.get(`${ROOT_URL}/api/reflections/?date=${date}`)
     .then(res => res.data)
     .then(dailyReflection => {
+      console.log('returned dailyReflection:', dailyReflection)
       dispatch(setDailyReflection(dailyReflection))
     })
     .catch(err => {

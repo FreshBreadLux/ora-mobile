@@ -1,11 +1,11 @@
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, Animated, Image } from 'react-native'
+import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { BackgroundImageContainer } from '../../presenters'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying }) => (
+const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying, dailyReflection, verseOpacity }) => (
   <View style={ss.whiteContainer}>
     <Animated.View style={[ss.invisiContainer, { opacity: backgroundOpacity }]}>
       <BackgroundImageContainer componentName="Accept" />
@@ -21,11 +21,14 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
                 color="#fff" />
             </TouchableOpacity>
           </Animated.View>
-          <Animated.View style={[ss.flex2, ss.center, {opacity: copyOpacity}]}>
-            <Text style={[ss.subHeader, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>Lord, I know that You are here, that You see me, that You hear me. Pour out Your grace into my heart, and give me a spirit of true empathy.</Text>
+          <Animated.View style={[ss.flex1, ss.center, ss.padding10, {opacity: copyOpacity}]}>
+            <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
           </Animated.View>
-          <Animated.View style={[ss.flex1, ss.center, {opacity: copyOpacity}]}>
-            <Text style={[ss.subBody, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>As soon as you are given a new prayer, the author will be notified that someone is praying for them.{'\n'}Don't be hasty.</Text>
+          <Animated.View style={[ss.flex2, ss.center, ss.padding10, {opacity: verseOpacity}]}>
+            {dailyReflection.text
+            ? <Text style={[ss.subHeader, ss.whiteText]}>{`${dailyReflection.text}`}</Text>
+            : <ActivityIndicator size="large" color="#fff" />
+            }
           </Animated.View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
             <TouchableOpacity
