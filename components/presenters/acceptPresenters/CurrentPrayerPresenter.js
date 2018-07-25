@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTransition, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
@@ -99,7 +99,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, animateNextPrayerTr
           </View>
           <View style={[ss.padding10, ss.center, ss.fullWidth]}>
             <TouchableOpacity
-              onPress={animateNextPrayerTransition}
+              onPress={handleNextPrayer}
               style={[ss.button, ss.threeQuartersWidth]}>
               <Text style={ss.buttonText}>ACCEPT NEW PRAYER</Text>
             </TouchableOpacity>
