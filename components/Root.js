@@ -28,6 +28,12 @@ class Root extends React.Component {
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
   }
 
+  /*
+    On componentDidMount, we initialize Amplitude, check if this is the user's first time in the
+    app (to decide whether or not to show them the intro pagination), adds listeners to handle
+    notifications (to show them in-app and refresh data) and appStateChanges (to refresh data), and
+    finally creates channels for push notifications on Android.
+  */
   componentDidMount() {
     ampInitialize()
     this.checkFirstTime()
@@ -121,6 +127,14 @@ class Root extends React.Component {
     this.setState({ notification: null })
   }
 
+  /*
+    There are three terniary statements in the render function.
+    1. this.state.loading: checks state to determine if it should render the splash screen or if
+    it should render the rest of the app (this ensures users don't see other screens, like the
+    login screen, before the app has finished processing).
+    2. this.props.firstTime: checks to see if it should show the user the intro pagination
+    3. this.props.isLoggedIn: checks to see if it should render the app or the login screen
+  */
   render() {
     return (
       <View style={ss.invisiContainer}>
