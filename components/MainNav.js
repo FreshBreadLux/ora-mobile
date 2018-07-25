@@ -227,22 +227,6 @@ const CardStackNav = StackNavigator({
       }
     },
   },
-  ReflectionFullText: {
-    screen: ReflectionFullTextPresenter,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'REFLECTION',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
-  }
 }, {
   headerMode: 'screen'
 })
@@ -276,6 +260,22 @@ const ModalStackNav = StackNavigator({
       }
     },
   },
+  ReflectionFullText: {
+    screen: ReflectionFullTextPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'REFLECTION',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  }
 }, {
   mode: 'modal',
   headerMode: 'screen'
