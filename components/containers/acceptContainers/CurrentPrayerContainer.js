@@ -66,7 +66,7 @@ class CurrentPrayerContainer extends React.Component {
     }
   }
 
-  handleNetworkErrorMessage() {
+  async handleNetworkErrorMessage() {
     await this.fadeOutPrayerActivityIndicator()
     this.setState({ networkError: true })
     this.fadeInNetworkErrorMessage()
@@ -104,18 +104,17 @@ class CurrentPrayerContainer extends React.Component {
     return(
       <View style={ss.invisiContainer}>
         <BackgroundImageContainer componentName="Accept" />
-        <Animated.View style={[ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]}>
-          <CurrentPrayerPresenter
-            navigation={this.props.navigation}
-            networkError={this.state.networkError}
-            finishPraying={this.props.finishPraying}
-            buttonOpacity={this.state.buttonOpacity}
-            handleNextPrayer={this.handleNextPrayer}
-            requestEnRoute={this.state.requestEnRoute}
-            prayerTextOpacity={this.state.prayerTextOpacity}
-            activityIndicatorOpacity={this.state.activityIndicatorOpacity}
-            networkErrorMessageOpacity={this.state.networkErrorMessageOpacity} />
-        </Animated.View>
+        <Animated.View style={[ss.backgroundImageFrame, ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]} />
+        <CurrentPrayerPresenter
+          navigation={this.props.navigation}
+          networkError={this.state.networkError}
+          finishPraying={this.props.finishPraying}
+          buttonOpacity={this.state.buttonOpacity}
+          handleNextPrayer={this.handleNextPrayer}
+          requestEnRoute={this.state.requestEnRoute}
+          prayerTextOpacity={this.state.prayerTextOpacity}
+          activityIndicatorOpacity={this.state.activityIndicatorOpacity}
+          networkErrorMessageOpacity={this.state.networkErrorMessageOpacity} />
       </View>
     )
   }
