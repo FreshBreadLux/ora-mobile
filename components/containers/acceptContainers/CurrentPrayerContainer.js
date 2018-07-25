@@ -3,6 +3,7 @@ import { View, Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchNextPrayer } from '../../../store'
 import { CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
+import { ampEvents, ampLogEvent } from '../../analytics'
 import ss from '../../StyleSheet'
 
 function animate(...options) {
@@ -44,6 +45,7 @@ class CurrentPrayerContainer extends React.Component {
   loadNextPrayer(cancelTimeoutID, successHandler) {
     const { dispatchFetchNextPrayer, userId, views } = this.props
     this.setState({ requestEnRoute: true })
+    ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
     return dispatchFetchNextPrayer(userId, views, cancelTimeoutID, successHandler)
   }
 
