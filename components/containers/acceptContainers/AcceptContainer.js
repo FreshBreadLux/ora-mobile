@@ -14,29 +14,12 @@ class AcceptContainer extends React.Component {
 
     this.flagPrayer = this.flagPrayer.bind(this)
     this.finishPraying = this.finishPraying.bind(this)
-    this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.loadReflection = this.loadReflection.bind(this)
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
-    this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
   }
 
   componentDidMount() {
     this.loadReflection()
-  }
-
-  loadNextPrayer() {
-    const { dispatchFetchNextPrayer, userId, views } = this.props
-    return dispatchFetchNextPrayer(userId, views)
-  }
-
-  async animateNextPrayerTransition() {
-    try {
-      await this.fadeOut()
-      await this.loadNextPrayer().then(this.fadeIn)
-      ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
-    } catch (err) {
-      console.error(err)
-    }
   }
 
   async loadReflection() {
@@ -97,8 +80,10 @@ class AcceptContainer extends React.Component {
               navigation={this.props.navigation}
               finishPraying={this.finishPraying} />
           : <CurrentPrayerContainer
+              flagPrayer={this.flagPrayer}
               navigation={this.props.navigation}
-              finishPraying={this.finishPraying} />
+              finishPraying={this.finishPraying}
+              toggleFollowPrayer={this.toggleFollowPrayer} />
         }
       </View>
     )
@@ -116,10 +101,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
-  dispatchAddView: viewedId => dispatch(addView(viewedId)),
-  refreshUserInfo: userId => dispatch(fetchUserInfo(userId)),
-  dispatchSetUserInfo: userInfo => dispatch(setUserInfo(userInfo)),
-  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
   dispatchFinishPraying: () => dispatch(finishPraying()),
   dispatchSetReflectionMode: () => dispatch(setReflectionMode()),
   dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
