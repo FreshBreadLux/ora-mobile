@@ -134,6 +134,10 @@ class Root extends React.Component {
     login screen, before the app has finished processing).
     2. this.props.firstTime: checks to see if it should show the user the intro pagination
     3. this.props.isLoggedIn: checks to see if it should render the app or the login screen
+
+    Show the splash screen until initial processing is finsihed.
+    If this is their first time, show them the intro; if it's not, check if they're logged in.
+    If they're logged in, render MainNav; otherwise, render the login screen.
   */
   render() {
     return (
