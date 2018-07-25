@@ -92,7 +92,6 @@ class AcceptContainer extends React.Component {
 
 const mapState = state => ({
   follows: state.follows,
-  views: state.views,
   userId: state.auth.userId,
   isLoggedIn: state.auth.isLoggedIn,
   currentPrayer: state.acceptPrayer.currentPrayer,

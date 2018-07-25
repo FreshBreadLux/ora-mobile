@@ -3,7 +3,7 @@ import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator
 import { connect } from 'react-redux'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
-import { Feather } from '@expo/vector-icons'
+import { Feather, Ionicons } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
@@ -89,12 +89,16 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flag
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
               onPress={() => showModal('follow')}>
-              <Feather
-                name="heart"
-                size={22}
-                color={ follows && follows.find(follow => {
-                  return follow.id === currentPrayer.id
-                }) ? '#FF4081' : '#555' } />
+              {follows && follows.find(follow => { return follow.id === currentPrayer.id })
+              ? <Ionicons
+                  name="md-heart"
+                  size={22}
+                  color="#FF4081" />
+              : <Ionicons
+                  name="md-heart-outline"
+                  size={22}
+                  color="#555" />
+              }
             </TouchableOpacity>
           </View>
           <View style={[ss.padding10, ss.center, ss.fullWidth]}>

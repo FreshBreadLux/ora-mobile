@@ -116,6 +116,7 @@ class CurrentPrayerContainer extends React.Component {
           handleNextPrayer={this.handleNextPrayer}
           requestEnRoute={this.state.requestEnRoute}
           prayerTextOpacity={this.state.prayerTextOpacity}
+          toggleFollowPrayer={this.props.toggleFollowPrayer}
           activityIndicatorOpacity={this.state.activityIndicatorOpacity}
           networkErrorMessageOpacity={this.state.networkErrorMessageOpacity} />
       </View>
