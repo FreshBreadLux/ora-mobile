@@ -5,7 +5,7 @@ import { BackgroundImageContainer } from '../../presenters'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying, dailyReflection, verseOpacity }) => (
+const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying, dailyReflection, verseOpacity, navigation }) => (
   <View style={ss.whiteContainer}>
     <Animated.View style={[ss.invisiContainer, { opacity: backgroundOpacity }]}>
       <BackgroundImageContainer componentName="Reflection" />
@@ -31,7 +31,8 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
             }
           </Animated.View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('ReflectionFullText')}>
               <Text style={[ss.subBody, ss.padding15, ss.whiteText]}>READ MORE</Text>
             </TouchableOpacity>
             <TouchableOpacity
