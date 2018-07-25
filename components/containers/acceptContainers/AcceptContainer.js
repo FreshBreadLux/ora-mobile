@@ -94,6 +94,7 @@ class AcceptContainer extends React.Component {
       <View style={ss.invisiContainer}>
         {this.props.reflection
           ? <ReflectionContainer
+              navigation={this.props.navigation}
               finishPraying={this.finishPraying}
               animateNextPrayerTransition={this.animateNextPrayerTransition} />
           : <CurrentPrayerContainer

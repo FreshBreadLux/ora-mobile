@@ -92,6 +92,7 @@ class CurrentPrayerContainer extends React.Component {
         <BackgroundImageContainer componentName="Accept" />
         <Animated.View style={[ss.whiteContainer, {opacity: this.state.backgroundCoverOpacity}]}>
           <CurrentPrayerPresenter
+            navigation={this.props.navigation}
             networkError={this.state.networkError}
             finishPraying={this.props.finishPraying}
             buttonOpacity={this.state.buttonOpacity}

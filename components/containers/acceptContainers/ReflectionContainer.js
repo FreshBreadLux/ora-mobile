@@ -67,6 +67,7 @@ class ReflectionContainer extends React.Component {
   render() {
     return (
       <ReflectionPresenter
+        navigation={this.props.navigation}
         copyOpacity={this.state.copyOpacity}
         verseOpacity={this.state.verseOpacity}
         finishPraying={this.props.finishPraying}
