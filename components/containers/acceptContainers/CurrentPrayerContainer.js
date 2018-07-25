@@ -27,6 +27,8 @@ class CurrentPrayerContainer extends React.Component {
     this.loadNextPrayer = this.loadNextPrayer.bind(this)
     this.fadeInPrayerText = this.fadeInPrayerText.bind(this)
     this.fadeInBackground = this.fadeInBackground.bind(this)
+    this.handleNextPrayer = this.handleNextPrayer.bind(this)
+    this.fadeOutPrayerText = this.fadeOutPrayerText.bind(this)
     this.handleFirstPrayer = this.handleFirstPrayer.bind(this)
     this.handleNetworkErrorMessage = this.handleNetworkErrorMessage.bind(this)
     this.fadeInNetworkErrorMessage = this.fadeInNetworkErrorMessage.bind(this)
@@ -47,9 +49,18 @@ class CurrentPrayerContainer extends React.Component {
 
   async handleFirstPrayer() {
     await this.fadeInBackground()
-    const networkTimeoutID = setTimeout(this.handleNetworkErrorMessage, 8000)
+    const networkTimeoutID = setTimeout(this.handleNetworkErrorMessage, 10000)
     this.loadNextPrayer(networkTimeoutID, this.handleSuccessfulPrayerLoad)
     this.fadeInButtons()
+    if (this.state.requestEnRoute) {
+      this.fadeInPrayerActivityIndicator()
+    }
+  }
+
+  async handleNextPrayer() {
+    await this.fadeOutPrayerText()
+    const networkTimeoutID = setTimeout(this.handleNetworkErrorMessage, 10000)
+    this.loadNextPrayer(networkTimeoutID, this.handleSuccessfulPrayerLoad)
     if (this.state.requestEnRoute) {
       this.fadeInPrayerActivityIndicator()
     }
@@ -63,7 +74,7 @@ class CurrentPrayerContainer extends React.Component {
 
   handleSuccessfulPrayerLoad() {
     this.fadeOutPrayerActivityIndicator()
-    this.setState({ requestEnRoute: false })
+    this.setState({ requestEnRoute: false, activityIndicatorOpacity: new Animated.Value(0) })
     this.fadeInPrayerText()
   }
 
@@ -76,14 +87,17 @@ class CurrentPrayerContainer extends React.Component {
   fadeInPrayerText() {
     return animate(this.state.prayerTextOpacity, { toValue: 1, duration: 1000 })
   }
-  fadeInPrayerActivityIndicator() {
-    return animate(this.state.activityIndicatorOpacity, { toValue: 1, duration: 300 })
+  fadeOutPrayerText() {
+    return animate(this.state.prayerTextOpacity, { toValue: 0, duration: 1000 })
   }
-  fadeInNetworkErrorMessage() {
-    return animate(this.state.networkErrorMessageOpacity, { toValue: 1, duration: 300 })
+  fadeInPrayerActivityIndicator() {
+    return animate(this.state.activityIndicatorOpacity, { toValue: 1, duration: 1000 })
   }
   fadeOutPrayerActivityIndicator() {
     return animate(this.state.activityIndicatorOpacity, { toValue: 0, duration: 300 })
+  }
+  fadeInNetworkErrorMessage() {
+    return animate(this.state.networkErrorMessageOpacity, { toValue: 1, duration: 300 })
   }
 
   render() {

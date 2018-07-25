@@ -95,8 +95,7 @@ class AcceptContainer extends React.Component {
         {this.props.reflectionMode
           ? <ReflectionContainer
               navigation={this.props.navigation}
-              finishPraying={this.finishPraying}
-              animateNextPrayerTransition={this.animateNextPrayerTransition} />
+              finishPraying={this.finishPraying} />
           : <CurrentPrayerContainer
               navigation={this.props.navigation}
               finishPraying={this.finishPraying} />
