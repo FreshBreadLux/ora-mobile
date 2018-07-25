@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
+import { fetchUserFollows, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
 import { ReflectionContainer, CurrentPrayerContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'

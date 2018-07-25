@@ -87,7 +87,7 @@ export default function(state = defaultAcceptPrayer, action) {
     case EXIT_REFLECTION_MODE:
       return { ...state, reflectionMode: false }
     case FINISH_PRAYING:
-      return defaultAcceptPrayer
+      return { ...state, currentPrayer: {}, reflectionMode: true, noPrayers: false }
     case LOGOUT:
       return defaultAcceptPrayer
     default:

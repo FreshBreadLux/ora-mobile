@@ -73,18 +73,18 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flag
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
               onPress={() => showModal('flag')}>
-              <Feather
-                name="flag"
+              <Ionicons
+                name="md-flag"
                 size={22}
-                color="#555" />
+                color="#777" />
             </TouchableOpacity>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
               onPress={() => showModal('about')}>
-              <Feather
-                name="help-circle"
+              <Ionicons
+                name="md-help-circle"
                 size={22}
-                color="#555" />
+                color="#777" />
             </TouchableOpacity>
             <TouchableOpacity
               style={[ss.padding10, ss.center]}
@@ -95,9 +95,9 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flag
                   size={22}
                   color="#FF4081" />
               : <Ionicons
-                  name="md-heart-outline"
+                  name="md-heart"
                   size={22}
-                  color="#555" />
+                  color="#777" />
               }
             </TouchableOpacity>
           </View>
