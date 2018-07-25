@@ -2,7 +2,7 @@ import React from 'react'
 import { Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { ReflectionPresenter } from '../../presenters'
-import { removeReflection } from '../../../store'
+import { exitReflectionMode } from '../../../store'
 
 function animate(...options) {
   return new Promise(res => {
@@ -20,12 +20,12 @@ class ReflectionContainer extends React.Component {
     }
     this.fadeInCopy = this.fadeInCopy.bind(this)
     this.fadeInVerse = this.fadeInVerse.bind(this)
-    this.fadeInBackground = this.fadeInBackground.bind(this)
     this.fadeOutCopy = this.fadeOutCopy.bind(this)
     this.fadeOutVerse = this.fadeOutVerse.bind(this)
-    this.fadeOutBackground = this.fadeOutBackground.bind(this)
+    this.fadeInBackground = this.fadeInBackground.bind(this)
     this.fadeInReflection = this.fadeInReflection.bind(this)
     this.finishReflection = this.finishReflection.bind(this)
+    this.fadeOutBackground = this.fadeOutBackground.bind(this)
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class ReflectionContainer extends React.Component {
     this.fadeOutVerse()
     this.fadeOutCopy()
     await this.fadeOutBackground()
-    this.props.dispatchRemoveReflection()
+    this.props.dispatchExitReflectionMode()
   }
 
   fadeInBackground() {
@@ -78,7 +78,7 @@ class ReflectionContainer extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  dispatchRemoveReflection: () => dispatch(removeReflection())
+  dispatchExitReflectionMode: () => dispatch(exitReflectionMode())
 })
 
 export default connect(null, mapDispatch)(ReflectionContainer)

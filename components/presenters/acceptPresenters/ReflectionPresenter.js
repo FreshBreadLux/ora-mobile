@@ -51,7 +51,7 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
 )
 
 const mapState = state => ({
-  dailyReflection: state.dailyReflection
+  dailyReflection: state.acceptPrayer.dailyReflection
 })
 
 export default connect(mapState)(ReflectionPresenter)
