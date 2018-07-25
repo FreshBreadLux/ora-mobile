@@ -67,14 +67,14 @@ class CurrentPrayerContainer extends React.Component {
   }
 
   handleNetworkErrorMessage() {
-    this.fadeOutPrayerActivityIndicator()
+    await this.fadeOutPrayerActivityIndicator()
     this.setState({ networkError: true })
     this.fadeInNetworkErrorMessage()
   }
 
-  handleSuccessfulPrayerLoad() {
-    this.fadeOutPrayerActivityIndicator()
-    this.setState({ requestEnRoute: false, activityIndicatorOpacity: new Animated.Value(0) })
+  async handleSuccessfulPrayerLoad() {
+    await this.fadeOutPrayerActivityIndicator()
+    this.setState({ requestEnRoute: false })
     this.fadeInPrayerText()
   }
 
@@ -110,6 +110,7 @@ class CurrentPrayerContainer extends React.Component {
             networkError={this.state.networkError}
             finishPraying={this.props.finishPraying}
             buttonOpacity={this.state.buttonOpacity}
+            handleNextPrayer={this.handleNextPrayer}
             requestEnRoute={this.state.requestEnRoute}
             prayerTextOpacity={this.state.prayerTextOpacity}
             activityIndicatorOpacity={this.state.activityIndicatorOpacity}
