@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter, ReflectionFullTextPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -227,6 +227,22 @@ const CardStackNav = StackNavigator({
       }
     },
   },
+  ReflectionFullText: {
+    screen: ReflectionFullTextPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'REFLECTION',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  }
 }, {
   headerMode: 'screen'
 })

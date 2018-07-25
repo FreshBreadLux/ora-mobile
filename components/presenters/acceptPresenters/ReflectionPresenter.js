@@ -32,7 +32,7 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
           </Animated.View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
             <TouchableOpacity>
-              <Text style={[ss.subBody, ss.padding10, ss.whiteText]}>READ MORE</Text>
+              <Text style={[ss.subBody, ss.padding15, ss.whiteText]}>READ MORE</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={finishReflection}

@@ -46,7 +46,7 @@ class ReflectionContainer extends React.Component {
   }
 
   fadeInBackground() {
-    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 1000 })
+    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 2000 })
   }
   fadeInCopy() {
     return animate(this.state.copyOpacity, { toValue: 1, duration: 1000 })
