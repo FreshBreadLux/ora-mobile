@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, AlertIOS } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
+import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
 import { ReflectionContainer, CurrentPrayerContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -40,7 +40,7 @@ class AcceptContainer extends React.Component {
   }
 
   async loadReflection() {
-    this.props.dispatchSetReflection()
+    this.props.dispatchSetReflectionMode()
     ampLogEvent(ampEvents.START_REFLECTION)
   }
 
@@ -92,7 +92,7 @@ class AcceptContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        {this.props.reflection
+        {this.props.reflectionMode
           ? <ReflectionContainer
               navigation={this.props.navigation}
               finishPraying={this.finishPraying}
@@ -112,7 +112,7 @@ const mapState = state => ({
   userId: state.auth.userId,
   isLoggedIn: state.auth.isLoggedIn,
   currentPrayer: state.acceptPrayer.currentPrayer,
-  reflection: state.acceptPrayer.reflection
+  reflectionMode: state.acceptPrayer.reflectionMode
 })
 
 const mapDispatch = dispatch => ({
@@ -122,7 +122,7 @@ const mapDispatch = dispatch => ({
   dispatchSetUserInfo: userInfo => dispatch(setUserInfo(userInfo)),
   dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
   dispatchFinishPraying: () => dispatch(finishPraying()),
-  dispatchSetReflection: () => dispatch(setReflection()),
+  dispatchSetReflectionMode: () => dispatch(setReflectionMode()),
   dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
 })
 
