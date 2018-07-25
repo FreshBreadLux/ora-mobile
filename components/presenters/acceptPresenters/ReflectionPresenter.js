@@ -25,8 +25,8 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
             <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
           </Animated.View>
           <Animated.View style={[ss.flex2, ss.center, ss.padding10, {opacity: verseOpacity}]}>
-            {dailyReflection.text
-            ? <Text style={[ss.subHeader, ss.whiteText]}>{`${dailyReflection.text}`}</Text>
+            {dailyReflection.verse
+            ? <Text style={[ss.subHeader, ss.whiteText]}>{`${dailyReflection.verse}`}</Text>
             : <ActivityIndicator size="large" color="#fff" />
             }
           </Animated.View>
