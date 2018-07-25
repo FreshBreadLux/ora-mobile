@@ -26,7 +26,10 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
           </Animated.View>
           <Animated.View style={[ss.flex3, ss.center, ss.padding10, {opacity: verseOpacity}]}>
             {dailyReflection.verse
-            ? <Text style={[ss.body, ss.whiteText, ss.fullWidth]}>{`${dailyReflection.verse}`}</Text>
+            ? <View style={[ss.flex1, ss.center, ss.fullWidth]}>
+                <Text style={[ss.body, ss.whiteText, ss.fullWidth]}>{dailyReflection.verse}</Text>
+                <Text style={[ss.body, ss.whiteText, ss.fullWidth, ss.rightText]}>{dailyReflection.source}</Text>
+              </View>
             : <ActivityIndicator size="large" color="#fff" />
             }
           </Animated.View>
