@@ -31,6 +31,7 @@ async function _loadAssetsAsync() {
     require('./assets/images/Rome/Profile.jpg'),
     require('./assets/images/Rome/Prayers.jpg'),
     require('./assets/images/Rome/Follows.jpg'),
+    require('./assets/images/Rome/Reflection.jpg'),
     require('./assets/images/Mountains/Accept.jpg'),
     require('./assets/images/Mountains/Submit.jpg'),
     require('./assets/images/Mountains/Profile.jpg'),

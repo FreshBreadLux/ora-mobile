@@ -8,7 +8,7 @@ import ss from '../../StyleSheet'
 const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity, finishPraying, dailyReflection, verseOpacity }) => (
   <View style={ss.whiteContainer}>
     <Animated.View style={[ss.invisiContainer, { opacity: backgroundOpacity }]}>
-      <BackgroundImageContainer componentName="Accept" />
+      <BackgroundImageContainer componentName="Reflection" />
       <SafeAreaView style={ss.invisiContainer}>
         <View style={[ss.invisiContainer, ss.padding15]}>
           <Animated.View style={{opacity: copyOpacity}}>
@@ -31,6 +31,9 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
             }
           </Animated.View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
+            <TouchableOpacity>
+              <Text style={[ss.subBody, ss.padding10, ss.whiteText]}>READ MORE</Text>
+            </TouchableOpacity>
             <TouchableOpacity
               onPress={finishReflection}
               style={[ss.button, ss.threeQuartersWidth]}>
