@@ -2,12 +2,17 @@ import React from 'react'
 import { Animated } from 'react-native'
 import { connect } from 'react-redux'
 import { ReflectionPresenter } from '../../presenters'
-import { exitReflectionMode } from '../../../store'
+import { exitReflectionMode, fetchDailyReflection } from '../../../store'
 
 function animate(...options) {
   return new Promise(res => {
     Animated.timing(...options).start(res)
   })
+}
+
+function getDateString() {
+  let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
+  return new Date(date).toISOString().slice(0, 10)
 }
 
 class ReflectionContainer extends React.Component {
@@ -29,6 +34,10 @@ class ReflectionContainer extends React.Component {
   }
 
   componentDidMount() {
+    if (!this.props.dailyReflection.verse) {
+      const today = getDateString()
+      this.props.dispatchFetchDailyReflection(today)
+    }
     this.fadeInReflection()
   }
 
@@ -77,8 +86,13 @@ class ReflectionContainer extends React.Component {
   }
 }
 
+const mapState = state => ({
+  dailyReflection: state.acceptPrayer.dailyReflection
+})
+
 const mapDispatch = dispatch => ({
+  dispatchFetchDailyReflection: today => dispatch(fetchDailyReflection(today)),
   dispatchExitReflectionMode: () => dispatch(exitReflectionMode())
 })
 
-export default connect(null, mapDispatch)(ReflectionContainer)
+export default connect(mapState, mapDispatch)(ReflectionContainer)

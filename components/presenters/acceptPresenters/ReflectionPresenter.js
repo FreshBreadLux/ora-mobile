@@ -22,7 +22,7 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
             </TouchableOpacity>
           </Animated.View>
           <Animated.View style={[ss.flex1, ss.center, ss.padding10, {opacity: copyOpacity}]}>
-            <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
+            <Text style={[ss.subHeader, ss.whiteText, ss.fullWidth]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
           </Animated.View>
           <Animated.View style={[ss.flex3, ss.center, ss.padding10, {opacity: verseOpacity}]}>
             {dailyReflection.verse
