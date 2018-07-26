@@ -12,7 +12,10 @@ const ReflectionFullTextPresenter = ({ dailyReflection }) => (
         style={ss.flex1}>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
           {dailyReflection.fullText
-          ? <Text style={ss.body}>{dailyReflection.fullText}</Text>
+          ? <View style={[ss.flex1, ss.fullWidth]}>
+              <Text style={ss.body}>{dailyReflection.fullText}</Text>
+              <Text style={ss.body}>{dailyReflection.fullSource}</Text>
+            </View>
           : <Text style={ss.body}>It looks like your reflection hasn't loaded yet</Text>
           }
         </View>

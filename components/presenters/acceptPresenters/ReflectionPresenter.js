@@ -28,7 +28,7 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
             {dailyReflection.verse
             ? <View style={[ss.flex1, ss.center, ss.fullWidth]}>
                 <Text style={[ss.body, ss.whiteText, ss.fullWidth]}>{dailyReflection.verse}</Text>
-                <Text style={[ss.body, ss.whiteText, ss.fullWidth, ss.rightText]}>{dailyReflection.source}</Text>
+                <Text style={[ss.body, ss.whiteText, ss.fullWidth, ss.rightText]}>{dailyReflection.verseSource}</Text>
               </View>
             : <ActivityIndicator size="large" color="#fff" />
             }
