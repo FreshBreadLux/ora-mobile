@@ -11,7 +11,10 @@ const ReflectionFullTextPresenter = ({ dailyReflection }) => (
         showsVerticalScrollIndicator={false}
         style={ss.flex1}>
         <View style={[ss.addViewSpacing, ss.fullWidth]}>
-          <Text style={ss.body}>{`${dailyReflection.fullText}`}</Text>
+          {dailyReflection.fullText
+          ? <Text style={ss.body}>{dailyReflection.fullText}</Text>
+          : <Text style={ss.body}>It looks like your reflection hasn't loaded yet</Text>
+          }
         </View>
       </ScrollView>
     </View>
