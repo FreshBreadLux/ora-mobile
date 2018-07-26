@@ -36,6 +36,7 @@ class ReflectionContainer extends React.Component {
   componentDidMount() {
     if (!this.props.dailyReflection.verse) {
       const today = getDateString()
+      console.log('ReflectionContainer mounted; getting reflection with date:', today)
       this.props.dispatchFetchDailyReflection(today)
     }
     this.fadeInReflection()

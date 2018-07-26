@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer } from './containers'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer } from './containers'
 import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter, ReflectionFullTextPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
@@ -240,6 +240,12 @@ const ModalStackNav = StackNavigator({
   },
   AcceptContainer: {
     screen: AcceptContainer,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  RewardContainer: {
+    screen: RewardContainer,
     navigationOptions: {
       header: null,
     },
