@@ -33,6 +33,7 @@ class CurrentPrayerContainer extends React.Component {
     this.handleFirstPrayer = this.handleFirstPrayer.bind(this)
     this.handleNetworkErrorMessage = this.handleNetworkErrorMessage.bind(this)
     this.fadeInNetworkErrorMessage = this.fadeInNetworkErrorMessage.bind(this)
+    this.fadeOutNetworkErrorMessage = this.fadeOutNetworkErrorMessage.bind(this)
     this.handleSuccessfulPrayerLoad = this.handleSuccessfulPrayerLoad.bind(this)
     this.fadeInPrayerActivityIndicator = this.fadeInPrayerActivityIndicator.bind(this)
     this.fadeOutPrayerActivityIndicator = this.fadeOutPrayerActivityIndicator.bind(this)
@@ -60,6 +61,10 @@ class CurrentPrayerContainer extends React.Component {
   }
 
   async handleNextPrayer() {
+    if (this.state.networkError) {
+      await this.fadeOutNetworkErrorMessage()
+      this.setState({ networkError: false })
+    }
     await this.fadeOutPrayerText()
     const networkTimeoutID = setTimeout(this.handleNetworkErrorMessage, 10000)
     this.loadNextPrayer(networkTimeoutID, this.handleSuccessfulPrayerLoad)
@@ -100,6 +105,9 @@ class CurrentPrayerContainer extends React.Component {
   }
   fadeInNetworkErrorMessage() {
     return animate(this.state.networkErrorMessageOpacity, { toValue: 1, duration: 300 })
+  }
+  fadeOutNetworkErrorMessage() {
+    return animate(this.state.networkErrorMessageOpacity, { toValue: 0, duration: 300 })
   }
 
   render() {
