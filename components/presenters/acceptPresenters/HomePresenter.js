@@ -18,6 +18,11 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation }) => (
           <Text style={[ss.buttonText]}>START PRAYING</Text>
         </TouchableOpacity>
       </View>
+      <TouchableOpacity
+        style={ss.marginTop}
+        onPress={() => navigation.navigate('RewardContainer')}>
+        <Text style={[ss.buttonText]}>REWARD</Text>
+      </TouchableOpacity>
       {isAdmin
       ? <TouchableOpacity
           style={[ss.padding10, {alignSelf: 'flex-end'}]}
