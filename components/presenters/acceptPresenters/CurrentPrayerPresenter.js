@@ -29,7 +29,7 @@ const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flag
             ? <Animated.View style={[ss.flex1, ss.center, { opacity: activityIndicatorOpacity }]}>
                 <ActivityIndicator size="large" color="#555" />
               </Animated.View>
-            : <View style={ss.flex1}>
+            : <View style={[ss.flex1, ss.fullWidth]}>
                 <View style={ss.flex1}>
                   <Animated.View style={[ss.flex1, ss.center, { opacity: prayerTextOpacity }]}>
                     <Text

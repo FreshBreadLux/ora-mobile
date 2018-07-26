@@ -23,7 +23,6 @@ class AcceptContainer extends React.Component {
   }
 
   async loadReflection() {
-    this.props.dispatchRemoveVisibleModal()
     this.props.dispatchSetReflectionMode()
     ampLogEvent(ampEvents.START_REFLECTION)
   }
@@ -31,6 +30,7 @@ class AcceptContainer extends React.Component {
   finishPraying() {
     this.props.dispatchFinishPraying()
     this.props.navigation.goBack()
+    this.props.dispatchRemoveVisibleModal()
   }
 
   flagPrayer(flagreasonId) {
