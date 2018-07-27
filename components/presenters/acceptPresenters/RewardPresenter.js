@@ -1,14 +1,16 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Image } from 'react-native'
+import { connect } from 'react-redux'
+import { FileSystem } from 'expo'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RewardPresenter = ({ navigation }) => (
+const RewardPresenter = ({ navigation, date }) => (
   <View style={ss.invisiContainer}>
     <View style={ss.backgroundImageFrame}>
       <Image
-        style={{flex: 1, height: undefined, width: undefined, resizeMode: 'cover'}}
-        source={{uri: 'https://images.unsplash.com/photo-1504870712357-65ea720d6078?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d91ffea4f802668c524df165caf52704&auto=format&fit=crop&w=2800&q=80'}} />
+        style={{ flex: 1, height: undefined, width: undefined, resizeMode: 'cover' }}
+        source={{ uri: FileSystem.cacheDirectory + `dailyRewards/${date}` }} />
     </View>
     <SafeAreaView style={ss.invisiContainer}>
       <TouchableOpacity
@@ -23,4 +25,8 @@ const RewardPresenter = ({ navigation }) => (
   </View>
 )
 
-export default RewardPresenter
+const mapState = state => ({
+  date: state.acceptPrayer.dailyReward.date
+})
+
+export default connect(mapState)(RewardPresenter)
