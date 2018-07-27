@@ -6,7 +6,7 @@ import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
-const HomePresenter = ({ logUserOut, isAdmin, navigation, lockXPosition, shakeLock }) => (
+const HomePresenter = ({ logUserOut, isAdmin, prayedToday, navigation, lockXPosition, shakeLock }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -22,16 +22,25 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation, lockXPosition, shakeLo
         </TouchableOpacity>
       </View>
       <View style={[ss.flex1, ss.center]}>
-        <Animated.View style={{transform: [{translateX: lockXPosition.interpolate({inputRange: [0, 0.33, 0.66, 1], outputRange: [0, 6, -6, 0]})}]}}>
-          <TouchableOpacity
-            onPress={shakeLock}
-            activeOpacity={0.8}>
+        {prayedToday
+        ? <TouchableOpacity
+            onPress={() => navigation.navigate('RewardContainer')}>
             <Entypo
-              name="lock"
+              name="lock-open"
               size={30}
-              color="#000" />
+              color="#fff" />
           </TouchableOpacity>
-        </Animated.View>
+        : <Animated.View style={{transform: [{translateX: lockXPosition.interpolate({inputRange: [0, 0.33, 0.66, 1], outputRange: [0, 6, -6, 0]})}]}}>
+            <TouchableOpacity
+              onPress={shakeLock}
+              activeOpacity={0.8}>
+              <Entypo
+                name="lock"
+                size={30}
+                color="#000" />
+            </TouchableOpacity>
+          </Animated.View>
+        }
       </View>
       {isAdmin
       ? <TouchableOpacity
@@ -53,7 +62,8 @@ const HomePresenter = ({ logUserOut, isAdmin, navigation, lockXPosition, shakeLo
 )
 
 const mapState = state => ({
-  isAdmin: state.userInfo.isAdmin
+  isAdmin: state.userInfo.isAdmin,
+  prayedToday: state.userInfo.prayedToday
 })
 
 const mapDispatch = dispatch => ({
