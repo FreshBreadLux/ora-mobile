@@ -5,14 +5,13 @@ import { FileSystem } from 'expo'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RewardPresenter = ({ navigation, date }) => (
+const RewardPresenter = ({ navigation, dailyRewardLocalUri }) => (
   <View style={ss.invisiContainer}>
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        style={{ flex: 1, height: undefined, width: undefined, resizeMode: 'cover' }}
-        source={{ uri: FileSystem.cacheDirectory + `dailyRewards/${date}` }} />
-    </View>
     <SafeAreaView style={ss.invisiContainer}>
+      <Image
+        style={{ height: 300, width: 300, borderWidth: 2 }}
+        source={{ uri: dailyRewardLocalUri }} />
+      <Text>The image should be right up there ^ ...</Text>
       <TouchableOpacity
         style={ss.padding10}
         onPress={() => navigation.goBack()}>
@@ -26,7 +25,7 @@ const RewardPresenter = ({ navigation, date }) => (
 )
 
 const mapState = state => ({
-  date: state.acceptPrayer.dailyReward.date
+  dailyRewardLocalUri: state.acceptPrayer.dailyRewardLocalUri
 })
 
 export default connect(mapState)(RewardPresenter)
