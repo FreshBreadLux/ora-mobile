@@ -9,7 +9,7 @@ class RewardContainer extends React.Component {
 
   render() {
     return (
-      <RewardPresenter />
+      <RewardPresenter navigation={this.props.navigation} />
     )
   }
 }
