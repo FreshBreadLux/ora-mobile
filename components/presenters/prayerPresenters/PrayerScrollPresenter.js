@@ -36,7 +36,7 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
                 showsVerticalScrollIndicator={false}>
               { prayers.map(prayer => (
                 <TouchableOpacity
-                  style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
+                  style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop10]}
                   key={prayer.id}
                   onPress={() => {
                     refreshUserPrayers(userId)

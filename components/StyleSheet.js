@@ -401,6 +401,9 @@ const ss = StyleSheet.create({
   flex4: {
     flex: 4
   },
+  flex5: {
+    flex: 5
+  },
   fullWidth: {
     width: '100%',
   },
@@ -431,8 +434,14 @@ const ss = StyleSheet.create({
   androidReminderHeight: {
     height: 100,
   },
-  marginTop: {
+  marginTop10: {
     marginTop: 10,
+  },
+  marginBottom10: {
+    marginBottom: 10,
+  },
+  marginBottom30: {
+    marginBottom: 30,
   },
 })
 
