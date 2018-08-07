@@ -88,7 +88,12 @@ export const fetchAndCacheDailyReward = date =>
       .then(res => res.data)
       .then(async reward => {
         dispatch(setDailyReward(reward))
-        const path = FileSystem.cacheDirectory + date + '.jpg'
+        const uri = reward.imageUrl
+        const ext = uri.substring(
+          uri.lastIndexOf("."),
+          uri.indexOf("?") === -1 ? undefined : uri.indexOf("?")
+        )
+        const path = FileSystem.cacheDirectory + date + ext
         const info = await FileSystem.getInfoAsync(path)
         if (!info.exists) {
           await FileSystem.downloadAsync(reward.imageUrl, path)
