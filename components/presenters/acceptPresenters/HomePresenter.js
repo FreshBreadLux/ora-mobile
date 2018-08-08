@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, SafeAreaView, TouchableOpacity, AsyncStorage, View, Animated } from 'react-native'
 import { connect } from 'react-redux'
+import { DangerZone } from 'expo'
+const { Lottie } = DangerZone
 import { logout } from '../../../store'
 import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
@@ -25,10 +27,8 @@ const HomePresenter = ({ logUserOut, isAdmin, rewardUnlocked, navigation, lockXP
         {rewardUnlocked
         ? <TouchableOpacity
             onPress={() => navigation.navigate('RewardContainer')}>
-            <Entypo
-              name="lock-open"
-              size={30}
-              color="#fff" />
+            <Lottie
+              source={require('../../../assets/images/animation-w800-h800.json')} />
           </TouchableOpacity>
         : <Animated.View style={{transform: [{translateX: lockXPosition.interpolate({inputRange: [0, 0.33, 0.66, 1], outputRange: [0, 6, -6, 0]})}]}}>
             <TouchableOpacity
