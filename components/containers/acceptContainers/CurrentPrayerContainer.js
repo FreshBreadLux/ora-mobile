@@ -46,7 +46,6 @@ class CurrentPrayerContainer extends React.Component {
   loadNextPrayer(cancelTimeoutID, successHandler) {
     const { dispatchFetchNextPrayer, userId, views } = this.props
     this.setState({ requestEnRoute: true })
-    ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
     return dispatchFetchNextPrayer(userId, views, cancelTimeoutID, successHandler)
   }
 
@@ -80,6 +79,7 @@ class CurrentPrayerContainer extends React.Component {
   }
 
   async handleSuccessfulPrayerLoad() {
+    ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
     await this.fadeOutPrayerActivityIndicator()
     this.setState({ requestEnRoute: false })
     this.fadeInPrayerText()

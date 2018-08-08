@@ -6,7 +6,7 @@ import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons, Entypo } from '@expo/vector-icons'
 
-const HomePresenter = ({ logUserOut, isAdmin, prayedToday, navigation, lockXPosition, shakeLock }) => (
+const HomePresenter = ({ logUserOut, isAdmin, rewardUnlocked, navigation, lockXPosition, shakeLock }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -22,7 +22,7 @@ const HomePresenter = ({ logUserOut, isAdmin, prayedToday, navigation, lockXPosi
         </TouchableOpacity>
       </View>
       <View style={[ss.flex1, ss.center]}>
-        {prayedToday
+        {rewardUnlocked
         ? <TouchableOpacity
             onPress={() => navigation.navigate('RewardContainer')}>
             <Entypo
@@ -63,7 +63,7 @@ const HomePresenter = ({ logUserOut, isAdmin, prayedToday, navigation, lockXPosi
 
 const mapState = state => ({
   isAdmin: state.userInfo.isAdmin,
-  prayedToday: state.userInfo.prayedToday
+  rewardUnlocked: state.userInfo.rewardUnlocked
 })
 
 const mapDispatch = dispatch => ({
