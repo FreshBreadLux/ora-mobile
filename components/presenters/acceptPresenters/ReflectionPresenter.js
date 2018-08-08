@@ -21,10 +21,10 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
                 color="#fff" />
             </TouchableOpacity>
           </Animated.View>
-          <Animated.View style={[ss.flex1, ss.center, ss.padding10, {opacity: copyOpacity}]}>
+          <Animated.View style={[ss.center, ss.padding10, {opacity: copyOpacity}]}>
             <Text style={[ss.subHeader, ss.whiteText, ss.fullWidth]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
           </Animated.View>
-          <Animated.View style={[ss.flex3, ss.center, ss.padding10, {opacity: verseOpacity}]}>
+          <Animated.View style={[ss.flex1, ss.center, ss.padding10, {opacity: verseOpacity}]}>
             {dailyReflection.verse
             ? <View style={[ss.flex1, ss.center, ss.fullWidth]}>
                 <Text style={[ss.body, ss.whiteText, ss.fullWidth]}>{dailyReflection.verse}</Text>
