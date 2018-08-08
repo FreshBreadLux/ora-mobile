@@ -5,6 +5,11 @@ import { RewardPresenter } from '../../presenters'
 class RewardContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.saveReward = this.saveReward.bind(this)
+  }
+
+  saveReward() {
+
   }
 
   render() {
