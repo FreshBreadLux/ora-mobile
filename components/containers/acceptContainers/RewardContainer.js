@@ -1,22 +1,76 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { RewardPresenter } from '../../presenters'
+import { fetchSavedRewards } from '../../../store'
+import axios from 'axios'
+import ROOT_URL from '../../../config'
 
 class RewardContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      saveFailed: false,
+      alreadySaved: false,
+      processingSave: false,
+      timeoutId: null,
+    }
     this.saveReward = this.saveReward.bind(this)
+    this.checkIfRewardIsSaved = this.checkIfRewardIsSaved.bind(this)
+  }
+
+  componentDidMount() {
+    this.checkIfRewardIsSaved()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.state.timeoutId)
+  }
+
+  checkIfRewardIsSaved() {
+    const { savedRewards, dailyReward } = this.props
+    const alreadySaved = savedRewards
+    ? savedRewards.find(reward => reward.id === dailyReward.id)
+    : false
+    this.setState({ alreadySaved })
   }
 
   saveReward() {
-
+    const { userId, refreshSavedRewards, dailyReward } = this.props
+    if (!this.state.alreadySaved) {
+      this.setState({ processingSave: true })
+      axios.post(`${ROOT_URL}/api/savedRewards`, { userId, dailyReward })
+      .then(() => {
+        this.setState({ processingSave: false, alreadySaved: true })
+        refreshSavedRewards(userId)
+      })
+      .catch(error => {
+        console.warn(error)
+        const timeoutId = setTimeout(() => this.setState({ saveFailed: false }), 10000)
+        this.setState({ saveFailed: true, timeoutId })
+      })
+    }
   }
 
   render() {
     return (
-      <RewardPresenter navigation={this.props.navigation} />
+      <RewardPresenter
+        saveReward={this.saveReward}
+        navigation={this.props.navigation}
+        saveFailed={this.state.saveFailed}
+        alreadySaved={this.state.alreadySaved}
+        processingSave={this.state.processingSave} />
     )
   }
 }
 
-export default connect()(RewardContainer)
+const mapState = state => ({
+  userId: state.auth.userId,
+  savedRewards: state.savedRewards,
+  dailyReward: state.acceptPrayer.dailyReward,
+})
+
+const mapDispatch = dispatch => ({
+  refreshSavedRewards: userId => dispatch(fetchSavedRewards(userId))
+})
+
+export default connect(mapState, mapDispatch)(RewardContainer)

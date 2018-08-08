@@ -2,10 +2,10 @@ import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { FileSystem } from 'expo'
-import { Feather } from '@expo/vector-icons'
+import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RewardPresenter = ({ navigation, dailyRewardLocalUri, dailyReward }) => (
+const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyReward, saveFailed, alreadySaved, processingSave }) => (
   <View style={ss.invisiContainer}>
     {dailyRewardLocalUri
     ? <View style={ss.invisiContainer}>
@@ -23,6 +23,43 @@ const RewardPresenter = ({ navigation, dailyRewardLocalUri, dailyReward }) => (
               size={20}
               color={dailyReward.iconColor} />
           </TouchableOpacity>
+          <View style={ss.flex1} />
+          <View style={[ss.row, ss.spaceAround, ss.fullWidth, ss.padding10]}>
+            <TouchableOpacity>
+              <MaterialIcons
+                name="account-circle"
+                size={20}
+                color={dailyReward.iconColor} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('RewardFullText')}>
+              <Text style={[ss.subBody, {color: dailyReward.iconColor}]}>READ MORE</Text>
+            </TouchableOpacity>
+            {saveFailed
+            ? <Text>save failed</Text>
+            : <View>
+                {processingSave
+                ? <ActivityIndicator size="small" color={dailyReward.iconColor} />
+                : <View>
+                    {alreadySaved
+                    ? <Ionicons
+                        name="md-checkbox"
+                        size={20}
+                        color={dailyReward.iconColor} />
+                    : <TouchableOpacity
+                        onPress={saveReward}>
+                        <Ionicons
+                          name="md-download"
+                          size={20}
+                          color={dailyReward.iconColor} />
+                      </TouchableOpacity>
+                    }
+                  </View>
+                }
+              </View>
+            }
+
+          </View>
         </SafeAreaView>
       </View>
     : <SafeAreaView style={ss.invisiContainer}>

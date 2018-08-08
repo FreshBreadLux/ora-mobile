@@ -4,3 +4,4 @@ export { default as TraditionalPrayersPresenter } from './TraditionalPrayersPres
 export { default as HomePresenter } from './HomePresenter'
 export { default as ReflectionFullTextPresenter } from './ReflectionFullTextPresenter'
 export { default as RewardPresenter } from './RewardPresenter'
+export { default as RewardFullTextPresenter } from './RewardFullTextPresenter'
