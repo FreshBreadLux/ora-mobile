@@ -292,7 +292,7 @@ const ModalStackNav = StackNavigator({
         ? { backgroundColor: 'white', borderBottomWidth: 0 }
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
-        title: 'GOSPEL READING',
+        title: 'GOSPEL',
         headerTitleStyle,
         headerStyle,
       }
