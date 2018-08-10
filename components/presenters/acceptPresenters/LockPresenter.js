@@ -7,29 +7,14 @@ const LockPresenter = ({ shakeLock, lockXPosition }) => (
       onPress={shakeLock}
       activeOpacity={0.8}>
       <Image
-        style={{height: 60, width: 30, position: 'absolute', left: 30, top: 30}}
-        source={require('../../../assets/images/Key/key-ring.png')} />
-      <Image
-        style={{height: 60, width: 30, position: 'absolute', left: 30, top: 30}}
-        source={require('../../../assets/images/Key/key-ring.png')} />
-      <Image
-        style={{height: 30, width: 30, position: 'absolute', left: 15, top: 60}}
-        source={require('../../../assets/images/Key/key-head.png')} />
-      <Image
-        style={{height: 6.66, width: 30, position: 'absolute', left: 15, top: 53.34}}
-        source={require('../../../assets/images/Key/key-head-backing.png')} />
-      <Image
-        style={{height: 8.34, width: 30, position: 'absolute', left: 15, top: 45.1}}
-        source={require('../../../assets/images/Key/key-mid.png')} />
-      <Image
-        style={{height: 30, width: 30, position: 'absolute', left: 45, top: 60}}
-        source={require('../../../assets/images/Key/key-head.png')} />
-      <Image
-        style={{height: 6.66, width: 30, position: 'absolute', left: 45, top: 53.34}}
-        source={require('../../../assets/images/Key/key-head-backing.png')} />
-      <Image
-        style={{height: 8.34, width: 30, position: 'absolute', left: 45, top: 45.1}}
-        source={require('../../../assets/images/Key/key-mid.png')} />
+        style={{
+          position: 'absolute',
+          height: 47.1327573,
+          width: 42.4194815,
+          left: 23.7902592,
+          top: 42.8672427,
+        }}
+        source={require('../../../assets/images/Key/assembled-lock.png')} />
     </TouchableOpacity>
   </Animated.View>
 )

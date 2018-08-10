@@ -27,8 +27,13 @@ class KeyContainer extends React.Component {
 
   async checkIfUnlockAnimationCompleted() {
     const today = getDateString()
-    const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
-    this.setState({ unlockAnimationCompleted })
+    try {
+      const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
+      console.log('unlockAnimatedCompleted:', unlockAnimationCompleted)
+      this.setState({ unlockAnimationCompleted })
+    } catch (error) {
+      console.warn('Error with AsyncStorage:', error)
+    }
   }
 
   shakeLock() {
