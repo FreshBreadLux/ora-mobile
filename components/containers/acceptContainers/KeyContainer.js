@@ -1,16 +1,34 @@
 import React from 'react'
-import { Animated, Easing } from 'react-native'
+import { Animated, Easing, AsyncStorage } from 'react-native'
+import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
-import { KeyPresenter } from '../../presenters'
+import { LockPresenter, KeyPresenter } from '../../presenters'
+
+function getDateString() {
+  let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
+  return new Date(date).toISOString().slice(0, 10)
+}
 
 class KeyContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      lockXPosition: new Animated.Value(0)
+      unlockAnimationCompleted: false,
+      lockXPosition: new Animated.Value(0),
     }
     this.shakeLock = this.shakeLock.bind(this)
     this.resetLockAnimatedValue = this.resetLockAnimatedValue.bind(this)
+    this.checkIfUnlockAnimationCompleted = this.checkIfUnlockAnimationCompleted.bind(this)
+  }
+
+  componentDidMount() {
+    this.checkIfUnlockAnimationCompleted()
+  }
+
+  async checkIfUnlockAnimationCompleted() {
+    const today = getDateString()
+    const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
+    this.setState({ unlockAnimationCompleted })
   }
 
   shakeLock() {
@@ -26,13 +44,20 @@ class KeyContainer extends React.Component {
   }
 
   render() {
-    return(
-      <KeyPresenter
+    console.log('this.props.isFocused:', this.props.isFocused)
+    if (this.props.rewardUnlocked) {
+      return <KeyPresenter navigation={this.props.navigation} />
+    }
+    return (
+      <LockPresenter
         shakeLock={this.shakeLock}
-        navigation={this.props.navigation}
         lockXPosition={this.state.lockXPosition} />
     )
   }
 }
 
-export default connect()(KeyContainer)
+const mapState = state => ({
+  rewardUnlocked: state.userInfo.rewardUnlocked
+})
+
+export default connect(mapState)(withNavigationFocus(KeyContainer))

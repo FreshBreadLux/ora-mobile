@@ -26,8 +26,7 @@ const defaultAcceptPrayer = {
   dailyReflection: {},
   dailyReward: {},
   dailyRewardLocalUri: '',
-  noPrayers: false,
-  unlockAnimationComplete: false,
+  noPrayers: false
 }
 
 /**

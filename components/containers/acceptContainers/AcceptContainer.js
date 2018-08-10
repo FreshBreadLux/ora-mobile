@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AlertIOS } from 'react-native'
+import { View, AlertIOS, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
 import { ReflectionContainer, CurrentPrayerContainer } from '../'
