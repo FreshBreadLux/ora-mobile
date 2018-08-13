@@ -37,12 +37,6 @@ class KeyContainer extends React.Component {
     }
   }
 
-  async completeUnlockAnimation() {
-    const today = getDateString()
-    await AsyncStorage.setItem(`unlockAnimationCompleted-${today}`, 'true')
-    this.setState({ unlockAnimationCompleted: 'true' })
-  }
-
   shakeLock() {
     Animated.timing(this.state.lockXPosition, {
       toValue: 1,
@@ -61,7 +55,7 @@ class KeyContainer extends React.Component {
       return <KeyPresenter navigation={this.props.navigation} />
     }
     if (this.props.rewardUnlocked && this.props.isFocused && !this.state.unlockAnimationCompleted) {
-      return <UnlockAnimationContainer />
+      return <UnlockAnimationContainer navigation={this.props.navigation} />
     }
     return <LockPresenter shakeLock={this.shakeLock} lockXPosition={this.state.lockXPosition} />
   }
