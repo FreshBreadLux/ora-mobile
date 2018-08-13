@@ -19,7 +19,7 @@ class HomeContainer extends React.Component {
     const today = getDateString()
     await AsyncStorage.removeItem('oraAuth_v1.1.0')
     await AsyncStorage.removeItem(`unlockAnimationCompleted-${today}`)
-    logUserOut()
+    this.props.logUserOut()
     await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
   }
 

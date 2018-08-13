@@ -1,10 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { View, Animated, AsyncStorage, TouchableOpacity } from 'react-native'
-
-function getDateString() {
-  let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
-  return new Date(date).toISOString().slice(0, 10)
-}
 
 class KeyContainer extends React.Component {
   constructor(props){
@@ -36,11 +32,12 @@ class KeyContainer extends React.Component {
       keyEnd2Angle: new Animated.Value(90),
     }
     this.animateUnlock = this.animateUnlock.bind(this)
-    this.setUnlockAnimationComplete = this.setUnlockAnimationComplete.bind(this)
   }
 
-  componentDidMount() {
-    this.animateUnlock()
+  componentDidUpdate(prevProps) {
+    if (this.props.unlockAnimationTriggered != prevProps.unlockAnimationTriggered) {
+      this.animateUnlock()
+    }
   }
 
   animateUnlock() {
@@ -75,17 +72,10 @@ class KeyContainer extends React.Component {
         Animated.timing(this.state.keyEnd2Left, {toValue: 73.8, duration: 700}),
         Animated.timing(this.state.keyEnd2Top, {toValue: 7.5, duration: 700}),
       ])
-    ]).start(this.setUnlockAnimationComplete)
+    ]).start(this.props.setUnlockAnimationComplete)
   }
 
-  async setUnlockAnimationComplete() {
-    const today = getDateString()
-    try {
-      await AsyncStorage.setItem(`unlockAnimationCompleted-${today}`, 'true')
-    } catch (error) {
-      console.warn('Error with AsyncStorage:', error)
-    }
-  }
+
 
   render() {
     return (
@@ -203,4 +193,8 @@ class KeyContainer extends React.Component {
   }
 }
 
-export default KeyContainer
+const mapState = state => ({
+  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered
+})
+
+export default connect(mapState)(KeyContainer)

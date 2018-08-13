@@ -1,18 +1,21 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal } from '../../../store'
+import { setVisibleModal, removeVisibleModal, triggerUnlockAnimation } from '../../../store'
 import Modal from 'react-native-modal'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchTriggerUnlockAnimation }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
         style={[ss.padding10, ss.alignFlexStart]}
-        onPress={finishPraying}>
+        onPress={() => {
+          dispatchTriggerUnlockAnimation()
+          finishPraying()
+        }}>
         <Feather
           name="x-circle"
           size={20}
@@ -145,7 +148,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
-  hideModal: () => dispatch(removeVisibleModal())
+  hideModal: () => dispatch(removeVisibleModal()),
+  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation())
 })
 
 export default connect(mapState, mapDispatch)(CurrentPrayerPresenter)

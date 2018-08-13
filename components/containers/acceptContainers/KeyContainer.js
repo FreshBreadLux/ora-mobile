@@ -2,8 +2,8 @@ import React from 'react'
 import { Animated, Easing, AsyncStorage, Text } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
-import { LockPresenter, KeyPresenter } from '../../presenters'
 import { UnlockAnimationContainer } from '../../containers'
+import { triggerUnlockAnimation } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -14,11 +14,11 @@ class KeyContainer extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      unlockAnimationCompleted: false,
       lockXPosition: new Animated.Value(0),
     }
     this.shakeLock = this.shakeLock.bind(this)
     this.resetLockAnimatedValue = this.resetLockAnimatedValue.bind(this)
+    this.setUnlockAnimationComplete = this.setUnlockAnimationComplete.bind(this)
     this.checkIfUnlockAnimationCompleted = this.checkIfUnlockAnimationCompleted.bind(this)
   }
 
@@ -30,8 +30,18 @@ class KeyContainer extends React.Component {
     const today = getDateString()
     try {
       const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
-      console.log('unlockAnimationCompleted:', unlockAnimationCompleted)
-      this.setState({ unlockAnimationCompleted })
+      if (unlockAnimationCompleted === 'true') {
+        this.props.dispatchTriggerUnlockAnimation()
+      }
+    } catch (error) {
+      console.warn('Error with AsyncStorage:', error)
+    }
+  }
+
+  async setUnlockAnimationComplete() {
+    const today = getDateString()
+    try {
+      await AsyncStorage.setItem(`unlockAnimationCompleted-${today}`, 'true')
     } catch (error) {
       console.warn('Error with AsyncStorage:', error)
     }
@@ -50,14 +60,11 @@ class KeyContainer extends React.Component {
   }
 
   render() {
-    console.log('this.props.isFocused:', this.props.isFocused)
-    if (this.props.rewardUnlocked && this.state.unlockAnimationCompleted) {
-      return <KeyPresenter navigation={this.props.navigation} />
-    }
-    if (this.props.rewardUnlocked && this.props.isFocused && !this.state.unlockAnimationCompleted) {
-      return <UnlockAnimationContainer navigation={this.props.navigation} />
-    }
-    return <LockPresenter shakeLock={this.shakeLock} lockXPosition={this.state.lockXPosition} />
+    return (
+      <UnlockAnimationContainer
+        navigation={this.props.navigation}
+        setUnlockAnimationComplete={this.setUnlockAnimationComplete} />
+    )
   }
 }
 
@@ -65,4 +72,8 @@ const mapState = state => ({
   rewardUnlocked: state.userInfo.rewardUnlocked
 })
 
-export default connect(mapState)(withNavigationFocus(KeyContainer))
+const mapDispatch = dispatch => ({
+  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation())
+})
+
+export default connect(mapState, mapDispatch)(withNavigationFocus(KeyContainer))

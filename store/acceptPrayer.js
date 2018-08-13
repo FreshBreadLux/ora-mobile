@@ -16,6 +16,7 @@ const EXIT_REFLECTION_MODE = 'EXIT_REFLECTION_MODE'
 const SET_DAILY_REFLECTION = 'SET_DAILY_REFLECTION'
 const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
 const SET_DAILY_REWARD_URI = 'SET_DAILY_REWARD_URI'
+const TRIGGER_UNLOCK_ANIMATION = 'TRIGGER_UNLOCK_ANIMATION'
 
 /**
  * INITIAL STATE
@@ -26,7 +27,8 @@ const defaultAcceptPrayer = {
   dailyReflection: {},
   dailyReward: {},
   dailyRewardLocalUri: '',
-  noPrayers: false
+  noPrayers: false,
+  unlockAnimationTriggered: false,
 }
 
 /**
@@ -40,6 +42,7 @@ export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const setReflectionMode = () => ({ type: SET_REFLECTION_MODE })
 export const exitReflectionMode = () => ({ type: EXIT_REFLECTION_MODE })
+export const triggerUnlockAnimation = () => ({ type: TRIGGER_UNLOCK_ANIMATION })
 
 /**
  * THUNK CREATORS
@@ -126,6 +129,8 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, reflectionMode: false }
     case FINISH_PRAYING:
       return { ...state, currentPrayer: {}, reflectionMode: true, noPrayers: false }
+    case TRIGGER_UNLOCK_ANIMATION:
+      return { ...state, unlockAnimationTriggered: true }
     case LOGOUT:
       return defaultAcceptPrayer
     default:
