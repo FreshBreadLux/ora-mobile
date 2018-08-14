@@ -6,7 +6,7 @@ import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
 
-const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
+const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggleSurvey }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -21,7 +21,7 @@ const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
         </TouchableOpacity>
       </View>
       <View style={[ss.flex2, ss.center]}>
-        <KeyContainer navigation={navigation} />
+        <KeyContainer navigation={navigation} toggleSurvey={toggleSurvey} />
       </View>
       {isAdmin
       ? <TouchableOpacity

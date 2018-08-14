@@ -32,11 +32,20 @@ class KeyContainer extends React.Component {
       keyEnd2Angle: new Animated.Value(90),
     }
     this.animateUnlock = this.animateUnlock.bind(this)
+    this.handleButtonPress = this.handleButtonPress.bind(this)
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.unlockAnimationTriggered != prevProps.unlockAnimationTriggered) {
       this.animateUnlock()
+    }
+  }
+
+  handleButtonPress() {
+    if (!this.props.unlockAnimationTriggered) {
+      this.props.shakeLock()
+    } else {
+      this.props.navigation.navigate('RewardContainer')
     }
   }
 
@@ -79,9 +88,10 @@ class KeyContainer extends React.Component {
 
   render() {
     return (
-      <View style={{height: 90, width: 90, backgroundColor: '#555'}}>
+      <Animated.View style={{height: 90, width: 90, transform: [{translateX: this.props.lockXPosition.interpolate({inputRange: [0, 0.33, 0.66, 1], outputRange: [0, 6, -6, 0]})}]}}>
         <TouchableOpacity
-          onPress={() => this.props.navigation.navigate('RewardContainer')}
+          style={{height: 90, width: 90}}
+          onPress={this.handleButtonPress}
           activeOpacity={0.8}>
           <Animated.Image
             style={{
@@ -188,7 +198,7 @@ class KeyContainer extends React.Component {
             }}
             source={require('../../../assets/images/Key/key-end.png')} />
         </TouchableOpacity>
-      </View>
+      </Animated.View>
     )
   }
 }

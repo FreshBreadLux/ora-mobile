@@ -12,7 +12,11 @@ function getDateString() {
 class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      surveyRevealed: false,
+    }
     this.adminReset = this.adminReset.bind(this)
+    this.toggleSurvey = this.toggleSurvey.bind(this)
   }
 
   async adminReset() {
@@ -23,11 +27,17 @@ class HomeContainer extends React.Component {
     await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
   }
 
+  toggleSurvey() {
+    this.setState({ surveyRevealed: !this.state.surveyRevealed })
+  }
+
   render() {
     return(
       <HomePresenter
         adminReset={this.adminReset}
-        navigation={this.props.navigation} />
+        toggleSurvey={this.toggleSurvey}
+        navigation={this.props.navigation}
+        surveyRevealed={this.state.surveyRevealed} />
     )
   }
 }

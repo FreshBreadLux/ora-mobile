@@ -3,7 +3,7 @@ import { Animated, Easing, AsyncStorage, Text } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
 import { UnlockAnimationContainer } from '../../containers'
-import { triggerUnlockAnimation } from '../../../store'
+import { triggerUnlockAnimation, setSurveyCompleted } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -23,18 +23,22 @@ class KeyContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.checkIfUnlockAnimationCompleted()
+    this.checkSurveyCompletion()
+  }
+
+  async checkSurveyCompletion() {
+    const surveyCompleted = await AsyncStorage.getItem('oraSurveyCompleted')
+    if (surveyCompleted === 'true') {
+      this.checkIfUnlockAnimationCompleted()
+      this.props.dispatchSetSurveyCompleted()
+    }
   }
 
   async checkIfUnlockAnimationCompleted() {
     const today = getDateString()
-    try {
-      const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
-      if (unlockAnimationCompleted === 'true') {
-        this.props.dispatchTriggerUnlockAnimation()
-      }
-    } catch (error) {
-      console.warn('Error with AsyncStorage:', error)
+    const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
+    if (unlockAnimationCompleted === 'true') {
+      this.props.dispatchTriggerUnlockAnimation()
     }
   }
 
@@ -62,7 +66,9 @@ class KeyContainer extends React.Component {
   render() {
     return (
       <UnlockAnimationContainer
+        shakeLock={this.shakeLock}
         navigation={this.props.navigation}
+        lockXPosition={this.state.lockXPosition}
         setUnlockAnimationComplete={this.setUnlockAnimationComplete} />
     )
   }
@@ -73,7 +79,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation())
+  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation()),
+  dispatchSetSurveyCompleted: () => dispatch(setSurveyCompleted()),
 })
 
 export default connect(mapState, mapDispatch)(withNavigationFocus(KeyContainer))
