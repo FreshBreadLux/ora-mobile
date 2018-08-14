@@ -42,7 +42,10 @@ class KeyContainer extends React.Component {
   }
 
   handleButtonPress() {
-    if (!this.props.unlockAnimationTriggered) {
+    if (!this.props.surveyCompleted) {
+      this.props.shakeLock()
+      this.props.toggleSurvey()
+    } else if (!this.props.unlockAnimationTriggered) {
       this.props.shakeLock()
     } else {
       this.props.navigation.navigate('RewardContainer')
@@ -204,7 +207,8 @@ class KeyContainer extends React.Component {
 }
 
 const mapState = state => ({
-  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered
+  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered,
+  surveyCompleted: state.acceptPrayer.surveyCompleted
 })
 
 export default connect(mapState)(KeyContainer)

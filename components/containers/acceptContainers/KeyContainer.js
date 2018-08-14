@@ -68,6 +68,7 @@ class KeyContainer extends React.Component {
       <UnlockAnimationContainer
         shakeLock={this.shakeLock}
         navigation={this.props.navigation}
+        toggleSurvey={this.props.toggleSurvey}
         lockXPosition={this.state.lockXPosition}
         setUnlockAnimationComplete={this.setUnlockAnimationComplete} />
     )

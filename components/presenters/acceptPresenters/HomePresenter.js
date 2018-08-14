@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, SafeAreaView, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
-import { KeyContainer } from '../../containers'
+import { KeyContainer, SurveyPromptContainer } from '../../containers'
 import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
@@ -9,6 +9,10 @@ import { Ionicons } from '@expo/vector-icons'
 const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggleSurvey }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
+    {surveyRevealed
+    ? <SurveyPromptContainer navigation={navigation} toggleSurvey={toggleSurvey} />
+    : null
+    }
     <SafeAreaView style={[ss.invisiContainer]}>
       <View style={[ss.flex3, ss.center]}>
         <Text style={[ss.title]}>ORA</Text>
