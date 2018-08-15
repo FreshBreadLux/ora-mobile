@@ -46,9 +46,9 @@ class SurveyPromptContainer extends React.Component {
           </TouchableOpacity>
           <Text style={[ss.subHeader, ss.centerText, ss.addViewSpacing]}>Subscribe to unlock new content from Ora</Text>
           <TouchableOpacity
-            style={[ss.newButton, ss.alignFlexCenter, ss.marginBottom10]}
+            style={[ss.newBlueButton, ss.alignFlexCenter, ss.marginBottom10]}
             onPress={() => {
-              this.props.navigation.navigate('RewardContainer')
+              this.props.navigation.navigate('SurveySwiper')
               this.props.toggleSurvey()
             }}>
             <Text style={[ss.buttonText, ss.whiteText]}>LEARN MORE</Text>

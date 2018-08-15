@@ -398,12 +398,23 @@ const ss = StyleSheet.create({
     borderRadius: 10,
     padding: 5,
   },
-  newButton: {
+  newBlueButton: {
     width: '50%',
     backgroundColor: 'rgb(69, 119, 238)',
+    borderColor: 'rgb(69, 119, 238)',
+    borderWidth: 1,
     padding: 5,
     alignItems: 'center',
-    borderRadius: 13,
+    borderRadius: 14,
+  },
+  newWhiteButton: {
+    width: '50%',
+    backgroundColor: '#fff',
+    borderColor: '#000',
+    borderWidth: 1,
+    padding: 5,
+    alignItems: 'center',
+    borderRadius: 14,
   },
   flex1: {
     flex: 1
