@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage } from 'react-native'
+import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native'
 import { setSurveyCompleted } from '../../../store'
 import ss from '../../StyleSheet'
 
@@ -8,6 +8,7 @@ class SurveyPageFiveContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      sendingResults: false,
       errorSendingResults: false
     }
     this.handleFinish = this.handleFinish.bind(this)
@@ -15,7 +16,8 @@ class SurveyPageFiveContainer extends React.Component {
 
   async handleFinish() {
     try {
-      const axiosResponse = await this.props.sendSurveyResults()
+      this.setState({ sendingResults: true })
+      await this.props.sendSurveyResults()
       await AsyncStorage.setItem('oraSurveyCompleted', 'true')
       this.props.dispatchSetSurveyCompleted()
       this.props.navigation.goBack()
@@ -46,7 +48,10 @@ class SurveyPageFiveContainer extends React.Component {
                 <TouchableOpacity
                   onPress={this.handleFinish}
                   style={[ss.newBlueButton, ss.threeQuartersWidth]}>
-                  <Text style={[ss.buttonText, ss.whiteText]}>FINISH</Text>
+                  {this.state.sendingResults
+                  ? <ActivityIndicator size="small" color="#fff" />
+                  : <Text style={[ss.buttonText, ss.whiteText]}>FINISH</Text>
+                  }
                 </TouchableOpacity>
               </View>
             }
