@@ -61,7 +61,7 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
                     name="md-heart"
                     size={18}
                     color="#FF4081" />
-                  <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
+                  <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND PRAYER</Text>
                 </View>
               }
             </TouchableOpacity>
