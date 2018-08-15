@@ -9,7 +9,7 @@ class SurveyPageOneContainer extends React.Component {
   }
 
   handleYes() {
-    this.props.swiper.scrollBy(1)
+    this.props.scroll(1)
   }
 
   render() {
