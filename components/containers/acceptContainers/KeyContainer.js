@@ -1,5 +1,5 @@
 import React from 'react'
-import { Animated, Easing, AsyncStorage, Text } from 'react-native'
+import { Animated, Easing, AsyncStorage } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
 import { UnlockAnimationContainer } from '../../containers'

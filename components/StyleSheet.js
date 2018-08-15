@@ -464,8 +464,14 @@ const ss = StyleSheet.create({
   marginTop10: {
     marginTop: 10,
   },
+  marginTop20: {
+    marginTop: 20,
+  },
   marginBottom10: {
     marginBottom: 10,
+  },
+  marginBottom20: {
+    marginBottom: 20
   },
   marginBottom30: {
     marginBottom: 30,

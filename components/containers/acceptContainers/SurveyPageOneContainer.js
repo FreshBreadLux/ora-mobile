@@ -6,21 +6,30 @@ class SurveyPageOneContainer extends React.Component {
   constructor(props) {
     super(props)
     this.handleYes = this.handleYes.bind(this)
+    this.handleNo = this.handleNo.bind(this)
   }
 
   handleYes() {
+    this.props.setStateField('willingToTakeSurvey', true)
     this.props.scroll(1)
+  }
+
+  handleNo() {
+    this.props.setStateField('willingToTakeSurvey', false)
+    this.props.scroll(4)
   }
 
   render() {
     return (
       <View style={ss.whiteContainer}>
         <SafeAreaView style={ss.invisiContainer}>
-          <View style={[ss.invisiContainer, ss.padding10]}>
-            <Text style={[ss.subHeader, ss.marginTop10]}>Hi there!{'\n\n'}We actually haven't built out our subscription service yet. We're currently trying to guage the level of interest.{'\n\n'}Do you think you'd pay $4.99/month for mobile content that "deepened your convictions of faith, prompted the conversion of your heart, and strengthened your will to follow Christ"?{'\n'}</Text>
-            <Text style={ss.subBody}>- CCC 2708</Text>
-            <View style={[ss.row, ss.spaceAround, ss.marginTop10]}>
+          <View style={[ss.invisiContainer, ss.padding15, {alignItems: 'center'}]}>
+            <Text style={[ss.header, ss.addLargeViewSpacing]}>Hi there!</Text>
+            <Text style={[ss.subHeader, ss.fullWidth, ss.addViewSpacing]}>We actually haven't built out our subscription service yet. We're currently trying to guage the level of interest.</Text>
+            <Text style={[ss.subHeader, ss.fullWidth, ss.addViewSpacing]}>Can you help us by answering a few quick questions?</Text>
+            <View style={[ss.row, ss.fullWidth, ss.spaceBetween, ss.addMedViewSpacing]}>
               <TouchableOpacity
+                onPress={this.handleNo}
                 style={[ss.newWhiteButton, {width: '45%'}]}>
                 <Text style={ss.buttonText}>NO</Text>
               </TouchableOpacity>

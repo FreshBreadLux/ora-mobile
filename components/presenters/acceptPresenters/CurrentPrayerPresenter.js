@@ -7,13 +7,15 @@ import { Feather, Ionicons } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchTriggerUnlockAnimation }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchTriggerUnlockAnimation, surveyCompleted }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
         style={[ss.padding10, ss.alignFlexStart]}
         onPress={() => {
-          dispatchTriggerUnlockAnimation()
+          if (surveyCompleted) {
+            dispatchTriggerUnlockAnimation()
+          }
           finishPraying()
         }}>
         <Feather
@@ -143,7 +145,8 @@ const mapState = state => ({
   follows: state.follows,
   currentPrayer: state.acceptPrayer.currentPrayer,
   noPrayers: state.acceptPrayer.noPrayers,
-  visibleModal: state.visibleModal
+  visibleModal: state.visibleModal,
+  surveyCompleted: state.acceptPrayer.surveyCompleted
 })
 
 const mapDispatch = dispatch => ({

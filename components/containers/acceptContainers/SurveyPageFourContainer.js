@@ -2,7 +2,7 @@ import React from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity } from 'react-native'
 import ss from '../../StyleSheet'
 
-class SurveyPageTwoContainer extends React.Component {
+class SurveyPageFourContainer extends React.Component {
   constructor(props) {
     super(props)
     this.handleYes = this.handleYes.bind(this)
@@ -10,13 +10,13 @@ class SurveyPageTwoContainer extends React.Component {
   }
 
   handleYes() {
-    this.props.setStateField('mobileContentBeneficial', true)
+    this.props.setStateField('willingToPay', true)
     this.props.scroll(1)
   }
 
   handleNo() {
-    this.props.setStateField('mobileContentBeneficial', false)
-    this.props.scroll(3)
+    this.props.setStateField('willingToPay', false)
+    this.props.scroll(1)
   }
 
   render() {
@@ -24,7 +24,7 @@ class SurveyPageTwoContainer extends React.Component {
       <View style={ss.whiteContainer}>
         <SafeAreaView style={ss.invisiContainer}>
           <View style={[ss.invisiContainer, ss.padding15, {alignItems: 'center'}]}>
-            <Text style={[ss.subHeader, ss.fullWidth, ss.addLargeViewSpacing]}>Would mobile content focused on Christian meditation, prayer, or academic study help you cultivate a life of devotion?</Text>
+            <Text style={[ss.subHeader, ss.fullWidth, ss.addLargeViewSpacing]}>Would you be willing to pay a monthly subscription for this content?</Text>
             <View style={[ss.row, ss.fullWidth, ss.spaceBetween]}>
               <TouchableOpacity
                 onPress={this.handleNo}
@@ -44,4 +44,4 @@ class SurveyPageTwoContainer extends React.Component {
   }
 }
 
-export default SurveyPageTwoContainer
+export default SurveyPageFourContainer
