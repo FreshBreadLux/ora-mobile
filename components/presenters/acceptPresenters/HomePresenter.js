@@ -9,10 +9,6 @@ import { Ionicons } from '@expo/vector-icons'
 const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggleSurvey }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
-    {surveyRevealed
-    ? <SurveyPromptContainer navigation={navigation} toggleSurvey={toggleSurvey} />
-    : null
-    }
     <SafeAreaView style={[ss.invisiContainer]}>
       <View style={[ss.flex3, ss.center]}>
         <Text style={[ss.title]}>ORA</Text>
@@ -29,16 +25,20 @@ const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggle
       </View>
       {isAdmin
       ? <TouchableOpacity
-          style={[ss.padding10, {alignSelf: 'flex-end'}]}
-          onPress={adminReset}>
+      style={[ss.padding10, {alignSelf: 'flex-end'}]}
+      onPress={adminReset}>
           <Ionicons
             name="ios-log-out"
             size={24}
             color="#fff" />
         </TouchableOpacity>
       : null
-      }
+    }
     </SafeAreaView>
+    {surveyRevealed
+    ? <SurveyPromptContainer navigation={navigation} toggleSurvey={toggleSurvey} />
+    : null
+    }
   </View>
 )
 

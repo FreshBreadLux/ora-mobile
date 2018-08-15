@@ -161,6 +161,9 @@ const ss = StyleSheet.create({
   alignFlexStart: {
     alignSelf: 'flex-start'
   },
+  alignFlexCenter: {
+    alignSelf: 'center'
+  },
   spaceAround: {
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -388,6 +391,19 @@ const ss = StyleSheet.create({
     paddingBottom: 10,
     borderTopWidth: 1,
     borderTopColor: '#ccc',
+  },
+  surveyPrompt: {
+    width: '75%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 5,
+  },
+  newButton: {
+    width: '50%',
+    backgroundColor: 'rgb(69, 119, 238)',
+    padding: 5,
+    alignItems: 'center',
+    borderRadius: 13,
   },
   flex1: {
     flex: 1
