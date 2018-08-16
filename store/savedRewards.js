@@ -23,8 +23,10 @@ export const getSavedRewards = rewards => ({ type: GET_SAVED_REWARDS, rewards })
 export const fetchSavedRewards = userId =>
   dispatch =>
     axios.get(`${ROOT_URL}/api/users/${userId}/savedRewards`)
-      .then(res =>
-        dispatch(getSavedRewards(res.data || defaultSavedRewards)))
+      .then(res => {
+        console.log('savedRewards res.data:', res.data)
+        return dispatch(getSavedRewards(res.data || defaultSavedRewards))
+      })
       .catch(err => console.log(err))
 
 /**

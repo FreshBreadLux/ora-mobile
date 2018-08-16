@@ -20,6 +20,7 @@ class RewardContainer extends React.Component {
   }
 
   componentDidMount() {
+    // This is a check for the user 'saving' action, not a check for caching
     this.checkIfRewardIsSaved()
     ampLogEvent(ampEvents.OPEN_REWARD)
   }

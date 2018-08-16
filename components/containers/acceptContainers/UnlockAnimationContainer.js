@@ -55,8 +55,8 @@ class KeyContainer extends React.Component {
   animateUnlock() {
     Animated.sequence([
       Animated.parallel([
-        Animated.timing(this.state.keyRing1Top, {toValue: 12.2309505, duration: 600, delay: 300}),
-        Animated.timing(this.state.keyRing2Top, {toValue: 12.2309505, duration: 600, delay: 300}),
+        Animated.timing(this.state.keyRing1Top, {toValue: 12.2309505, duration: 700, delay: 400}),
+        Animated.timing(this.state.keyRing2Top, {toValue: 12.2309505, duration: 700, delay: 400}),
       ]),
       Animated.parallel([
         Animated.timing(this.state.keyRing1Angle, {toValue: -135, duration: 500, delay: 400}),

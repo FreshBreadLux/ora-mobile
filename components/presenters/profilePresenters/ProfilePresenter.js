@@ -23,17 +23,6 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
             <View style={ss.proflileHeader}>
               <Text style={ss.header}>PROFILE</Text>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
-              <View style={[ss.addViewSpacing, ss.alignFlexStart]}>
-                <Text style={[ss.header, ss.whiteText]}>Your level:</Text>
-                { determineChoirName(userInfo.totalPrayers) }
-              </View>
-              <TouchableOpacity
-                style={[ss.button, ss.halfWidth]}
-                onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: userInfo.totalPrayers })}>
-                { determineChoirTitle(userInfo.totalPrayers) }
-              </TouchableOpacity>
-            </View>
             <View style={ss.addLargeViewSpacing}>
               <Text style={[ss.subHeader, ss.whiteText]}>
                 {userInfo.firstName
