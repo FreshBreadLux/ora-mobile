@@ -13,6 +13,12 @@ export const ampInitialize = () => {
   Amplitude.initialize(AMPLITUDE_API_KEY)
 }
 
+
+/*
+ampIdentify is called when a user logs in. It identifies the user and then attributes
+all of the following actions to that identity. userProperties is an object with relevant
+data about the user.
+*/
 export const ampIdentify = (id, userProperties) => {
   if (id) {
     Amplitude.setUserId(id.toString())
