@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { AsyncStorage } from 'react-native'
 import { HomePresenter } from '../../presenters'
 import { logout } from '../../../store'
+import { ampEvents, ampIdentify, ampLogEvent } from '../../analytics'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -17,6 +18,22 @@ class HomeContainer extends React.Component {
     }
     this.adminReset = this.adminReset.bind(this)
     this.toggleSurvey = this.toggleSurvey.bind(this)
+    this.handleAmplitude = this.handleAmplitude.bind(this)
+  }
+
+  componentDidMount() {
+    this.handleAmplitude()
+  }
+
+  /*
+  handleAmplitude fires when HomeContainer mounts, after the user has been logged in.
+  It takes user data from props and associates them with all future amplitude actions,
+  and logs the USER_VERIFIED amplitude event.
+  */
+  handleAmplitude() {
+    const { userId, email, totalPrayers, consecutiveDays } = this.props
+    ampIdentify(userId, { email, totalPrayers, consecutiveDays })
+    ampLogEvent(ampEvents.USER_VERIFIED)
   }
 
   async adminReset() {
@@ -43,8 +60,15 @@ class HomeContainer extends React.Component {
   }
 }
 
+const mapState = state => ({
+  userId: state.userInfo.id,
+  email: state.userInfo.email,
+  totalPrayers: state.userInfo.totalPrayers,
+  consecutiveDays: state.userInfo.consecutiveDays,
+})
+
 const mapDispatch = dispatch => ({
   logUserOut: () => dispatch(logout())
 })
 
-export default connect(null, mapDispatch)(HomeContainer)
+export default connect(mapState, mapDispatch)(HomeContainer)

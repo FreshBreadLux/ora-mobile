@@ -83,9 +83,7 @@ class Root extends React.Component {
     verifyStorageKey verifies a user when they open the app and handles initial setup.
     It first checks to make sure they have an oraAuth item in async storage;
     if they do, it checks async storage for the theme and sets the theme.
-    It uses the userId from the oraAuth item to identify the user for Amplitude.
     Using the date and userId, it loads all initial data for the user and then logs them in.
-    Finally, it logs an Amplitude event and sets state to remove the loading screen.
     If the user doesn't have an oraAuth item, it will remove the loading screen without
     logging them in, revealing the login screen.
   */
@@ -95,11 +93,9 @@ class Root extends React.Component {
     if (oraAuthJson) {
       const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
       this.props.dispatchSetTheme(theme)
-      ampIdentify(oraAuthJson.userId)
       const today = getDateString()
       this.props.loadInitialData(oraAuthJson.userId, today)
       this.props.logUserIn(oraAuthJson)
-      ampLogEvent(ampEvents.USER_VERIFIED)
       this.setState({ loading: false })
     } else {
       this.setState({ loading: false })
