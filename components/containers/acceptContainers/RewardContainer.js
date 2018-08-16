@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { RewardPresenter } from '../../presenters'
 import { fetchSavedRewards } from '../../../store'
+import { ampEvents, ampLogEvent } from '../../analytics'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 
@@ -20,6 +21,7 @@ class RewardContainer extends React.Component {
 
   componentDidMount() {
     this.checkIfRewardIsSaved()
+    ampLogEvent(ampEvents.OPEN_REWARD)
   }
 
   componentWillUnmount() {

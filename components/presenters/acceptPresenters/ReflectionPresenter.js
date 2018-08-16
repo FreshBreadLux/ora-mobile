@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
+import { ampEvents, ampLogEvent } from '../../analytics'
 import { BackgroundImageContainer } from '../../presenters'
 import { Feather } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
@@ -35,7 +36,10 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
           </Animated.View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
             <TouchableOpacity
-              onPress={() => navigation.navigate('ReflectionFullText')}>
+              onPress={() => {
+                ampLogEvent(ampEvents.READ_FULL_REFLECTION)
+                navigation.navigate('ReflectionFullText')
+              }}>
               <Text style={[ss.subBody, ss.padding15, ss.whiteText]}>READ MORE</Text>
             </TouchableOpacity>
             <TouchableOpacity
