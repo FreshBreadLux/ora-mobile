@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, SafeAreaView, Text, TouchableOpacity, AsyncStorage, ActivityIndicator } from 'react-native'
+import { ampLogEvent, ampEvents } from '../../analytics'
 import { setSurveyCompleted } from '../../../store'
 import ss from '../../StyleSheet'
 
@@ -19,6 +20,7 @@ class SurveyPageFiveContainer extends React.Component {
       this.setState({ sendingResults: true })
       await this.props.sendSurveyResults()
       await AsyncStorage.setItem('oraSurveyCompleted', 'true')
+      ampLogEvent(ampEvents.COMPLETE_SURVEY)
       this.props.dispatchSetSurveyCompleted()
       this.props.navigation.goBack()
     } catch (error) {

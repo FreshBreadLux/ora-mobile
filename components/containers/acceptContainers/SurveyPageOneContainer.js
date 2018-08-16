@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, SafeAreaView, Text, TouchableOpacity } from 'react-native'
+import { ampEvents, ampLogEvent } from '../../analytics'
 import ss from '../../StyleSheet'
 
 class SurveyPageOneContainer extends React.Component {
@@ -10,11 +11,13 @@ class SurveyPageOneContainer extends React.Component {
   }
 
   handleYes() {
+    ampLogEvent(ampEvents.START_SURVEY)
     this.props.setStateField('willingToTakeSurvey', true)
     this.props.scroll(1)
   }
 
   handleNo() {
+    ampLogEvent(ampEvents.DECLINE_SURVEY)
     this.props.setStateField('willingToTakeSurvey', false)
     this.props.scroll(4)
   }

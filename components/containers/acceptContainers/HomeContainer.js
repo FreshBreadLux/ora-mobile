@@ -36,6 +36,11 @@ class HomeContainer extends React.Component {
     ampLogEvent(ampEvents.USER_VERIFIED)
   }
 
+  /*
+  adminReset allows you to simulate a new phone experience: relevant AsyncStorage items
+  are removed and then the user is logged out. Refreshing the app then initializes with
+  the introSwiper.
+  */
   async adminReset() {
     const today = getDateString()
     await AsyncStorage.removeItem('oraAuth_v1.1.0')
