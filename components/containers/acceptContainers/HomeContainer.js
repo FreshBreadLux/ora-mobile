@@ -46,6 +46,8 @@ class HomeContainer extends React.Component {
   }
 
   toggleSurvey() {
+    if (!this.state.surveyRevealed) ampLogEvent(ampEvents.OPEN_SURVEY_PROMPT)
+    else ampLogEvent(ampEvents.CLOSE_SURVEY_PROMPT)
     this.setState({ surveyRevealed: !this.state.surveyRevealed })
   }
 
