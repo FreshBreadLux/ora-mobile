@@ -16,8 +16,8 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
       <SafeAreaView style={ss.invisiContainer}>
         <LinearGradient
           colors={['transparent', '#fff']}
-          start={[0.5, 0.2]}
-          end={[0.5, 0.75]}
+          start={[0.5, 0.25]}
+          end={[0.5, 0.65]}
           style={ss.flex1}>
           <View style={Platform.OS === 'ios' ? ss.padding15 : ss.androidPadding}>
             <View style={ss.proflileHeader}>
