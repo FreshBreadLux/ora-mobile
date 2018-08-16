@@ -24,7 +24,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <Text style={ss.header}>PROFILE</Text>
             </View>
             <View style={ss.addLargeViewSpacing}>
-              <Text style={[ss.subHeader, ss.whiteText]}>
+              <Text style={[ss.subHeader]}>
                 {userInfo.firstName
                 ? `${userInfo.firstName} ${userInfo.lastName}`
                 : `${userInfo.email}`
@@ -39,34 +39,28 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>
               <Text style={ss.choirName}>{userInfo.totalPrayers}</Text>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
+            <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginTop20]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('Donate')}>
-                <Text style={ss.buttonText}>Donate</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                <Text style={ss.buttonText}>DONATE</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                onPress={() => navigation.navigate('SavedRewards')}>
+                <Text style={ss.buttonText}>IMAGES</Text>
               </TouchableOpacity>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
+            <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginBottom30]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('Alarms')}>
-                <Text style={ss.buttonText}>Manage your reminders</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                <Text style={ss.buttonText}>REMINDERS</Text>
               </TouchableOpacity>
-            </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center, ss.paddingBottom30]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('About')}>
-                <Text style={ss.buttonText}>Learn more about Ora</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                <Text style={ss.buttonText}>ABOUT</Text>
               </TouchableOpacity>
             </View>
             <View style={[ss.addMedViewSpacing, ss.darkBottomBorder]}>
