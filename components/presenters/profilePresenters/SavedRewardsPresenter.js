@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, ScrollView, SafeAreaView, Text, Image } from 'react-native'
+import { View, ScrollView, SafeAreaView, Text, Image, Dimensions } from 'react-native'
 import ss from '../../StyleSheet'
 
 const SavedRewardsPresenter = ({ savedRewards }) => (
@@ -13,12 +13,18 @@ const SavedRewardsPresenter = ({ savedRewards }) => (
         {!savedRewards.length
         ? <Text>Once you've unlocked and saved images they'll show up here</Text>
         : <View style={ss.invisiContainer}>
-            {savedRewards.map(reward => (
-              <Image
-                key={reward.id}
-                style={{width: '30%', height: '30%'}}
-                source={{uri: reward.imageUrl}} />
-            ))}
+            {savedRewards.map(reward => {
+              const { width } = Dimensions.get('window')
+              console.log('width:', width)
+              const size = (width - 60) / 3
+              console.log('size:', size)
+              return (
+                <Image
+                  key={reward.id}
+                  style={{width: size, height: size, resizeMode: 'cover'}}
+                  source={{uri: reward.imageUrl}} />
+              )
+            })}
           </View>
         }
       </ScrollView>
