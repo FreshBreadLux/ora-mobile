@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
+import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
 import { ArtistModal } from '../modals'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
