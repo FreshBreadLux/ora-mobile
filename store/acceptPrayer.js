@@ -105,7 +105,7 @@ export const fetchAndCacheDailyReward = date =>
         if (!info.exists) {
           await FileSystem.downloadAsync(reward.imageUrl, path)
         } else {
-          console.log('Some info already exists at that path')
+          console.log('Some info already exists at that dailyReward path')
         }
         dispatch(setDailyRewardUri(path))
         return path
