@@ -20,11 +20,11 @@ const ArtistModal = ({ artist, hideModal }) => (
           size={20}
           color="#fff" />
       </TouchableOpacity>
-      <Text style={[ss.subBody, {color: "#555"}]}>READ MORE</Text>
+      <Text style={[ss.subBody, {color: "#333"}]}>READ MORE</Text>
       <Ionicons
         name="md-checkbox"
         size={20}
-        color="#555" />
+        color="#333" />
     </View>
   </View>
 )

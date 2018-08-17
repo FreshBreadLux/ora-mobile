@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import { FileSystem } from 'expo'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'

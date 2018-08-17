@@ -2,11 +2,11 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchSavedRewards } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
-import { ampEvents, ampInitialize, ampIdentify, ampLogEvent } from './analytics'
+import { ampInitialize } from './analytics'
 import ss from './StyleSheet'
 
 function getDateString() {
@@ -180,7 +180,7 @@ const mapDispatch = dispatch => ({
       dispatch(fetchUserPrayers(userId)),
       dispatch(fetchUserFollows(userId)),
       dispatch(fetchUserViews(userId)),
-      dispatch(fetchSavedRewards(userId)),
+      dispatch(fetchAndCacheSavedRewards(userId)),
       dispatch(fetchUserInfo(userId)),
       dispatch(fetchUserAlarms()),
       dispatch(fetchFlagReasons()),

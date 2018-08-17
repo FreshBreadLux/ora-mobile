@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { RewardPresenter } from '../../presenters'
-import { fetchSavedRewards } from '../../../store'
+import { fetchAndCacheSavedRewards } from '../../../store'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -73,7 +73,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshSavedRewards: userId => dispatch(fetchSavedRewards(userId))
+  refreshSavedRewards: userId => dispatch(fetchAndCacheSavedRewards(userId))
 })
 
 export default connect(mapState, mapDispatch)(RewardContainer)
