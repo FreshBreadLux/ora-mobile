@@ -8,6 +8,7 @@ import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
 const SavedRewardSinglePresenter = ({ navigation, visibleModal, showModal, hideModal }) => {
+  const artist = navigation.getParam('artist')
   const imageUrl = navigation.getParam('imageUrl')
   const fullText = navigation.getParam('fullText')
   const iconColor = navigation.getParam('iconColor')
@@ -66,6 +67,7 @@ const SavedRewardSinglePresenter = ({ navigation, visibleModal, showModal, hideM
         isVisible={visibleModal === 'artist'}
         style={ss.centerModal}>
         <ArtistModal
+          artist={artist}
           hideModal={hideModal} />
       </Modal>
     </View>
