@@ -1,9 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
+import Modal from 'react-native-modal'
+import { ArtistModal } from '../modals'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const SavedRewardSinglePresenter = ({ navigation }) => {
+const SavedRewardSinglePresenter = ({ navigation, visibleModal, showModal, hideModal }) => {
   const imageUrl = navigation.getParam('imageUrl')
   const fullText = navigation.getParam('fullText')
   const iconColor = navigation.getParam('iconColor')
@@ -28,7 +31,7 @@ const SavedRewardSinglePresenter = ({ navigation }) => {
             </TouchableOpacity>
             <View style={ss.flex1} />
             <View style={[ss.row, ss.spaceAround, ss.fullWidth, ss.padding10]}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => showModal('artist')}>
                 <MaterialIcons
                   name="account-circle"
                   size={20}
@@ -58,8 +61,23 @@ const SavedRewardSinglePresenter = ({ navigation }) => {
           </View>
         </SafeAreaView>
       }
+      <Modal
+        isVisible={visibleModal === 'artist'}
+        style={ss.centerModal}>
+        <ArtistModal
+          hideModal={hideModal} />
+      </Modal>
     </View>
   )
 }
 
-export default SavedRewardSinglePresenter
+const mapState = state => ({
+  visibleModal: state.visibleModal
+})
+
+const mapDispatch = dispatch => ({
+  showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
+  hideModal: () => dispatch(removeVisibleModal())
+})
+
+export default connect(mapState, mapDispatch)(SavedRewardSinglePresenter)

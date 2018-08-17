@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, TouchableOpacity, ScrollView, SafeAreaView, Text, Image, Dimensions, FlatList, ActivityIndicator } from 'react-native'
 import ss from '../../StyleSheet'
 
-const SavedRewardsListPresenter = ({ savedRewards }) => (
+const SavedRewardsListPresenter = ({ savedRewards, navigation }) => (
   <SafeAreaView style={ss.whiteContainer}>
     <View style={[ss.invisiContainer, ss.horizontalPadding]}>
       <View style={[ss.paddingBottom15, ss.bottomBorder]} />
@@ -26,7 +26,7 @@ const SavedRewardsListPresenter = ({ savedRewards }) => (
                 return (
                   <TouchableOpacity
                     onPress={() => navigation.navigate('SavedRewardSingle', {imageUrl, fullText, fullSource, iconColor})}
-                    style={{width: size, height: size, marginTop: 15}}>
+                    style={{width: size, height: size, margin: 5}}>
                     <Image
                       style={{flex: 1, width: undefined, height: undefined, resizeMode: 'cover', borderRadius: 5}}
                       source={{uri: imageUrl}} />

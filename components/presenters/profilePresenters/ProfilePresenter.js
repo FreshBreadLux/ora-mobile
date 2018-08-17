@@ -47,7 +47,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               </TouchableOpacity>
               <TouchableOpacity
                 style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
-                onPress={() => navigation.navigate('SavedRewards')}>
+                onPress={() => navigation.navigate('SavedRewardsList')}>
                 <Text style={ss.buttonText}>IMAGES</Text>
               </TouchableOpacity>
             </View>

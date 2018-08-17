@@ -354,6 +354,10 @@ const ss = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
+  centerModal: {
+    justifyContent: 'center',
+    margin: 0
+  },
   topModal: {
     justifyContent: 'flex-start',
     margin: 0,

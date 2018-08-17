@@ -93,6 +93,7 @@ export const fetchAndCacheDailyReward = date =>
       axios.get(`${ROOT_URL}/api/rewards/?date=${date}`)
       .then(res => res.data)
       .then(async reward => {
+        console.log('daily reward:', reward)
         dispatch(setDailyReward(reward))
         const uri = reward.imageUrl
         const ext = uri.substring(
