@@ -8,6 +8,23 @@ import { ampEvents, ampLogEvent } from '../../analytics'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
+/*
+  The RewardPresenter displays both dailyRewards and saved rewards. If a local path isn't present,
+  an activity indicator is rendered (a localPath should be loaded on the reward objects by the
+  fetchAndCache functions in the redux store; if the reward doesn't have a localPath, theoretically
+  it hasn't finished loading).
+  There is some unfortunately complex conditional rendering that takes place surrounding the saving
+  functionality:
+  1. If a process has failed, an error message is displayed
+  2. If a process is ongoing, an activity indicator is displayed
+  3. If the reward hasn't been saved yet, a download button is displayed
+  4a. If the reward has been saved and reward.savedReward exists (an indication that RewardContainer
+    was mounted by SavedRewardListPresenter and that this isn't the dailyReward object), a trash
+    button is displayed
+  4b. If the reward has been saved but reward.savedReward doesn't exist, this is the dailyReward
+    object and a checkmark icon is displayed
+*/
+
 const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed, alreadySaved, processing, visibleModal, showModal, hideModal }) => (
   <View style={ss.invisiContainer}>
     {reward.localPath

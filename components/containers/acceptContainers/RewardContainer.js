@@ -38,7 +38,6 @@ class RewardContainer extends React.Component {
 
   checkNavigationParams() {
     const reward = this.props.navigation.getParam('reward')
-    console.log('reward in checknavigationParams:', reward)
     if (reward) this.setState({ reward })
   }
 
@@ -88,9 +87,16 @@ class RewardContainer extends React.Component {
     }
   }
 
+  /*
+    Inside the render method, we assign the reward variable and pass it to RewardPresenter.
+    We check state for reward; if it exists, we pass that object along; if it doesn't exist,
+    we pass along the dailyReward object in its place.
+    this.state.reward will exist if we've passed a reward object to RewardContainer through
+    the navigation params (we check the navigation params when RewardContainer mounts). This
+    allows us to use RewardPresenter for both the dailyReward and the saved rewards.
+  */
   render() {
     const reward = this.state.reward ? this.state.reward : this.props.dailyReward
-    console.log('reward in render function:', reward)
     return (
       <RewardPresenter
         reward={reward}
