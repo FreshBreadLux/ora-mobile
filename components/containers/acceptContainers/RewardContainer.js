@@ -10,6 +10,7 @@ class RewardContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      reward: null,
       saveFailed: false,
       alreadySaved: false,
       processingSave: false,
@@ -17,16 +18,26 @@ class RewardContainer extends React.Component {
     }
     this.saveReward = this.saveReward.bind(this)
     this.checkIfRewardIsSaved = this.checkIfRewardIsSaved.bind(this)
+    this.checkNavigationParams = this.checkNavigationParams.bind(this)
   }
 
   componentDidMount() {
-    // This is a check for the user 'saving' action, not a check for caching
+    // Check to see if a reward exists on navigation params; if it does, this means that
+    // RewardContainer was mounted from the SavedRewardsList and we'll be showing a saved reward
+    this.checkNavigationParams()
+    // This is a check to see if the user has already saved the daily reward, not a check
+    // to see if the image has been cached
     this.checkIfRewardIsSaved()
     ampLogEvent(ampEvents.OPEN_REWARD)
   }
 
   componentWillUnmount() {
     clearTimeout(this.state.timeoutId)
+  }
+
+  checkNavigationParams() {
+    const reward = this.props.navigation.getParam('reward')
+    if (reward) this.setState({ reward })
   }
 
   checkIfRewardIsSaved() {
@@ -56,8 +67,10 @@ class RewardContainer extends React.Component {
   }
 
   render() {
+    const reward = this.state.reward ? this.state.reward : this.props.dailyReward
     return (
       <RewardPresenter
+        reward={reward}
         saveReward={this.saveReward}
         navigation={this.props.navigation}
         saveFailed={this.state.saveFailed}

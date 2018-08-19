@@ -27,7 +27,6 @@ const defaultAcceptPrayer = {
   reflectionMode: true,
   dailyReflection: {},
   dailyReward: {},
-  dailyRewardLocalUri: '',
   noPrayers: false,
   unlockAnimationTriggered: false,
   surveyCompleted: false,
@@ -39,7 +38,6 @@ const defaultAcceptPrayer = {
 export const setCurrentPrayer = prayer => ({ type: SET_CURRENT_PRAYER, prayer })
 export const setDailyReflection = reflection => ({ type: SET_DAILY_REFLECTION, reflection })
 export const setDailyReward = reward => ({ type: SET_DAILY_REWARD, reward })
-export const setDailyRewardUri = rewardUri => ({ type: SET_DAILY_REWARD_URI, rewardUri })
 export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const setReflectionMode = () => ({ type: SET_REFLECTION_MODE })
@@ -83,34 +81,35 @@ export const fetchDailyReflection = date =>
     .catch(console.warn)
 
 /*
-  fetchAndCacheDailyReward makes a GET request to the DB for the reward for a given date string,
-  and sets that reward on store state. It then creates a path for the image in Expo's FileSystem
-  cacheDirectory, and (if there isn't anything at that path already) downloads the file. The
-  function returns the created path for use in Image components.
+  fetchAndCacheDailyReward makes a GET request to the DB for the reward for a given date string.
+  It then creates a path for the image in Expo's FileSystem cacheDirectory, and
+  (if there isn't anything at that path already) downloads the file. The localPath is then added
+  to the dailyReward object and set on store state.
 */
 export const fetchAndCacheDailyReward = date =>
-    dispatch =>
-      axios.get(`${ROOT_URL}/api/rewards/?date=${date}`)
-      .then(res => res.data)
-      .then(async reward => {
-        console.log('daily reward:', reward)
-        dispatch(setDailyReward(reward))
-        const uri = reward.imageUrl
+  async dispatch => {
+    try {
+      const res = await axios.get(`${ROOT_URL}/api/rewards/?date=${date}`)
+      const dailyReward = res.data
+      if (dailyReward) {
+        const uri = dailyReward.imageUrl
         const ext = uri.substring(
           uri.lastIndexOf("."),
           uri.indexOf("?") === -1 ? undefined : uri.indexOf("?")
         )
-        const path = FileSystem.cacheDirectory + date + ext
-        const info = await FileSystem.getInfoAsync(path)
+        const localPath = FileSystem.cacheDirectory + date + ext
+        const info = await FileSystem.getInfoAsync(localPath)
         if (!info.exists) {
-          await FileSystem.downloadAsync(reward.imageUrl, path)
+          await FileSystem.downloadAsync(dailyReward.imageUrl, localPath)
         } else {
           console.log('Some info already exists at that dailyReward path')
         }
-        dispatch(setDailyRewardUri(path))
-        return path
-      })
-      .catch(console.warn)
+        return dispatch(setDailyReward({ ...dailyReward, localPath }))
+      }
+    } catch (error) {
+      console.warn(error)
+    }
+  }
 
 /**
  * REDUCER
@@ -125,8 +124,6 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, dailyReflection: action.reflection }
     case SET_DAILY_REWARD:
       return { ...state, dailyReward: action.reward }
-    case SET_DAILY_REWARD_URI:
-      return { ...state, dailyRewardLocalUri: action.rewardUri }
     case SET_THANK_YOU:
       return { ...state, noPrayers: true }
     case EXIT_REFLECTION_MODE:
