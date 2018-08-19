@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { RewardPresenter } from '../../presenters'
-import { fetchAndCacheSavedRewards } from '../../../store'
+import { fetchAndCacheSavedRewards, removeVisibleModal } from '../../../store'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
@@ -38,13 +38,14 @@ class RewardContainer extends React.Component {
   }
 
   saveReward() {
-    const { userId, refreshSavedRewards, dailyReward } = this.props
+    const { userId, refreshSavedRewards, dailyReward, hideModal } = this.props
     if (!this.state.alreadySaved) {
       this.setState({ processingSave: true })
       axios.post(`${ROOT_URL}/api/savedRewards`, { userId, dailyReward })
       .then(() => {
         this.setState({ processingSave: false, alreadySaved: true })
         refreshSavedRewards(userId)
+        hideModal()
       })
       .catch(error => {
         console.warn(error)
@@ -73,7 +74,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshSavedRewards: userId => dispatch(fetchAndCacheSavedRewards(userId))
+  refreshSavedRewards: userId => dispatch(fetchAndCacheSavedRewards(userId)),
+  hideModal: () => dispatch(removeVisibleModal()),
 })
 
 export default connect(mapState, mapDispatch)(RewardContainer)

@@ -23,7 +23,7 @@ export const getSavedRewards = rewards => ({ type: GET_SAVED_REWARDS, rewards })
  */
 
 /*
-  fetchAndCacheSavedRewards makes a GET request to the DB for a users saved rewards.
+  fetchAndCacheSavedRewards makes a GET request to the DB for a user's saved rewards.
   It then creates a path for each image in Expo's FileSystem cacheDirectory and (if there isn't anything at that path already) downloads the file. The local path is then saved on each reward, and the array of rewards is put onto store state.
 */
 export const fetchAndCacheSavedRewards = userId =>

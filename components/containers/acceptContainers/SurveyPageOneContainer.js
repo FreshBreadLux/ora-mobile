@@ -28,7 +28,7 @@ class SurveyPageOneContainer extends React.Component {
         <SafeAreaView style={ss.invisiContainer}>
           <View style={[ss.invisiContainer, ss.padding15, {alignItems: 'center'}]}>
             <Text style={[ss.header, ss.addLargeViewSpacing]}>Hi there!</Text>
-            <Text style={[ss.subHeader, ss.fullWidth, ss.addViewSpacing]}>We actually haven't built out subscription content yet. We're currently trying to guage the level of interest.</Text>
+            <Text style={[ss.subHeader, ss.fullWidth, ss.addViewSpacing]}>We actually haven't built out any subscription content yet. We're currently trying to guage the level of interest.</Text>
             <Text style={[ss.subHeader, ss.fullWidth, ss.addViewSpacing]}>Can you help us by answering a few quick questions?</Text>
             <View style={[ss.row, ss.fullWidth, ss.spaceBetween, ss.addMedViewSpacing]}>
               <TouchableOpacity

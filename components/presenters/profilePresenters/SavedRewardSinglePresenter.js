@@ -9,18 +9,18 @@ import ss from '../../StyleSheet'
 
 const SavedRewardSinglePresenter = ({ navigation, visibleModal, showModal, hideModal }) => {
   const artist = navigation.getParam('artist')
-  const imageUrl = navigation.getParam('imageUrl')
+  const localPath = navigation.getParam('localPath')
   const fullText = navigation.getParam('fullText')
   const iconColor = navigation.getParam('iconColor')
   const fullSource = navigation.getParam('fullSource')
   return (
     <View style={ss.invisiContainer}>
-      {imageUrl
+      {localPath
       ? <View style={ss.invisiContainer}>
           <View style={ss.backgroundImageFrame}>
             <Image
               style={{ flex: 1, height: undefined, width: undefined, resizeMode: 'cover' }}
-              source={{ uri: imageUrl }} />
+              source={{ uri: localPath }} />
           </View>
           <SafeAreaView style={ss.invisiContainer}>
             <TouchableOpacity

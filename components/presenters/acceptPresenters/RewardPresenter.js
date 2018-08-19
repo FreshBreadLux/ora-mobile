@@ -1,11 +1,14 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
+import { setVisibleModal, removeVisibleModal } from '../../../store'
+import Modal from 'react-native-modal'
+import { ArtistModal, SaveRewardModal } from '../modals'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyReward, saveFailed, alreadySaved, processingSave }) => (
+const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyReward, saveFailed, alreadySaved, processingSave, visibleModal, showModal, hideModal }) => (
   <View style={ss.invisiContainer}>
     {dailyRewardLocalUri
     ? <View style={ss.invisiContainer}>
@@ -25,7 +28,7 @@ const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyRew
           </TouchableOpacity>
           <View style={ss.flex1} />
           <View style={[ss.row, ss.spaceAround, ss.fullWidth, ss.padding10]}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => showModal('artist')}>
               <MaterialIcons
                 name="account-circle"
                 size={20}
@@ -50,7 +53,7 @@ const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyRew
                         size={20}
                         color={dailyReward.iconColor} />
                     : <TouchableOpacity
-                        onPress={saveReward}>
+                        onPress={() => showModal('saveReward')}>
                         <Ionicons
                           name="md-download"
                           size={20}
@@ -79,12 +82,32 @@ const RewardPresenter = ({ saveReward, navigation, dailyRewardLocalUri, dailyRew
         </View>
       </SafeAreaView>
     }
+    <Modal
+      isVisible={visibleModal === 'artist'}
+      style={ss.centerModal}>
+      <ArtistModal
+        artist={dailyReward.artist}
+        hideModal={hideModal} />
+    </Modal>
+    <Modal
+      isVisible={visibleModal === 'saveReward'}
+      style={ss.bottomModal}>
+      <SaveRewardModal
+        saveReward={saveReward}
+        hideModal={hideModal} />
+    </Modal>
   </View>
 )
 
 const mapState = state => ({
+  visibleModal: state.visibleModal,
   dailyRewardLocalUri: state.acceptPrayer.dailyRewardLocalUri,
-  dailyReward: state.acceptPrayer.dailyReward
+  dailyReward: state.acceptPrayer.dailyReward,
 })
 
-export default connect(mapState)(RewardPresenter)
+const mapDispatch = dispatch => ({
+  showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
+  hideModal: () => dispatch(removeVisibleModal())
+})
+
+export default connect(mapState, mapDispatch)(RewardPresenter)

@@ -20,16 +20,16 @@ const SavedRewardsListPresenter = ({ savedRewards, navigation }) => (
           : <FlatList
               data={savedRewards}
               renderItem={({item}) => {
-                const { imageUrl, fullText, fullSource, iconColor, artist } = item
+                const { localPath, fullText, fullSource, iconColor, artist } = item
                 const { width } = Dimensions.get('window')
                 const size = (width - 60) / 3
                 return (
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('SavedRewardSingle', {imageUrl, fullText, fullSource, iconColor, artist})}
+                    onPress={() => navigation.navigate('SavedRewardSingle', {localPath, fullText, fullSource, iconColor, artist})}
                     style={{width: size, height: size, margin: 5}}>
                     <Image
                       style={{flex: 1, width: undefined, height: undefined, resizeMode: 'cover', borderRadius: 5}}
-                      source={{uri: imageUrl}} />
+                      source={{uri: localPath}} />
                   </TouchableOpacity>
                 )
               }}
