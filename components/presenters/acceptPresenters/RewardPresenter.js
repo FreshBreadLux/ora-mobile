@@ -3,12 +3,12 @@ import { Text, View, SafeAreaView, TouchableOpacity, Image, ActivityIndicator } 
 import { connect } from 'react-redux'
 import { setVisibleModal, removeVisibleModal } from '../../../store'
 import Modal from 'react-native-modal'
-import { ArtistModal, SaveRewardModal } from '../modals'
+import { ArtistModal, SaveRewardModal, DeleteRewardModal } from '../modals'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const RewardPresenter = ({ reward, saveReward, navigation, saveFailed, alreadySaved, processingSave, visibleModal, showModal, hideModal }) => (
+const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed, alreadySaved, processing, visibleModal, showModal, hideModal }) => (
   <View style={ss.invisiContainer}>
     {reward.localPath
     ? <View style={ss.invisiContainer}>
@@ -41,17 +41,20 @@ const RewardPresenter = ({ reward, saveReward, navigation, saveFailed, alreadySa
               }}>
               <Text style={[ss.subBody, {color: reward.iconColor}]}>READ MORE</Text>
             </TouchableOpacity>
-            {saveFailed
-            ? <Text>save failed</Text>
+            {failed
+            ? <Text>task failed</Text>
             : <View>
-                {processingSave
+                {processing
                 ? <ActivityIndicator size="small" color={reward.iconColor} />
                 : <View>
                     {alreadySaved
-                    ? <Ionicons
-                        name="md-checkbox"
-                        size={20}
-                        color={reward.iconColor} />
+                    ? <TouchableOpacity
+                        onPress={() => showModal('deleteReward')}>
+                        <Ionicons
+                          name="ios-trash"
+                          size={20}
+                          color={reward.iconColor} />
+                      </TouchableOpacity>
                     : <TouchableOpacity
                         onPress={() => showModal('saveReward')}>
                         <Ionicons
@@ -94,6 +97,14 @@ const RewardPresenter = ({ reward, saveReward, navigation, saveFailed, alreadySa
       style={ss.bottomModal}>
       <SaveRewardModal
         saveReward={saveReward}
+        hideModal={hideModal} />
+    </Modal>
+    <Modal
+      isVisible={visibleModal === 'deleteReward'}
+      style={ss.bottomModal}>
+      <DeleteRewardModal
+        reward={reward}
+        deleteReward={deleteReward}
         hideModal={hideModal} />
     </Modal>
   </View>

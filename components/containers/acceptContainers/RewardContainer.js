@@ -11,12 +11,13 @@ class RewardContainer extends React.Component {
     super(props)
     this.state = {
       reward: null,
-      saveFailed: false,
+      failed: false,
       alreadySaved: false,
-      processingSave: false,
+      processing: false,
       timeoutId: null,
     }
     this.saveReward = this.saveReward.bind(this)
+    this.deleteReward = this.deleteReward.bind(this)
     this.checkIfRewardIsSaved = this.checkIfRewardIsSaved.bind(this)
     this.checkNavigationParams = this.checkNavigationParams.bind(this)
   }
@@ -51,17 +52,36 @@ class RewardContainer extends React.Component {
   saveReward() {
     const { userId, refreshSavedRewards, dailyReward, hideModal } = this.props
     if (!this.state.alreadySaved) {
-      this.setState({ processingSave: true })
+      this.setState({ processing: true })
       axios.post(`${ROOT_URL}/api/savedRewards`, { userId, dailyReward })
       .then(() => {
-        this.setState({ processingSave: false, alreadySaved: true })
+        this.setState({ processing: false, alreadySaved: true })
         refreshSavedRewards(userId)
         hideModal()
       })
       .catch(error => {
         console.warn(error)
-        const timeoutId = setTimeout(() => this.setState({ saveFailed: false }), 10000)
-        this.setState({ saveFailed: true, timeoutId })
+        const timeoutId = setTimeout(() => this.setState({ failed: false }), 10000)
+        this.setState({ failed: true, timeoutId })
+      })
+    }
+  }
+
+  deleteReward(savedReward) {
+    const { savedId, saverId } = savedReward
+    if (this.state.alreadySaved) {
+      this.setState({ processing: true })
+      axios.delete(`${ROOT_URL}/api/savedRewards/savedId/${savedId}/saverId/${saverId}`)
+      .then(() => {
+        this.setState({ processing: false, alreadySaved: false })
+        refreshSavedRewards(saverId)
+        this.props.navigation.goBack()
+        hideModal()
+      })
+      .catch(error => {
+        console.warn(error)
+        const timeoutId = setTimeout(() => this.setState({ failed: false }), 10000)
+        this.setState({ failed: true, timeoutId })
       })
     }
   }
@@ -71,11 +91,12 @@ class RewardContainer extends React.Component {
     return (
       <RewardPresenter
         reward={reward}
+        failed={this.state.failed}
         saveReward={this.saveReward}
+        deleteReward={this.deleteReward}
         navigation={this.props.navigation}
-        saveFailed={this.state.saveFailed}
         alreadySaved={this.state.alreadySaved}
-        processingSave={this.state.processingSave} />
+        processing={this.state.processing} />
     )
   }
 }
