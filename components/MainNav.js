@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, SurveySwiperContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SavedRewardSinglePresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -242,12 +242,6 @@ const CardStackNav = StackNavigator({
         headerStyle,
       }
     },
-  },
-  SavedRewardSingle: {
-    screen: SavedRewardSinglePresenter,
-    navigationOptions: {
-      header: null,
-    }
   },
   SurveySwiper: {
     screen: SurveySwiperContainer,
