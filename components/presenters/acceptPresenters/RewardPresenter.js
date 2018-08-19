@@ -48,13 +48,21 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
                 ? <ActivityIndicator size="small" color={reward.iconColor} />
                 : <View>
                     {alreadySaved
-                    ? <TouchableOpacity
-                        onPress={() => showModal('deleteReward')}>
-                        <Ionicons
-                          name="ios-trash"
+                    ? <View>
+                      {reward.savedReward
+                      ? <TouchableOpacity
+                          onPress={() => showModal('deleteReward')}>
+                          <Ionicons
+                            name="ios-trash"
+                            size={20}
+                            color={reward.iconColor} />
+                        </TouchableOpacity>
+                      : <Ionicons
+                          name="md-checkbox"
                           size={20}
                           color={reward.iconColor} />
-                      </TouchableOpacity>
+                      }
+                      </View>
                     : <TouchableOpacity
                         onPress={() => showModal('saveReward')}>
                         <Ionicons
@@ -103,7 +111,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
       isVisible={visibleModal === 'deleteReward'}
       style={ss.bottomModal}>
       <DeleteRewardModal
-        reward={reward}
+        savedReward={reward.savedReward}
         deleteReward={deleteReward}
         hideModal={hideModal} />
     </Modal>

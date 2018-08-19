@@ -38,6 +38,7 @@ class RewardContainer extends React.Component {
 
   checkNavigationParams() {
     const reward = this.props.navigation.getParam('reward')
+    console.log('reward in checknavigationParams:', reward)
     if (reward) this.setState({ reward })
   }
 
@@ -69,12 +70,13 @@ class RewardContainer extends React.Component {
 
   deleteReward(savedReward) {
     const { savedId, saverId } = savedReward
+    const { userId, refreshSavedRewards, hideModal } = this.props
     if (this.state.alreadySaved) {
       this.setState({ processing: true })
       axios.delete(`${ROOT_URL}/api/savedRewards/savedId/${savedId}/saverId/${saverId}`)
       .then(() => {
         this.setState({ processing: false, alreadySaved: false })
-        refreshSavedRewards(saverId)
+        refreshSavedRewards(userId)
         this.props.navigation.goBack()
         hideModal()
       })
@@ -88,6 +90,7 @@ class RewardContainer extends React.Component {
 
   render() {
     const reward = this.state.reward ? this.state.reward : this.props.dailyReward
+    console.log('reward in render function:', reward)
     return (
       <RewardPresenter
         reward={reward}
