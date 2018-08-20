@@ -1,6 +1,5 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
-import { Feather, Ionicons, MaterialIcons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
 const ArtistModal = ({ artist, hideModal }) => (
