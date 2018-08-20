@@ -75,13 +75,9 @@ class KeyContainer extends React.Component {
   }
 }
 
-const mapState = state => ({
-  rewardUnlocked: state.userInfo.rewardUnlocked
-})
-
 const mapDispatch = dispatch => ({
   dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation()),
   dispatchSetSurveyCompleted: () => dispatch(setSurveyCompleted()),
 })
 
-export default connect(mapState, mapDispatch)(withNavigationFocus(KeyContainer))
+export default connect(null, mapDispatch)(withNavigationFocus(KeyContainer))

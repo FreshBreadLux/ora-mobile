@@ -43,8 +43,7 @@ const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggle
 )
 
 const mapState = state => ({
-  isAdmin: state.userInfo.isAdmin,
-  rewardUnlocked: state.userInfo.rewardUnlocked
+  isAdmin: state.userInfo.isAdmin
 })
 
 export default connect(mapState)(HomePresenter)
