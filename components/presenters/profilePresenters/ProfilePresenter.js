@@ -42,13 +42,13 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
             <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginTop20]}>
               <TouchableOpacity
                 style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
-                onPress={() => navigation.navigate('Donate')}>
-                <Text style={ss.buttonText}>DONATE</Text>
+                onPress={() => navigation.navigate('Testimony')}>
+                <Text style={ss.buttonText}>TESTIMONY</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('SavedRewardsList')}>
-                <Text style={ss.buttonText}>IMAGES</Text>
+                <Text style={ss.buttonText}>REWARDS</Text>
               </TouchableOpacity>
             </View>
             <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginBottom30]}>
@@ -59,8 +59,8 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               </TouchableOpacity>
               <TouchableOpacity
                 style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
-                onPress={() => navigation.navigate('About')}>
-                <Text style={ss.buttonText}>ABOUT</Text>
+                onPress={() => navigation.navigate('FAQ')}>
+                <Text style={ss.buttonText}>FAQ</Text>
               </TouchableOpacity>
             </View>
             <View style={[ss.addMedViewSpacing, ss.darkBottomBorder]}>

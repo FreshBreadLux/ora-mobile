@@ -19,6 +19,7 @@ export const ampEvents = {
   WILLING_TO_PAY: 'WILLING_TO_PAY',
   UNWILLING_TO_PAY: 'UNWILLING_TO_PAY',
   COMPLETE_SURVEY: 'COMPLETE_SURVEY',
+  OPEN_DONATE_PAGE: 'OPEN_DONATE_PAGE'
 }
 
 export const ampInitialize = () => {

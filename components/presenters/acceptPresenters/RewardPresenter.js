@@ -75,7 +75,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
                             color={reward.iconColor} />
                         </TouchableOpacity>
                       : <Ionicons
-                          name="md-checkbox"
+                          name="ios-checkmark-circle"
                           size={20}
                           color={reward.iconColor} />
                       }
