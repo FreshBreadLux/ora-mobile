@@ -16,7 +16,9 @@ const SavedRewardsListPresenter = ({ savedRewards, navigation }) => (
           </View>
         : <View style={ss.invisiContainer}>
           {!savedRewards.length
-          ? <Text>Images that you've unlocked and saved will display here</Text>
+          ? <View style={ss.addViewSpacing}>
+              <Text style={ss.body}>Images that you've unlocked and saved will display here</Text>
+            </View>
           : <FlatList
               data={savedRewards}
               renderItem={({item}) => {

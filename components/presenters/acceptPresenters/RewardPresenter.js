@@ -45,7 +45,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
           </TouchableOpacity>
           <View style={ss.flex1} />
           <View style={[ss.row, ss.spaceAround, ss.fullWidth, ss.padding10]}>
-            <TouchableOpacity onPress={() => showModal('artist')}>
+            <TouchableOpacity onPress={() => { if (reward.artist) showModal('artist') }}>
               <MaterialIcons
                 name="account-circle"
                 size={20}
