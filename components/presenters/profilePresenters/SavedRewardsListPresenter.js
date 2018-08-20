@@ -11,8 +11,8 @@ const SavedRewardsListPresenter = ({ savedRewards, navigation }) => (
         showsVerticalScrollIndicator={false}
         style={ss.flex1}>
         {!savedRewards
-        ? <View style={[ss.invisiContainer, ss.center]}>
-            <ActivityIndicator size="small" color="#777" />
+        ? <View style={[ss.invisiContainer, ss.center, ss.addLargeViewSpacing]}>
+            <ActivityIndicator size="large" color="#777" />
           </View>
         : <View style={ss.invisiContainer}>
           {!savedRewards.length
