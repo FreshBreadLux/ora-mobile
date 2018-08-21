@@ -61,6 +61,7 @@ export const fetchNextPrayer = (userId, views, cancelTimeoutID, successHandler) 
     })
     .catch(err => {
       if (err.response && err.response.status === 404) {
+        clearTimeout(cancelTimeoutID)
         dispatch(setThankYou())
         dispatch(setCurrentPrayer({
           subject: 'Thank You',
