@@ -55,10 +55,10 @@ class ReflectionContainer extends React.Component {
   }
 
   fadeInBackground() {
-    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 2000 })
+    return animate(this.state.backgroundOpacity, { toValue: 1, duration: 1000 })
   }
   fadeInCopy() {
-    return animate(this.state.copyOpacity, { toValue: 1, duration: 1000 })
+    return animate(this.state.copyOpacity, { toValue: 1, duration: 500 })
   }
   fadeInVerse() {
     return animate(this.state.verseOpacity, { toValue: 1, duration: 1000 })
@@ -67,7 +67,7 @@ class ReflectionContainer extends React.Component {
     return animate(this.state.backgroundOpacity, { toValue: 0, duration: 1000 })
   }
   fadeOutCopy() {
-    return animate(this.state.copyOpacity, { toValue: 0, duration: 1000 })
+    return animate(this.state.copyOpacity, { toValue: 0, duration: 500 })
   }
   fadeOutVerse() {
     return animate(this.state.verseOpacity, { toValue: 0, duration: 1000 })
