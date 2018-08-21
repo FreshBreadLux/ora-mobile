@@ -10,7 +10,7 @@ const DeleteRewardModal = ({ savedReward, hideModal, deleteReward }) => (
         style={ss.fullWidth}
         onPress={() => deleteReward(savedReward)}>
         <View style={ss.modalLineView}>
-          <Text style={[ss.subHeader, ss.redText]}>Delete Saved Reward</Text>
+          <Text style={[ss.subHeader, ss.redText]}>Delete</Text>
         </View>
       </TouchableOpacity>
     </View>
