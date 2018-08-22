@@ -13,7 +13,7 @@ const TestimonyPresenter = () => (
         <View style={[ss.fullWidth, ss.center, ss.paddingTop20, ss.paddingBottom10]}>
           <Image
             style={{height: 150, width: 150, borderRadius: 75, resizeMode: 'cover'}}
-            source={require('../../../assets/images/icon.png')} />
+            source={require('../../../assets/images/bobby-headshot.jpg')} />
         </View>
         <View style={ss.paddingTop10}>
           <Text style={ss.body}>Hi there! My name is Bobby Lux and I’m the founder of Ora. I’d like to tell you my story.{'\n\n'}About two years ago I realized that I was behaviorally addicted to social media.{'\n\n'}Social media addiction is not a formal diagnosis. The science of behavioral addiction is very young, and most of the “evidence” we have at this point is worrying anecdotes and general, correlative studies. Still, the studies don’t paint an encouraging picture. People addicted to social media exhibit symptoms similar to substance addiction, and they face withdrawal symptoms when denied access.{'\n\n'}I was checking social media constantly throughout the day, and each session left me feeling drained and lonely. I wanted my heart and my mind to fly to God during the quiet moments in my day, but instead they were flying to my profiles and news feeds.</Text>
