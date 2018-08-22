@@ -27,6 +27,8 @@ const determineURL = (componentName, theme) => {
       return require('../../assets/images/Mountains/Submit.jpg')
     case ((theme === 'Mountains') && (componentName === 'Profile')):
       return require('../../assets/images/Mountains/Profile.jpg')
+    case ((theme === 'Mountains') && (componentName === 'Reflection')):
+      return require('../../assets/images/Mountains/Reflection.jpg')
     default:
       return null
   }
