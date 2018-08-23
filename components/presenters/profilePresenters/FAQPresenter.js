@@ -31,7 +31,7 @@ const FAQPresenter = () => (
           <Text style={ss.subHeader}>What is Ora’s religious affiliation?</Text>
         </View>
         <View style={[ss.paddingTop10, ss.paddingBottom20]}>
-          <Text style={ss.body}>The Ora Prayer Network is a Catholic nonprofit created to serve all Christians. Prayer unites all of our brothers and sisters in Christ, of all denominations, and we're excited for the ecumenical potential that Ora brings. If you aren't a Christian and you want to learn more about our faith in Jesus, please reach out to us. If you already have a relationship with Jesus and you'd like to ask questions about the Catholic Church, we would love to hear from you.</Text>
+          <Text style={ss.body}>The Ora Prayer Network is a Catholic nonprofit created to serve all Christians. Prayer unites all of our brothers and sisters in Christ, and we're excited for the ecumenical potential that Ora brings. If you aren't a Christian and you want to learn more about our faith in Jesus, please reach out to us. If you already have a relationship with Jesus and you'd like to ask questions about the Catholic Church, we would love to hear from you.</Text>
         </View>
       </ScrollView>
     </View>
