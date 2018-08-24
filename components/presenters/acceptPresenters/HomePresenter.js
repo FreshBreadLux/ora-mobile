@@ -1,39 +1,44 @@
 import React from 'react'
-import { Text, SafeAreaView, TouchableOpacity, AsyncStorage, View } from 'react-native'
+import { Text, SafeAreaView, TouchableOpacity, View } from 'react-native'
 import { connect } from 'react-redux'
-import { logout } from '../../../store'
+import { KeyContainer, SurveyPromptContainer } from '../../containers'
 import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
 
-const HomePresenter = ({ logUserOut, isAdmin, navigation }) => (
+const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggleSurvey }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
-      <View style={[ss.invisiContainer, ss.spaceAround]}>
-        <Text style={[ss.title, {bottom: 30}]}>ORA</Text>
+      <View style={[ss.flex3, ss.center]}>
+        <Text style={[ss.title]}>ORA</Text>
+      </View>
+      <View style={[ss.flex2, ss.center]}>
         <TouchableOpacity
           style={[ss.button, ss.halfWidth]}
           onPress={() => navigation.navigate('AcceptContainer')}>
           <Text style={[ss.buttonText]}>START PRAYING</Text>
         </TouchableOpacity>
       </View>
+      <View style={[ss.flex2, ss.center]}>
+        <KeyContainer navigation={navigation} toggleSurvey={toggleSurvey} />
+      </View>
       {isAdmin
       ? <TouchableOpacity
-          style={[ss.padding10, {alignSelf: 'flex-end'}]}
-          onPress={async function(){
-            await AsyncStorage.removeItem('oraAuth_v1.1.0')
-            logUserOut()
-            await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
-          }}>
+      style={[ss.padding10, {alignSelf: 'flex-end'}]}
+      onPress={adminReset}>
           <Ionicons
             name="ios-log-out"
             size={24}
             color="#fff" />
         </TouchableOpacity>
       : null
-      }
+    }
     </SafeAreaView>
+    {surveyRevealed
+    ? <SurveyPromptContainer navigation={navigation} toggleSurvey={toggleSurvey} />
+    : null
+    }
   </View>
 )
 
@@ -41,8 +46,4 @@ const mapState = state => ({
   isAdmin: state.userInfo.isAdmin
 })
 
-const mapDispatch = dispatch => ({
-  logUserOut: () => dispatch(logout())
-})
-
-export default connect(mapState, mapDispatch)(HomePresenter)
+export default connect(mapState)(HomePresenter)

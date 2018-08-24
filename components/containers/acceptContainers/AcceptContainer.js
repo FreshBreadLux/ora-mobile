@@ -1,38 +1,20 @@
 import React from 'react'
-import { View, Animated, AlertIOS } from 'react-native'
+import { View, AlertIOS, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { fetchUserFollows, fetchUserInfo, fetchNextPrayer, setUserInfo, addView, finishPraying, setReflection, removeVisibleModal } from '../../../store'
-import { ReflectionPresenter, CurrentPrayerPresenter, BackgroundImageContainer } from '../../presenters'
+import { fetchUserFollows, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
+import { ReflectionContainer, CurrentPrayerContainer } from '../'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import ss from '../../StyleSheet'
 
-function animate(...options) {
-  return new Promise(res => {
-    Animated.timing(...options).start(res)
-  })
-}
-
 class AcceptContainer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      titleButtonFade: new Animated.Value(1),
-      reflectionFade: new Animated.Value(0),
-      fadeAnim: new Animated.Value(0)
-    }
-    this.fadeOut = this.fadeOut.bind(this)
-    this.fadeIn = this.fadeIn.bind(this)
-    this.titleButtonFadeIn = this.titleButtonFadeIn.bind(this)
-    this.titleButtonFadeOut = this.titleButtonFadeOut.bind(this)
-    this.reflectionFadeIn = this.reflectionFadeIn.bind(this)
-    this.reflectionFadeOut = this.reflectionFadeOut.bind(this)
-    this.loadNextPrayer = this.loadNextPrayer.bind(this)
-    this.animateNextPrayerTransition = this.animateNextPrayerTransition.bind(this)
-    this.loadReflection = this.loadReflection.bind(this)
-    this.finishPraying = this.finishPraying.bind(this)
+
     this.flagPrayer = this.flagPrayer.bind(this)
+    this.finishPraying = this.finishPraying.bind(this)
+    this.loadReflection = this.loadReflection.bind(this)
     this.toggleFollowPrayer = this.toggleFollowPrayer.bind(this)
   }
 
@@ -40,56 +22,15 @@ class AcceptContainer extends React.Component {
     this.loadReflection()
   }
 
-  fadeOut() {
-    return animate(this.state.fadeAnim, { toValue: 0, duration: 500 })
-  }
-
-  fadeIn() {
-    return animate(this.state.fadeAnim, { toValue: 1, duration: 500 })
-  }
-
-  titleButtonFadeIn() {
-    return animate(this.state.titleButtonFade, { toValue: 1, duration: 500 })
-  }
-
-  titleButtonFadeOut() {
-    return animate(this.state.titleButtonFade, { toValue: 0, duration: 500 })
-  }
-
-  reflectionFadeIn() {
-    return animate(this.state.reflectionFade, { toValue: 1, duration: 500 })
-  }
-
-  reflectionFadeOut() {
-    return animate(this.state.reflectionFade, { toValue: 0, duration: 500 })
-  }
-
-  loadNextPrayer() {
-    const { dispatchFetchNextPrayer, userId, views } = this.props
-    return dispatchFetchNextPrayer(userId, views)
-  }
-
-  async animateNextPrayerTransition() {
-    try {
-      await this.fadeOut()
-      await this.loadNextPrayer().then(this.fadeIn)
-      ampLogEvent(ampEvents.LOAD_NEXT_PRAYER)
-    } catch (err) {
-      console.error(err)
-    }
-  }
-
   async loadReflection() {
-    await this.titleButtonFadeOut()
-    this.props.dispatchSetReflection()
-    await this.reflectionFadeIn()
-    this.fadeIn()
+    this.props.dispatchSetReflectionMode()
     ampLogEvent(ampEvents.START_REFLECTION)
   }
 
   finishPraying() {
     this.props.dispatchFinishPraying()
     this.props.navigation.goBack()
+    this.props.dispatchRemoveVisibleModal()
   }
 
   flagPrayer(flagreasonId) {
@@ -135,23 +76,15 @@ class AcceptContainer extends React.Component {
   render() {
     return (
       <View style={ss.invisiContainer}>
-        <BackgroundImageContainer componentName="Accept" />
-        {!this.props.currentPrayer.subject
-          ? <ReflectionPresenter
-              opacity={this.state.fadeAnim}
+        {this.props.reflectionMode
+          ? <ReflectionContainer
+              navigation={this.props.navigation}
+              finishPraying={this.finishPraying} />
+          : <CurrentPrayerContainer
+              flagPrayer={this.flagPrayer}
+              navigation={this.props.navigation}
               finishPraying={this.finishPraying}
-              reflectionFade={this.state.reflectionFade}
-              reflectionFadeOut={this.reflectionFadeOut}
-              animateNextPrayerTransition={this.animateNextPrayerTransition} />
-          : <View style={ss.opacityContainer}>
-              <CurrentPrayerPresenter
-                animateNextPrayerTransition={this.animateNextPrayerTransition}
-                navigation={this.props.navigation}
-                finishPraying={this.finishPraying}
-                flagPrayer={this.flagPrayer}
-                toggleFollowPrayer={this.toggleFollowPrayer}
-                opacity={this.state.fadeAnim} />
-            </View>
+              toggleFollowPrayer={this.toggleFollowPrayer} />
         }
       </View>
     )
@@ -160,21 +93,16 @@ class AcceptContainer extends React.Component {
 
 const mapState = state => ({
   follows: state.follows,
-  views: state.views,
   userId: state.auth.userId,
   isLoggedIn: state.auth.isLoggedIn,
   currentPrayer: state.acceptPrayer.currentPrayer,
-  reflection: state.acceptPrayer.reflection
+  reflectionMode: state.acceptPrayer.reflectionMode
 })
 
 const mapDispatch = dispatch => ({
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
-  dispatchAddView: viewedId => dispatch(addView(viewedId)),
-  refreshUserInfo: userId => dispatch(fetchUserInfo(userId)),
-  dispatchSetUserInfo: userInfo => dispatch(setUserInfo(userInfo)),
-  dispatchFetchNextPrayer: (userId, views) => dispatch(fetchNextPrayer(userId, views)),
   dispatchFinishPraying: () => dispatch(finishPraying()),
-  dispatchSetReflection: () => dispatch(setReflection()),
+  dispatchSetReflectionMode: () => dispatch(setReflectionMode()),
   dispatchRemoveVisibleModal: () => dispatch(removeVisibleModal())
 })
 

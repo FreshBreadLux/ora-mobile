@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, AboutPresenter, ChoirRankPresenter, DonatePresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, HomePresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, SurveySwiperContainer } from './containers'
+import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -37,7 +37,7 @@ const MainTabNav = TabNavigator({
     },
   },
   Home: {
-    screen: HomePresenter,
+    screen: HomeContainer,
     navigationOptions: {
       title: 'Home',
       headerBackTitle: null,
@@ -179,8 +179,8 @@ const CardStackNav = StackNavigator({
       }
     },
   },
-  Donate: {
-    screen: DonatePresenter,
+  Testimony: {
+    screen: TestimonyPresenter,
     navigationOptions: () => {
       const headerTitleStyle = Platform.OS === 'ios'
         ? { fontFamily: 'raleway', fontSize: 24 }
@@ -189,7 +189,7 @@ const CardStackNav = StackNavigator({
         ? { backgroundColor: 'white', borderBottomWidth: 0 }
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
-        title: 'DONATE',
+        title: 'TESTIMONY',
         headerTitleStyle,
         headerStyle,
       }
@@ -211,8 +211,8 @@ const CardStackNav = StackNavigator({
       }
     },
   },
-  About: {
-    screen: AboutPresenter,
+  FAQ: {
+    screen: FAQPresenter,
     navigationOptions: () => {
       const headerTitleStyle = Platform.OS === 'ios'
         ? { fontFamily: 'raleway', fontSize: 24 }
@@ -221,11 +221,33 @@ const CardStackNav = StackNavigator({
         ? { backgroundColor: 'white', borderBottomWidth: 0 }
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
-        title: 'ABOUT',
+        title: 'FAQ',
         headerTitleStyle,
         headerStyle,
       }
     },
+  },
+  SavedRewardsList: {
+    screen: SavedRewardsListPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'REWARDS',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  },
+  SurveySwiper: {
+    screen: SurveySwiperContainer,
+    navigationOptions: {
+      header: null,
+    }
   },
 }, {
   headerMode: 'screen'
@@ -244,6 +266,12 @@ const ModalStackNav = StackNavigator({
       header: null,
     },
   },
+  RewardContainer: {
+    screen: RewardContainer,
+    navigationOptions: {
+      header: null,
+    },
+  },
   TraditionalPrayers: {
     screen: TraditionalPrayersPresenter,
     navigationOptions: () => {
@@ -255,6 +283,38 @@ const ModalStackNav = StackNavigator({
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
         title: 'PRAYERS',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  },
+  ReflectionFullText: {
+    screen: ReflectionFullTextPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'REFLECTION',
+        headerTitleStyle,
+        headerStyle,
+      }
+    },
+  },
+  RewardFullText: {
+    screen: RewardFullTextPresenter,
+    navigationOptions: () => {
+      const headerTitleStyle = Platform.OS === 'ios'
+        ? { fontFamily: 'raleway', fontSize: 24 }
+        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
+      const headerStyle = Platform.OS === 'ios'
+        ? { backgroundColor: 'white', borderBottomWidth: 0 }
+        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
+      return {
+        title: 'GOSPEL',
         headerTitleStyle,
         headerStyle,
       }

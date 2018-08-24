@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import ss from '../../StyleSheet'
 
-const FollowModalContent = ({ hideModal, toggleFollowPrayer, alreadyFollowing }) => (
+const FollowModal = ({ hideModal, toggleFollowPrayer, alreadyFollowing }) => (
   <View style={[ss.center, ss.padding15]}>
     <View style={ss.modalContent}>
       {alreadyFollowing
@@ -33,4 +33,4 @@ const FollowModalContent = ({ hideModal, toggleFollowPrayer, alreadyFollowing })
   </View>
 )
 
-export default FollowModalContent
+export default FollowModal

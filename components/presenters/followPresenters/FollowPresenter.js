@@ -25,7 +25,7 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
         {follow.updates
         ? follow.updates.map(update => (
           <View key={update.id}>
-            <View style={[ss.row, ss.paddingBottom10, ss.darkBottomBorder]}>
+            <View style={[ss.row, ss.paddingBottom10, ss.bottomBorder]}>
               <Text style={ss.tagLine}>UPDATE</Text>
             </View>
             <Text style={[ss.body, ss.paddingBottom30, ss.paddingTop10]}>{update.body}</Text>
@@ -61,7 +61,7 @@ const FollowPresenter = ({ follow, notifyAuthor, recentlyPrayedFor, unfollowPray
                     name="md-heart"
                     size={18}
                     color="#FF4081" />
-                  <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND LOVE</Text>
+                  <Text style={[ss.subBody, ss.pinkText, ss.paddingLeft7]}>SEND PRAYER</Text>
                 </View>
               }
             </TouchableOpacity>

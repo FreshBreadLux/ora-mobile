@@ -16,26 +16,15 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
       <SafeAreaView style={ss.invisiContainer}>
         <LinearGradient
           colors={['transparent', '#fff']}
-          start={[0.5, 0.2]}
-          end={[0.5, 0.75]}
+          start={[0.5, 0.25]}
+          end={[0.5, 0.65]}
           style={ss.flex1}>
           <View style={Platform.OS === 'ios' ? ss.padding15 : ss.androidPadding}>
             <View style={ss.proflileHeader}>
               <Text style={ss.header}>PROFILE</Text>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
-              <View style={[ss.addViewSpacing, ss.alignFlexStart]}>
-                <Text style={[ss.header, ss.whiteText]}>Your level:</Text>
-                { determineChoirName(userInfo.totalPrayers) }
-              </View>
-              <TouchableOpacity
-                style={[ss.button, ss.halfWidth]}
-                onPress={() => navigation.navigate('ChoirRank', { userTotalPrayers: userInfo.totalPrayers })}>
-                { determineChoirTitle(userInfo.totalPrayers) }
-              </TouchableOpacity>
-            </View>
             <View style={ss.addLargeViewSpacing}>
-              <Text style={[ss.subHeader, ss.whiteText]}>
+              <Text style={[ss.subHeader]}>
                 {userInfo.firstName
                 ? `${userInfo.firstName} ${userInfo.lastName}`
                 : `${userInfo.email}`
@@ -50,34 +39,28 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
               <Text style={[ss.subHeader, ss.whiteText]}>Prayers{'\n'}Accepted</Text>
               <Text style={ss.choirName}>{userInfo.totalPrayers}</Text>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
+            <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginTop20]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
-                onPress={() => navigation.navigate('Donate')}>
-                <Text style={ss.buttonText}>Donate</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                onPress={() => navigation.navigate('Testimony')}>
+                <Text style={ss.buttonText}>TESTIMONY</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                onPress={() => navigation.navigate('SavedRewardsList')}>
+                <Text style={ss.buttonText}>REWARDS</Text>
               </TouchableOpacity>
             </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
+            <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginBottom30]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('Alarms')}>
-                <Text style={ss.buttonText}>Manage your reminders</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                <Text style={ss.buttonText}>REMINDERS</Text>
               </TouchableOpacity>
-            </View>
-            <View style={[ss.addViewSpacing, ss.fullWidth, ss.center, ss.paddingBottom30]}>
               <TouchableOpacity
-                style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
-                onPress={() => navigation.navigate('About')}>
-                <Text style={ss.buttonText}>Learn more about Ora</Text>
-                <Feather
-                  name="chevron-right"
-                  size={26} />
+                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                onPress={() => navigation.navigate('FAQ')}>
+                <Text style={ss.buttonText}>FAQ</Text>
               </TouchableOpacity>
             </View>
             <View style={[ss.addMedViewSpacing, ss.darkBottomBorder]}>
@@ -118,7 +101,7 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
           </View>
         </LinearGradient>
         <View style={[ss.editHeight, ss.center]}>
-          <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the angel.</Text>
+          <Text style={[ss.body, ss.blackTextShadow, ss.whiteText, ss.centerText, ss.threeQuartersWidth]}>The smoke of the incense along with the prayers of the holy ones went up before God from the hand of the Angel.</Text>
           <Text style={[ss.body, ss.blackTextShadow, ss.whiteText]}>- Revelation 8:4</Text>
         </View>
         <View style={[ss.addLargeViewSpacing, ss.whiteContainer, ss.center]}>

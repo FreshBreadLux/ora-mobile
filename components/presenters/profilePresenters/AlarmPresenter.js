@@ -56,9 +56,6 @@ const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm
       </TouchableOpacity>
     </View>
     <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={[ss.addLargeViewSpacing, ss.center]}>
-        <Text style={[ss.subHeader, ss.centerText]}>My Reminders</Text>
-      </View>
       {alarms.map(alarm => {
         const time = new Date(alarm.time).toLocaleTimeString('en-US', {hour: 'numeric', minute: 'numeric'})
         return (

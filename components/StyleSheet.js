@@ -161,6 +161,9 @@ const ss = StyleSheet.create({
   alignFlexStart: {
     alignSelf: 'flex-start'
   },
+  alignFlexCenter: {
+    alignSelf: 'center'
+  },
   spaceAround: {
     justifyContent: 'space-around',
     alignItems: 'center',
@@ -351,6 +354,10 @@ const ss = StyleSheet.create({
     justifyContent: 'flex-end',
     margin: 0,
   },
+  centerModal: {
+    justifyContent: 'center',
+    margin: 0,
+  },
   topModal: {
     justifyContent: 'flex-start',
     margin: 0,
@@ -389,6 +396,30 @@ const ss = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#ccc',
   },
+  surveyPrompt: {
+    width: '75%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 5,
+  },
+  newBlueButton: {
+    backgroundColor: 'rgb(69, 119, 238)',
+    borderColor: 'rgb(69, 119, 238)',
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    borderRadius: 14,
+  },
+  newWhiteButton: {
+    backgroundColor: '#fff',
+    borderColor: '#000',
+    borderWidth: 1,
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    borderRadius: 14,
+  },
   flex1: {
     flex: 1
   },
@@ -400,6 +431,9 @@ const ss = StyleSheet.create({
   },
   flex4: {
     flex: 4
+  },
+  flex5: {
+    flex: 5
   },
   fullWidth: {
     width: '100%',
@@ -431,8 +465,23 @@ const ss = StyleSheet.create({
   androidReminderHeight: {
     height: 100,
   },
-  marginTop: {
+  marginTop10: {
     marginTop: 10,
+  },
+  marginTop20: {
+    marginTop: 20,
+  },
+  marginTop30: {
+    marginTop: 30,
+  },
+  marginBottom10: {
+    marginBottom: 10,
+  },
+  marginBottom20: {
+    marginBottom: 20
+  },
+  marginBottom30: {
+    marginBottom: 30,
   },
 })
 

@@ -35,7 +35,7 @@ const FollowScrollPresenter = ({ follows, navigation }) => (
                 showsVerticalScrollIndicator={false}>
               { follows.map(follow => (
                 <TouchableOpacity
-                  style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop]}
+                  style={[ss.fullWidth, ss.padding15, ss.rowOpacity, ss.marginTop10]}
                   key={follow.id}
                   onPress={() => {
                     navigation.navigate('Follow', { follow })
