@@ -26,6 +26,9 @@
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
       "buildNumber": "1.2.0",
+      "infoPlist": {
+        "NSLocationAlwaysUsageDescription": "Ora uses location data for debugging and crash reporting"
+      },
       "supportsTablet": false
     },
     "android": {
