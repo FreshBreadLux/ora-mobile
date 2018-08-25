@@ -35,6 +35,7 @@ class SurveyPromptContainer extends React.Component {
   render() {
     return (
       <View style={[ss.backgroundImageFrame, ss.center]}>
+        <View style={ss.flex3} />
         <Animated.View style={[ss.surveyPrompt, {opacity: this.state.promptOpacity, bottom: this.state.promptBottom}]}>
           <TouchableOpacity
             style={ss.alignFlexStart}
@@ -54,6 +55,7 @@ class SurveyPromptContainer extends React.Component {
             <Text style={[ss.buttonText, ss.whiteText]}>LEARN MORE</Text>
           </TouchableOpacity>
         </Animated.View>
+        <View style={ss.flex2} />
       </View>
     )
   }
