@@ -40,6 +40,7 @@ async function _loadAssetsAsync() {
     require('./assets/images/Mountains/Reflection.jpg'),
     require('./assets/images/Adoration.jpg'),
     require('./assets/images/Choirs.jpg'),
+    require('./assets/images/bobby-headshot.jpg'),
   ])
   const fontAssets = cacheFonts([{
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
