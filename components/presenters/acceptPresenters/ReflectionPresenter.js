@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
+import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { ampEvents, ampLogEvent } from '../../analytics'
 import { BackgroundImageContainer } from '../../presenters'
@@ -25,15 +25,21 @@ const ReflectionPresenter = ({ finishReflection, copyOpacity, backgroundOpacity,
           <Animated.View style={[ss.center, ss.padding10, {opacity: copyOpacity}]}>
             <Text style={[ss.subHeader, ss.whiteText, ss.fullWidth]}>Lord, let Your Scriptures inspire me to pray for others. May Your Word fill my heart and my mind with grace, that I might grow in love and understanding.</Text>
           </Animated.View>
-          <Animated.View style={[ss.flex1, ss.center, ss.padding10, {opacity: verseOpacity}]}>
+          <View style={[ss.flex1, ss.center, ss.padding10, ss.fullWidth]}>
             {dailyReflection.verse
-            ? <View style={[ss.flex1, ss.center, ss.fullWidth]}>
-                <Text style={[ss.body, ss.whiteText, ss.fullWidth]}>{dailyReflection.verse}</Text>
-                <Text style={[ss.body, ss.whiteText, ss.fullWidth, ss.rightText]}>{dailyReflection.verseSource}</Text>
+            ? <View style={[ss.flex1, ss.fullWidth]}>
+                <Animated.ScrollView
+                  style={[ss.flex1, {opacity: verseOpacity}]}
+                  showsVerticalScrollIndicator={false}>
+                  <Text style={[ss.body, ss.whiteText]}>{dailyReflection.verse}</Text>
+                  <Text style={[ss.body, ss.whiteText, ss.rightText]}>{dailyReflection.verseSource}</Text>
+                </Animated.ScrollView>
               </View>
-            : <ActivityIndicator size="large" color="#fff" />
+            : <Animated.View style={[ss.flex1, {opacity: verseOpacity}]}>
+                <ActivityIndicator size="large" color="#fff" />
+              </Animated.View>
             }
-          </Animated.View>
+          </View>
           <Animated.View style={[ss.padding10, ss.center, {opacity: copyOpacity}]}>
             <TouchableOpacity
               onPress={() => {
