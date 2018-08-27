@@ -114,6 +114,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
       isVisible={visibleModal === 'artist'}
       style={ss.centerModal}>
       <ArtistModal
+        reward={reward}
         artist={reward.artist}
         hideModal={hideModal} />
     </Modal>

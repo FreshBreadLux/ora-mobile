@@ -15,7 +15,6 @@ const SET_REFLECTION_MODE = 'SET_REFLECTION_MODE'
 const EXIT_REFLECTION_MODE = 'EXIT_REFLECTION_MODE'
 const SET_DAILY_REFLECTION = 'SET_DAILY_REFLECTION'
 const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
-const SET_DAILY_REWARD_URI = 'SET_DAILY_REWARD_URI'
 const TRIGGER_UNLOCK_ANIMATION = 'TRIGGER_UNLOCK_ANIMATION'
 const SET_SURVEY_COMPLETED = 'SET_SURVEY_COMPLETED'
 
@@ -94,6 +93,8 @@ export const fetchAndCacheDailyReward = date =>
       const res = await axios.get(`${ROOT_URL}/api/rewards/?date=${date}`)
       const dailyReward = res.data
       if (dailyReward) {
+
+        // create localPath string for the daily reward image and check for info
         const uri = dailyReward.imageUrl
         const ext = uri.substring(
           uri.lastIndexOf("."),
@@ -101,12 +102,26 @@ export const fetchAndCacheDailyReward = date =>
         )
         const localPath = FileSystem.cacheDirectory + date + ext
         const info = await FileSystem.getInfoAsync(localPath)
-        if (!info.exists) {
-          await FileSystem.downloadAsync(dailyReward.imageUrl, localPath)
+
+        // create localPath string for the artist image of the daily reward and check for info
+        const artistUri = dailyReward.artist.imageUrl
+        const artistExt = artistUri.substring(
+          artistUri.lastIndexOf("."),
+          artistUri.indexOf("?") === -1 ? undefined : artistUri.indexOf("?")
+        )
+        const artistName = dailyReward.artist.fullName.replace(' ', '-')
+        const artistLocalPath = FileSystem.cacheDirectory + artistName + artistExt
+        const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
+
+        // if some of the info doesn't exist, download the files to the respective paths
+        if (!info.exists || !artistInfo.exists) {
+          const rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
+          const artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
+          await Promise.all([rewardImagePromise, artistImagePromise])
         } else {
-          console.log('Some info already exists at that dailyReward path')
+          console.log('Some info already exists at that dailyReward path and artist path')
         }
-        return dispatch(setDailyReward({ ...dailyReward, localPath }))
+        return dispatch(setDailyReward({ ...dailyReward, localPath, artistLocalPath }))
       }
     } catch (error) {
       console.warn(error)

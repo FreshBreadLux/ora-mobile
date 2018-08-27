@@ -34,6 +34,8 @@ export const fetchAndCacheSavedRewards = userId =>
       const savedRewards = res.data
       if (savedRewards) {
         mappedArrayOfPromises = await savedRewards.map(async reward => {
+
+          // create localPath string for the saved reward image and check for info
           const uri = reward.imageUrl
           const ext = uri.substring(
             uri.lastIndexOf("."),
@@ -41,12 +43,26 @@ export const fetchAndCacheSavedRewards = userId =>
           )
           const localPath = FileSystem.cacheDirectory + `savedReward${reward.id}` + ext
           const info = await FileSystem.getInfoAsync(localPath)
-          if (!info.exists) {
-            await FileSystem.downloadAsync(reward.imageUrl, localPath)
+
+          // create localPath string for the artist image of the saved reward and check for info
+          const artistUri = reward.artist.imageUrl
+          const artistExt = artistUri.substring(
+            artistUri.lastIndexOf("."),
+            artistUri.indexOf("?") === -1 ? undefined : artistUri.indexOf("?")
+          )
+          const artistName = reward.artist.fullName.replace(' ', '-')
+          const artistLocalPath = FileSystem.cacheDirectory + artistName + artistExt
+          const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
+
+          // if some of the info doesn't exist, download the files to the respective paths
+          if (!info.exists || !artistInfo.exists) {
+            const rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
+            const artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
+            await Promise.all([rewardImagePromise, artistImagePromise])
           } else {
-            console.log('Some info already exists at that savedReward path')
+            console.log('Some info already exists at that savedReward path and artist path')
           }
-          return { ...reward, localPath }
+          return { ...reward, localPath, artistLocalPath }
         })
         console.log('finished mapping... awaiting promise resolution')
         savedRewardsWithLocalUrls = await Promise.all(mappedArrayOfPromises)
