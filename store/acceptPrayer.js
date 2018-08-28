@@ -151,9 +151,9 @@ export default function(state = defaultAcceptPrayer, action) {
     case FINISH_PRAYING:
       return { ...state, currentPrayer: {}, reflectionMode: true, noPrayers: false }
     case TRIGGER_UNLOCK_ANIMATION:
-      return { ...state, unlockAnimationTriggered: true }
+      return { ...state, unlockAnimationTriggered: true, lockAnimationTriggered: false }
     case TRIGGER_LOCK_ANIMATION:
-      return { ...state, lockAnimationTriggered: true }
+      return { ...state, lockAnimationTriggered: true, unlockAnimationTriggered: false }
     case SET_SURVEY_COMPLETED:
       return { ...state, surveyCompleted: true }
     case LOGOUT:
