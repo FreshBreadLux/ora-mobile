@@ -15,8 +15,6 @@ const SET_REFLECTION_MODE = 'SET_REFLECTION_MODE'
 const EXIT_REFLECTION_MODE = 'EXIT_REFLECTION_MODE'
 const SET_DAILY_REFLECTION = 'SET_DAILY_REFLECTION'
 const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
-const TRIGGER_UNLOCK_ANIMATION = 'TRIGGER_UNLOCK_ANIMATION'
-const TRIGGER_LOCK_ANIMATION = 'TRIGGER_LOCK_ANIMATION'
 const SET_SURVEY_COMPLETED = 'SET_SURVEY_COMPLETED'
 const UNLOCK_DAILY_REWARD = 'UNLOCK_DAILY_REWARD'
 const LOCK_DAILY_REWARD = 'LOCK_DAILY_REWARD'
@@ -31,8 +29,6 @@ const defaultAcceptPrayer = {
   dailyReward: {},
   noPrayers: false,
   dailyRewardUnlocked: false,
-  unlockAnimationTriggered: false,
-  lockAnimationTriggered: false,
   surveyCompleted: false,
 }
 
@@ -46,8 +42,6 @@ export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const setReflectionMode = () => ({ type: SET_REFLECTION_MODE })
 export const exitReflectionMode = () => ({ type: EXIT_REFLECTION_MODE })
-export const triggerUnlockAnimation = () => ({ type: TRIGGER_UNLOCK_ANIMATION })
-export const triggerLockAnimation = () => ({ type: TRIGGER_LOCK_ANIMATION })
 export const setSurveyCompleted = () => ({ type: SET_SURVEY_COMPLETED })
 export const unlockDailyReward = () => ({ type: UNLOCK_DAILY_REWARD })
 export const lockDailyReward = () => ({ type: LOCK_DAILY_REWARD })
@@ -155,10 +149,6 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, reflectionMode: false }
     case FINISH_PRAYING:
       return { ...state, currentPrayer: {}, reflectionMode: true, noPrayers: false }
-    case TRIGGER_UNLOCK_ANIMATION:
-      return { ...state, unlockAnimationTriggered: true, lockAnimationTriggered: false }
-    case TRIGGER_LOCK_ANIMATION:
-      return { ...state, lockAnimationTriggered: true, unlockAnimationTriggered: false }
     case UNLOCK_DAILY_REWARD:
       return { ...state, dailyRewardUnlocked: true }
     case LOCK_DAILY_REWARD:
