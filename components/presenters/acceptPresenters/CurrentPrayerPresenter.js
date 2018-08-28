@@ -1,20 +1,20 @@
 import React from 'react'
 import { Text, View, SafeAreaView, TouchableOpacity, Animated, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
-import { setVisibleModal, removeVisibleModal, triggerUnlockAnimation } from '../../../store'
+import { setVisibleModal, removeVisibleModal, unlockDailyReward } from '../../../store'
 import Modal from 'react-native-modal'
 import { Feather, Ionicons } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchTriggerUnlockAnimation, surveyCompleted }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchUnlockDailyReward, surveyCompleted }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
         style={[ss.padding10, ss.alignFlexStart]}
         onPress={() => {
           if (surveyCompleted) {
-            dispatchTriggerUnlockAnimation()
+            dispatchUnlockDailyReward()
           }
           finishPraying()
         }}>
@@ -152,7 +152,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   showModal: visibleModal => dispatch(setVisibleModal(visibleModal)),
   hideModal: () => dispatch(removeVisibleModal()),
-  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation())
+  dispatchUnlockDailyReward: () => dispatch(unlockDailyReward()),
 })
 
 export default connect(mapState, mapDispatch)(CurrentPrayerPresenter)
