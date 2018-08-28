@@ -124,7 +124,7 @@ class Root extends React.Component {
   /*
     checkLockAnimation is fired from handleAppStateChange when the app is foregrounded.
     The function checks for the situation where a user unlocks the daily reward, and then
-    opens the app the next day without it refreshing. Without checkLockAnimation, the user
+    opens the app the next day without the app refreshing. Without checkLockAnimation, the user
     would be able to access the daily reward without accepting a prayer. If the AsyncStorage
     result isn't true, but the store state says that the daily reward has been unlocked, we know
     that the app hasn't been refreshed. We dispatch lockDailyReward to make sure that the store

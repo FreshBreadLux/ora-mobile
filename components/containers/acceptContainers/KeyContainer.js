@@ -3,7 +3,7 @@ import { Animated, Easing, AsyncStorage } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
 import { UnlockAnimationContainer } from '../../containers'
-import { triggerUnlockAnimation, setSurveyCompleted } from '../../../store'
+import { unlockDailyReward, setSurveyCompleted } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -38,7 +38,7 @@ class KeyContainer extends React.Component {
     const today = getDateString()
     const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
     if (unlockAnimationCompleted === 'true') {
-      this.props.dispatchTriggerUnlockAnimation()
+      this.props.dispatchUnlockDailyReward()
     }
   }
 
@@ -76,7 +76,7 @@ class KeyContainer extends React.Component {
 }
 
 const mapDispatch = dispatch => ({
-  dispatchTriggerUnlockAnimation: () => dispatch(triggerUnlockAnimation()),
+  dispatchUnlockDailyReward: () => dispatch(unlockDailyReward()),
   dispatchSetSurveyCompleted: () => dispatch(setSurveyCompleted()),
 })
 
