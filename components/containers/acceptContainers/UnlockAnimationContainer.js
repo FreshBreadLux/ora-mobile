@@ -32,12 +32,15 @@ class KeyContainer extends React.Component {
       keyEnd2Angle: new Animated.Value(90),
     }
     this.animateUnlock = this.animateUnlock.bind(this)
+    this.animateLock = this.animateLock.bind(this)
     this.handleButtonPress = this.handleButtonPress.bind(this)
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.unlockAnimationTriggered != prevProps.unlockAnimationTriggered) {
+    if (this.props.unlockAnimationTriggered && !prevProps.unlockAnimationTriggered) {
       this.animateUnlock()
+    } else if (this.props.lockAnimationTriggered && !prevProps.lockAnimationTriggered) {
+      this.animateLock()
     }
   }
 
@@ -87,7 +90,40 @@ class KeyContainer extends React.Component {
     ]).start(this.props.setUnlockAnimationComplete)
   }
 
-
+  animateLock() {
+    Animated.sequence([
+      Animated.parallel([
+        Animated.timing(this.state.keyRing1Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyRing1Left, {toValue: 30, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyRing1Top, {toValue: 12.2309505, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyRing2Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyRing2Left, {toValue: 30, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyRing2Top, {toValue: 12.2309505, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead1Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead1Left, {toValue: 23.7902592, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead1Top, {toValue: 64.0769835, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead2Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead2Left, {toValue: 44.9999937, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyHead2Top, {toValue: 64.0769835, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid1Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid1Left, {toValue: 23.7902592, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid1Top, {toValue: 59.3637078, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid2Angle, {toValue: 0, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid2Left, {toValue: 23.7902592, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyMid2Top, {toValue: 59.3637078, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd1Angle, {toValue: 270, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd1Left, {toValue: 26.1468971, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd1Top, {toValue: 59.3637078, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd2Angle, {toValue: 90, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd2Left, {toValue: 59.139827, duration: 500, delay: 100}),
+        Animated.timing(this.state.keyEnd2Top, {toValue: 59.3637078, duration: 500, delay: 100}),
+      ]),
+      Animated.parallel([
+        Animated.timing(this.state.keyRing1Top, {toValue: 42.8672427, duration: 500, delay: 300}),
+        Animated.timing(this.state.keyRing2Top, {toValue: 42.8672427, duration: 500, delay: 300}),
+      ])
+    ]).start(this.props.setUnlockAnimationComplete)
+  }
 
   render() {
     return (
@@ -208,7 +244,9 @@ class KeyContainer extends React.Component {
 
 const mapState = state => ({
   unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered,
-  surveyCompleted: state.acceptPrayer.surveyCompleted
+  lockAnimationTriggered: state.acceptPrayer.lockAnimationTriggered,
+  surveyCompleted: state.acceptPrayer.surveyCompleted,
+  prayedToday: state.userInfo.prayedToday,
 })
 
 export default connect(mapState)(KeyContainer)

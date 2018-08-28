@@ -16,6 +16,7 @@ const EXIT_REFLECTION_MODE = 'EXIT_REFLECTION_MODE'
 const SET_DAILY_REFLECTION = 'SET_DAILY_REFLECTION'
 const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
 const TRIGGER_UNLOCK_ANIMATION = 'TRIGGER_UNLOCK_ANIMATION'
+const TRIGGER_LOCK_ANIMATION = 'TRIGGER_LOCK_ANIMATION'
 const SET_SURVEY_COMPLETED = 'SET_SURVEY_COMPLETED'
 
 /**
@@ -28,6 +29,7 @@ const defaultAcceptPrayer = {
   dailyReward: {},
   noPrayers: false,
   unlockAnimationTriggered: false,
+  lockAnimationTriggered: false,
   surveyCompleted: false,
 }
 
@@ -42,6 +44,7 @@ export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const setReflectionMode = () => ({ type: SET_REFLECTION_MODE })
 export const exitReflectionMode = () => ({ type: EXIT_REFLECTION_MODE })
 export const triggerUnlockAnimation = () => ({ type: TRIGGER_UNLOCK_ANIMATION })
+export const triggerLockAnimation = () => ({ type: TRIGGER_LOCK_ANIMATION })
 export const setSurveyCompleted = () => ({ type: SET_SURVEY_COMPLETED })
 
 /**
@@ -149,6 +152,8 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, currentPrayer: {}, reflectionMode: true, noPrayers: false }
     case TRIGGER_UNLOCK_ANIMATION:
       return { ...state, unlockAnimationTriggered: true }
+    case TRIGGER_LOCK_ANIMATION:
+      return { ...state, lockAnimationTriggered: true }
     case SET_SURVEY_COMPLETED:
       return { ...state, surveyCompleted: true }
     case LOGOUT:

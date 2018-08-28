@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards, triggerLockAnimation } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -26,6 +26,7 @@ class Root extends React.Component {
     this.handleAppStateChange = this.handleAppStateChange.bind(this)
     this.hideNotificationModal = this.hideNotificationModal.bind(this)
     this.verifyStorageKey = this.verifyStorageKey.bind(this)
+    this.checkLockAnimation = this.checkLockAnimation.bind(this)
   }
 
   /*
@@ -115,8 +116,17 @@ class Root extends React.Component {
     if (this.state.appState.match(/inactive|background/) && nextAppState === 'active' && userId) {
       refreshUserPrayers(userId)
       refreshUserFollows(userId)
+      this.checkLockAnimation()
     }
     this.setState({ appState: nextAppState })
+  }
+
+  async checkLockAnimation() {
+    const today = getDateString()
+    const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
+    if (unlockAnimationCompleted !== 'true' && this.props.unlockAnimationTriggered) {
+      this.props.dispatchTriggerLockAnimation()
+    }
   }
 
   hideNotificationModal() {
@@ -171,7 +181,8 @@ const mapState = state => ({
   isLoggedIn: state.auth.isLoggedIn,
   userId: state.auth.userId,
   firstTime: state.auth.firstTime,
-  userInfo: state.userInfo
+  userInfo: state.userInfo,
+  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered
 })
 
 const mapDispatch = dispatch => ({
@@ -192,7 +203,8 @@ const mapDispatch = dispatch => ({
   refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
   noIntroNeeded: () => dispatch(notFirstRodeo()),
-  dispatchSetTheme: theme => dispatch(setTheme(theme))
+  dispatchSetTheme: theme => dispatch(setTheme(theme)),
+  dispatchTriggerLockAnimation: () => dispatch(triggerLockAnimation()),
 })
 
 export default connect(mapState, mapDispatch)(Root)
