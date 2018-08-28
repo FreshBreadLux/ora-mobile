@@ -44,6 +44,7 @@ const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggle
               const today = getDateString()
               try {
                 await AsyncStorage.setItem(`unlockAnimationCompleted-${today}`, 'false')
+                console.log('reset unlockAnimationCompleted')
               } catch (error) {
                 console.warn('Error with AsyncStorage:', error)
               }

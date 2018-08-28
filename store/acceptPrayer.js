@@ -18,6 +18,8 @@ const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
 const TRIGGER_UNLOCK_ANIMATION = 'TRIGGER_UNLOCK_ANIMATION'
 const TRIGGER_LOCK_ANIMATION = 'TRIGGER_LOCK_ANIMATION'
 const SET_SURVEY_COMPLETED = 'SET_SURVEY_COMPLETED'
+const UNLOCK_DAILY_REWARD = 'UNLOCK_DAILY_REWARD'
+const LOCK_DAILY_REWARD = 'LOCK_DAILY_REWARD'
 
 /**
  * INITIAL STATE
@@ -28,6 +30,7 @@ const defaultAcceptPrayer = {
   dailyReflection: {},
   dailyReward: {},
   noPrayers: false,
+  dailyRewardUnlocked: false,
   unlockAnimationTriggered: false,
   lockAnimationTriggered: false,
   surveyCompleted: false,
@@ -46,6 +49,8 @@ export const exitReflectionMode = () => ({ type: EXIT_REFLECTION_MODE })
 export const triggerUnlockAnimation = () => ({ type: TRIGGER_UNLOCK_ANIMATION })
 export const triggerLockAnimation = () => ({ type: TRIGGER_LOCK_ANIMATION })
 export const setSurveyCompleted = () => ({ type: SET_SURVEY_COMPLETED })
+export const unlockDailyReward = () => ({ type: UNLOCK_DAILY_REWARD })
+export const lockDailyReward = () => ({ type: LOCK_DAILY_REWARD })
 
 /**
  * THUNK CREATORS
@@ -154,6 +159,10 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, unlockAnimationTriggered: true, lockAnimationTriggered: false }
     case TRIGGER_LOCK_ANIMATION:
       return { ...state, lockAnimationTriggered: true, unlockAnimationTriggered: false }
+    case UNLOCK_DAILY_REWARD:
+      return { ...state, dailyRewardUnlocked: true }
+    case LOCK_DAILY_REWARD:
+      return { ...state, dailyRewardUnlocked: false }
     case SET_SURVEY_COMPLETED:
       return { ...state, surveyCompleted: true }
     case LOGOUT:

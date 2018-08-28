@@ -2,7 +2,7 @@ import React from 'react'
 import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
-import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards, triggerLockAnimation } from '../store'
+import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards, lockDailyReward } from '../store'
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
@@ -121,11 +121,20 @@ class Root extends React.Component {
     this.setState({ appState: nextAppState })
   }
 
+  /*
+    checkLockAnimation is fired from handleAppStateChange when the app is foregrounded.
+    The function checks for the situation where a user unlocks the daily reward, and then
+    opens the app the next day without it refreshing. Without checkLockAnimation, the user
+    would be able to access the daily reward without accepting a prayer. If the AsyncStorage
+    result isn't true, but the store state says that the daily reward has been unlocked, we know
+    that the app hasn't been refreshed. We dispatch lockDailyReward to make sure that the store
+    matches the AsyncStorage; the lock animation is triggered and the button is disabled.
+  */
   async checkLockAnimation() {
     const today = getDateString()
     const unlockAnimationCompleted = await AsyncStorage.getItem(`unlockAnimationCompleted-${today}`)
-    if (unlockAnimationCompleted !== 'true' && this.props.unlockAnimationTriggered) {
-      this.props.dispatchTriggerLockAnimation()
+    if (unlockAnimationCompleted !== 'true' && this.props.dailyRewardUnlocked) {
+      this.props.dispatchLockDailyReward()
     }
   }
 
@@ -182,7 +191,7 @@ const mapState = state => ({
   userId: state.auth.userId,
   firstTime: state.auth.firstTime,
   userInfo: state.userInfo,
-  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered
+  dailyRewardUnlocked: state.acceptPrayer.dailyRewardUnlocked
 })
 
 const mapDispatch = dispatch => ({
@@ -204,7 +213,7 @@ const mapDispatch = dispatch => ({
   refreshUserFollows: userId => dispatch(fetchUserFollows(userId)),
   noIntroNeeded: () => dispatch(notFirstRodeo()),
   dispatchSetTheme: theme => dispatch(setTheme(theme)),
-  dispatchTriggerLockAnimation: () => dispatch(triggerLockAnimation()),
+  dispatchLockDailyReward: () => dispatch(lockDailyReward()),
 })
 
 export default connect(mapState, mapDispatch)(Root)
