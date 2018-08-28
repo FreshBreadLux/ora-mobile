@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Animated, AsyncStorage, TouchableOpacity } from 'react-native'
+import { Animated, TouchableOpacity } from 'react-native'
 
 class KeyContainer extends React.Component {
   constructor(props){
@@ -37,9 +37,9 @@ class KeyContainer extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.unlockAnimationTriggered && !prevProps.unlockAnimationTriggered) {
+    if (this.props.dailyRewardUnlocked && !prevProps.dailyRewardUnlocked) {
       this.animateUnlock()
-    } else if (this.props.lockAnimationTriggered && !prevProps.lockAnimationTriggered) {
+    } else if (!this.props.dailyRewardUnlocked && prevProps.dailyRewardUnlocked) {
       this.animateLock()
     }
   }
@@ -48,7 +48,7 @@ class KeyContainer extends React.Component {
     if (!this.props.surveyCompleted) {
       this.props.shakeLock()
       this.props.toggleSurvey()
-    } else if (!this.props.unlockAnimationTriggered) {
+    } else if (!this.props.dailyRewardUnlocked) {
       this.props.shakeLock()
     } else {
       this.props.navigation.navigate('RewardContainer')
@@ -243,8 +243,7 @@ class KeyContainer extends React.Component {
 }
 
 const mapState = state => ({
-  unlockAnimationTriggered: state.acceptPrayer.unlockAnimationTriggered,
-  lockAnimationTriggered: state.acceptPrayer.lockAnimationTriggered,
+  dailyRewardUnlocked: state.acceptPrayer.dailyRewardUnlocked,
   surveyCompleted: state.acceptPrayer.surveyCompleted,
   prayedToday: state.userInfo.prayedToday,
 })
