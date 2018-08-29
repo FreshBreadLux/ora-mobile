@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { StoreReview } from 'expo'
 import { RewardPresenter } from '../../presenters'
 import { fetchAndCacheSavedRewards, removeVisibleModal } from '../../../store'
 import { ampEvents, ampLogEvent } from '../../analytics'
@@ -58,6 +59,9 @@ class RewardContainer extends React.Component {
         this.setState({ processing: false, alreadySaved: true })
         refreshSavedRewards(userId)
         hideModal()
+      })
+      .then(() => {
+        if (StoreReview.isSupported()) StoreReview.requestReview()
       })
       .catch(error => {
         console.warn(error)
