@@ -116,12 +116,8 @@ export const fetchAndCacheDailyReward = date =>
         const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
 
         // if some of the info doesn't exist, download the files to the respective paths
-        if (!info.exists) {
-          rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
-        }
-        if (!artistInfo.exists) {
-          artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
-        }
+        if (!info.exists) rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
+        if (!artistInfo.exists) artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
         await Promise.all([rewardImagePromise, artistImagePromise])
         return dispatch(setDailyReward({ ...dailyReward, localPath, artistLocalPath }))
       }

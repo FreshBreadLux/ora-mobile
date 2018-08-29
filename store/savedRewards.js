@@ -34,7 +34,7 @@ export const fetchAndCacheSavedRewards = userId =>
       const savedRewards = res.data
       if (savedRewards) {
         mappedArrayOfPromises = await savedRewards.map(async reward => {
-
+          let rewardImagePromise, artistImagePromise
           // create localPath string for the saved reward image and check for info
           const uri = reward.imageUrl
           const ext = uri.substring(
@@ -55,13 +55,9 @@ export const fetchAndCacheSavedRewards = userId =>
           const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
 
           // if some of the info doesn't exist, download the files to the respective paths
-          if (!info.exists || !artistInfo.exists) {
-            const rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
-            const artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
-            await Promise.all([rewardImagePromise, artistImagePromise])
-          } else {
-            console.log('Some info already exists at that savedReward path and artist path')
-          }
+          if (!info.exists) rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
+          if (!artistInfo.existis) artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
+          await Promise.all([rewardImagePromise, artistImagePromise])
           return { ...reward, localPath, artistLocalPath }
         })
         console.log('finished mapping... awaiting promise resolution')
