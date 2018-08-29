@@ -95,7 +95,7 @@ export const fetchAndCacheDailyReward = date =>
       const res = await axios.get(`${ROOT_URL}/api/rewards/?date=${date}`)
       const dailyReward = res.data
       if (dailyReward) {
-
+        let rewardImagePromise, artistImagePromise
         // create localPath string for the daily reward image and check for info
         const uri = dailyReward.imageUrl
         const ext = uri.substring(
@@ -116,13 +116,13 @@ export const fetchAndCacheDailyReward = date =>
         const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
 
         // if some of the info doesn't exist, download the files to the respective paths
-        if (!info.exists || !artistInfo.exists) {
-          const rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
-          const artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
-          await Promise.all([rewardImagePromise, artistImagePromise])
-        } else {
-          console.log('Some info already exists at that dailyReward path and artist path')
+        if (!info.exists) {
+          rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
         }
+        if (!artistInfo.exists) {
+          artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
+        }
+        await Promise.all([rewardImagePromise, artistImagePromise])
         return dispatch(setDailyReward({ ...dailyReward, localPath, artistLocalPath }))
       }
     } catch (error) {
