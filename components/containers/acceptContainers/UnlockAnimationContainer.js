@@ -122,7 +122,7 @@ class KeyContainer extends React.Component {
         Animated.timing(this.state.keyRing1Top, {toValue: 42.8672427, duration: 500, delay: 100}),
         Animated.timing(this.state.keyRing2Top, {toValue: 42.8672427, duration: 500, delay: 100}),
       ])
-    ]).start(this.props.setUnlockAnimationComplete)
+    ]).start()
   }
 
   render() {

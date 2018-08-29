@@ -3,7 +3,7 @@ import { Animated, Easing, AsyncStorage } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
 import { UnlockAnimationContainer } from '../../containers'
-import { unlockDailyReward, setSurveyCompleted } from '../../../store'
+import { unlockDailyReward, setSurveyCompleted, fetchAndCacheDailyReward } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -44,6 +44,15 @@ class KeyContainer extends React.Component {
 
   async setUnlockAnimationComplete() {
     const today = getDateString()
+    /*
+      this if statement performs a final check, right after the unlock animation is completed, to
+      make sure that the daily reward has a local path (if loadInitialData never fired from Root.js
+      from one day to the next, then the daily reward image wouldn't have been cached). If it
+      doesn't have a local path, we dispatch fetchAndCacheDailyReward.
+    */
+    if (!this.props.dailyReward.localPath) {
+      this.props.dispatchFetchAndCacheDailyReward(today)
+    }
     try {
       await AsyncStorage.setItem(`unlockAnimationCompleted-${today}`, 'true')
     } catch (error) {
@@ -75,9 +84,14 @@ class KeyContainer extends React.Component {
   }
 }
 
+const mapState = state => ({
+  dailyReward: state.acceptPrayer.dailyReward
+})
+
 const mapDispatch = dispatch => ({
   dispatchUnlockDailyReward: () => dispatch(unlockDailyReward()),
   dispatchSetSurveyCompleted: () => dispatch(setSurveyCompleted()),
+  dispatchFetchAndCacheDailyReward: date => dispatch(fetchAndCacheDailyReward(date)),
 })
 
-export default connect(null, mapDispatch)(withNavigationFocus(KeyContainer))
+export default connect(mapState, mapDispatch)(withNavigationFocus(KeyContainer))
