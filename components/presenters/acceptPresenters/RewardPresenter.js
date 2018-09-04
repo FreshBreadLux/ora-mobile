@@ -53,8 +53,9 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
+                const { fullText, fullSource } = reward
                 ampLogEvent(ampEvents.READ_FULL_REWARD)
-                navigation.navigate('RewardFullText')
+                navigation.navigate('RewardFullText', { fullText, fullSource })
               }}>
               <Text style={[ss.subBody, {color: reward.iconColor}]}>READ MORE</Text>
             </TouchableOpacity>
