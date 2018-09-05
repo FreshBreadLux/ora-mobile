@@ -45,13 +45,16 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
           </TouchableOpacity>
           <View style={ss.flex1} />
           <View style={[ss.row, ss.spaceAround, ss.fullWidth, ss.padding10]}>
-            <TouchableOpacity onPress={() => { if (reward.artist) showModal('artist') }}>
+            <TouchableOpacity
+              style={ss.padding10}
+              onPress={() => { if (reward.artist) showModal('artist') }}>
               <MaterialIcons
                 name="account-circle"
                 size={20}
                 color={reward.iconColor} />
             </TouchableOpacity>
             <TouchableOpacity
+              style={ss.padding10}
               onPress={() => {
                 const { fullText, fullSource } = reward
                 ampLogEvent(ampEvents.READ_FULL_REWARD)
@@ -69,6 +72,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
                     ? <View>
                       {reward.savedReward
                       ? <TouchableOpacity
+                          style={ss.padding10}
                           onPress={() => showModal('deleteReward')}>
                           <Ionicons
                             name="ios-trash"
@@ -82,6 +86,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
                       }
                       </View>
                     : <TouchableOpacity
+                        style={ss.padding10}
                         onPress={() => showModal('saveReward')}>
                         <Ionicons
                           name="md-download"
