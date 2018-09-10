@@ -53,10 +53,7 @@ class KeyContainer extends React.Component {
   }
 
   handleButtonPress() {
-    if (!this.props.surveyCompleted) {
-      this.props.shakeLock()
-      this.props.toggleSurvey()
-    } else if (!this.props.dailyRewardUnlocked) {
+    if (!this.props.dailyRewardUnlocked) {
       this.props.shakeLock()
     } else {
       this.props.navigation.navigate('RewardContainer')
