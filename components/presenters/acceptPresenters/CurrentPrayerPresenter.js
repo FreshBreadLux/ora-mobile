@@ -7,15 +7,13 @@ import { Feather, Ionicons } from '@expo/vector-icons'
 import { FlagModal, AboutModal, FollowModal } from '../modals'
 import ss from '../../StyleSheet'
 
-const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchUnlockDailyReward, surveyCompleted }) => (
+const CurrentPrayerPresenter = ({ navigation, currentPrayer, finishPraying, flagPrayer, toggleFollowPrayer, follows, buttonOpacity, prayerTextOpacity, activityIndicatorOpacity, networkErrorMessageOpacity, visibleModal, showModal, hideModal, noPrayers, networkError, requestEnRoute, handleNextPrayer, dispatchUnlockDailyReward }) => (
   <SafeAreaView style={ss.invisiContainer}>
     <Animated.View style={[ss.invisiContainer, ss.padding15, ss.spaceAround, { opacity: buttonOpacity }]}>
       <TouchableOpacity
         style={[ss.padding10, ss.alignFlexStart]}
         onPress={() => {
-          if (surveyCompleted) {
-            dispatchUnlockDailyReward()
-          }
+          dispatchUnlockDailyReward()
           finishPraying()
         }}>
         <Feather
@@ -146,7 +144,6 @@ const mapState = state => ({
   currentPrayer: state.acceptPrayer.currentPrayer,
   noPrayers: state.acceptPrayer.noPrayers,
   visibleModal: state.visibleModal,
-  surveyCompleted: state.acceptPrayer.surveyCompleted
 })
 
 const mapDispatch = dispatch => ({

@@ -396,12 +396,6 @@ const ss = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#ccc',
   },
-  surveyPrompt: {
-    width: '75%',
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 5,
-  },
   newBlueButton: {
     backgroundColor: 'rgb(69, 119, 238)',
     borderColor: 'rgb(69, 119, 238)',
