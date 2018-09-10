@@ -3,7 +3,7 @@ import { Animated, Easing, AsyncStorage } from 'react-native'
 import { withNavigationFocus } from 'react-navigation'
 import { connect } from 'react-redux'
 import { UnlockAnimationContainer } from '../../containers'
-import { unlockDailyReward, setSurveyCompleted, fetchAndCacheDailyReward } from '../../../store'
+import { unlockDailyReward, fetchAndCacheDailyReward } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -23,15 +23,7 @@ class KeyContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.checkSurveyCompletion()
-  }
-
-  async checkSurveyCompletion() {
-    const surveyCompleted = await AsyncStorage.getItem('oraSurveyCompleted')
-    if (surveyCompleted === 'true') {
-      this.checkIfUnlockAnimationCompleted()
-      this.props.dispatchSetSurveyCompleted()
-    }
+    this.checkIfUnlockAnimationCompleted()
   }
 
   async checkIfUnlockAnimationCompleted() {
@@ -77,7 +69,6 @@ class KeyContainer extends React.Component {
       <UnlockAnimationContainer
         shakeLock={this.shakeLock}
         navigation={this.props.navigation}
-        toggleSurvey={this.props.toggleSurvey}
         lockXPosition={this.state.lockXPosition}
         setUnlockAnimationComplete={this.setUnlockAnimationComplete} />
     )
@@ -90,7 +81,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   dispatchUnlockDailyReward: () => dispatch(unlockDailyReward()),
-  dispatchSetSurveyCompleted: () => dispatch(setSurveyCompleted()),
   dispatchFetchAndCacheDailyReward: date => dispatch(fetchAndCacheDailyReward(date)),
 })
 
