@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, SafeAreaView, TouchableOpacity, View, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
-import { KeyContainer, SurveyPromptContainer } from '../../containers'
+import { KeyContainer } from '../../containers'
 import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
@@ -11,7 +11,7 @@ function getDateString() {
   return new Date(date).toISOString().slice(0, 10)
 }
 
-const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggleSurvey }) => (
+const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -26,7 +26,7 @@ const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggle
         </TouchableOpacity>
       </View>
       <View style={[ss.flex2, ss.center]}>
-        <KeyContainer navigation={navigation} toggleSurvey={toggleSurvey} />
+        <KeyContainer navigation={navigation} />
       </View>
       {isAdmin
       ? <View style={ss.row}>
@@ -58,10 +58,6 @@ const HomePresenter = ({ adminReset, isAdmin, navigation, surveyRevealed, toggle
       : null
     }
     </SafeAreaView>
-    {surveyRevealed
-    ? <SurveyPromptContainer navigation={navigation} toggleSurvey={toggleSurvey} />
-    : null
-    }
   </View>
 )
 

@@ -13,11 +13,7 @@ function getDateString() {
 class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      surveyRevealed: false,
-    }
     this.adminReset = this.adminReset.bind(this)
-    this.toggleSurvey = this.toggleSurvey.bind(this)
     this.handleAmplitude = this.handleAmplitude.bind(this)
   }
 
@@ -45,24 +41,15 @@ class HomeContainer extends React.Component {
     const today = getDateString()
     await AsyncStorage.removeItem('oraAuth_v1.1.0')
     await AsyncStorage.removeItem(`unlockAnimationCompleted-${today}`)
-    await AsyncStorage.removeItem('oraSurveyCompleted')
     this.props.logUserOut()
     await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'false')
   }
 
-  toggleSurvey() {
-    if (!this.state.surveyRevealed) ampLogEvent(ampEvents.OPEN_SURVEY_PROMPT)
-    else ampLogEvent(ampEvents.CLOSE_SURVEY_PROMPT)
-    this.setState({ surveyRevealed: !this.state.surveyRevealed })
-  }
-
   render() {
-    return(
+    return (
       <HomePresenter
         adminReset={this.adminReset}
-        toggleSurvey={this.toggleSurvey}
-        navigation={this.props.navigation}
-        surveyRevealed={this.state.surveyRevealed} />
+        navigation={this.props.navigation} />
     )
   }
 }
