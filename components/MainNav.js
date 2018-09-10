@@ -1,37 +1,38 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, SurveySwiperContainer } from './containers'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, SurveySwiperContainer, GroupListContainer, PrivateGroupContainer } from './containers'
 import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
-const MainTabNav = TabNavigator({
-  Follows: {
-    screen: FollowScrollPresenter,
+const GroupStackNav = StackNavigator({
+  GroupList: {
+    screen: GroupListContainer,
     navigationOptions: {
-      title: 'Follows',
-      headerBackTitle: null,
-      tabBarIcon: ({ focused, tintColor }) => {
-        let color = focused ? '#FF4081' : tintColor
-        return (
-          <Ionicons
-            name="md-heart"
-            size={26}
-            style={{ color }} />
-        )
-      },
-    },
+      title: 'Groups',
+      headerBackTitle: null
+    }
   },
-  Prayers: {
-    screen: PrayerScrollPresenter,
+  PrivateGroup: {
+    screen: PrivateGroupContainer,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Private Group',
+      headerBackTitle: null
+    })
+  }
+})
+
+const MainTabNav = TabNavigator({
+  Groups: {
+    screen: GroupStackNav,
     navigationOptions: {
       title: 'Prayers',
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-book"
-          size={26}
+          name="md-people"
+          size={32}
           style={{ color: tintColor }} />
       ),
     },
@@ -43,21 +44,8 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-globe"
-          size={26}
-          style={{ color: tintColor }} />
-      ),
-    },
-  },
-  Submit: {
-    screen: SubmitContainer,
-    navigationOptions: {
-      title: 'New Prayer',
-      headerBackTitle: null,
-      tabBarIcon: ({ tintColor }) => (
-        <Ionicons
-          name="ios-paper-plane"
-          size={26}
+          name="md-globe"
+          size={32}
           style={{ color: tintColor }} />
       ),
     },
@@ -69,8 +57,8 @@ const MainTabNav = TabNavigator({
       headerBackTitle: null,
       tabBarIcon: ({ tintColor }) => (
         <Ionicons
-          name="ios-information-circle"
-          size={26}
+          name="md-person"
+          size={32}
           style={{ color: tintColor }} />
       ),
     },
@@ -83,7 +71,7 @@ const MainTabNav = TabNavigator({
     showLabel: false,
     inactiveTintColor: '#000',
     style: {
-      backgroundColor: '#fff',
+      backgroundColor: '#fafafa',
     }
   },
   tabBarComponent: TabBarBottom,
