@@ -23,7 +23,7 @@ const TestimonyPresenter = () => (
           <Text style={ss.body}>I started Ora to help people cultivate habits of prayer and lives of devotion. Rather than run from technology because of the current unhealthy use-cases, I believe that we can design beautiful, graceful technology systems that lead us into a deeper relationship with God.{'\n\n'}It’s easy to think of prayer, devotion, and other pillars of Christianity as abstract ideals that occupy the place of honor “in our hearts” but don’t actually make an appearance in our daily lives. In reality, the love that God pours out into our hearts will flourish best when it takes root in the soil of our everyday habits. I hope that you’ll join us in this beautiful, daily work.</Text>
           <View style={[ss.center, ss.addLargeViewSpacing, ss.fullWidth]}>
             <TouchableOpacity
-              style={[ss.newBlueButton, ss.halfWidth]}
+              style={[ss.blueButton, ss.halfWidth]}
               onPress={() => {
                 ampLogEvent(ampEvents.OPEN_DONATE_PAGE)
                 Linking.openURL('https://www.oraprayernetwork.com/donor-signup')

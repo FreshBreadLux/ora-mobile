@@ -15,18 +15,25 @@ const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
-      <View style={[ss.flex3, ss.center]}>
+      <View style={[ss.flex2, ss.center]}>
         <Text style={[ss.title]}>ORA</Text>
       </View>
-      <View style={[ss.flex2, ss.center]}>
-        <TouchableOpacity
-          style={[ss.button, ss.halfWidth]}
-          onPress={() => navigation.navigate('AcceptContainer')}>
-          <Text style={[ss.buttonText]}>START PRAYING</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={[ss.flex2, ss.center]}>
+      <View style={[ss.flex1, ss.center]}>
         <KeyContainer navigation={navigation} />
+      </View>
+      <View style={[ss.flex1, ss.center]}>
+        <View style={[ss.row, ss.spaceAround, ss.fullWidth]}>
+          <TouchableOpacity
+            style={[ss.whiteButton, {width: '40%', borderColor: '#fff'}]}
+            onPress={() => navigation.navigate('SubmitTitle')}>
+            <Text style={[ss.buttonText]}>SUBMIT</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[ss.whiteButton, {width: '40%', borderColor: '#fff'}]}
+            onPress={() => navigation.navigate('AcceptContainer')}>
+            <Text style={[ss.buttonText]}>PRAY</Text>
+          </TouchableOpacity>
+        </View>
       </View>
       {isAdmin
       ? <View style={ss.row}>

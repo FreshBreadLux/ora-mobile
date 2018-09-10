@@ -396,19 +396,19 @@ const ss = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#ccc',
   },
-  newBlueButton: {
+  blueButton: {
     backgroundColor: 'rgb(69, 119, 238)',
-    borderColor: 'rgb(69, 119, 238)',
     borderWidth: 1,
+    borderColor: 'rgb(69, 119, 238)',
     paddingVertical: 5,
     paddingHorizontal: 20,
     alignItems: 'center',
     borderRadius: 14,
   },
-  newWhiteButton: {
+  whiteButton: {
     backgroundColor: '#fff',
-    borderColor: '#000',
     borderWidth: 1,
+    borderColor: '#000',
     paddingVertical: 5,
     paddingHorizontal: 20,
     alignItems: 'center',

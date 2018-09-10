@@ -41,24 +41,24 @@ const ProfilePresenter = ({ navigation, userLogout, userInfo, dispatchUpdateUser
             </View>
             <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginTop20]}>
               <TouchableOpacity
-                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                style={[ss.whiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('Testimony')}>
                 <Text style={ss.buttonText}>TESTIMONY</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                style={[ss.whiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('SavedRewardsList')}>
                 <Text style={ss.buttonText}>REWARDS</Text>
               </TouchableOpacity>
             </View>
             <View style={[ss.row, ss.addViewSpacing, ss.fullWidth, ss.spaceBetween, ss.marginBottom30]}>
               <TouchableOpacity
-                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                style={[ss.whiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('Alarms')}>
                 <Text style={ss.buttonText}>REMINDERS</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={[ss.newWhiteButton, {width: '48%', borderColor: '#fff'}]}
+                style={[ss.whiteButton, {width: '48%', borderColor: '#fff'}]}
                 onPress={() => navigation.navigate('FAQ')}>
                 <Text style={ss.buttonText}>FAQ</Text>
               </TouchableOpacity>
