@@ -1,6 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, TouchableOpacity } from 'react-native'
+import { fetchAndCacheDailyReward } from '../store'
+
+function getDateString() {
+  let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
+  return new Date(date).toISOString().slice(0, 10)
+}
 
 class KeyContainer extends React.Component {
   constructor(props){
@@ -40,6 +46,8 @@ class KeyContainer extends React.Component {
     if (this.props.dailyRewardUnlocked && !prevProps.dailyRewardUnlocked) {
       this.animateUnlock()
     } else if (!this.props.dailyRewardUnlocked && prevProps.dailyRewardUnlocked) {
+      const today = getDateString()
+      this.props.refreshDailyReward(today)
       this.animateLock()
     }
   }
@@ -248,4 +256,8 @@ const mapState = state => ({
   prayedToday: state.userInfo.prayedToday,
 })
 
-export default connect(mapState)(KeyContainer)
+const mapDispatch = dispatch => ({
+  refreshDailyReward: today => dispatch(fetchAndCacheDailyReward(today))
+})
+
+export default connect(mapState, mapDispatch)(KeyContainer)
