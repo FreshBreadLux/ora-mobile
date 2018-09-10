@@ -15,7 +15,6 @@ const SET_REFLECTION_MODE = 'SET_REFLECTION_MODE'
 const EXIT_REFLECTION_MODE = 'EXIT_REFLECTION_MODE'
 const SET_DAILY_REFLECTION = 'SET_DAILY_REFLECTION'
 const SET_DAILY_REWARD = 'SET_DAILY_REWARD'
-const SET_SURVEY_COMPLETED = 'SET_SURVEY_COMPLETED'
 const UNLOCK_DAILY_REWARD = 'UNLOCK_DAILY_REWARD'
 const LOCK_DAILY_REWARD = 'LOCK_DAILY_REWARD'
 
@@ -29,7 +28,6 @@ const defaultAcceptPrayer = {
   dailyReward: {},
   noPrayers: false,
   dailyRewardUnlocked: false,
-  surveyCompleted: false,
 }
 
 /**
@@ -42,7 +40,6 @@ export const setThankYou = () => ({ type: SET_THANK_YOU })
 export const finishPraying = () => ({ type: FINISH_PRAYING })
 export const setReflectionMode = () => ({ type: SET_REFLECTION_MODE })
 export const exitReflectionMode = () => ({ type: EXIT_REFLECTION_MODE })
-export const setSurveyCompleted = () => ({ type: SET_SURVEY_COMPLETED })
 export const unlockDailyReward = () => ({ type: UNLOCK_DAILY_REWARD })
 export const lockDailyReward = () => ({ type: LOCK_DAILY_REWARD })
 
@@ -149,8 +146,6 @@ export default function(state = defaultAcceptPrayer, action) {
       return { ...state, dailyRewardUnlocked: true }
     case LOCK_DAILY_REWARD:
       return { ...state, dailyRewardUnlocked: false }
-    case SET_SURVEY_COMPLETED:
-      return { ...state, surveyCompleted: true }
     case LOGOUT:
       return defaultAcceptPrayer
     default:
