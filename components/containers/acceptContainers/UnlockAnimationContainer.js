@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, TouchableOpacity } from 'react-native'
-import { fetchAndCacheDailyReward } from '../store'
+import { fetchAndCacheDailyReward } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
