@@ -249,7 +249,6 @@ class KeyContainer extends React.Component {
 
 const mapState = state => ({
   dailyRewardUnlocked: state.acceptPrayer.dailyRewardUnlocked,
-  surveyCompleted: state.acceptPrayer.surveyCompleted,
   prayedToday: state.userInfo.prayedToday,
 })
 
