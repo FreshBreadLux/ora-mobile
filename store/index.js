@@ -13,8 +13,9 @@ import flagReasons from './flagReasons'
 import recentlyPrayedFor from './recentlyPrayedFor'
 import editMode from './editMode'
 import savedRewards from './savedRewards'
+import anonymousPrayerCompositions from './anonymousPrayerCompositions'
 
-const reducer = combineReducers({ prayers, follows, views, userInfo, auth, acceptPrayer, visibleModal, alarms, flagReasons, recentlyPrayedFor, editMode, savedRewards })
+const reducer = combineReducers({ prayers, follows, views, userInfo, auth, acceptPrayer, visibleModal, alarms, flagReasons, recentlyPrayedFor, editMode, savedRewards, anonymousPrayerCompositions})
 const middleware = composeWithDevTools(applyMiddleware(
   thunkMiddleware
 ))
@@ -33,3 +34,4 @@ export * from './flagReasons'
 export * from './recentlyPrayedFor'
 export * from './editMode'
 export * from './savedRewards'
+export * from './anonymousPrayerCompositions'

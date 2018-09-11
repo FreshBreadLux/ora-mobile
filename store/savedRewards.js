@@ -38,8 +38,8 @@ export const fetchAndCacheSavedRewards = userId =>
           // create localPath string for the saved reward image and check for info
           const uri = reward.imageUrl
           const ext = uri.substring(
-            uri.lastIndexOf("."),
-            uri.indexOf("?") === -1 ? undefined : uri.indexOf("?")
+            uri.lastIndexOf('.'),
+            uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
           )
           const localPath = FileSystem.cacheDirectory + `savedReward${reward.id}` + ext
           const info = await FileSystem.getInfoAsync(localPath)
@@ -47,8 +47,8 @@ export const fetchAndCacheSavedRewards = userId =>
           // create localPath string for the artist image of the saved reward and check for info
           const artistUri = reward.artist.imageUrl
           const artistExt = artistUri.substring(
-            artistUri.lastIndexOf("."),
-            artistUri.indexOf("?") === -1 ? undefined : artistUri.indexOf("?")
+            artistUri.lastIndexOf('.'),
+            artistUri.indexOf('?') === -1 ? undefined : artistUri.indexOf('?')
           )
           const artistName = reward.artist.fullName.replace(' ', '-')
           const artistLocalPath = FileSystem.cacheDirectory + artistName + artistExt
@@ -60,9 +60,7 @@ export const fetchAndCacheSavedRewards = userId =>
           await Promise.all([rewardImagePromise, artistImagePromise])
           return { ...reward, localPath, artistLocalPath }
         })
-        console.log('finished mapping... awaiting promise resolution')
         savedRewardsWithLocalUrls = await Promise.all(mappedArrayOfPromises)
-        console.log('promises resolved; savedRewardsWithLocalUrls:', savedRewardsWithLocalUrls)
       }
       return dispatch(getSavedRewards(savedRewardsWithLocalUrls || defaultSavedRewards))
     } catch (error) {

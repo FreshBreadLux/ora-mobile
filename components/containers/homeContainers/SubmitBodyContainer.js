@@ -10,8 +10,9 @@ class SubmitBodyContainer extends React.Component {
   }
 
   render() {
+    console.log('navigation:', this.props.navigation)
     return (
-      <SubmitBodyPresenter />
+      <SubmitBodyPresenter navigation={this.props.navigation} />
     )
   }
 }

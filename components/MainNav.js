@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitTitleContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitTitleNextButton } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitTitleContainer, SubmitBodyContainer } from './containers'
+import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitTitleHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -87,11 +87,19 @@ const CardStackNav = StackNavigator({
   },
   SubmitTitle: {
     screen: SubmitTitleContainer,
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
       title: 'Title',
       headerBackTitle: null,
-      headerRight: <SubmitTitleNextButton />
-    }
+      headerRight: <SubmitTitleHeaderRightPresenter navigation={navigation} />
+    })
+  },
+  SubmitBody: {
+    screen: SubmitBodyContainer,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Body',
+      headerBackTitle: null,
+      headerRight: <SubmitTitleHeaderRightPresenter navigation={navigation} />
+    })
   },
   Prayer: {
     screen: PrayerContainer,

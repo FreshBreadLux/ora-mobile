@@ -6,5 +6,5 @@ export { default as ReflectionFullTextPresenter } from './ReflectionFullTextPres
 export { default as RewardPresenter } from './RewardPresenter'
 export { default as RewardFullTextPresenter } from './RewardFullTextPresenter'
 export { default as SubmitTitlePresenter } from './SubmitTitlePresenter'
-export { default as SubmitTitleNextButton } from './SubmitTitleNextButton'
 export { default as SubmitBodyPresenter } from './SubmitBodyPresenter'
+export { default as SubmitTitleHeaderRightPresenter } from './SubmitTitleHeaderRightPresenter'
