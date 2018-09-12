@@ -5,6 +5,8 @@ import { KeyContainer } from '../../containers'
 import { BackgroundImageContainer } from '../../presenters'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
+import { DangerZone } from 'expo'
+const { Lottie } = DangerZone
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -17,6 +19,9 @@ const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
     <SafeAreaView style={[ss.invisiContainer]}>
       <View style={[ss.flex2, ss.center]}>
         <Text style={[ss.title]}>ORA</Text>
+      </View>
+      <View style={[ss.flex2, ss.center]}>
+        <Lottie source={require('../../../assets/sent-animation.json')} autoPlay loop />
       </View>
       <View style={[ss.flex1, ss.center]}>
         <KeyContainer navigation={navigation} />
