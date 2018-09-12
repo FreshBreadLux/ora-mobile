@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitSubjectHeaderRightPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -90,7 +90,8 @@ const CardStackNav = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Subject',
       headerBackTitle: null,
-      headerRight: <SubmitSubjectHeaderRightPresenter navigation={navigation} />
+      headerRight: <SubmitSubjectHeaderRightPresenter navigation={navigation} />,
+      headerLeft: <SubmitSubjectHeaderLeftPresenter navigation={navigation} />
     })
   },
   SubmitBody: {

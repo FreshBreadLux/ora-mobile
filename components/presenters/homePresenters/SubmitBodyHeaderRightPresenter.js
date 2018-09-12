@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity, Keyboard } from 'react-native'
 import { fetchUserPrayers, submitAnonymousPrayer } from '../../../store'
 import ss from '../../StyleSheet'
 
@@ -11,7 +11,7 @@ const SubmitBodyHeaderRightPresenter = ({ navigation, userId, jwToken, subject, 
       <TouchableOpacity
         disabled={!body}
         onPress={() => {
-          console.log('prayer:', { subject, body })
+          Keyboard.dismiss()
           dispatchSubmit(jwToken, userId, subject, body, refreshUserPrayers)
           navigation.popToTop()
         }}>
