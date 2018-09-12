@@ -20,6 +20,16 @@ export const setAnonymousTitle = title => ({ type: SET_ANONYMOUS_TITLE, title })
 export const setAnonymousBody = body => ({ type: SET_ANONYMOUS_BODY, body })
 
 /**
+ * THUNK CREATORS
+ */
+// export const submitAnonymousPrayer = userId =>
+//   dispatch =>
+//     axios.get(`${ROOT_URL}/api/users/${userId}/prayers`)
+//       .then(res =>
+//         dispatch(getPrayers(res.data || defaultPrayers)))
+//       .catch(err => console.log(err))
+
+/**
  * REDUCER
  */
 export default function(state = defaultAnonymousPrayer, action) {

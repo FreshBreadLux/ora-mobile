@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitTitleContainer, SubmitBodyContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitTitleHeaderRightPresenter } from './presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitTitleHeaderRightPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -98,7 +98,7 @@ const CardStackNav = StackNavigator({
     navigationOptions: ({ navigation }) => ({
       title: 'Body',
       headerBackTitle: null,
-      headerRight: <SubmitTitleHeaderRightPresenter navigation={navigation} />
+      headerRight: <SubmitBodyHeaderRightPresenter navigation={navigation} />
     })
   },
   Prayer: {
