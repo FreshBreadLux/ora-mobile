@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, SafeAreaView, TouchableOpacity, View, AsyncStorage } from 'react-native'
+import { Text, SafeAreaView, TouchableOpacity, View, AsyncStorage, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import { KeyContainer } from '../../containers'
 import { BackgroundImageContainer } from '../../presenters'
@@ -11,7 +11,9 @@ function getDateString() {
   return new Date(date).toISOString().slice(0, 10)
 }
 
-const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
+const HomePresenter = ({ navigation, adminReset, isAdmin, prayerStatus }) => {
+  console.log('prayerStatus:', prayerStatus)
+  return (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -25,8 +27,21 @@ const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
         <View style={[ss.row, ss.spaceAround, ss.fullWidth]}>
           <TouchableOpacity
             style={[ss.whiteButton, {width: '40%', borderColor: '#fff'}]}
-            onPress={() => navigation.navigate('SubmitTitle')}>
-            <Text style={[ss.buttonText]}>SUBMIT</Text>
+            onPress={() => navigation.navigate('SubmitSubject')}>
+            {prayerStatus === 'sending'
+            ? <ActivityIndicator size="small" color="#000" />
+            : <View>
+                {prayerStatus === 'failed'
+                ? <Text style={[ss.buttonText, ss.redText]}>FAILED</Text>
+                : <Text style={ss.buttonText}>
+                    {prayerStatus === 'sent'
+                    ? 'SENT!'
+                    : 'SUBMIT'
+                    }
+                  </Text>
+                }
+              </View>
+            }
           </TouchableOpacity>
           <TouchableOpacity
             style={[ss.whiteButton, {width: '40%', borderColor: '#fff'}]}
@@ -66,10 +81,11 @@ const HomePresenter = ({ adminReset, isAdmin, navigation }) => (
     }
     </SafeAreaView>
   </View>
-)
+)}
 
 const mapState = state => ({
-  isAdmin: state.userInfo.isAdmin
+  isAdmin: state.userInfo.isAdmin,
+  prayerStatus: state.anonymousPrayerCompositions.prayerStatus
 })
 
 export default connect(mapState)(HomePresenter)

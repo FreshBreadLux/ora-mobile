@@ -13,6 +13,9 @@ function getDateString() {
 class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+
+    }
     this.adminReset = this.adminReset.bind(this)
     this.handleAmplitude = this.handleAmplitude.bind(this)
   }

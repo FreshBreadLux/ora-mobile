@@ -96,8 +96,8 @@ export const fetchAndCacheDailyReward = date =>
         // create localPath string for the daily reward image and check for info
         const uri = dailyReward.imageUrl
         const ext = uri.substring(
-          uri.lastIndexOf("."),
-          uri.indexOf("?") === -1 ? undefined : uri.indexOf("?")
+          uri.lastIndexOf('.'),
+          uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
         )
         const localPath = FileSystem.cacheDirectory + date + ext
         const info = await FileSystem.getInfoAsync(localPath)
@@ -105,8 +105,8 @@ export const fetchAndCacheDailyReward = date =>
         // create localPath string for the artist image of the daily reward and check for info
         const artistUri = dailyReward.artist.imageUrl
         const artistExt = artistUri.substring(
-          artistUri.lastIndexOf("."),
-          artistUri.indexOf("?") === -1 ? undefined : artistUri.indexOf("?")
+          artistUri.lastIndexOf('.'),
+          artistUri.indexOf('?') === -1 ? undefined : artistUri.indexOf('?')
         )
         const artistName = dailyReward.artist.fullName.replace(' ', '-')
         const artistLocalPath = FileSystem.cacheDirectory + artistName + artistExt

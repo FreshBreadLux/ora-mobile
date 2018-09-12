@@ -1,16 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
+import { fetchUserPrayers, submitAnonymousPrayer } from '../../../store'
 import ss from '../../StyleSheet'
 
-const SubmitBodyHeaderRightPresenter = ({ navigation, title, body }) => {
+const SubmitBodyHeaderRightPresenter = ({ navigation, userId, jwToken, subject, body, dispatchSubmit, refreshUserPrayers }) => {
   const color = body ? 'rgb(69, 119, 238)' : '#ccc'
   return (
     <View>
       <TouchableOpacity
         disabled={!body}
         onPress={() => {
-          console.log('prayer:', { title, body })
+          console.log('prayer:', { subject, body })
+          dispatchSubmit(jwToken, userId, subject, body, refreshUserPrayers)
           navigation.popToTop()
         }}>
         <Text style={[ss.subHeader, ss.padding10, {color}]}>Submit</Text>
@@ -20,8 +22,15 @@ const SubmitBodyHeaderRightPresenter = ({ navigation, title, body }) => {
 }
 
 const mapState = state => ({
-  title: state.anonymousPrayerCompositions.title,
-  body: state.anonymousPrayerCompositions.body
+  userId: state.auth.userId,
+  jwToken: state.auth.jwToken,
+  subject: state.anonymousPrayerCompositions.subject,
+  body: state.anonymousPrayerCompositions.body,
 })
 
-export default connect(mapState)(SubmitBodyHeaderRightPresenter)
+const mapDispatch = dispatch => ({
+  dispatchSubmit: (token, id, subject, body, refreshFunction) => dispatch(submitAnonymousPrayer(token, id, subject, body, refreshFunction)),
+  refreshUserPrayers: userId => dispatch(fetchUserPrayers(userId)),
+})
+
+export default connect(mapState, mapDispatch)(SubmitBodyHeaderRightPresenter)

@@ -403,7 +403,9 @@ const ss = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 20,
     alignItems: 'center',
-    borderRadius: 14,
+    justifyContent: 'center',
+    borderRadius: 15,
+    height: 30,
   },
   whiteButton: {
     backgroundColor: '#fff',
@@ -412,7 +414,9 @@ const ss = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 20,
     alignItems: 'center',
-    borderRadius: 14,
+    justifyContent: 'center',
+    borderRadius: 15,
+    height: 30,
   },
   flex1: {
     flex: 1
