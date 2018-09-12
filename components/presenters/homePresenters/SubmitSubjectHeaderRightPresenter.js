@@ -9,8 +9,10 @@ const SubmitSubjectHeaderRightPresenter = ({ navigation, subject }) => {
     <View>
       <TouchableOpacity
         disabled={!subject}
-        onPress={() => navigation.navigate('SubmitBody')}>
-        <Text style={[ss.subHeader, ss.padding10, {color}]}>Next</Text>
+        onPress={() => {
+          navigation.navigate('SubmitBody')
+        }}>
+        <Text style={[ss.headerTextButton, ss.padding10, {color}]}>Next</Text>
       </TouchableOpacity>
     </View>
   )

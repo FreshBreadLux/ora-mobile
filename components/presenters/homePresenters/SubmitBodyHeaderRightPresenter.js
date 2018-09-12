@@ -15,7 +15,7 @@ const SubmitBodyHeaderRightPresenter = ({ navigation, userId, jwToken, subject, 
           dispatchSubmit(jwToken, userId, subject, body, refreshUserPrayers)
           navigation.popToTop()
         }}>
-        <Text style={[ss.subHeader, ss.padding10, {color}]}>Submit</Text>
+        <Text style={[ss.headerTextButton, ss.padding10, {color}]}>Submit</Text>
       </TouchableOpacity>
     </View>
   )

@@ -11,9 +11,7 @@ function getDateString() {
   return new Date(date).toISOString().slice(0, 10)
 }
 
-const HomePresenter = ({ navigation, adminReset, isAdmin, prayerStatus }) => {
-  console.log('prayerStatus:', prayerStatus)
-  return (
+const HomePresenter = ({ navigation, adminReset, isAdmin, prayerStatus }) => (
   <View style={ss.invisiContainer}>
     <BackgroundImageContainer componentName="Accept" />
     <SafeAreaView style={[ss.invisiContainer]}>
@@ -81,7 +79,7 @@ const HomePresenter = ({ navigation, adminReset, isAdmin, prayerStatus }) => {
     }
     </SafeAreaView>
   </View>
-)}
+)
 
 const mapState = state => ({
   isAdmin: state.userInfo.isAdmin,

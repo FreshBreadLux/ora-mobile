@@ -10,7 +10,7 @@ const SubmitSubjectHeaderLeftPresenter = ({ navigation }) => {
           Keyboard.dismiss()
           navigation.goBack()
         }}>
-        <Text style={[ss.subHeader, ss.padding10, {color: 'rgb(69, 119, 238)'}]}>Cancel</Text>
+        <Text style={[ss.headerTextButton, ss.padding10, {color: 'rgb(69, 119, 238)'}]}>Cancel</Text>
       </TouchableOpacity>
     </View>
   )

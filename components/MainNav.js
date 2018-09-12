@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, SubmitContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
 import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
@@ -18,6 +18,16 @@ const GroupStackNav = StackNavigator({
     screen: PrivateGroupContainer,
     navigationOptions: ({ navigation }) => ({
       title: 'Private Group',
+      headerBackTitle: null
+    })
+  }
+})
+
+const ProfileStackNav = StackNavigator({
+  ProfileBase: {
+    screen: ProfileContainer,
+    navigationOptions: ({ navigation }) => ({
+      title: 'User_Name',
       headerBackTitle: null
     })
   }
@@ -51,7 +61,7 @@ const MainTabNav = TabNavigator({
     },
   },
   Profile: {
-    screen: ProfileContainer,
+    screen: ProfileStackNav,
     navigationOptions: {
       title: 'Profile',
       headerBackTitle: null,
