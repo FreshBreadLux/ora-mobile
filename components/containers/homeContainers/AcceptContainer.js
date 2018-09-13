@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, AlertIOS, AsyncStorage } from 'react-native'
+import { View, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserFollows, finishPraying, setReflectionMode, removeVisibleModal } from '../../../store'
 import { ReflectionContainer, CurrentPrayerContainer } from '../'
@@ -41,10 +41,11 @@ class AcceptContainer extends React.Component {
       flagreasonId
     })
     .then(() => {
-      AlertIOS.alert(
+      Alert.alert(
         'This prayer has been flagged',
         'The Ora team will look into this and resolve the issue as quickly as possible',
-        this.finishPraying
+        [{text: 'OK', onPress: () => this.finishPraying()}],
+        { cancelable: false }
       )
     })
     .catch(console.error)
