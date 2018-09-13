@@ -2,7 +2,7 @@ import React from 'react'
 import { AsyncStorage, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { logout } from '../../../store'
+import { logout, setProfileImage } from '../../../store'
 import { ProfilePresenter } from '../../presenters'
 import { ImagePicker, Permissions } from 'expo'
 import Sentry from 'sentry-expo'
@@ -11,17 +11,21 @@ import ROOT_URL from '../../../config'
 class ProfileContainer extends React.Component {
   constructor(props) {
     super(props)
-
+    this.state = {
+      profileImageLocalBackup: null,
+    }
     this.userLogout = this.userLogout.bind(this)
     this.setProfileName = this.setProfileName.bind(this)
     this.pickProfileImage = this.pickProfileImage.bind(this)
     this.setSentryUserContext = this.setSentryUserContext.bind(this)
     this.updateUserProfileImage = this.updateUserProfileImage.bind(this)
     this.askCameraRollPermission = this.askCameraRollPermission.bind(this)
+    this.getProfileImageLocalBackup = this.getProfileImageLocalBackup.bind(this)
   }
 
   componentDidMount() {
     this.setSentryUserContext()
+    this.getProfileImageLocalBackup()
   }
 
   componentDidUpdate(prevProps) {
@@ -37,6 +41,11 @@ class ProfileContainer extends React.Component {
     })
   }
 
+  async getProfileImageLocalBackup() {
+    const profileImageLocalBackup = await AsyncStorage.getItem('ora-profile-image')
+    if (profileImageLocalBackup) this.setState({ profileImageLocalBackup })
+  }
+
   setProfileName() {
     let firstName = this.props.userInfo.firstName
     if (firstName) {
@@ -46,7 +55,6 @@ class ProfileContainer extends React.Component {
 
   async askCameraRollPermission() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-    console.log('status:', status)
     if (status === 'granted') {
       this.pickProfileImage()
     }
@@ -59,12 +67,19 @@ class ProfileContainer extends React.Component {
       quality: 0.5
     })
     if (!result.cancelled) {
+      console.log('full result:', result)
       this.updateUserProfileImage(result.uri)
     }
   }
 
-  updateUserProfileImage(uri) {
+  async updateUserProfileImage(uri) {
     console.log('image uri:', uri)
+    await AsyncStorage.setItem('ora-profile-image', uri)
+    this.setState({ profileImageLocalBackup: uri })
+    this.props.dispatchSetProfileImage(null)
+    const res = await axios.put(`${ROOT_URL}/api/users/${this.props.userInfo.id}`, {imageUrl: uri})
+    const updatedImageUrl = res.data.imageUrl
+    this.props.dispatchSetProfileImage(updatedImageUrl)
   }
 
   async userLogout() {
@@ -82,7 +97,8 @@ class ProfileContainer extends React.Component {
       <ProfilePresenter
         userLogout={this.userLogout}
         navigation={this.props.navigation}
-        askCameraRollPermission={this.askCameraRollPermission} />
+        askCameraRollPermission={this.askCameraRollPermission}
+        profileImageLocalBackup={this.state.profileImageLocalBackup} />
     )
   }
 }
@@ -92,7 +108,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  logUserOut: () => dispatch(logout())
+  logUserOut: () => dispatch(logout()),
+  dispatchSetProfileImage: uri => dispatch(setProfileImage(uri)),
 })
 
 export default connect(mapState, mapDispatch)(ProfileContainer)

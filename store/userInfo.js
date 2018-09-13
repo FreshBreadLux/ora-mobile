@@ -25,12 +25,7 @@ export const setTheme = (theme = 'Rome') => {
   }
   return { type: SET_THEME, theme }
 }
-export const setProfileImage = (imageUrl = 'Rome') => {
-  if (imageUrl === null) {
-    imageUrl = 'Rome'
-  }
-  return { type: SET_PROFILE_IMAGE, imageUrl }
-}
+export const setProfileImage = imageUrl => ({ type: SET_PROFILE_IMAGE, imageUrl })
 export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
 
 /**
@@ -54,17 +49,13 @@ export const updateUserTheme = (userId, theme = 'Rome') =>
       .catch(err => console.log(err))
   }
 
-export const updateUserProfileImage = (userId, imageUrl = 'Rome') =>
-  dispatch => {
-    if (imageUrl === null) {
-      imageUrl = 'Rome'
-    }
-    return axios.put(`${ROOT_URL}/api/users/${userId}`, {imageUrl})
+export const updateUserProfileImage = (userId, imageUrl) =>
+  dispatch =>
+    axios.put(`${ROOT_URL}/api/users/${userId}`, {imageUrl})
       .then(res => {
-        dispatch(setTheme(res.data.theme))
+        dispatch(setProfileImage(res.data.theme))
       })
       .catch(err => console.log(err))
-  }
 
 /**
  * REDUCER
@@ -75,6 +66,8 @@ export default function(state = defaultUserInfo, action) {
       return action.userInfo
     case SET_THEME:
       return { ...state, theme: action.theme }
+    case SET_PROFILE_IMAGE:
+      return { ...state, imageUrl: action.imageUrl }
     case REMOVE_USER_INFO:
       return defaultUserInfo
     case LOGOUT:

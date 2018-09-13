@@ -4,12 +4,13 @@ import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo }) => {
-  console.log('userInfo in ProfilePresenter:', userInfo)
+const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, profileImageLocalBackup }) => {
   let profileImage
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
   if (userInfo.imageUrl) {
     profileImage = <Image style={style} source={{ uri: userInfo.imageUrl }} />
+  } else if (profileImageLocalBackup) {
+    profileImage = <Image style={style} source={{ uri: profileImageLocalBackup }} />
   } else {
     profileImage = <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
   }
