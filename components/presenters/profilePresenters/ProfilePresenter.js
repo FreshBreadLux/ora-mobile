@@ -4,6 +4,11 @@ import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
+/*
+  ProfilePresenter assigns a react component to the variable profileImage before rendering.
+  There are three situations: there's an imageUrl on userInfo, there's not an imageUrl but
+  there's a local backup, or there's neither, in which case the bundled default image is used.
+*/
 const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, profileImageLocalBackup }) => {
   let profileImage
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}

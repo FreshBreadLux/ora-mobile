@@ -41,6 +41,10 @@ class ProfileContainer extends React.Component {
     })
   }
 
+  /*
+    Check for a profile image local backup; if it exists, put it on state to use as a backup
+    if there isn't a url in the database
+  */
   async getProfileImageLocalBackup() {
     const profileImageLocalBackup = await AsyncStorage.getItem('ora-profile-image')
     if (profileImageLocalBackup) this.setState({ profileImageLocalBackup })
@@ -72,6 +76,15 @@ class ProfileContainer extends React.Component {
     }
   }
 
+  /*
+    updateUserProfileImage first stores the local uri in AsyncStorage as a backup in case the
+    axios put is unsuccessful. It then sets the store state imageUrl to null, so that if the
+    axios put fails, the chosen image will still show (the problem is, that will only be true
+    for the current session and not any future sessions). It then updates the uri in the database
+    and finally places the new uri on store state.
+    TODO: I need to figure out a better solution for the possibility of an updated profile image
+    when the user doesn't have signal, and I also need to add AWS S3 functionality.
+  */
   async updateUserProfileImage(uri) {
     console.log('image uri:', uri)
     await AsyncStorage.setItem('ora-profile-image', uri)
