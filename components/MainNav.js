@@ -33,7 +33,7 @@ const ProfileStackNav = StackNavigator({
   ProfileBase: {
     screen: ProfileContainer,
     navigationOptions: ({ navigation }) => {
-      let firstName = (navigation.state.params && navigation.state.params.firstName) ? navigation.state.params.firstName : 'Loading...'
+      let firstName = (navigation.state.params && navigation.state.params.firstName) ? navigation.state.params.firstName : 'User_Name'
       return ({
         title: firstName,
         headerBackTitle: null
