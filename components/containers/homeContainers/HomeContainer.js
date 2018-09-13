@@ -14,14 +14,16 @@ class HomeContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
+      theme: null
     }
     this.adminReset = this.adminReset.bind(this)
+    this.retrieveTheme = this.retrieveTheme.bind(this)
     this.handleAmplitude = this.handleAmplitude.bind(this)
   }
 
   componentDidMount() {
     this.handleAmplitude()
+    this.retrieveTheme()
   }
 
   /*
@@ -33,6 +35,12 @@ class HomeContainer extends React.Component {
     const { userId, email, totalPrayers, consecutiveDays } = this.props
     ampIdentify(userId, { email, totalPrayers, consecutiveDays })
     ampLogEvent(ampEvents.USER_VERIFIED)
+  }
+
+  async retrieveTheme() {
+    const theme = await AsyncStorage.getItem('oraTheme_v1.1.0')
+    console.log('theme:', theme)
+    if (theme) this.setState({ theme })
   }
 
   /*
@@ -51,6 +59,7 @@ class HomeContainer extends React.Component {
   render() {
     return (
       <HomePresenter
+        theme={this.state.theme}
         adminReset={this.adminReset}
         navigation={this.props.navigation} />
     )

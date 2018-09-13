@@ -4,29 +4,37 @@ import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo }) => (
-  <View style={ss.whiteContainer}>
-    <ScrollView>
-      <View style={[ss.row, ss.spaceAround, ss.padding10, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
-        <View>
-          <TouchableOpacity onPress={askCameraRollPermission}>
-            <Image
-              style={{height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}}
-              source={require('../../../assets/images/bobby-headshot.jpg')} />
-          </TouchableOpacity>
+const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo }) => {
+  console.log('userInfo in ProfilePresenter:', userInfo)
+  let profileImage
+  const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
+  if (userInfo.imageUrl) {
+    profileImage = <Image style={style} source={{ uri: userInfo.imageUrl }} />
+  } else {
+    profileImage = <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
+  }
+  return (
+    <View style={ss.whiteContainer}>
+      <ScrollView>
+        <View style={[ss.row, ss.spaceAround, ss.padding10, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
+          <View>
+            <TouchableOpacity onPress={askCameraRollPermission}>
+              {profileImage}
+            </TouchableOpacity>
+          </View>
+          <View style={ss.center}>
+            <Text>{userInfo.consecutiveDays}</Text>
+            <Text>consecutive{'\n'}days 🔥</Text>
+          </View>
+          <View style={ss.center}>
+            <Text>{userInfo.totalPrayers}</Text>
+            <Text>submitted{'\n'}prayers</Text>
+          </View>
         </View>
-        <View style={ss.center}>
-          <Text>{userInfo.consecutiveDays}</Text>
-          <Text>consecutive{'\n'}days</Text>
-        </View>
-        <View style={ss.center}>
-          <Text>{userInfo.totalPrayers}</Text>
-          <Text>submitted{'\n'}prayers</Text>
-        </View>
-      </View>
-    </ScrollView>
-  </View>
-)
+      </ScrollView>
+    </View>
+  )
+}
 
 const mapState = state => ({
   userInfo: state.userInfo

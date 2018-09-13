@@ -7,6 +7,7 @@ import { LOGOUT } from './auth'
  */
 const SET_USER_INFO = 'SET_USER_INFO'
 const SET_THEME = 'SET_THEME'
+const SET_PROFILE_IMAGE = 'SET_PROFILE_IMAGE'
 const REMOVE_USER_INFO = 'REMOVE_USER_INFO'
 
 /**
@@ -23,6 +24,12 @@ export const setTheme = (theme = 'Rome') => {
     theme = 'Rome'
   }
   return { type: SET_THEME, theme }
+}
+export const setProfileImage = (imageUrl = 'Rome') => {
+  if (imageUrl === null) {
+    imageUrl = 'Rome'
+  }
+  return { type: SET_PROFILE_IMAGE, imageUrl }
 }
 export const removeUserInfo = () => ({ type: REMOVE_USER_INFO })
 
@@ -41,6 +48,18 @@ export const updateUserTheme = (userId, theme = 'Rome') =>
       theme = 'Rome'
     }
     return axios.put(`${ROOT_URL}/api/users/${userId}`, {theme})
+      .then(res => {
+        dispatch(setTheme(res.data.theme))
+      })
+      .catch(err => console.log(err))
+  }
+
+export const updateUserProfileImage = (userId, imageUrl = 'Rome') =>
+  dispatch => {
+    if (imageUrl === null) {
+      imageUrl = 'Rome'
+    }
+    return axios.put(`${ROOT_URL}/api/users/${userId}`, {imageUrl})
       .then(res => {
         dispatch(setTheme(res.data.theme))
       })

@@ -1,11 +1,13 @@
 import React from 'react'
 import { View } from 'react-native'
 import { LinearGradient } from 'expo'
-import { connect } from 'react-redux'
 import BackgroundImage from './BackgroundImage'
 import ss from '../StyleSheet'
 
-const BackgroundImageContainer = ({ componentName, theme }) => {
+const BackgroundImageContainer = ({ componentName, theme = 'Rome' }) => {
+  if (theme === null) {
+    theme = 'Rome'
+  }
   if (theme) {
     return <BackgroundImage componentName={componentName} theme={theme} />
   }
@@ -19,8 +21,4 @@ const BackgroundImageContainer = ({ componentName, theme }) => {
   )
 }
 
-const mapState = state => ({
-  theme: state.userInfo.theme
-})
-
-export default connect(mapState)(BackgroundImageContainer)
+export default BackgroundImageContainer

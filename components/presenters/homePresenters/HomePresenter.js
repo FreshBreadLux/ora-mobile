@@ -11,9 +11,9 @@ function getDateString() {
   return new Date(date).toISOString().slice(0, 10)
 }
 
-const HomePresenter = ({ navigation, adminReset, isAdmin, prayerStatus }) => (
+const HomePresenter = ({ navigation, theme, adminReset, isAdmin, prayerStatus }) => (
   <View style={ss.invisiContainer}>
-    <BackgroundImageContainer componentName="Accept" />
+    <BackgroundImageContainer componentName="Accept" theme={theme} />
     <SafeAreaView style={[ss.invisiContainer]}>
       <View style={[ss.flex2, ss.center]}>
         <Text style={[ss.title]}>ORA</Text>
