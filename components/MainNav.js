@@ -23,13 +23,22 @@ const GroupStackNav = StackNavigator({
   }
 })
 
+/*
+  The ProfileBase screen tries to pull the user's name off the navigation state params.
+  The name is loaded into navigation state params using setParams in the componentDidUpdate
+  lifecycle hook of ProfileContainer.js. The conditional logic prevents errors while we wait
+  for the name to be set into the params.
+*/
 const ProfileStackNav = StackNavigator({
   ProfileBase: {
     screen: ProfileContainer,
-    navigationOptions: ({ navigation }) => ({
-      title: 'User_Name',
-      headerBackTitle: null
-    })
+    navigationOptions: ({ navigation }) => {
+      let firstName = (navigation.state.params && navigation.state.params.firstName) ? navigation.state.params.firstName : 'Loading...'
+      return ({
+        title: firstName,
+        headerBackTitle: null
+      })
+    }
   }
 })
 

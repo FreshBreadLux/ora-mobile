@@ -9,6 +9,7 @@ class ProfileContainer extends React.Component {
   constructor(props) {
     super(props)
     this.userLogout = this.userLogout.bind(this)
+    this.setProfileName = this.setProfileName.bind(this)
     this.setSentryUserContext = this.setSentryUserContext.bind(this)
   }
 
@@ -16,11 +17,24 @@ class ProfileContainer extends React.Component {
     this.setSentryUserContext()
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.userInfo.firstName !== this.props.userInfo.firstName) {
+      this.setProfileName()
+    }
+  }
+
   setSentryUserContext() {
     Sentry.setUserContext({
       id: this.props.userInfo.id,
       email: this.props.userInfo.email
     })
+  }
+
+  setProfileName() {
+    let firstName = this.props.userInfo.firstName
+    if (firstName) {
+      this.props.navigation.setParams({ firstName })
+    }
   }
 
   async userLogout() {

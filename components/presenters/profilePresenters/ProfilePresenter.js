@@ -1,9 +1,8 @@
 import React from 'react'
 import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage, Platform } from 'react-native'
 import { connect } from 'react-redux'
-import { determineChoirTitle, determineChoirName } from '../../utils'
 import { LinearGradient } from 'expo'
-import { Feather, Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons'
 import { BackgroundImageContainer } from '../'
 import { updateUserTheme } from '../../../store'
 import ss from '../../StyleSheet'
@@ -130,16 +129,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(ProfilePresenter)
-
-/*
-<View style={[ss.addViewSpacing, ss.fullWidth, ss.center]}>
-  <TouchableOpacity
-    style={[ss.button, ss.threeQuartersWidth, ss.row, ss.spaceBetween]}
-    onPress={() => navigation.navigate('ShareOra')}>
-    <Text style={ss.buttonText}>Share Ora</Text>
-    <Feather
-      name="chevron-right"
-      size={26} />
-  </TouchableOpacity>
-</View>
-*/
