@@ -12,14 +12,12 @@ import SavedRewardsListPresenter from './SavedRewardsListPresenter';
   There are three situations: there's an imageUrl on userInfo, there's not an imageUrl but
   there's a local backup, or there's neither, in which case the bundled default image is used.
 */
-const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, profileImageLocalBackup, activeScrollView, setActiveScrollView }) => {
+const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, activeScrollView, setActiveScrollView }) => {
 
   let profileImage
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
   if (userInfo.imageUrl) {
     profileImage = <Image style={style} source={{ uri: userInfo.imageUrl }} />
-  } else if (profileImageLocalBackup) {
-    profileImage = <Image style={style} source={{ uri: profileImageLocalBackup }} />
   } else {
     profileImage = <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
   }
