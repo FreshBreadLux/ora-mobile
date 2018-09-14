@@ -13,10 +13,12 @@ class ProfileContainer extends React.Component {
     super(props)
     this.state = {
       profileImageLocalBackup: null,
+      activeScrollView: 'follows',
     }
     this.userLogout = this.userLogout.bind(this)
     this.setProfileName = this.setProfileName.bind(this)
     this.pickProfileImage = this.pickProfileImage.bind(this)
+    this.setActiveScrollView = this.setActiveScrollView.bind(this)
     this.setSentryUserContext = this.setSentryUserContext.bind(this)
     this.updateUserProfileImage = this.updateUserProfileImage.bind(this)
     this.askCameraRollPermission = this.askCameraRollPermission.bind(this)
@@ -41,6 +43,10 @@ class ProfileContainer extends React.Component {
     })
   }
 
+  setActiveScrollView(activeScrollView) {
+    this.setState({ activeScrollView })
+  }
+
   /*
     Check for a profile image local backup; if it exists, put it on state to use as a backup
     if there isn't a url in the database
@@ -49,7 +55,10 @@ class ProfileContainer extends React.Component {
     const profileImageLocalBackup = await AsyncStorage.getItem('ora-profile-image')
     if (profileImageLocalBackup) this.setState({ profileImageLocalBackup })
   }
-
+  /*
+    setProfileName puts the user's firstName onto the react navigation params, so that it can
+    be used as the title of the profile header.
+  */
   setProfileName() {
     let firstName = this.props.userInfo.firstName
     if (firstName) {
@@ -110,6 +119,8 @@ class ProfileContainer extends React.Component {
       <ProfilePresenter
         userLogout={this.userLogout}
         navigation={this.props.navigation}
+        activeScrollView={this.state.activeScrollView}
+        setActiveScrollView={this.setActiveScrollView}
         askCameraRollPermission={this.askCameraRollPermission}
         profileImageLocalBackup={this.state.profileImageLocalBackup} />
     )
