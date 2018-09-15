@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchUserPrayers } from '../../../store'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
+import NoPrayersProfilePresenter from './NoPrayersProfilePresenter';
 
 function formatISOString(date) {
   const newDate = new Date(date)
@@ -56,13 +57,7 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
         </TouchableOpacity>
       ))}
     </View>
-  : <View style={[ss.flex1, ss.center]}>
-      <TouchableOpacity
-        style={[ss.button, ss.fullWidth]}
-        onPress={() => navigation.navigate('Submit')}>
-        <Text style={[ss.buttonText, ss.centerText]}>When you submit prayers, they will be listed here</Text>
-      </TouchableOpacity>
-    </View>
+  : <NoPrayersProfilePresenter navigation={navigation} />
   }
   </View>
 )

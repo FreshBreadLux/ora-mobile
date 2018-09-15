@@ -41,6 +41,8 @@ async function _loadAssetsAsync() {
     require('./assets/images/Adoration.jpg'),
     require('./assets/images/Choirs.jpg'),
     require('./assets/images/bobby-headshot.jpg'),
+    require('./assets/images/Key/keys-icon-black-small.jpg'),
+    require('./assets/images/Key/keys-icon-blue-small.jpg'),
   ])
   const fontAssets = cacheFonts([{
     eczar: require('./assets/fonts/Eczar-Regular.ttf'),

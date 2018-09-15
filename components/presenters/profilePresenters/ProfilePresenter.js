@@ -5,29 +5,33 @@ import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsListPresenter } from '../../presenters'
 
+function setProfileImage(userInfo) {
+  const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
+  if (userInfo.imageUrl) {
+    return <Image style={style} source={{ uri: userInfo.imageUrl }} />
+  } else {
+    return <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
+  }
+}
+
+function setCurrentScrollView(activeScrollView, navigation) {
+  if (activeScrollView === 'follows') {
+    return <FollowScrollPresenter navigation={navigation} />
+  } else if (activeScrollView === 'prayers') {
+    return <PrayerScrollPresenter navigation={navigation} />
+  } else if (activeScrollView === 'rewards') {
+    return <SavedRewardsListPresenter navigation={navigation} />
+  }
+}
+
 /*
-  ProfilePresenter assigns a react component to the variable profileImage before rendering.
-  There are three situations: there's an imageUrl on userInfo, there's not an imageUrl but
-  there's a local backup, or there's neither, in which case the bundled default image is used.
+  Before rendering, ProfilePresenter sets the profileImage (which will either be the remote image
+  set by the user, or the local default) and the currentScrollView.
 */
 const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, activeScrollView, setActiveScrollView }) => {
 
-  let profileImage
-  const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
-  if (userInfo.imageUrl) {
-    profileImage = <Image style={style} source={{ uri: userInfo.imageUrl }} />
-  } else {
-    profileImage = <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
-  }
-
-  let currentScrollView
-  if (activeScrollView === 'follows') {
-    currentScrollView = <FollowScrollPresenter navigation={navigation} />
-  } else if (activeScrollView === 'prayers') {
-    currentScrollView = <PrayerScrollPresenter navigation={navigation} />
-  } else if (activeScrollView === 'rewards') {
-    currentScrollView = <SavedRewardsListPresenter navigation={navigation} />
-  }
+  const profileImage = setProfileImage(userInfo)
+  const currentScrollView = setCurrentScrollView(activeScrollView, navigation)
 
   return (
     <View style={ss.whiteContainer}>
@@ -39,12 +43,15 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
             </TouchableOpacity>
           </View>
           <View style={ss.center}>
-            <Text>{userInfo.consecutiveDays}</Text>
-            <Text>consecutive{'\n'}days 🔥</Text>
+            <Text style={{fontSize: 20}}>{userInfo.consecutiveDays}</Text>
+            {userInfo.consecutiveDays > 2
+            ? <Text>consecutive{'\n'}days 🔥</Text>
+            : <Text>consecutive{'\n'}days</Text>
+            }
           </View>
           <View style={ss.center}>
-            <Text>{userInfo.totalPrayers}</Text>
-            <Text>submitted{'\n'}prayers</Text>
+            <Text style={{fontSize: 20}}>{userInfo.totalPrayers}</Text>
+            <Text>accepted{'\n'}prayers</Text>
           </View>
         </View>
         <View style={[ss.row, ss.spaceAround, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
@@ -64,8 +71,8 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
             <Image
               style={{height: 28, width: 32, resizeMode: 'contain'}}
               source={(activeScrollView === 'rewards')
-              ? require('../../../assets/images/Key/keys-icon-blue.png')
-              : require('../../../assets/images/Key/keys-icon-black.png')} />
+              ? require('../../../assets/images/Key/keys-icon-blue-small.jpg')
+              : require('../../../assets/images/Key/keys-icon-black-small.jpg')} />
           </TouchableOpacity>
         </View>
         {currentScrollView}
