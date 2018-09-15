@@ -36,7 +36,8 @@ const ProfileStackNav = StackNavigator({
       let firstName = (navigation.state.params && navigation.state.params.firstName) ? navigation.state.params.firstName : 'User_Name'
       return ({
         title: firstName,
-        headerBackTitle: null
+        headerBackTitle: null,
+        headerTitleStyle: {fontFamily: 'ralewayBold'}
       })
     }
   }

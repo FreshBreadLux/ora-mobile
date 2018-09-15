@@ -43,10 +43,13 @@ async function _loadAssetsAsync() {
     require('./assets/images/bobby-headshot.jpg'),
   ])
   const fontAssets = cacheFonts([{
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+    eczar: require('./assets/fonts/Eczar-Regular.ttf'),
+    eczarBold: require('./assets/fonts/Eczar-Bold.ttf'),
     raleway: require('./assets/fonts/Raleway-Regular.ttf'),
-    ralewayExtraBold: require('./assets/fonts/Raleway-ExtraBold.ttf'),
+    ralewayBold: require('./assets/fonts/Raleway-Bold.ttf'),
     eb: require('./assets/fonts/EBGaramond-Regular.ttf'),
+    libreBaskerville: require('./assets/fonts/LibreBaskerville-Regular.ttf'),
+    gentiumBasic: require('./assets/fonts/GenBasR.ttf'),
   }])
   await Promise.all([...imageAssets, ...fontAssets])
   // implicit promise for having completed above side effects

@@ -386,7 +386,6 @@ const ss = StyleSheet.create({
     marginTop: 10,
   },
   modalText: {
-    fontFamily: 'open-sans',
     fontSize: 14,
     color: '#888',
     paddingBottom: 10,

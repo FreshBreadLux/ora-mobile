@@ -3,9 +3,7 @@ import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncSto
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
-import { FollowScrollPresenter } from '../../presenters'
-import { PrayerScrollPresenter } from '../prayerPresenters';
-import SavedRewardsListPresenter from './SavedRewardsListPresenter';
+import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsListPresenter } from '../../presenters'
 
 /*
   ProfilePresenter assigns a react component to the variable profileImage before rendering.
@@ -24,11 +22,11 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
 
   let currentScrollView
   if (activeScrollView === 'follows') {
-    currentScrollView = <FollowScrollPresenter />
+    currentScrollView = <FollowScrollPresenter navigation={navigation} />
   } else if (activeScrollView === 'prayers') {
-    currentScrollView = <PrayerScrollPresenter />
+    currentScrollView = <PrayerScrollPresenter navigation={navigation} />
   } else if (activeScrollView === 'rewards') {
-    currentScrollView = <SavedRewardsListPresenter />
+    currentScrollView = <SavedRewardsListPresenter navigation={navigation} />
   }
 
   return (
@@ -53,13 +51,13 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('follows')}>
             <Ionicons
               name="md-heart-outline"
-              size={28}
-              style={activeScrollView === 'follows' ? {color: '#FF4081'} : {color: '#000'}} />
+              size={25}
+              style={activeScrollView === 'follows' ? {color: '#4577EE'} : {color: '#000'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('prayers')}>
             <Ionicons
               name="md-book"
-              size={28}
+              size={25}
               style={activeScrollView === 'prayers' ? {color: '#4577EE'} : {color: '#000'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('rewards')}>
@@ -70,6 +68,7 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
               : require('../../../assets/images/Key/keys-icon-black.png')} />
           </TouchableOpacity>
         </View>
+        {currentScrollView}
       </ScrollView>
     </View>
   )
