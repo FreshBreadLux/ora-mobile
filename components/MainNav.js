@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ReminderContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -11,15 +11,17 @@ const GroupStackNav = StackNavigator({
     screen: GroupListContainer,
     navigationOptions: {
       title: 'Groups',
-      headerBackTitle: null
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold'}
     }
   },
   PrivateGroup: {
     screen: PrivateGroupContainer,
-    navigationOptions: ({ navigation }) => ({
+    navigationOptions: {
       title: 'Private Group',
-      headerBackTitle: null
-    })
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold'}
+    }
   }
 })
 
@@ -37,7 +39,8 @@ const ProfileStackNav = StackNavigator({
       return ({
         title: firstName,
         headerBackTitle: null,
-        headerTitleStyle: {fontFamily: 'ralewayBold'}
+        headerTitleStyle: {fontFamily: 'ralewayBold'},
+        headerRight: <ProfileHeaderRightPresenter navigation={navigation} />
       })
     }
   }
@@ -155,6 +158,14 @@ const CardStackNav = StackNavigator({
       }
     },
   },
+  ProfileSettings: {
+    screen: ProfileSettingsPresenter,
+    navigationOptions: {
+      title: 'Settings',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold'}
+    }
+  },
   ShareOra: {
     screen: ShareOraContainer,
     navigationOptions: () => {
@@ -204,8 +215,8 @@ const CardStackNav = StackNavigator({
       }
     },
   },
-  Alarms: {
-    screen: AlarmContainer,
+  Reminders: {
+    screen: ReminderContainer,
     navigationOptions: () => {
       const headerTitleStyle = Platform.OS === 'ios'
         ? { fontFamily: 'raleway', fontSize: 24 }

@@ -5,7 +5,7 @@ import { TimePickerAndroidContainer } from '../../containers'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 
-const AlarmPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm, clearAlarms, androidPickerVisible, toggleAndroidPicker, toggleTimeWasSelected, timeWasSelected }) => (
+const ReminderPresenter = ({ chosenTime, setTime, saveNewAlarm, alarms, deleteAlarm, clearAlarms, androidPickerVisible, toggleAndroidPicker, toggleTimeWasSelected, timeWasSelected }) => (
   <View style={[ss.whiteContainer, ss.padding15]}>
     <View style={[ss.paddingTop15, ss.topBorder, ss.center]}>
       <Text style={[ss.subHeader, ss.centerText]}>Add a New Daily Reminder</Text>
@@ -91,4 +91,4 @@ const mapState = state => ({
   alarms: state.alarms
 })
 
-export default connect(mapState)(AlarmPresenter)
+export default connect(mapState)(ReminderPresenter)

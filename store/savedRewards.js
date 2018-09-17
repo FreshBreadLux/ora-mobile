@@ -3,6 +3,28 @@ import { FileSystem } from 'expo'
 import ROOT_URL from '../config'
 import { LOGOUT } from './auth'
 
+/*
+  HELPER FUNCTIONS
+*/
+const createRewardLocalPath = reward => {
+  const uri = reward.imageUrl
+  const ext = uri.substring(
+    uri.lastIndexOf('.'),
+    uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
+  )
+  return FileSystem.cacheDirectory + `savedReward${reward.id}` + ext
+}
+
+const createArtistLocalPath = reward => {
+  const artistUri = reward.artist.imageUrl
+  const artistExt = artistUri.substring(
+    artistUri.lastIndexOf('.'),
+    artistUri.indexOf('?') === -1 ? undefined : artistUri.indexOf('?')
+  )
+  const artistName = reward.artist.fullName.replace(' ', '-')
+  return FileSystem.cacheDirectory + artistName + artistExt
+}
+
 /**
  * ACTION TYPES
  */
@@ -35,28 +57,18 @@ export const fetchAndCacheSavedRewards = userId =>
       if (savedRewards) {
         mappedArrayOfPromises = await savedRewards.map(async reward => {
           let rewardImagePromise, artistImagePromise
-          // create localPath string for the saved reward image and check for info
-          const uri = reward.imageUrl
-          const ext = uri.substring(
-            uri.lastIndexOf('.'),
-            uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
-          )
-          const localPath = FileSystem.cacheDirectory + `savedReward${reward.id}` + ext
-          const info = await FileSystem.getInfoAsync(localPath)
+          // create localPath strings for the saved reward image and the artist image
+          const localPath = createRewardLocalPath(reward)
+          const artistLocalPath = createArtistLocalPath(reward)
 
-          // create localPath string for the artist image of the saved reward and check for info
-          const artistUri = reward.artist.imageUrl
-          const artistExt = artistUri.substring(
-            artistUri.lastIndexOf('.'),
-            artistUri.indexOf('?') === -1 ? undefined : artistUri.indexOf('?')
-          )
-          const artistName = reward.artist.fullName.replace(' ', '-')
-          const artistLocalPath = FileSystem.cacheDirectory + artistName + artistExt
-          const artistInfo = await FileSystem.getInfoAsync(artistLocalPath)
+          // check the FileSystem to see if info already exists at these paths
+          const infoPromise = FileSystem.getInfoAsync(localPath)
+          const artistInfoPromise = FileSystem.getInfoAsync(artistLocalPath)
+          const [info, artistInfo] = await Promise.all([infoPromise, artistInfoPromise])
 
           // if some of the info doesn't exist, download the files to the respective paths
-          if (!info.exists) rewardImagePromise = FileSystem.downloadAsync(uri, localPath)
-          if (!artistInfo.existis) artistImagePromise = FileSystem.downloadAsync(artistUri, artistLocalPath)
+          if (!info.exists) rewardImagePromise = FileSystem.downloadAsync(reward.imageUrl, localPath)
+          if (!artistInfo.existis) artistImagePromise = FileSystem.downloadAsync(reward.artist.imageUrl, artistLocalPath)
           await Promise.all([rewardImagePromise, artistImagePromise])
           return { ...reward, localPath, artistLocalPath }
         })
