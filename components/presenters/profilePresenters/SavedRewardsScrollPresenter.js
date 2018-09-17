@@ -24,7 +24,7 @@ const SavedRewardsScrollPresenter = ({ savedRewards, navigation }) => (
                 style={{width: size, height: size, borderColor: '#fff', borderWidth: 1}}>
                 <Image
                   style={{flex: 1, width: undefined, height: undefined, resizeMode: 'cover'}}
-                  source={{uri: item.localPath}} />
+                  source={{uri: item.thumbnailLocalPath}} />
               </TouchableOpacity>
             )
           }}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Animated, TouchableOpacity } from 'react-native'
-import { fetchAndCacheDailyReward } from '../../../store'
+import { fetchAndCacheDailyReward, fetchDailyReflection } from '../../../store'
 
 function getDateString() {
   let date = new Date().setMinutes(new Date().getMinutes() - new Date().getTimezoneOffset())
@@ -48,6 +48,7 @@ class KeyContainer extends React.Component {
     } else if (!this.props.dailyRewardUnlocked && prevProps.dailyRewardUnlocked) {
       const today = getDateString()
       this.props.refreshDailyReward(today)
+      this.props.refreshDailyReflection(today)
       this.animateLock()
     }
   }
@@ -253,7 +254,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  refreshDailyReward: today => dispatch(fetchAndCacheDailyReward(today))
+  refreshDailyReward: today => dispatch(fetchAndCacheDailyReward(today)),
+  refreshDailyReflection: today => dispatch(fetchDailyReflection(today)),
 })
 
 export default connect(mapState, mapDispatch)(KeyContainer)

@@ -1,4 +1,5 @@
 import React from 'react'
+import { AsyncStorage, ImageStore } from 'react-native'
 import { connect } from 'react-redux'
 import { StoreReview } from 'expo'
 import { RewardPresenter } from '../../presenters'
@@ -71,8 +72,8 @@ class RewardContainer extends React.Component {
     }
   }
 
-  deleteReward(savedReward) {
-    const { savedId, saverId } = savedReward
+  deleteReward(reward) {
+    const { savedId, saverId } = reward.savedReward
     const { userId, refreshSavedRewards, hideModal } = this.props
     if (this.state.alreadySaved) {
       this.setState({ processing: true })

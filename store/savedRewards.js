@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AsyncStorage, ImageEditor, Image, Dimensions, ImageStore } from 'react-native'
 import { FileSystem } from 'expo'
 import ROOT_URL from '../config'
 import { LOGOUT } from './auth'
@@ -25,6 +26,58 @@ const createArtistLocalPath = reward => {
   return FileSystem.cacheDirectory + artistName + artistExt
 }
 
+const createThumbnailLocalPath = reward => {
+  const uri = reward.imageUrl
+  const ext = uri.substring(
+    uri.lastIndexOf('.'),
+    uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
+  )
+  return FileSystem.cacheDirectory + `reward-thumbnail-${reward.data}` + ext
+}
+
+const generateThumbnailParams = (imageWidth, imageHeight) => {
+  const { width } = Dimensions.get('window')
+  return {
+    offset: {
+      x: 0,
+      y: 0
+    },
+    size: {
+      width: imageWidth,
+      height: imageHeight
+    },
+    displaySize: {
+      width: (width / 3),
+      height: (width / 3)
+    },
+    resizeMode: 'cover'
+  }
+}
+
+const buildThumbnail = (localPath, width, height) => {
+  return new Promise((resolve, reject) => {
+    ImageEditor.cropImage(
+      localPath,
+      generateThumbnailParams(width, height),
+      uri => {
+        console.log('uri:', uri)
+        resolve(uri)
+      },
+      error => reject(error)
+    )
+  })
+}
+
+const getImageDimensions = uri => {
+  return new Promise((resolve, reject) => {
+    Image.getSize(
+      uri,
+      (width, height) => resolve({width, height}),
+      error => reject(error)
+    )
+  })
+}
+
 /**
  * ACTION TYPES
  */
@@ -46,7 +99,9 @@ export const getSavedRewards = rewards => ({ type: GET_SAVED_REWARDS, rewards })
 
 /*
   fetchAndCacheSavedRewards makes a GET request to the DB for a user's saved rewards.
-  It then creates a path for each image in Expo's FileSystem cacheDirectory and (if there isn't anything at that path already) downloads the file. The local path is then saved on each reward, and the array of rewards is put onto store state.
+  It then creates a path for the reward and artist images in Expo's FileSystem cacheDirectory and
+  (if there isn't anything at that path already) downloads the file. The local path is then saved
+  on each reward, and the array of rewards is put onto store state.
 */
 export const fetchAndCacheSavedRewards = userId =>
   async dispatch => {
@@ -56,21 +111,31 @@ export const fetchAndCacheSavedRewards = userId =>
       const savedRewards = res.data
       if (savedRewards) {
         mappedArrayOfPromises = await savedRewards.map(async reward => {
-          let rewardImagePromise, artistImagePromise
-          // create localPath strings for the saved reward image and the artist image
+          let rewardImagePromise, artistImagePromise, thumbnailImagePromise
+          // create localPath strings for the images
           const localPath = createRewardLocalPath(reward)
           const artistLocalPath = createArtistLocalPath(reward)
+          const thumbnailLocalPath = createThumbnailLocalPath(reward)
 
           // check the FileSystem to see if info already exists at these paths
           const infoPromise = FileSystem.getInfoAsync(localPath)
           const artistInfoPromise = FileSystem.getInfoAsync(artistLocalPath)
-          const [info, artistInfo] = await Promise.all([infoPromise, artistInfoPromise])
+          const thumbnailInfoPromise = FileSystem.getInfoAsync(thumbnailLocalPath)
+          const [info, artistInfo, thumbnailInfo] = await Promise.all([infoPromise, artistInfoPromise, thumbnailInfoPromise])
 
           // if some of the info doesn't exist, download the files to the respective paths
-          if (!info.exists) rewardImagePromise = FileSystem.downloadAsync(reward.imageUrl, localPath)
-          if (!artistInfo.existis) artistImagePromise = FileSystem.downloadAsync(reward.artist.imageUrl, artistLocalPath)
-          await Promise.all([rewardImagePromise, artistImagePromise])
-          return { ...reward, localPath, artistLocalPath }
+          if (!info.exists) {
+            rewardImagePromise = FileSystem.downloadAsync(reward.imageUrl, localPath)
+          }
+          if (!artistInfo.exists) {
+            artistImagePromise = FileSystem.downloadAsync(reward.artist.imageUrl, artistLocalPath)
+          }
+          if (!thumbnailInfo.exists) {
+            thumbnailImagePromise = FileSystem.downloadAsync(reward.thumbnailUrl, thumbnailLocalPath)
+          }
+          await Promise.all([rewardImagePromise, artistImagePromise, thumbnailImagePromise])
+
+          return { ...reward, localPath, artistLocalPath, thumbnailLocalPath }
         })
         savedRewardsWithLocalUrls = await Promise.all(mappedArrayOfPromises)
       }

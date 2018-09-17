@@ -135,7 +135,7 @@ const RewardPresenter = ({ reward, saveReward, deleteReward, navigation, failed,
       isVisible={visibleModal === 'deleteReward'}
       style={ss.bottomModal}>
       <DeleteRewardModal
-        savedReward={reward.savedReward}
+        reward={reward}
         deleteReward={deleteReward}
         hideModal={hideModal} />
     </Modal>
