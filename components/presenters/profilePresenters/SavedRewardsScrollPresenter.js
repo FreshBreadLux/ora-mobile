@@ -17,13 +17,13 @@ const SavedRewardsScrollPresenter = ({ savedRewards, navigation }) => (
           data={savedRewards}
           renderItem={({item}) => {
             const { width } = Dimensions.get('window')
-            const size = (width - 60) / 3
+            const size = (width - 6) / 3
             return (
               <TouchableOpacity
                 onPress={() => navigation.navigate('RewardContainer', {reward: item})}
-                style={{width: size, height: size, margin: 5}}>
+                style={{width: size, height: size, borderColor: '#fff', borderWidth: 1}}>
                 <Image
-                  style={{flex: 1, width: undefined, height: undefined, resizeMode: 'cover', borderRadius: 5}}
+                  style={{flex: 1, width: undefined, height: undefined, resizeMode: 'cover'}}
                   source={{uri: item.localPath}} />
               </TouchableOpacity>
             )

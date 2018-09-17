@@ -53,7 +53,7 @@ export const updateUserProfileImage = (userId, imageUrl) =>
   dispatch =>
     axios.put(`${ROOT_URL}/api/users/${userId}`, {imageUrl})
       .then(res => {
-        dispatch(setProfileImage(res.data.theme))
+        dispatch(setProfileImage(res.data.imageUrl))
       })
       .catch(err => console.log(err))
 

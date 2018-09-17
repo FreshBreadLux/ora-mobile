@@ -2,7 +2,7 @@ import React from 'react'
 import { AsyncStorage, Alert } from 'react-native'
 import { connect } from 'react-redux'
 import axios from 'axios'
-import { logout, setProfileImage } from '../../../store'
+import { logout, updateUserProfileImage } from '../../../store'
 import { ProfilePresenter } from '../../presenters'
 import { ImagePicker, Permissions } from 'expo'
 import Sentry from 'sentry-expo'
@@ -17,9 +17,10 @@ class ProfileContainer extends React.Component {
     this.userLogout = this.userLogout.bind(this)
     this.setProfileName = this.setProfileName.bind(this)
     this.pickProfileImage = this.pickProfileImage.bind(this)
+    this.getSignedS3Request = this.getSignedS3Request.bind(this)
     this.setActiveScrollView = this.setActiveScrollView.bind(this)
     this.setSentryUserContext = this.setSentryUserContext.bind(this)
-    this.updateUserProfileImage = this.updateUserProfileImage.bind(this)
+    this.uploadProfileImageToS3 = this.uploadProfileImageToS3.bind(this)
     this.askCameraRollPermission = this.askCameraRollPermission.bind(this)
   }
 
@@ -67,28 +68,54 @@ class ProfileContainer extends React.Component {
       allowsEditing: true,
       aspect: [1, 1],
       quality: 0,
-      base64: true,
     })
     if (!result.cancelled) {
       console.log('full result:', result)
-      this.updateUserProfileImage(result.base64)
+      this.getSignedS3Request(result.uri)
     }
   }
 
   /*
-    updateUserProfileImage first stores the local uri in AsyncStorage as a backup in case the
-    axios put is unsuccessful. It then sets the store state imageUrl to null, so that if the
-    axios put fails, the chosen image will still show (the problem is, that will only be true
-    for the current session and not any future sessions). It then updates the uri in the database
-    and finally places the new uri on store state.
-    TODO: I need to figure out a better solution for the possibility of an updated profile image
-    when the user doesn't have signal, and I also need to add AWS S3 functionality.
+    getSignedS3Request accepts the image uri from pickProfileImage. It uses the uri's extension
+    to determine the file's MIME type. It uses the user's ID to set the file name. It then sends
+    a request to the backend for a signed S3 request so that it can upload the image.
   */
-  async updateUserProfileImage(base64) {
-    const { userInfo, dispatchSetProfileImage } = this.props
-    const res = await axios.put(`${ROOT_URL}/api/users/${userInfo.id}/profileImage`, {base64})
-    const updatedImageUrl = res.data.imageUrl
-    dispatchSetProfileImage(updatedImageUrl)
+  async getSignedS3Request(uri) {
+    const ext = uri.substring(
+      uri.lastIndexOf('.'),
+      uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
+    )
+    const fileName = `user-${this.props.userInfo.id}-profile${ext}`
+    let fileType
+    if (ext === '.jpg') {
+      fileType = 'image/jpeg'
+    } else if (ext === '.png') {
+      fileType = 'image/png'
+    }
+    try {
+      const res = await axios.get(`${ROOT_URL}/api/s3SignedRequests?fileName=${fileName}&fileType=${fileType}`)
+      console.log('res.data:', res.data)
+      const { signedS3Request, targetUrl } = res.data
+      this.uploadProfileImageToS3(signedS3Request, targetUrl, uri)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  /*
+    uploadProfileImageToS3 fetches data from the provided uri, and then creates a blob from the
+    response. The blob is then sent in a put request to the signed URL generated on the backend.
+    The new imageUrl is then updated in the database and placed on store state.
+  */
+  async uploadProfileImageToS3(signedS3Request, targetUrl, uri) {
+    try {
+      const response = await fetch(uri)
+      const blob = await response.blob()
+      await fetch(signedS3Request, { method: 'PUT', body: blob })
+      this.props.dispatchUpdateUserProfileImage(this.props.userInfo.id, targetUrl)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   async userLogout() {
@@ -119,7 +146,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   logUserOut: () => dispatch(logout()),
-  dispatchSetProfileImage: uri => dispatch(setProfileImage(uri)),
+  dispatchUpdateUserProfileImage: (id, uri) => dispatch(updateUserProfileImage(id, uri)),
 })
 
 export default connect(mapState, mapDispatch)(ProfileContainer)

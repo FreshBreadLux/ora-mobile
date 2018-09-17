@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, AlarmContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
-import { FollowScrollPresenter, PrayerScrollPresenter, FAQPresenter, ChoirRankPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SavedRewardsListPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -150,22 +150,6 @@ const CardStackNav = StackNavigator({
         : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
       return {
         title: '',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
-  },
-  ChoirRank: {
-    screen: ChoirRankPresenter,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'NINE CHOIRS',
         headerTitleStyle,
         headerStyle,
       }

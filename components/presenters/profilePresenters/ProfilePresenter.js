@@ -3,7 +3,7 @@ import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncSto
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
-import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsListPresenter } from '../../presenters'
+import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsScrollPresenter } from '../../presenters'
 
 function setProfileImage(userInfo) {
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
@@ -20,7 +20,7 @@ function setCurrentScrollView(activeScrollView, navigation) {
   } else if (activeScrollView === 'prayers') {
     return <PrayerScrollPresenter navigation={navigation} />
   } else if (activeScrollView === 'rewards') {
-    return <SavedRewardsListPresenter navigation={navigation} />
+    return <SavedRewardsScrollPresenter navigation={navigation} />
   }
 }
 
