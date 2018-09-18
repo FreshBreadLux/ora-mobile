@@ -106,7 +106,7 @@ export default class SignupFormContainer extends React.Component {
           this.setState({ checkEmailReturned: true, userExists: false })
         }
       })
-      .catch(console.error)
+      .catch(console.warn)
     }
   }
 

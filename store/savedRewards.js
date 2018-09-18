@@ -27,55 +27,12 @@ const createArtistLocalPath = reward => {
 }
 
 const createThumbnailLocalPath = reward => {
-  const uri = reward.imageUrl
+  const uri = reward.thumbnailUrl
   const ext = uri.substring(
     uri.lastIndexOf('.'),
     uri.indexOf('?') === -1 ? undefined : uri.indexOf('?')
   )
-  return FileSystem.cacheDirectory + `reward-thumbnail-${reward.data}` + ext
-}
-
-const generateThumbnailParams = (imageWidth, imageHeight) => {
-  const { width } = Dimensions.get('window')
-  return {
-    offset: {
-      x: 0,
-      y: 0
-    },
-    size: {
-      width: imageWidth,
-      height: imageHeight
-    },
-    displaySize: {
-      width: (width / 3),
-      height: (width / 3)
-    },
-    resizeMode: 'cover'
-  }
-}
-
-const buildThumbnail = (localPath, width, height) => {
-  return new Promise((resolve, reject) => {
-    ImageEditor.cropImage(
-      localPath,
-      generateThumbnailParams(width, height),
-      uri => {
-        console.log('uri:', uri)
-        resolve(uri)
-      },
-      error => reject(error)
-    )
-  })
-}
-
-const getImageDimensions = uri => {
-  return new Promise((resolve, reject) => {
-    Image.getSize(
-      uri,
-      (width, height) => resolve({width, height}),
-      error => reject(error)
-    )
-  })
+  return FileSystem.cacheDirectory + `reward-thumbnail-${reward.date}` + ext
 }
 
 /**
@@ -99,9 +56,9 @@ export const getSavedRewards = rewards => ({ type: GET_SAVED_REWARDS, rewards })
 
 /*
   fetchAndCacheSavedRewards makes a GET request to the DB for a user's saved rewards.
-  It then creates a path for the reward and artist images in Expo's FileSystem cacheDirectory and
-  (if there isn't anything at that path already) downloads the file. The local path is then saved
-  on each reward, and the array of rewards is put onto store state.
+  It then creates local paths for the reward's images (reward, artist, thumbnail).
+  It checks the FileSystem to see if the images are already stored; if they're not,
+  it downloads them to the FileSystem and adds the local paths to the saved reward object.
 */
 export const fetchAndCacheSavedRewards = userId =>
   async dispatch => {
