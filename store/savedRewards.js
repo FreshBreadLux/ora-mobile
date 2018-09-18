@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { AsyncStorage, ImageEditor, Image, Dimensions, ImageStore } from 'react-native'
 import { FileSystem } from 'expo'
 import ROOT_URL from '../config'
 import { LOGOUT } from './auth'

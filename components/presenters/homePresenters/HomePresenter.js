@@ -47,11 +47,6 @@ const HomePresenter = ({ navigation, theme, adminReset, isAdmin, prayerStatus })
             <Text style={[ss.buttonText]}>PRAY</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity
-          style={[ss.whiteButton, {width: '40%', borderColor: '#fff'}]}
-          onPress={() => AsyncStorage.removeItem('reward-thumbnail-2018-08-26')}>
-          <Text style={[ss.buttonText]}>CLEAR ASYNC</Text>
-        </TouchableOpacity>
       </View>
       {isAdmin
       ? <View style={ss.row}>
