@@ -15,7 +15,6 @@ class ProfileContainer extends React.Component {
       activeScrollView: 'follows',
     }
     this.userLogout = this.userLogout.bind(this)
-    this.setProfileName = this.setProfileName.bind(this)
     this.pickProfileImage = this.pickProfileImage.bind(this)
     this.getSignedS3Request = this.getSignedS3Request.bind(this)
     this.setActiveScrollView = this.setActiveScrollView.bind(this)
@@ -26,12 +25,6 @@ class ProfileContainer extends React.Component {
 
   componentDidMount() {
     this.setSentryUserContext()
-  }
-
-  componentDidUpdate(prevProps) {
-    if (prevProps.userInfo.firstName !== this.props.userInfo.firstName) {
-      this.setProfileName()
-    }
   }
 
   setSentryUserContext() {
