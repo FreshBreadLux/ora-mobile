@@ -17,7 +17,7 @@ const SavedRewardsScrollPresenter = ({ savedRewards, navigation }) => (
           data={savedRewards}
           renderItem={({item}) => {
             const { width } = Dimensions.get('window')
-            const size = (width - 6) / 3
+            const size = width / 3
             return (
               <TouchableOpacity
                 onPress={() => navigation.navigate('RewardContainer', {reward: item})}

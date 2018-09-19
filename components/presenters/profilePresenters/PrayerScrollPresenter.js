@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { fetchUserPrayers } from '../../../store'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
-import NoPrayersProfilePresenter from './NoPrayersProfilePresenter';
+import { NoPrayersProfilePresenter } from '../../presenters'
 
 function formatISOString(date) {
   const newDate = new Date(date)
@@ -18,7 +18,7 @@ function formatISOString(date) {
 const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation }) => (
   <View style={ss.invisiContainer}>
   {prayers && prayers.length
-  ? <View style={[ss.flex1, ss.center]}>
+  ? <View>
       {prayers.map(prayer => (
         <TouchableOpacity
           style={[ss.addViewSpacing, ss.bottomBorder]}
@@ -27,10 +27,10 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
             refreshUserPrayers(userId)
             navigation.navigate('Prayer', { prayer })
           }}>
-          <View style={[ss.row, ss.fullWidth]}>
+          <View style={[ss.row, ss.flex1]}>
             <View style={[ss.center, {width: 30}]}>
             {prayer.totalFollows > 0
-            ? <View>
+            ? <View style={ss.center}>
                 <Ionicons
                   name="md-heart"
                   size={16}
@@ -42,7 +42,9 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
             </View>
             <View style={[ss.flex1, {height: 65, justifyContent: 'center'}]}>
               <View style={[ss.row, ss.spaceBetween]}>
-                <Text numberOfLines={1} style={ss.subHeader}>{prayer.subject}</Text>
+                <View style={ss.flex1}>
+                  <Text numberOfLines={1} style={{fontFamily: 'ralewayBold', fontSize: 15}}>{prayer.subject}</Text>
+                </View>
                 <View style={[ss.row, ss.center, {paddingRight: 10}]}>
                   <Text style={{fontSize: 12, color: '#555', paddingRight: 10}}>{formatISOString(prayer.createdAt)}</Text>
                   <Ionicons
@@ -51,7 +53,7 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
                     style={{color: '#555'}} />
                   </View>
               </View>
-              <Text numberOfLines={2} style={ss.subBody}>{prayer.body}</Text>
+              <Text numberOfLines={2} style={[ss.subBody, ss.greyText]}>{prayer.body}</Text>
             </View>
           </View>
         </TouchableOpacity>
