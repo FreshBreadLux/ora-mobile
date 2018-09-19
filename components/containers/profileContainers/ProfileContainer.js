@@ -45,17 +45,6 @@ class ProfileContainer extends React.Component {
     this.setState({ activeScrollView })
   }
 
-  /*
-    setProfileName puts the user's firstName onto the react navigation params, so that it can
-    be used as the title of the profile header.
-  */
-  setProfileName() {
-    let firstName = this.props.userInfo.firstName
-    if (firstName) {
-      this.props.navigation.setParams({ firstName })
-    }
-  }
-
   async askCameraRollPermission() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
     if (status === 'granted') {

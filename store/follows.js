@@ -31,7 +31,7 @@ export const fetchUserFollows = userId =>
 
 export const clearFollowUnseenUpdates = follow =>
   dispatch =>
-    axios.put(`${ROOT_URL}/api/follows/followerId/${follow.followerId}/followedId/${follow.followedId}`)
+    axios.put(`${ROOT_URL}/api/follows/followedId/${follow.followedId}/followerId/${follow.followerId}`, { unseenUpdates: 0 })
     .then(() => dispatch(fetchUserFollows(follow.followerId)))
     .catch(console.log)
 

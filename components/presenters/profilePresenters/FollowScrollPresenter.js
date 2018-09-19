@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { NoFollowsProfilePresenter } from '../../presenters'
+import { clearFollowUnseenUpdates } from '../../../store'
 import ss from '../../StyleSheet'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -14,7 +15,7 @@ function formatISOString(date) {
   return `${day}/${month}/${year}`
 }
 
-const FollowScrollPresenter = ({ follows, navigation }) => {
+const FollowScrollPresenter = ({ follows, navigation, dispatchClearFollowUnseenUpdates }) => {
   console.log('follows:', follows)
   return (
   <View style={ss.invisiContainer}>
@@ -25,6 +26,7 @@ const FollowScrollPresenter = ({ follows, navigation }) => {
         style={[ss.addViewSpacing, ss.bottomBorder]}
         key={follow.id}
         onPress={() => {
+          dispatchClearFollowUnseenUpdates(follow.follow)
           navigation.navigate('Follow', { follow })
         }}>
         <View style={[ss.row, ss.flex1]}>
@@ -64,4 +66,8 @@ const mapState = state => ({
   follows: state.follows
 })
 
-export default connect(mapState)(FollowScrollPresenter)
+const mapDispatch = dispatch => ({
+  dispatchClearFollowUnseenUpdates: follow => dispatch(clearFollowUnseenUpdates(follow)),
+})
+
+export default connect(mapState, mapDispatch)(FollowScrollPresenter)

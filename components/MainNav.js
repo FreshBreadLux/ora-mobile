@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ReminderContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter } from './presenters'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -35,9 +35,8 @@ const ProfileStackNav = StackNavigator({
   ProfileBase: {
     screen: ProfileContainer,
     navigationOptions: ({ navigation }) => {
-      let firstName = (navigation.state.params && navigation.state.params.firstName) ? navigation.state.params.firstName : 'User_Name'
       return ({
-        title: firstName,
+        headerTitle: <ProfileHeaderTitlePresenter />,
         headerBackTitle: null,
         headerTitleStyle: {fontFamily: 'ralewayBold'},
         headerRight: <ProfileHeaderRightPresenter navigation={navigation} />

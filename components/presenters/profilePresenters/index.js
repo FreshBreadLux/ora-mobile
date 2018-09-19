@@ -13,3 +13,4 @@ export { default as NoPrayersProfilePresenter } from './NoPrayersProfilePresente
 export { default as NoRewardsProfilePresenter } from './NoRewardsProfilePresenter'
 export { default as ProfileSettingsPresenter } from './ProfileSettingsPresenter'
 export { default as ProfileHeaderRightPresenter } from './ProfileHeaderRightPresenter'
+export { default as ProfileHeaderTitlePresenter } from './ProfileHeaderTitlePresenter'
