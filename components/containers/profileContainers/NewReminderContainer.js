@@ -3,9 +3,9 @@ import { AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { fetchUserAlarms } from '../../../store'
 import { Notifications } from 'expo'
-import { ReminderPresenter } from '../../presenters'
+import { NewReminderPresenter } from '../../presenters'
 
-class ReminderContainer extends React.Component {
+class NewReminderContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -94,7 +94,7 @@ class ReminderContainer extends React.Component {
 
   render() {
     return (
-      <ReminderPresenter
+      <NewReminderPresenter
         setTime={this.setTime}
         toggleAndroidPicker={this.toggleAndroidPicker}
         toggleTimeWasSelected={this.toggleTimeWasSelected}
@@ -112,4 +112,4 @@ const mapDispatch = dispatch => ({
   refreshUserAlarms: () => dispatch(fetchUserAlarms())
 })
 
-export default connect(null, mapDispatch)(ReminderContainer)
+export default connect(null, mapDispatch)(NewReminderContainer)

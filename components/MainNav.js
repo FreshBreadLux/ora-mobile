@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ReminderContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer } from './containers'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -217,51 +217,28 @@ const CardStackNav = StackNavigator({
   },
   Testimony: {
     screen: TestimonyPresenter,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'TESTIMONY',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
+    navigationOptions: {
+      title: 'Testimony',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
+    }
   },
   Reminders: {
-    screen: ReminderContainer,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'REMINDERS',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
+    screen: ReminderListPresenter,
+    navigationOptions: ({ navigation }) => ({
+      title: 'Reminders',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+      headerRight: <ReminderHeaderRightPresenter navigation={navigation} />
+    })
   },
   FAQ: {
     screen: FAQPresenter,
-    navigationOptions: () => {
-      const headerTitleStyle = Platform.OS === 'ios'
-        ? { fontFamily: 'raleway', fontSize: 24 }
-        : { fontFamily: 'ralewayExtraBold', fontSize: 24 }
-      const headerStyle = Platform.OS === 'ios'
-        ? { backgroundColor: 'white', borderBottomWidth: 0 }
-        : { backgroundColor: 'white', borderBottomWidth: 0, marginTop: Constants.statusBarHeight, elevation: 0 }
-      return {
-        title: 'FAQ',
-        headerTitleStyle,
-        headerStyle,
-      }
-    },
+    navigationOptions: {
+      title: 'FAQ',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
+    }
   },
 }, {
   headerMode: 'screen'
@@ -334,6 +311,15 @@ const ModalStackNav = StackNavigator({
       }
     },
   },
+  NewReminder: {
+    screen: NewReminderContainer,
+    navigationOptions: ({ navigation }) => ({
+      title: 'New Reminder',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+      headerLeft: <NewReminderHeaderLeftPresenter navigation={navigation} />
+    })
+  }
 }, {
   mode: 'modal',
   headerMode: 'screen'
