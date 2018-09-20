@@ -35,7 +35,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
             style={{color: '#000'}} />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Themes')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
           <Text style={ss.subHeader}>Themes</Text>
           <Ionicons

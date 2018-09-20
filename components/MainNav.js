@@ -2,7 +2,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
 import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ReminderContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter } from './presenters'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -173,6 +173,14 @@ const CardStackNav = StackNavigator({
       headerLeft: <EditProfileHeaderLeftPresenter navigation={navigation} />,
       headerRight: <EditProfileHeaderRightPresenter navigation={navigation} />
     })
+  },
+  Themes: {
+    screen: ThemesPresenter,
+    navigationOptions: {
+      title: 'Themes',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
+    }
   },
   ShareOra: {
     screen: ShareOraContainer,

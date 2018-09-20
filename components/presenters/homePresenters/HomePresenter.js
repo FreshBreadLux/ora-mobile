@@ -83,7 +83,8 @@ const HomePresenter = ({ navigation, theme, adminReset, isAdmin, prayerStatus })
 
 const mapState = state => ({
   isAdmin: state.userInfo.isAdmin,
-  prayerStatus: state.anonymousPrayerCompositions.prayerStatus
+  theme: state.userInfo.theme,
+  prayerStatus: state.anonymousPrayerCompositions.prayerStatus,
 })
 
 export default connect(mapState)(HomePresenter)

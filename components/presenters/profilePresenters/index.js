@@ -17,3 +17,4 @@ export { default as ProfileHeaderTitlePresenter } from './ProfileHeaderTitlePres
 export { default as EditProfilePresenter } from './EditProfilePresenter'
 export { default as EditProfileHeaderLeftPresenter } from './EditProfileHeaderLeftPresenter'
 export { default as EditProfileHeaderRightPresenter } from './EditProfileHeaderRightPresenter'
+export { default as ThemesPresenter } from './ThemesPresenter'
