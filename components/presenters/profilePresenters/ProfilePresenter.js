@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image, TouchableOpacity, SafeAreaView, ScrollView, AsyncStorage, Platform } from 'react-native'
+import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
@@ -28,7 +28,7 @@ function setCurrentScrollView(activeScrollView, navigation) {
   Before rendering, ProfilePresenter sets the profileImage (which will either be the remote image
   set by the user, or the local default) and the currentScrollView.
 */
-const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, userInfo, activeScrollView, setActiveScrollView }) => {
+const ProfilePresenter = ({ navigation, userInfo, activeScrollView, setActiveScrollView }) => {
 
   const profileImage = setProfileImage(userInfo)
   const currentScrollView = setCurrentScrollView(activeScrollView, navigation)
@@ -38,7 +38,7 @@ const ProfilePresenter = ({ navigation, userLogout, askCameraRollPermission, use
       <ScrollView>
         <View style={[ss.row, ss.spaceAround, ss.padding15, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
           <View>
-            <TouchableOpacity onPress={askCameraRollPermission}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
               {profileImage}
             </TouchableOpacity>
           </View>

@@ -8,7 +8,7 @@ import ss from '../../StyleSheet'
 const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
   <View style={ss.invisiContainer}>
     <ScrollView>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
           <Text style={ss.subHeader}>Edit Profile</Text>
           <Ionicons

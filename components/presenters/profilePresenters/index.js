@@ -14,3 +14,6 @@ export { default as NoRewardsProfilePresenter } from './NoRewardsProfilePresente
 export { default as ProfileSettingsPresenter } from './ProfileSettingsPresenter'
 export { default as ProfileHeaderRightPresenter } from './ProfileHeaderRightPresenter'
 export { default as ProfileHeaderTitlePresenter } from './ProfileHeaderTitlePresenter'
+export { default as EditProfilePresenter } from './EditProfilePresenter'
+export { default as EditProfileHeaderLeftPresenter } from './EditProfileHeaderLeftPresenter'
+export { default as EditProfileHeaderRightPresenter } from './EditProfileHeaderRightPresenter'

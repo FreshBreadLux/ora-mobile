@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import ss from '../../StyleSheet'
 
 const ProfileHeaderTitlePresenter = ({ firstName }) => (
-  <Text style={{fontFamily: 'ralewayBold', fontSize: 16}}>{firstName}</Text>
+  <Text style={{fontFamily: 'ralewayBold', fontSize: 18}}>{firstName}</Text>
 )
 
 const mapState = state => ({

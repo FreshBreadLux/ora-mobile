@@ -230,7 +230,7 @@ const ss = StyleSheet.create({
   },
   headerTextButton: {
     fontFamily: 'raleway',
-    fontSize: 16
+    fontSize: 18
   },
   body: {
     fontFamily: 'eb',
