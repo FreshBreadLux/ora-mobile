@@ -69,8 +69,6 @@ class NewReminderContainer extends React.Component {
     this.toggleAndroidPicker = this.toggleAndroidPicker.bind(this)
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
-    this.deleteAlarm = this.deleteAlarm.bind(this)
-    this.clearAlarms = this.clearAlarms.bind(this)
   }
 
   setTime(newTime) {
@@ -146,32 +144,6 @@ class NewReminderContainer extends React.Component {
           }]
       const updatedAlarms = await JSON.stringify(spreadAlarms)
       await AsyncStorage.setItem('userAlarms', updatedAlarms)
-      this.props.refreshUserAlarms()
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async deleteAlarm(alarm) {
-    try {
-      await Notifications.cancelScheduledNotificationAsync(alarm.reminderId)
-      const oldAlarms = await AsyncStorage.getItem('userAlarms')
-      const oldAlarmsJson = await JSON.parse(oldAlarms)
-      const filteredAlarms = oldAlarmsJson.filter(oldAlarm => {
-        return oldAlarm.reminderId !== alarm.reminderId
-      })
-      const updatedAlarms = await JSON.stringify(filteredAlarms)
-      await AsyncStorage.setItem('userAlarms', updatedAlarms)
-      this.props.refreshUserAlarms()
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  async clearAlarms() {
-    try {
-      await Notifications.cancelAllScheduledNotificationsAsync()
-      await AsyncStorage.removeItem('userAlarms')
       this.props.refreshUserAlarms()
     } catch (error) {
       console.error(error)

@@ -1,10 +1,37 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { View, Text, TouchableOpacity, ScrollView, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
+import { Notifications } from 'expo'
 import ss from '../../StyleSheet'
 
-const ReminderListPresenter = ({ alarms, clearAlarms }) => (
+const deleteAlarm = async alarm => {
+  try {
+    await Notifications.cancelScheduledNotificationAsync(alarm.reminderId)
+    const oldAlarms = await AsyncStorage.getItem('userAlarms')
+    const oldAlarmsJson = await JSON.parse(oldAlarms)
+    const filteredAlarms = oldAlarmsJson.filter(oldAlarm => {
+      return oldAlarm.reminderId !== alarm.reminderId
+    })
+    const updatedAlarms = await JSON.stringify(filteredAlarms)
+    await AsyncStorage.setItem('userAlarms', updatedAlarms)
+    this.props.refreshUserAlarms()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const clearAlarms = async () => {
+  try {
+    await Notifications.cancelAllScheduledNotificationsAsync()
+    await AsyncStorage.removeItem('userAlarms')
+    this.props.refreshUserAlarms()
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+const ReminderListPresenter = ({ alarms }) => (
   <View style={ss.invisiContainer}>
     <ScrollView showsVerticalScrollIndicator={false}>
       {alarms.map(alarm => {
