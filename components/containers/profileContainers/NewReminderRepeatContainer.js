@@ -10,7 +10,6 @@ import { NewReminderRepeatPresenter } from '../../presenters'
   NewReminderRepeatContainer passes through the necessary method from NewReminderContainer using
   react navigation params so that NewReminderRepeatPresenter can set the state of both Containers.
 */
-
 class NewReminderRepeatContainer extends React.Component {
   constructor(props) {
     super(props)

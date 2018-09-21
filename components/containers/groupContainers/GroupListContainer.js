@@ -9,7 +9,7 @@ class GroupListContainer extends React.Component {
 
   render() {
     return (
-      <View style={[ss.whiteContainer, ss.center]}>
+      <View style={[ss.invisiContainer, ss.center]}>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('PrivateGroup')}>
           <Text>This is the list of groups</Text>
         </TouchableOpacity>

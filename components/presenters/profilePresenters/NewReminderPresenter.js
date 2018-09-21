@@ -11,7 +11,6 @@ import ss from '../../StyleSheet'
   reminder. The NewReminderContainer methods and state information are passed through
   NewReminderPresenter to the respective screens using react navigation props.
 */
-
 const NewReminderPresenter = ({ navigation, chosenTime, setTime, setNewReminderName, newReminderName, setNewReminderSubject, newReminderSubject, setNewReminderRepeat, newReminderRepeat, androidPickerVisible, toggleAndroidPicker, toggleTimeWasSelected, timeWasSelected, saveNewAlarm }) => (
   <View style={ss.invisiContainer}>
     <ScrollView>
