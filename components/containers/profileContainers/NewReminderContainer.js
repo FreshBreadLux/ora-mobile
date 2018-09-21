@@ -5,15 +5,27 @@ import { fetchUserAlarms } from '../../../store'
 import { Notifications } from 'expo'
 import { NewReminderPresenter } from '../../presenters'
 
+/*
+  NewReminderContainer is responsible for keeping track of the information needed to create a new
+  reminder. It passes methods to NewReminderPresenter, which in turn passes those methods through
+  react navigation props to the respective utility screens.
+*/
+
 class NewReminderContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       chosenTime: new Date(),
       androidPickerVisible: false,
-      timeWasSelected: false
+      timeWasSelected: false,
+      newReminderName: 'Requests in Ora',
+      newReminderSubject: 'Cultivate a life of devotion',
+      newReminderRepeat: 'Daily',
     }
     this.setTime = this.setTime.bind(this)
+    this.setNewReminderName = this.setNewReminderName.bind(this)
+    this.setNewReminderSubject = this.setNewReminderSubject.bind(this)
+    this.setNewReminderRepeat = this.setNewReminderRepeat.bind(this)
     this.toggleAndroidPicker = this.toggleAndroidPicker.bind(this)
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
@@ -23,6 +35,18 @@ class NewReminderContainer extends React.Component {
 
   setTime(newTime) {
     this.setState({ chosenTime: newTime })
+  }
+
+  setNewReminderName(newReminderName) {
+    this.setState({ newReminderName })
+  }
+
+  setNewReminderSubject(newReminderSubject) {
+    this.setState({ newReminderSubject })
+  }
+
+  setNewReminderRepeat(newReminderRepeat) {
+    this.setState({ newReminderRepeat })
   }
 
   toggleAndroidPicker() {
@@ -93,14 +117,20 @@ class NewReminderContainer extends React.Component {
   }
 
   render() {
+    console.log('this.state:', this.state)
     return (
       <NewReminderPresenter
+        navigation={this.props.navigation}
         setTime={this.setTime}
+        setNewReminderName={this.setNewReminderName}
+        newReminderName={this.state.newReminderName}
+        setNewReminderSubject={this.setNewReminderSubject}
+        newReminderSubject={this.state.newReminderSubject}
+        setNewReminderRepeat={this.setNewReminderRepeat}
+        newReminderRepeat={this.state.newReminderRepeat}
         toggleAndroidPicker={this.toggleAndroidPicker}
         toggleTimeWasSelected={this.toggleTimeWasSelected}
         saveNewAlarm={this.saveNewAlarm}
-        deleteAlarm={this.deleteAlarm}
-        clearAlarms={this.clearAlarms}
         timeWasSelected={this.state.timeWasSelected}
         androidPickerVisible={this.state.androidPickerVisible}
         chosenTime={this.state.chosenTime} />

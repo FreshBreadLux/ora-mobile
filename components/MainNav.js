@@ -1,8 +1,8 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer, NewReminderRepeatContainer } from './containers'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter, NewReminderSubjectPresenter, NewReminderNamePresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
@@ -319,6 +319,30 @@ const ModalStackNav = StackNavigator({
       headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
       headerLeft: <NewReminderHeaderLeftPresenter navigation={navigation} />
     })
+  },
+  NewReminderSubject: {
+    screen: NewReminderSubjectPresenter,
+    navigationOptions: {
+      title: 'Subject',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+    }
+  },
+  NewReminderName: {
+    screen: NewReminderNamePresenter,
+    navigationOptions: {
+      title: 'Name',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+    }
+  },
+  NewReminderRepeat: {
+    screen: NewReminderRepeatContainer,
+    navigationOptions: {
+      title: 'Repeat',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+    }
   }
 }, {
   mode: 'modal',
