@@ -145,6 +145,7 @@ class NewReminderContainer extends React.Component {
       const updatedAlarms = await JSON.stringify(spreadAlarms)
       await AsyncStorage.setItem('userAlarms', updatedAlarms)
       this.props.refreshUserAlarms()
+      this.props.navigation.goBack()
     } catch (error) {
       console.error(error)
     }
