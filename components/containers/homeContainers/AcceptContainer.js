@@ -22,7 +22,7 @@ class AcceptContainer extends React.Component {
     this.loadReflection()
   }
 
-  async loadReflection() {
+  loadReflection() {
     this.props.dispatchSetReflectionMode()
     ampLogEvent(ampEvents.START_REFLECTION)
   }
