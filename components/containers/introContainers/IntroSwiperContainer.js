@@ -30,7 +30,7 @@ export default class IntroSwiperContainer extends React.Component {
   render() {
     return (
       <View style={{flex: 1, backgroundColor: '#fafafa'}}>
-        <Swiper loop={false} ref={this.swiper}>
+        <Swiper loop={false} ref={this.swiper} showsPagination={false}>
           <WelcomeContainer scroll={this.scroll} />
           {this.state.alarmVisible
           ? <SetAlarmContainer verifyStorageKey={this.props.verifyStorageKey} />
