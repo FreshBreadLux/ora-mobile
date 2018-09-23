@@ -1,105 +1,122 @@
 import React from 'react'
-import { View, SafeAreaView, Text, TouchableOpacity, TextInput, ScrollView, Image, ActivityIndicator } from 'react-native'
-import { LinearGradient } from 'expo'
+import { View, SafeAreaView, Text, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import ss from '../../StyleSheet'
 
-const SignupFormPresenter = ({ userSignup, setEmail, setPassword, focusPassword, referencePassword, error, email, password, checkEmail, userExists, checkEmailReturned, userLogin, failed, sending }) => (
-  <View style={ss.invisiContainer}>
-    <View style={ss.backgroundImageFrame}>
-      <Image
-        source={require('../../../assets/images/Rome/Profile.jpg')}
-        style={ss.backgroundImage} />
-    </View>
-    <View style={ss.backgroundImageFrame}>
-      <LinearGradient
-        colors={['transparent', '#0c2461']}
-        start={[0.5, 0]}
-        end={[0.5, 1]}
-        style={ss.flex1} />
-    </View>
-    <SafeAreaView style={ss.invisiContainer}>
-      <ScrollView
-        keyboardShouldPersistTaps="handled"
-        contentContainerStyle={ss.flex1}>
-        <View style={[ss.flex3, ss.padding15]}>
-          <View style={[ss.flex1, ss.center, ss.padding15]}>
-            <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>
-              {error ? `${error}` : null}
-            </Text>
-          </View>
-          <View style={[ss.addViewSpacing, ss.center]}>
-            <TextInput
-              style={[ss.fullWidth, ss.subHeader, ss.textInput]}
-              underlineColorAndroid="transparent"
-              placeholder="Email"
-              placeholderTextColor="#555"
-              keyboardType="email-address"
-              autoCorrect={false}
-              autoCapitalize="none"
-              onChangeText={setEmail}
-              onSubmitEditing={focusPassword}
-              onBlur={checkEmail}
-              value={email}
-            />
-          </View>
-          {checkEmailReturned && userExists
-            ? <View>
-              <Text style={[ss.subHeader, ss.centerText, ss.whiteText]}>
-                Welcome! Looks like you already have a profile. Please login with the password you created on our website.
-              </Text>
+const determineButtonText = (checkEmailReturned, userExists, failed, sending, succeeded) => {
+  if (checkEmailReturned && userExists) {
+    if (failed) return <Text style={[ss.buttonText, ss.whiteText]}>LOGIN FAILED</Text>
+    else if (sending) return <ActivityIndicator size="small" color="#fff" />
+    else if (succeeded) return <Text style={[ss.buttonText, ss.whiteText]}>SUCCEEDED</Text>
+    else return <Text style={[ss.buttonText, ss.whiteText]}>LOGIN</Text>
+  }
+  if (failed) return <Text style={[ss.buttonText, ss.whiteText]}>SIGNUP FAILED</Text>
+  else if (sending) return <ActivityIndicator size="small" color="#fff" />
+  else if (succeeded) return <Text style={[ss.buttonText, ss.whiteText]}>SUCCEEDED</Text>
+  else return <Text style={[ss.buttonText, ss.whiteText]}>SIGN UP</Text>
+}
+
+const SignupFormPresenter = ({ userSignup, setFirstName, setLastName, setEmail, setPassword, focusLastName, focusEmail, focusPassword, referenceLastName, referenceEmail, referencePassword, error, firstName, lastName, email, password, checkEmail, userExists, checkEmailReturned, userLogin, failed, sending, succeeded }) => (
+  <SafeAreaView style={ss.invisiContainer}>
+    <KeyboardAwareScrollView>
+      <View style={ss.flex2}>
+        {error
+        ? <Text numberOfLines={2} style={[ss.subBody, ss.redText, ss.centerText, ss.padding10]}>{error}</Text>
+        : <Text style={[ss.tagLine, ss.centerText, ss.padding10]}>SIGN UP TO GET STARTED</Text>
+        }
+        <View style={[ss.row, ss.fullWidth]}>
+          <Text style={[ss.halfWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>First Name</Text>
+          <Text style={[ss.halfWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>Last Name</Text>
+        </View>
+        <View style={[ss.row, ss.fullWidth]}>
+          <TextInput
+            style={[ss.halfWidth, ss.padding10, ss.subBody, ss.whiteBackground, ss.bottomBorder, ss.topBorder]}
+            underlineColorAndroid="transparent"
+            placeholder="Thomas"
+            placeholderTextColor="#ccc"
+            keyboardType="default"
+            autoCorrect={false}
+            onChangeText={setFirstName}
+            onSubmitEditing={focusLastName}
+            value={firstName} />
+          <TextInput
+            ref={referenceLastName}
+            style={[ss.halfWidth, ss.padding10, ss.subBody, ss.whiteBackground, ss.bottomBorder, ss.topBorder]}
+            underlineColorAndroid="transparent"
+            placeholder="Aquinas"
+            placeholderTextColor="#ccc"
+            keyboardType="default"
+            autoCorrect={false}
+            onChangeText={setLastName}
+            onSubmitEditing={focusEmail}
+            value={lastName} />
+        </View>
+        <View style={[ss.row, ss.fullWidth]}>
+          <Text style={[ss.fullWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>Email</Text>
+        </View>
+        <View style={[ss.row, ss.fullWidth]}>
+          <TextInput
+            ref={referenceEmail}
+            style={[ss.fullWidth, ss.padding10, ss.subBody, ss.whiteBackground, ss.bottomBorder, ss.topBorder]}
+            underlineColorAndroid="transparent"
+            placeholder="summa@theologica.com"
+            placeholderTextColor="#ccc"
+            keyboardType="email-address"
+            autoCorrect={false}
+            autoCapitalize="none"
+            onChangeText={setEmail}
+            onSubmitEditing={focusPassword}
+            onBlur={checkEmail}
+            value={email} />
+        </View>
+        {checkEmailReturned && userExists
+          ? <View>
+              <View style={[ss.row, ss.fullWidth]}>
+                <Text style={[ss.fullWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>Welcome back!</Text>
+              </View>
+              <TextInput
+                ref={referencePassword}
+                style={[ss.fullWidth, ss.padding10, ss.subBody, ss.whiteBackground, ss.bottomBorder, ss.topBorder]}
+                underlineColorAndroid="transparent"
+                placeholder="Please use existing password"
+                placeholderTextColor="#ccc"
+                secureTextEntry={true}
+                onChangeText={setPassword}
+                value={password} />
             </View>
-            : null
-          }
-          <View style={[ss.addViewSpacing, ss.center]}>
-            <TextInput
-              ref={referencePassword}
-              style={[ss.fullWidth, ss.subHeader, ss.textInput]}
-              underlineColorAndroid="transparent"
-              placeholder="Password"
-              placeholderTextColor="#555"
-              secureTextEntry={true}
-              onChangeText={setPassword}
-              value={password}
-            />
-          </View>
-          <View style={[ss.flex1, ss.center]}>
-            {checkEmailReturned && userExists
-              ? <TouchableOpacity
-                style={[ss.button, ss.halfWidth]}
+          : <View>
+              <View style={[ss.row, ss.fullWidth]}>
+                <Text style={[ss.fullWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>Password</Text>
+              </View>
+              <TextInput
+                ref={referencePassword}
+                style={[ss.fullWidth, ss.padding10, ss.subBody, ss.whiteBackground, ss.bottomBorder, ss.topBorder]}
+                underlineColorAndroid="transparent"
+                placeholder="I don't know, something cool"
+                placeholderTextColor="#ccc"
+                secureTextEntry={true}
+                onChangeText={setPassword}
+                value={password} />
+            </View>
+        }
+        <View style={[ss.center, ss.addMedViewSpacing]}>
+          {checkEmailReturned && userExists
+            ? <TouchableOpacity
+                style={ss.blueButton}
                 onPress={userLogin}>
-                {failed
-                  ? <Text style={ss.buttonText}>LOGIN FAILED</Text>
-                  : <View>
-                    {sending
-                      ? <ActivityIndicator size="small" color="#1e3799" />
-                      : <Text style={ss.buttonText}>LOGIN</Text>
-                    }
-                  </View>
-                }
+                {determineButtonText(checkEmailReturned, userExists, failed, sending, succeeded)}
               </TouchableOpacity>
-              : <TouchableOpacity
+            : <TouchableOpacity
                 disabled={!checkEmailReturned}
-                style={[ss.button, ss.halfWidth]}
+                style={ss.blueButton}
                 onPress={userSignup}>
-                {failed
-                  ? <Text style={ss.buttonText}>SIGNUP FAILED</Text>
-                  : <View>
-                    {sending
-                      ? <ActivityIndicator size="small" color="#0c2461" />
-                      : <Text style={ss.buttonText}>SIGN UP</Text>
-                    }
-                  </View>
-                }
+                {determineButtonText(checkEmailReturned, userExists, failed, sending, succeeded)}
               </TouchableOpacity>
-            }
-          </View>
+          }
         </View>
-        <View style={[ss.flex2, ss.center, ss.padding15]}>
-          <Text style={[ss.subHeader, ss.whiteText, ss.centerText]}>As a matter of safety and security, we require users to be logged in before submitting prayers. We promise never to share your information with anyone</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  </View>
+      </View>
+    </KeyboardAwareScrollView>
+  </SafeAreaView>
 )
 
 export default SignupFormPresenter

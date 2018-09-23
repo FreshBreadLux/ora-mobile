@@ -1,20 +1,8 @@
 import React from 'react'
 import axios from 'axios'
-import { AsyncStorage, Platform } from 'react-native'
-import { Permissions, Notifications } from 'expo'
+import { AsyncStorage } from 'react-native'
 import { SignupFormPresenter } from '../../presenters'
 import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
-
-async function registerForPushNotificationsAsync() {
-  console.log('PROMPTING USER')
-  let permissionsResult = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-  console.log('STATUS RESOLVED:', permissionsResult)
-  if (permissionsResult.status !== 'granted') return
-  console.log('GETTING EXPO PUSH TOKEN')
-  let token = await Notifications.getExpoPushTokenAsync()
-  console.log('TOKEN RETRIEVED:', token)
-  return token
-}
 
 function setAsyncStorage(item, selectedValue) {
   return AsyncStorage.setItem(item, selectedValue)
@@ -24,6 +12,8 @@ export default class SignupFormContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      firstName: null,
+      lastName: null,
       email: null,
       password: null,
       error: false,
@@ -31,67 +21,63 @@ export default class SignupFormContainer extends React.Component {
       checkEmailReturned: false,
       sending: false,
       failed: false,
+      succeeded: false,
     }
     this.setEmail = this.setEmail.bind(this)
     this.userLogin = this.userLogin.bind(this)
     this.userSignup = this.userSignup.bind(this)
     this.checkEmail = this.checkEmail.bind(this)
+    this.focusEmail = this.focusEmail.bind(this)
+    this.setLastName = this.setLastName.bind(this)
     this.setPassword = this.setPassword.bind(this)
+    this.setFirstName = this.setFirstName.bind(this)
+    this.focusLastName = this.focusLastName.bind(this)
     this.focusPassword = this.focusPassword.bind(this)
+    this.referenceEmail = this.referenceEmail.bind(this)
+    this.referenceLastName = this.referenceLastName.bind(this)
     this.referencePassword = this.referencePassword.bind(this)
   }
 
-  async userSignup() {
-    try {
-      if (this.state.email && this.state.password) {
-        this.setState({ sending: true })
-        console.log('REGISTERING FOR PUSH NOTIFICATIONS')
-        let token = await registerForPushNotificationsAsync()
-        console.log('TOKEN RESOLVED TO:', token)
-        axios.post(`${ROOT_URL}/api/users`, {
-          email: this.state.email,
-          password: this.state.password,
-          pushToken: token,
-        })
-        .then(response => JSON.stringify(response.data))
-        .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
-        .then(() => {
-          axios.post('https://api.sendinblue.com/v3/contacts', {
-            email: this.state.email,
-            updateEnabled: true
-          }, {
-            headers: {'api-key': SENDINBLUE_API_KEY_V3 }
-          })
-          axios.post('https://api.sendinblue.com/v3/smtp/templates/2/send', {
-            emailTo: [this.state.email],
-          }, {
-            headers: {'api-key': SENDINBLUE_API_KEY_V3 }
-          })
-        })
-        .then(() => {
-          this.props.showAlarm()
-        })
-        .catch(error => {
-          if (error.response && error.response.status === 405) {
-            this.setState({error: 'Please submit a valid email address'})
-          }
-          if (error.response && error.response.status === 406) {
-            this.setState({error: 'That email already exists in our database'})
-          }
-          this.setState({ sending: false, failed: true })
-          setTimeout(() => this.setState({failed: false}), 10000)
-        })
-      } else {
-        this.setState({ error: 'Please provide both an email and a password' })
-      }
-    } catch (error) {
-      console.log(error)
-      this.setState({
-        error: error.response.request._response,
-        sending: false,
-        failed: true,
+  userSignup() {
+    if (this.state.email && this.state.password) {
+      this.setState({ sending: true })
+      axios.post(`${ROOT_URL}/api/users`, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
       })
-      setTimeout(() => this.setState({failed: false}), 10000)
+      .then(response => JSON.stringify(response.data))
+      .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
+      .then(() => {
+        axios.post('https://api.sendinblue.com/v3/contacts', {
+          email: this.state.email,
+          updateEnabled: true
+        }, {
+          headers: {'api-key': SENDINBLUE_API_KEY_V3 }
+        })
+        axios.post('https://api.sendinblue.com/v3/smtp/templates/2/send', {
+          emailTo: [this.state.email],
+        }, {
+          headers: {'api-key': SENDINBLUE_API_KEY_V3 }
+        })
+      })
+      .then(() => {
+        this.setState({ succeeded: true })
+        setTimeout(() => this.props.scroll(1), 2000)
+      })
+      .catch(error => {
+        if (error.response && error.response.status === 405) {
+          this.setState({error: 'Please submit a valid email address'})
+        }
+        if (error.response && error.response.status === 406) {
+          this.setState({error: 'That email already exists in our database'})
+        }
+        this.setState({ sending: false, failed: true })
+        setTimeout(() => this.setState({failed: false}), 10000)
+      })
+    } else {
+      this.setState({ error: 'Please provide both an email and a password' })
     }
   }
 
@@ -110,43 +96,34 @@ export default class SignupFormContainer extends React.Component {
     }
   }
 
-  async userLogin() {
-    try {
-      if (this.state.email && this.state.password) {
-        this.setState({ sending: true })
-        let token
-        if (!(Platform.OS === 'android' && __DEV__)) {
-          token = await registerForPushNotificationsAsync()
-        }
-        axios.post(`${ROOT_URL}/api/users/sessions`, {
-          email: this.state.email,
-          password: this.state.password
-        })
-        .then(response => {
-          return axios.put(`${ROOT_URL}/api/users/${response.data.userId}`, {
-            pushToken: token
-          })
-          .then(() => response)
-        })
-        .then(result => JSON.stringify(result.data))
-        .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
-        .then(() => this.props.showAlarm())
-        .catch(() => {
-          this.setState({ sending: false, failed: true })
-          setTimeout(() => this.setState({failed: false}), 10000)
-        })
-      } else {
-        this.setState({ error: 'Please provide both an email and a password' })
-      }
-    } catch (error) {
-      console.log(error)
-      this.setState({
-        error: error.response.request._response,
-        sending: false,
-        failed: true,
+  userLogin() {
+    if (this.state.email && this.state.password) {
+      this.setState({ sending: true })
+      axios.post(`${ROOT_URL}/api/users/sessions`, {
+        email: this.state.email,
+        password: this.state.password
       })
-      setTimeout(() => this.setState({failed: false}), 10000)
+      .then(result => JSON.stringify(result.data))
+      .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
+      .then(() => {
+        this.setState({ succeeded: true })
+        setTimeout(() => this.props.scroll(1), 2000)
+      })
+      .catch(() => {
+        this.setState({ sending: false, failed: true })
+        setTimeout(() => this.setState({failed: false}), 10000)
+      })
+    } else {
+      this.setState({ error: 'Please provide both an email and a password' })
     }
+  }
+
+  setFirstName(firstName) {
+    this.setState({firstName})
+  }
+
+  setLastName(lastName) {
+    this.setState({lastName})
   }
 
   setEmail(email) {
@@ -157,8 +134,24 @@ export default class SignupFormContainer extends React.Component {
     this.setState({password})
   }
 
+  referenceLastName(ref) {
+    this.lastName = ref
+  }
+
+  referenceEmail(ref) {
+    this.email = ref
+  }
+
   referencePassword(ref) {
     this.password = ref
+  }
+
+  focusLastName() {
+    this.lastName.focus()
+  }
+
+  focusEmail() {
+    this.email.focus()
   }
 
   focusPassword() {
@@ -176,11 +169,20 @@ export default class SignupFormContainer extends React.Component {
         sending={this.state.sending}
         checkEmail={this.checkEmail}
         userSignup={this.userSignup}
+        focusEmail={this.focusEmail}
+        lastName={this.state.lastName}
         setPassword={this.setPassword}
         password={this.state.password}
+        setLastName={this.setLastName}
+        succeeded={this.state.succeeded}
+        firstName={this.state.firstName}
+        setFirstName={this.setFirstName}
         userExists={this.state.userExists}
         focusPassword={this.focusPassword}
+        focusLastName={this.focusLastName}
+        referenceEmail={this.referenceEmail}
         referencePassword={this.referencePassword}
+        referenceLastName={this.referenceLastName}
         checkEmailReturned={this.state.checkEmailReturned} />
     )
   }

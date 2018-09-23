@@ -33,7 +33,7 @@ export default class WelcomeContainer extends React.Component {
         })
       ]),
       Animated.timing(this.state.answerTextFade, { toValue: 1, duration: 1000, delay: 1500 }),
-      Animated.timing(this.state.descriptionTextFade, { toValue: 1, duration: 1500 }),
+      Animated.timing(this.state.descriptionTextFade, { toValue: 1, duration: 1500, delay: 1500 }),
       Animated.timing(this.state.buttonFade, { toValue: 1, duration: 500, delay: 1500 })
     ]).start()
   }

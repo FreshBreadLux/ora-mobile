@@ -10,12 +10,12 @@ export default class IntroSwiperContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      alarmVisible: false
+      registerNotificationsVisible: false
     }
     this.swiper = React.createRef()
 
     this.scroll = this.scroll.bind(this)
-    this.showAlarm = this.showAlarm.bind(this)
+    this.showRegisterNotifications = this.showRegisterNotifications.bind(this)
   }
 
   scroll(numberOfPages) {
@@ -23,8 +23,8 @@ export default class IntroSwiperContainer extends React.Component {
     if (swiper) swiper.scrollBy(numberOfPages)
   }
 
-  showAlarm() {
-    this.setState({ alarmVisible: true })
+  showRegisterNotifications() {
+    this.setState({ registerNotificationsVisible: true })
   }
 
   render() {
@@ -32,9 +32,9 @@ export default class IntroSwiperContainer extends React.Component {
       <View style={{flex: 1, backgroundColor: '#fafafa'}}>
         <Swiper loop={false} ref={this.swiper} showsPagination={false}>
           <WelcomeContainer scroll={this.scroll} />
-          {this.state.alarmVisible
+          {this.state.registerNotificationsVisible
           ? <SetAlarmContainer verifyStorageKey={this.props.verifyStorageKey} />
-          : <SignupFormContainer showAlarm={this.showAlarm} />
+          : <SignupFormContainer showRegisterNotifications={this.showRegisterNotifications} />
           }
         </Swiper>
       </View>
