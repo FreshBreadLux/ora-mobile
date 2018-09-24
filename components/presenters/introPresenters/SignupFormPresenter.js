@@ -18,7 +18,7 @@ const determineButtonText = (checkEmailReturned, userExists, failed, sending, su
 
 const SignupFormPresenter = ({ userSignup, setFirstName, setLastName, setEmail, setPassword, focusLastName, focusEmail, focusPassword, referenceLastName, referenceEmail, referencePassword, error, firstName, lastName, email, password, checkEmail, userExists, checkEmailReturned, userLogin, failed, sending, succeeded }) => (
   <SafeAreaView style={ss.invisiContainer}>
-    <KeyboardAwareScrollView>
+    <KeyboardAwareScrollView keyboardShouldPersistTaps="handled">
       <View style={ss.flex2}>
         {error
         ? <Text numberOfLines={2} style={[ss.subBody, ss.redText, ss.centerText, ss.padding10]}>{error}</Text>
@@ -82,7 +82,9 @@ const SignupFormPresenter = ({ userSignup, setFirstName, setLastName, setEmail, 
                 placeholderTextColor="#ccc"
                 secureTextEntry={true}
                 onChangeText={setPassword}
-                value={password} />
+                value={password}
+                onSubmitEditing={userLogin}
+                returnKeyType="go" />
             </View>
           : <View>
               <View style={[ss.row, ss.fullWidth]}>
@@ -96,19 +98,21 @@ const SignupFormPresenter = ({ userSignup, setFirstName, setLastName, setEmail, 
                 placeholderTextColor="#ccc"
                 secureTextEntry={true}
                 onChangeText={setPassword}
-                value={password} />
+                value={password}
+                onSubmitEditing={userSignup}
+                returnKeyType="go" />
             </View>
         }
         <View style={[ss.center, ss.addMedViewSpacing]}>
           {checkEmailReturned && userExists
             ? <TouchableOpacity
-                style={ss.blueButton}
+                style={[ss.blueButton, ss.halfWidth]}
                 onPress={userLogin}>
                 {determineButtonText(checkEmailReturned, userExists, failed, sending, succeeded)}
               </TouchableOpacity>
             : <TouchableOpacity
                 disabled={!checkEmailReturned}
-                style={ss.blueButton}
+                style={[ss.blueButton, ss.halfWidth]}
                 onPress={userSignup}>
                 {determineButtonText(checkEmailReturned, userExists, failed, sending, succeeded)}
               </TouchableOpacity>

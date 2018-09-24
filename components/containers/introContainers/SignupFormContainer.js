@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage, Keyboard } from 'react-native'
 import { SignupFormPresenter } from '../../presenters'
 import ROOT_URL, { SENDINBLUE_API_KEY_V3 } from '../../../config'
 
@@ -39,6 +39,7 @@ export default class SignupFormContainer extends React.Component {
   }
 
   userSignup() {
+    Keyboard.dismiss()
     if (this.state.email && this.state.password) {
       this.setState({ sending: true })
       axios.post(`${ROOT_URL}/api/users`, {
@@ -63,7 +64,7 @@ export default class SignupFormContainer extends React.Component {
         })
       })
       .then(() => {
-        this.setState({ succeeded: true })
+        this.setState({ sending: false, succeeded: true })
         setTimeout(() => this.props.scroll(1), 2000)
       })
       .catch(error => {
@@ -97,6 +98,7 @@ export default class SignupFormContainer extends React.Component {
   }
 
   userLogin() {
+    Keyboard.dismiss()
     if (this.state.email && this.state.password) {
       this.setState({ sending: true })
       axios.post(`${ROOT_URL}/api/users/sessions`, {
@@ -106,7 +108,7 @@ export default class SignupFormContainer extends React.Component {
       .then(result => JSON.stringify(result.data))
       .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
       .then(() => {
-        this.setState({ succeeded: true })
+        this.setState({ sending: false, succeeded: true })
         setTimeout(() => this.props.scroll(1), 2000)
       })
       .catch(() => {
