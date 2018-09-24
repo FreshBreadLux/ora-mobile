@@ -68,7 +68,24 @@ class NewReminderContainer extends React.Component {
     this.setNewReminderRepeat = this.setNewReminderRepeat.bind(this)
     this.toggleAndroidPicker = this.toggleAndroidPicker.bind(this)
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
+    this.checkNavigationParams = this.checkNavigationParams.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
+  }
+
+  componentDidMount() {
+    this.checkNavigationParams()
+  }
+
+  checkNavigationParams() {
+    let reminderConfig
+    if (this.props.navigation) {
+      reminderConfig = this.props.navigation.getParam('reminderConfig', {
+        newReminderName: 'Requests in Ora',
+        newReminderSubject: 'Cultivate a life of devotion',
+        newReminderRepeat: 'Daily',
+      })
+    }
+    if (reminderConfig) this.setState(reminderConfig)
   }
 
   setTime(newTime) {
@@ -144,8 +161,17 @@ class NewReminderContainer extends React.Component {
           }]
       const updatedAlarms = await JSON.stringify(spreadAlarms)
       await AsyncStorage.setItem('userAlarms', updatedAlarms)
-      this.props.refreshUserAlarms()
-      this.props.navigation.goBack()
+
+      /*
+        If a completion callback was supplied as a prop, call it after saving the new alarm.
+        If not, default to refreshing the user's alarms and navigating back.
+      */
+      if (this.props.completionCallback) {
+        this.props.completionCallback()
+      } else {
+        this.props.refreshUserAlarms()
+        this.props.navigation.goBack()
+      }
     } catch (error) {
       console.error(error)
     }

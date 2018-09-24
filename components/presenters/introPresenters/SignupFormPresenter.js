@@ -22,7 +22,7 @@ const SignupFormPresenter = ({ userSignup, setFirstName, setLastName, setEmail, 
       <View style={ss.flex2}>
         {error
         ? <Text numberOfLines={2} style={[ss.subBody, ss.redText, ss.centerText, ss.padding10]}>{error}</Text>
-        : <Text style={[ss.tagLine, ss.centerText, ss.padding10]}>SIGN UP TO GET STARTED</Text>
+        : <Text style={[ss.tagLine, {fontFamily: 'ralewayBold'}, ss.centerText, ss.padding10]}>SIGN UP TO GET STARTED</Text>
         }
         <View style={[ss.row, ss.fullWidth]}>
           <Text style={[ss.halfWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15, paddingBottom: 4}]}>First Name</Text>

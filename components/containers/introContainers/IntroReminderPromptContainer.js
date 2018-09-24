@@ -1,12 +1,11 @@
 import React from 'react'
-import { View, AsyncStorage, Platform } from 'react-native'
+import { AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { notFirstRodeo } from '../../../store'
 import { Notifications } from 'expo'
-import { IOSSetAlarmPresenter, AndroidSetAlarmPresenter } from '../../presenters'
-import ss from '../../StyleSheet'
+import { IntroReminderPromptPresenter } from '../../presenters'
 
-class SetAlarmContainer extends React.Component {
+class IntroReminderPromptContainer extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -18,6 +17,7 @@ class SetAlarmContainer extends React.Component {
     this.toggleAndroidPicker = this.toggleAndroidPicker.bind(this)
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.finishIntroAndLogUserIn = this.finishIntroAndLogUserIn.bind(this)
   }
 
   setTime(newTime) {
@@ -61,23 +61,17 @@ class SetAlarmContainer extends React.Component {
     }
   }
 
+  async finishIntroAndLogUserIn() {
+    await this.props.verifyStorageKey()
+    await AsyncStorage.setItem('seenOraIntro_v1.1.0', 'true')
+    this.props.noIntroNeeded()
+  }
+
   render() {
     return (
-      <View style={ss.invisiContainer}>
-        {Platform.OS === 'ios'
-        ? <IOSSetAlarmPresenter
-            setTime={this.setTime}
-            handleSubmit={this.handleSubmit}
-            chosenTime={this.state.chosenTime} />
-        : <AndroidSetAlarmPresenter
-            setTime={this.setTime}
-            handleSubmit={this.handleSubmit}
-            timeWasSelected={this.state.timeWasSelected}
-            toggleAndroidPicker={this.toggleAndroidPicker}
-            toggleTimeWasSelected={this.toggleTimeWasSelected}
-            androidPickerVisible={this.state.androidPickerVisible} />
-        }
-      </View>
+      <IntroReminderPromptPresenter
+        navigation={this.props.navigation}
+        finishIntroAndLogUserIn={this.finishIntroAndLogUserIn} />
     )
   }
 }
@@ -86,4 +80,4 @@ const mapDispatch = dispatch => ({
   noIntroNeeded: () => dispatch(notFirstRodeo())
 })
 
-export default connect(null, mapDispatch)(SetAlarmContainer)
+export default connect(null, mapDispatch)(IntroReminderPromptContainer)

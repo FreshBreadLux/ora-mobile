@@ -48,7 +48,11 @@ export default class SignupFormContainer extends React.Component {
         email: this.state.email,
         password: this.state.password,
       })
-      .then(response => JSON.stringify(response.data))
+      .then(result => {
+        console.log('result:', result)
+        this.props.setUserId(result.data.userId)
+        return JSON.stringify(result.data)
+      })
       .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
       .then(() => {
         axios.post('https://api.sendinblue.com/v3/contacts', {
@@ -65,7 +69,7 @@ export default class SignupFormContainer extends React.Component {
       })
       .then(() => {
         this.setState({ sending: false, succeeded: true })
-        setTimeout(() => this.props.scroll(1), 2000)
+        setTimeout(() => this.props.scroll(1), 1000)
       })
       .catch(error => {
         if (error.response && error.response.status === 405) {
@@ -100,16 +104,27 @@ export default class SignupFormContainer extends React.Component {
   userLogin() {
     Keyboard.dismiss()
     if (this.state.email && this.state.password) {
+      /*
+        Since we're logging the user in, the first and last names will need to be stored on
+        the swiper's state so that they can be passed into a put route in a later scene.
+      */
+      this.props.setFirstName(this.state.firstName)
+      this.props.setLastName(this.state.lastName)
+
       this.setState({ sending: true })
       axios.post(`${ROOT_URL}/api/users/sessions`, {
         email: this.state.email,
         password: this.state.password
       })
-      .then(result => JSON.stringify(result.data))
+      .then(result => {
+        console.log('result:', result)
+        this.props.setUserId(result.data.userId)
+        return JSON.stringify(result.data)
+      })
       .then(oraAuth => setAsyncStorage('oraAuth_v1.1.0', oraAuth))
       .then(() => {
         this.setState({ sending: false, succeeded: true })
-        setTimeout(() => this.props.scroll(1), 2000)
+        setTimeout(() => this.props.scroll(1), 1000)
       })
       .catch(() => {
         this.setState({ sending: false, failed: true })

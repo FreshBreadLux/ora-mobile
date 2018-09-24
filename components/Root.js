@@ -6,6 +6,7 @@ import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetc
 import { IntroSwiperContainer, LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
+import IntroNav from './IntroNav'
 import { ampInitialize } from './analytics'
 import ss from './StyleSheet'
 
@@ -165,7 +166,7 @@ class Root extends React.Component {
           </View>
         : <View style={ss.invisiContainer}>
           {this.props.firstTime
-          ? <IntroSwiperContainer verifyStorageKey={this.verifyStorageKey} />
+          ? <IntroNav screenProps={{verifyStorageKey: this.verifyStorageKey}} />
           : <View style={ss.invisiContainer}>
             {this.props.isLoggedIn
             ? <View style={ss.invisiContainer}>
