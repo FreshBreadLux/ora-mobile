@@ -57,6 +57,7 @@ export default class IntroSwiperContainer extends React.Component {
             lastName={this.state.lastName}
             firstName={this.state.firstName} />
           <IntroReminderPromptContainer
+            scroll={this.scroll}
             navigation={this.props.navigation}
             verifyStorageKey={this.props.screenProps.verifyStorageKey} />
         </Swiper>

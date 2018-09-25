@@ -7,6 +7,10 @@ import { NewReminderPresenter } from '../../presenters'
 
 const WEEK_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
+const defaultCompletionCallback = () => (
+  console.log('no completion callback was supplied; this is the default log')
+)
+
 const returnChosenDayValue = chosenDay => {
   // loops through the days of the week and returns index value when it finds a match
   for (let i = 0; i < WEEK_DAYS.length; i++) {
@@ -70,22 +74,24 @@ class NewReminderContainer extends React.Component {
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.checkNavigationParams = this.checkNavigationParams.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
+    this.defaultCompletionCallback = this.defaultCompletionCallback.bind(this)
   }
 
   componentDidMount() {
     this.checkNavigationParams()
   }
 
+  /*
+    checkNavigationParams checks to see if the new reminder should be auto-populated with
+    values passed through navigation params, or if the default configuration should be supplied.
+  */
   checkNavigationParams() {
-    let reminderConfig
-    if (this.props.navigation) {
-      reminderConfig = this.props.navigation.getParam('reminderConfig', {
-        newReminderName: 'Requests in Ora',
-        newReminderSubject: 'Cultivate a life of devotion',
-        newReminderRepeat: 'Daily',
-      })
-    }
-    if (reminderConfig) this.setState(reminderConfig)
+    const reminderConfig = this.props.navigation.getParam('reminderConfig', {
+      newReminderName: 'Requests in Ora',
+      newReminderSubject: 'Cultivate a life of devotion',
+      newReminderRepeat: 'Daily',
+    })
+    this.setState(reminderConfig)
   }
 
   setTime(newTime) {
@@ -161,17 +167,15 @@ class NewReminderContainer extends React.Component {
           }]
       const updatedAlarms = await JSON.stringify(spreadAlarms)
       await AsyncStorage.setItem('userAlarms', updatedAlarms)
+      this.props.refreshUserAlarms()
 
       /*
-        If a completion callback was supplied as a prop, call it after saving the new alarm.
-        If not, default to refreshing the user's alarms and navigating back.
+        If a completion callback was supplied as a navigation param, call it after saving the new
+        reminder. If not, default to refreshing the user's alarms and navigating back.
       */
-      if (this.props.completionCallback) {
-        this.props.completionCallback()
-      } else {
-        this.props.refreshUserAlarms()
-        this.props.navigation.goBack()
-      }
+      const completionCallback = this.props.navigation.getParam('completionCallback', defaultCompletionCallback)
+      completionCallback()
+      this.props.navigation.goBack()
     } catch (error) {
       console.error(error)
     }
