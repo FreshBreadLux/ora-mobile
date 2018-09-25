@@ -10,7 +10,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
     <ScrollView>
       <TouchableOpacity onPress={() => navigation.navigate('EditProfile')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>Edit Profile</Text>
+          <Text style={ss.tagLine}>Edit Profile</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}
@@ -19,7 +19,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
       </TouchableOpacity>
       <TouchableOpacity>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>Notifications</Text>
+          <Text style={ss.tagLine}>Notifications</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}
@@ -28,7 +28,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Reminders')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>Reminders</Text>
+          <Text style={ss.tagLine}>Reminders</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}
@@ -37,7 +37,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Themes')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>Themes</Text>
+          <Text style={ss.tagLine}>Themes</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}
@@ -46,7 +46,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('Testimony')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>Testimony</Text>
+          <Text style={ss.tagLine}>Testimony</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}
@@ -55,7 +55,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
       </TouchableOpacity>
       <TouchableOpacity onPress={() => navigation.navigate('FAQ')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
-          <Text style={ss.subHeader}>FAQ</Text>
+          <Text style={ss.tagLine}>FAQ</Text>
           <Ionicons
             name="ios-arrow-forward"
             size={26}

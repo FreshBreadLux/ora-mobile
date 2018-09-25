@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { WelcomeContainer, SignupFormContainer, IntroReminderPromptContainer, EnableNotificationsContainer, NewReminderContainer } from '../../containers'
+import { WelcomeContainer, SignupFormContainer, IntroReminderPromptContainer, EnableNotificationsContainer, IntroConclusionContainer } from '../../containers'
 
 export default class IntroSwiperContainer extends React.Component {
   constructor(props) {
@@ -59,6 +59,8 @@ export default class IntroSwiperContainer extends React.Component {
           <IntroReminderPromptContainer
             scroll={this.scroll}
             navigation={this.props.navigation}
+            verifyStorageKey={this.props.screenProps.verifyStorageKey} />
+          <IntroConclusionContainer
             verifyStorageKey={this.props.screenProps.verifyStorageKey} />
         </Swiper>
       </View>

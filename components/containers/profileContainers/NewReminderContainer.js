@@ -74,7 +74,6 @@ class NewReminderContainer extends React.Component {
     this.toggleTimeWasSelected = this.toggleTimeWasSelected.bind(this)
     this.checkNavigationParams = this.checkNavigationParams.bind(this)
     this.saveNewAlarm = this.saveNewAlarm.bind(this)
-    this.defaultCompletionCallback = this.defaultCompletionCallback.bind(this)
   }
 
   componentDidMount() {

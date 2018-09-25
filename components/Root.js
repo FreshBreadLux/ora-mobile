@@ -1,9 +1,9 @@
 import React from 'react'
-import { View, AsyncStorage, AppState, StatusBar, Image, Platform } from 'react-native'
+import { View, AsyncStorage, AppState, StatusBar, Image, Platform, Animated } from 'react-native'
 import { Notifications } from 'expo'
 import { connect } from 'react-redux'
 import { fetchUserPrayers, fetchUserFollows, fetchUserViews, fetchUserInfo, fetchUserAlarms, login, notFirstRodeo, fetchFlagReasons, setTheme, fetchDailyReflection, fetchAndCacheDailyReward, fetchAndCacheSavedRewards, lockDailyReward } from '../store'
-import { IntroSwiperContainer, LoginFormContainer } from './containers'
+import { LoginFormContainer } from './containers'
 import { NotificationModal } from './presenters'
 import MainNav from './MainNav'
 import IntroNav from './IntroNav'
@@ -166,7 +166,7 @@ class Root extends React.Component {
           </View>
         : <View style={ss.invisiContainer}>
           {this.props.firstTime
-          ? <IntroNav screenProps={{verifyStorageKey: this.verifyStorageKey}} />
+          ? <IntroNav screenProps={{verifyStorageKey: this.verifyStorageKey, fadeOutIntroScreen: this.fadeOutIntroScreen}} />
           : <View style={ss.invisiContainer}>
             {this.props.isLoggedIn
             ? <View style={ss.invisiContainer}>
