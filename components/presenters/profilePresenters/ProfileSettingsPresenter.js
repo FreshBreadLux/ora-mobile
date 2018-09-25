@@ -17,7 +17,7 @@ const ProfileSettingsPresenter = ({ navigation, logUserOut }) => (
             style={{color: '#000'}} />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Notifications')}>
         <View style={[ss.row, ss.spaceBetween, ss.padding10, ss.whiteBackground, ss.bottomBorder]}>
           <Text style={ss.tagLine}>Notifications</Text>
           <Ionicons

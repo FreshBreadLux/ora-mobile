@@ -21,14 +21,12 @@ class EnableNotificationsContainer extends React.Component {
 
   async updateUserWithNotificationToken() {
     const { firstName, lastName, userId, scroll } = this.props
-    let token, updateBody
+    let pushToken, updateBody
     if (!(Platform.OS === 'android' && __DEV__)) {
-      token = await registerForNotifications()
+      pushToken = await registerForNotifications()
     }
-    if (firstName && lastName) updateBody = { firstName, lastName, token }
-    else updateBody = { token }
-    console.log('token:', token)
-    console.log('updateBody:', updateBody)
+    if (firstName && lastName) updateBody = { firstName, lastName, pushToken, notificationsEnabled: true }
+    else updateBody = { pushToken, notificationsEnabled: true }
     axios.put(`${ROOT_URL}/api/users/${userId}`, updateBody)
     .then(() => scroll(1))
     .catch(console.warn)

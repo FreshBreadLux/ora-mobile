@@ -4,3 +4,4 @@ export { default as NewReminderRepeatContainer } from './NewReminderRepeatContai
 export { default as ShareOraContainer } from './ShareOraContainer'
 export { default as RegisterOraMissionaryContainer } from './RegisterOraMissionaryContainer'
 export { default as EditProfileContainer } from './EditProfileContainer'
+export { default as NotificationsContainer } from './NotificationsContainer'

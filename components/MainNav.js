@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer, NewReminderRepeatContainer } from './containers'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupListContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer, NewReminderRepeatContainer, NotificationsContainer } from './containers'
 import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter, NewReminderSubjectPresenter, NewReminderNamePresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
@@ -219,6 +219,14 @@ const CardStackNav = StackNavigator({
     screen: TestimonyPresenter,
     navigationOptions: {
       title: 'Testimony',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
+    }
+  },
+  Notifications: {
+    screen: NotificationsContainer,
+    navigationOptions: {
+      title: 'Notifications',
       headerBackTitle: null,
       headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
     }
