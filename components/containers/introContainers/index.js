@@ -5,5 +5,5 @@ export { default as IntroReminderPromptContainer } from './IntroReminderPromptCo
 export { default as SignupFormContainer } from './SignupFormContainer'
 export { default as ForgotPasswordContainer } from './ForgotPasswordContainer'
 export { default as TimePickerAndroidContainer } from './TimePickerAndroidContainer'
-export { default as EnableNotificationsContainer } from './EnableNotificationsContainer'
+export { default as IntroEnableNotificationsContainer } from './IntroEnableNotificationsContainer'
 export { default as IntroConclusionContainer } from './IntroConclusionContainer'

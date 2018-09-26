@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import Swiper from 'react-native-swiper'
-import { WelcomeContainer, SignupFormContainer, IntroReminderPromptContainer, EnableNotificationsContainer, IntroConclusionContainer } from '../../containers'
+import { WelcomeContainer, SignupFormContainer, IntroReminderPromptContainer, IntroEnableNotificationsContainer, IntroConclusionContainer } from '../../containers'
 
 export default class IntroSwiperContainer extends React.Component {
   constructor(props) {
@@ -51,7 +51,7 @@ export default class IntroSwiperContainer extends React.Component {
             setUserId={this.setUserId}
             setLastName={this.setLastName}
             setFirstName={this.setFirstName}  />
-          <EnableNotificationsContainer
+          <IntroEnableNotificationsContainer
             scroll={this.scroll}
             userId={this.state.userId}
             lastName={this.state.lastName}

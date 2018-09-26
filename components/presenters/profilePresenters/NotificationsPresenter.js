@@ -24,7 +24,8 @@ const createIntervalButton = (notificationInterval, number, setNotificationInter
   </TouchableOpacity>
 )
 
-const NotificationsPresenter = ({ notificationInterval, setNotificationInterval, notificationsEnabled, disableNotifications, enableNotifications }) => (
+const NotificationsPresenter = ({ notificationInterval, setNotificationInterval, notificationsEnabled, disableNotifications, enableNotifications }) => {
+  return (
   <View style={ss.invisiContainer}>
     <Text style={[ss.subBody, ss.greyText, ss.padding10]}>These are the notification preferences for the Ora Prayer Network. To manage group notification preferences, go to the group's settings.</Text>
     <Text style={[ss.fullWidth, ss.padding10, {fontFamily: 'ralewayBold', fontSize: 15}]}>Batch notifications every:</Text>
@@ -55,7 +56,7 @@ const NotificationsPresenter = ({ notificationInterval, setNotificationInterval,
       </TouchableOpacity>
     </View>
   </View>
-)
+)}
 
 const mapState = state => ({
   notificationInterval: state.userInfo.notificationInterval,

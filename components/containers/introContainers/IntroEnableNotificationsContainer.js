@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { Permissions, Notifications } from 'expo'
-import { EnableNotificationsPresenter } from '../../presenters'
+import { IntroEnableNotificationsPresenter } from '../../presenters'
 import axios from 'axios'
 import ROOT_URL from '../../../config'
 
@@ -12,11 +12,19 @@ async function registerForNotifications() {
   return token
 }
 
-class EnableNotificationsContainer extends React.Component {
+class IntroEnableNotificationsContainer extends React.Component {
   constructor(props) {
     super(props)
 
+    this.disableNotifications = this.disableNotifications.bind(this)
     this.updateUserWithNotificationToken = this.updateUserWithNotificationToken.bind(this)
+  }
+
+  disableNotifications() {
+    const { userId, scroll } = this.props
+    axios.put(`${ROOT_URL}/api/users/${userId}`, { notificationsEnabled: false })
+    .then(() => scroll(1))
+    .catch(console.warn)
   }
 
   async updateUserWithNotificationToken() {
@@ -34,11 +42,11 @@ class EnableNotificationsContainer extends React.Component {
 
   render() {
     return (
-      <EnableNotificationsPresenter
-        scroll={this.props.scroll}
+      <IntroEnableNotificationsPresenter
+        disableNotifications={this.disableNotifications}
         updateUserWithNotificationToken={this.updateUserWithNotificationToken} />
     )
   }
 }
 
-export default EnableNotificationsContainer
+export default IntroEnableNotificationsContainer
