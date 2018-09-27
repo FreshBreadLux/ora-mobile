@@ -57,22 +57,22 @@ const ProfilePresenter = ({ navigation, userInfo, activeScrollView, setActiveScr
         <View style={[ss.row, ss.spaceAround, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('follows')}>
             <Ionicons
-              name="md-heart-outline"
+              name="md-heart"
               size={25}
-              style={activeScrollView === 'follows' ? {color: '#4577EE'} : {color: '#000'}} />
+              style={activeScrollView === 'follows' ? {color: '#000'} : {color: '#aaa'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('prayers')}>
             <Ionicons
-              name="md-book"
+              name="md-bookmarks"
               size={25}
-              style={activeScrollView === 'prayers' ? {color: '#4577EE'} : {color: '#000'}} />
+              style={activeScrollView === 'prayers' ? {color: '#000'} : {color: '#aaa'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('rewards')}>
             <Image
               style={{height: 28, width: 32, resizeMode: 'contain'}}
               source={(activeScrollView === 'rewards')
-              ? require('../../../assets/images/Key/keys-icon-blue-small.jpg')
-              : require('../../../assets/images/Key/keys-icon-black-small.jpg')} />
+              ? require('../../../assets/images/Key/keys-icon-black-small.jpg')
+              : require('../../../assets/images/Key/keys-icon-grey-small.jpg')} />
           </TouchableOpacity>
         </View>
         {currentScrollView}

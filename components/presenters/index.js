@@ -1,5 +1,6 @@
 export { default as BackgroundImageContainer } from './BackgroundImageContainer'
 export * from './introPresenters'
+export * from './groupPresenters'
 export * from './homePresenters'
 export * from './followPresenters'
 export * from './prayerPresenters'

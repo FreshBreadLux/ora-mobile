@@ -53,7 +53,7 @@ const PrayerScrollPresenter = ({ userId, prayers, refreshUserPrayers, navigation
                     style={{color: '#555'}} />
                   </View>
               </View>
-              <Text numberOfLines={2} style={[ss.subBody, ss.greyText]}>{prayer.body}</Text>
+              <Text numberOfLines={2} style={[ss.subBody, ss.greyText, {paddingRight: 10}]}>{prayer.body}</Text>
             </View>
           </View>
         </TouchableOpacity>

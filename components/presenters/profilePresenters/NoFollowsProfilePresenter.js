@@ -6,7 +6,7 @@ import ss from '../../StyleSheet'
 const NoFollowsProfilePresenter = ({ navigation }) => (
   <View style={[ss.invisiContainer, ss.center]}>
     <Ionicons
-      name="md-heart-outline"
+      name="md-heart"
       size={50}
       style={{color: '#000', paddingBottom: 20, paddingTop: 30}} />
     <Text style={{fontFamily: 'ralewayBold', fontSize: 20}}>Follow Prayers</Text>
