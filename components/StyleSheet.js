@@ -348,6 +348,10 @@ const ss = StyleSheet.create({
     fontFamily: 'raleway',
     fontSize: 16,
   },
+  smallButtonText: {
+    fontFamily: 'raleway',
+    fontSize: 13,
+  },
   blackButton: {
     backgroundColor: '#000',
     borderRadius: 6,
@@ -410,6 +414,17 @@ const ss = StyleSheet.create({
     borderRadius: 15,
     height: 30,
   },
+  smallBlueButton: {
+    backgroundColor: 'rgb(69, 119, 238)',
+    borderWidth: 1,
+    borderColor: 'rgb(69, 119, 238)',
+    paddingVertical: 4,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    height: 24,
+  },
   whiteButton: {
     backgroundColor: '#fff',
     borderWidth: 1,
@@ -420,6 +435,17 @@ const ss = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 15,
     height: 30,
+  },
+  smallWhiteButton: {
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#000',
+    paddingVertical: 4,
+    paddingHorizontal: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 12,
+    height: 24,
   },
   flex1: {
     flex: 1

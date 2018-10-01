@@ -1,26 +1,42 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation'
-import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupScrollContainer, PrivateGroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer, NewReminderRepeatContainer, NotificationsContainer } from './containers'
-import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter, NewReminderSubjectPresenter, NewReminderNamePresenter } from './presenters'
+import { AcceptContainer, PrayerContainer, FollowContainer, ProfileContainer, ShareOraContainer, RegisterOraMissionaryContainer, RewardContainer, HomeContainer, GroupScrollContainer, GroupContainer, SubmitSubjectContainer, SubmitBodyContainer, EditProfileContainer, NewReminderContainer, NewReminderRepeatContainer, NotificationsContainer, SearchCommunityGroupsContainer, GroupPrayerContainer } from './containers'
+import { FAQPresenter, TestimonyPresenter, PrayerHeaderPresenter, TraditionalPrayersPresenter, ReflectionFullTextPresenter, RewardFullTextPresenter, SubmitSubjectHeaderRightPresenter, SubmitSubjectHeaderLeftPresenter, SubmitBodyHeaderRightPresenter, ProfileSettingsPresenter, ProfileHeaderRightPresenter, ProfileHeaderTitlePresenter, EditProfileHeaderLeftPresenter, EditProfileHeaderRightPresenter, ThemesPresenter, ReminderListPresenter, ReminderHeaderRightPresenter, NewReminderHeaderLeftPresenter, NewReminderSubjectPresenter, NewReminderNamePresenter, GroupScrollHeaderRightPresenter, GroupScrollHeaderLeftPresenter, GroupHeaderTitlePresenter, GroupHeaderRightPresenter } from './presenters'
 import { Constants } from 'expo'
 import { Ionicons } from '@expo/vector-icons'
 
 const GroupStackNav = StackNavigator({
-  GroupList: {
+  GroupScroll: {
     screen: GroupScrollContainer,
-    navigationOptions: {
+    navigationOptions: ({ navigation }) => ({
+      headerLeft: <GroupScrollHeaderLeftPresenter navigation={navigation} />,
       title: 'Groups',
+      headerBackTitle: null,
+      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18},
+      headerRight: <GroupScrollHeaderRightPresenter navigation={navigation} />
+    })
+  },
+  GroupContainer: {
+    screen: GroupContainer,
+    navigationOptions: ({ navigation }) => ({
+      headerTitle: <GroupHeaderTitlePresenter />,
+      headerBackTitle: null,
+      headerRight: <GroupHeaderRightPresenter navigation={navigation} />
+    })
+  },
+  SearchCommunityGroups: {
+    screen: SearchCommunityGroupsContainer,
+    navigationOptions: {
+      title: 'Search Groups',
       headerBackTitle: null,
       headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
     }
   },
-  PrivateGroup: {
-    screen: PrivateGroupContainer,
+  GroupPrayer: {
+    screen: GroupPrayerContainer,
     navigationOptions: {
-      title: 'Private Group',
-      headerBackTitle: null,
-      headerTitleStyle: {fontFamily: 'ralewayBold', fontSize: 18}
+      header: null
     }
   }
 })

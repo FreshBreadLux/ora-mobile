@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, View, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { Ionicons } from '@expo/vector-icons'
-import ss from '../../StyleSheet'
 import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsScrollPresenter } from '../../presenters'
+import ss from '../../StyleSheet'
 
 function setProfileImage(userInfo) {
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
@@ -54,17 +54,17 @@ const ProfilePresenter = ({ navigation, userInfo, activeScrollView, setActiveScr
             <Text>accepted{'\n'}prayers</Text>
           </View>
         </View>
-        <View style={[ss.row, ss.spaceAround, {backgroundColor: '#fff', borderBottomColor: '#ccc', borderBottomWidth: 1}]}>
+        <View style={[ss.row, ss.spaceAround, ss.bottomBorder, ss.whiteBackground]}>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('follows')}>
             <Ionicons
               name="md-heart"
-              size={25}
+              size={26}
               style={activeScrollView === 'follows' ? {color: '#000'} : {color: '#aaa'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('prayers')}>
             <Ionicons
               name="md-bookmarks"
-              size={25}
+              size={26}
               style={activeScrollView === 'prayers' ? {color: '#000'} : {color: '#aaa'}} />
           </TouchableOpacity>
           <TouchableOpacity style={[ss.flex1, ss.center, ss.padding10]} onPress={() => setActiveScrollView('rewards')}>
