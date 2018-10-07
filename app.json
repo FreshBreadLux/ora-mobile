@@ -32,7 +32,6 @@
       "supportsTablet": false
     },
     "android": {
-      "googleServicesFile": "./google-services.json",
       "package": "com.oraprayernetwork.ora",
       "versionCode": 11
     },
