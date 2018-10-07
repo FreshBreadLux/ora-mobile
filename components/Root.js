@@ -160,7 +160,7 @@ class Root extends React.Component {
         {this.state.loading
         ? <View style={ss.backgroundImageFrame}>
             <Image
-              source={require('../assets/images/splash2.png')}
+              source={require('../assets/images/splash.png')}
               style={ss.backgroundImage} />
           </View>
         : <View style={ss.invisiContainer}>
