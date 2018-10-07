@@ -19,7 +19,7 @@ const FAQPresenter = () => (
           <Text style={ss.subHeader}>Where does the name Ora come from?</Text>
         </View>
         <View style={ss.addViewSpacing}>
-          <Text style={ss.body}>"Ora" is the Latin imperative for "pray". The name was inspired by a line from the Ave Maria: "Ora pro nobis peccatoribus", which means "Pray for us sinners".</Text>
+          <Text style={ss.body}>"Ora" is the Latin imperative for "pray". The name was inspired by a line from the Ave Maria: "ora pro nobis peccatoribus", which means "pray for us sinners".</Text>
         </View>
         <View style={[ss.paddingTop30, ss.fullWidth]}>
           <Text style={ss.subHeader}>When does someone get a notification that I’m praying for them?</Text>

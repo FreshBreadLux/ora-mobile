@@ -62,7 +62,7 @@ export const fetchAndCacheSavedRewards = userId =>
         })
         console.log('finished mapping... awaiting promise resolution')
         savedRewardsWithLocalUrls = await Promise.all(mappedArrayOfPromises)
-        console.log('promises resolved; savedRewardsWithLocalUrls:', savedRewardsWithLocalUrls)
+        console.log('promises resolved')
       }
       return dispatch(getSavedRewards(savedRewardsWithLocalUrls || defaultSavedRewards))
     } catch (error) {
