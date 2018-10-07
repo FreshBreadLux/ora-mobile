@@ -5,7 +5,7 @@
     "slug": "ora-frontend",
     "privacy": "public",
     "sdkVersion": "29.0.0",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "orientation": "portrait",
     "primaryColor": "#1e3799",
     "icon": "./assets/images/icon.png",
@@ -25,7 +25,7 @@
     },
     "ios": {
       "bundleIdentifier": "com.oraprayernetwork.ora",
-      "buildNumber": "1.2.2",
+      "buildNumber": "1.2.3",
       "infoPlist": {
         "NSLocationAlwaysUsageDescription": "Ora uses location data for debugging and crash reporting"
       },
@@ -34,7 +34,7 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.oraprayernetwork.ora",
-      "versionCode": 9
+      "versionCode": 10
     },
     "hooks": {
       "postPublish": [
