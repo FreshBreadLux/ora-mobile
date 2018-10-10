@@ -94,6 +94,7 @@ export const fetchAndCacheSavedRewards = userId =>
           return { ...reward, localPath, artistLocalPath, thumbnailLocalPath }
         })
         savedRewardsWithLocalUrls = await Promise.all(mappedArrayOfPromises)
+        console.log('promises resolved')
       }
       return dispatch(getSavedRewards(savedRewardsWithLocalUrls || defaultSavedRewards))
     } catch (error) {
