@@ -6,10 +6,13 @@ import { FollowScrollPresenter, PrayerScrollPresenter, SavedRewardsScrollPresent
 import ss from '../../StyleSheet'
 
 function setProfileImage(userInfo) {
+  console.log('userInfo.imageUrl:', userInfo.imageUrl)
   const style = {height: 70, width: 70, borderRadius: 35, resizeMode: 'cover'}
   if (userInfo.imageUrl) {
+    console.log('returning user photo')
     return <Image style={style} source={{ uri: userInfo.imageUrl }} />
   } else {
+    console.log('returning default photo')
     return <Image style={style} source={require('../../../assets/images/default-profile-image.png')} />
   }
 }
