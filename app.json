@@ -34,6 +34,7 @@
     "android": {
       "googleServicesFile": "./google-services.json",
       "package": "com.oraprayernetwork.ora",
+      "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION", "READ_SMS"],
       "versionCode": 13
     },
     "hooks": {
