@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import { Ionicons } from '@expo/vector-icons'
 import ss from '../../StyleSheet'
 

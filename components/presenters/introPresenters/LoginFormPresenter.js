@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, TextInput, ScrollView, ActivityIndicator } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import ss from '../../StyleSheet'
 
 const LoginFormPresenter = ({ userLogin, setEmail, setPassword, focusPassword, referencePassword, error, email, password, setForgotPasswordMode, failed, sending }) => (

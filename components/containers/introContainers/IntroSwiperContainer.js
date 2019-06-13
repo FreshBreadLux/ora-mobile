@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Animated as Ad } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import Swiper from 'react-native-swiper'
 import WelcomeContainer from './WelcomeContainer'
 import { AirPlanePresenter, HeartPresenter, CommitPresenter } from '../../presenters'

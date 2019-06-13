@@ -3,7 +3,7 @@ import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Platform } from
 import { connect } from 'react-redux'
 import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 
 const FollowScrollPresenter = ({ follows, navigation }) => (
   <View style={ss.invisiContainer}>

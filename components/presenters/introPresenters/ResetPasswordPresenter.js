@@ -1,6 +1,6 @@
 import React from 'react'
 import { SafeAreaView, View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import ss from '../../StyleSheet'
 
 const ResetPasswordPresenter = ({ setResetCode, resetCode, setPassword, password, referencePassword, focusPassword, setNewPassword, setPasswordCheck, passwordCheck, referencePasswordCheck, focusPasswordCheck, error }) => (

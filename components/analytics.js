@@ -1,4 +1,4 @@
-import { Amplitude } from 'expo'
+import * as Amplitude from 'expo-analytics-amplitude'
 import { AMPLITUDE_API_KEY } from '../config'
 
 export const ampEvents = {
