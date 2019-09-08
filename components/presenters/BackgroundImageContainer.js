@@ -1,6 +1,6 @@
 import React from 'react'
 import { View } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import { connect } from 'react-redux'
 import BackgroundImage from './BackgroundImage'
 import ss from '../StyleSheet'

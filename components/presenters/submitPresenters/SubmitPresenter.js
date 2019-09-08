@@ -2,7 +2,7 @@ import React from 'react'
 import { View, SafeAreaView, Text, TextInput, TouchableOpacity, Platform, ActivityIndicator } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { Ionicons } from '@expo/vector-icons'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import { BackgroundImageContainer } from '../'
 import ss from '../../StyleSheet'
 
