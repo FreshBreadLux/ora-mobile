@@ -21,16 +21,6 @@ const TestimonyPresenter = () => (
           <Text style={ss.body}>Jesus calls us to a life of prayer and devotion, and he leads by example. Countless times throughout the Gospels, we see Jesus “withdraw to deserted places to pray.” (Luke 5:16) In order to follow his example, we must work to cultivate the time and space for prayer in a digital age that is aggressively competing for our attention. We need to design technology systems from a Christian paradigm, such that our social media habits occupy a healthy place in our lives.</Text>
           <View style={[ss.darkBottomBorder, {margin: 30}]} />
           <Text style={ss.body}>I started Ora to help people cultivate habits of prayer and lives of devotion. Rather than run from technology because of the current unhealthy use-cases, I believe that we can design beautiful, graceful technology systems that lead us into a deeper relationship with God.{'\n\n'}It’s easy to think of prayer, devotion, and other pillars of Christianity as abstract ideals that occupy the place of honor “in our hearts” but don’t actually make an appearance in our daily lives. In reality, the love that God pours out into our hearts will flourish best when it takes root in the soil of our everyday habits. I hope that you’ll join us in this beautiful, daily work.</Text>
-          <View style={[ss.center, ss.addLargeViewSpacing, ss.fullWidth]}>
-            <TouchableOpacity
-              style={[ss.newBlueButton, ss.halfWidth]}
-              onPress={() => {
-                ampLogEvent(ampEvents.OPEN_DONATE_PAGE)
-                Linking.openURL('https://www.oraprayernetwork.com/donor-signup')
-              }}>
-                <Text style={[ss.buttonText, ss.whiteText]}>DONATE</Text>
-            </TouchableOpacity>
-          </View>
         </View>
       </ScrollView>
     </View>
