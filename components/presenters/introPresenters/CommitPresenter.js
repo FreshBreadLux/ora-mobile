@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, Animated, Image } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import ss from '../../StyleSheet'
 
 const CommitPresenter = ({ commitIntro, commitImage, commitOutro }) => (

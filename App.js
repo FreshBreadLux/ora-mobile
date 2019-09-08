@@ -1,5 +1,7 @@
 import React from 'react'
-import { AppLoading, Asset, Font } from 'expo'
+import { AppLoading } from 'expo'
+import * as Font from 'expo-font'
+import { Asset } from 'expo-asset'
 import { Image } from 'react-native'
 import { Provider } from 'react-redux'
 import Root from './components/Root'
@@ -19,12 +21,8 @@ function cacheImages(images) {
   })
 }
 
-function cacheFonts(fonts) {
-  return fonts.map(font => Font.loadAsync(font))
-}
-
 // WAIT FOR ASSETS TO BE LOADED
-async function _loadAssetsAsync() {
+function _loadAssetsAsync() {
   const imageAssets = cacheImages([
     require('./assets/images/Rome/Accept.jpg'),
     require('./assets/images/Rome/Submit.jpg'),
@@ -42,14 +40,13 @@ async function _loadAssetsAsync() {
     require('./assets/images/Choirs.jpg'),
     require('./assets/images/bobby-headshot.jpg'),
   ])
-  const fontAssets = cacheFonts([{
+  const fontAssets = Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
     raleway: require('./assets/fonts/Raleway-Regular.ttf'),
     ralewayExtraBold: require('./assets/fonts/Raleway-ExtraBold.ttf'),
     eb: require('./assets/fonts/EBGaramond-Regular.ttf'),
-  }])
-  await Promise.all([...imageAssets, ...fontAssets])
-  // implicit promise for having completed above side effects
+  })
+  return Promise.all([...imageAssets, fontAssets])
 }
 
 export default class App extends React.Component {

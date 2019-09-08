@@ -4,7 +4,7 @@
     "description": "Ora connects Christians around the world through prayer",
     "slug": "ora-frontend",
     "privacy": "public",
-    "sdkVersion": "30.0.0",
+    "sdkVersion": "33.0.0",
     "version": "1.2.7",
     "orientation": "portrait",
     "primaryColor": "#1e3799",

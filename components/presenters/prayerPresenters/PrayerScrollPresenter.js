@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, View, Text, TouchableOpacity, SafeAreaView, Platform } from 'react-native'
-import { LinearGradient } from 'expo'
+import { LinearGradient } from 'expo-linear-gradient'
 import { connect } from 'react-redux'
 import { BackgroundImageContainer } from '../'
 import { fetchUserPrayers } from '../../../store'
